@@ -168,7 +168,7 @@
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
           <li class="nav-item menu-open">
-            <a href="index.php?ad=thongke" class="nav-link active">
+            <a href="index.php?ad=thongke" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Thống kê
@@ -176,7 +176,7 @@
             </a>
           </li>
           <li class="nav-item menu-open">
-            <a href="index.php?ad=quanlynguoidung" class="nav-link active">
+            <a href="index.php?ad=quanlynguoidung" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Quản lý người dùng
@@ -184,7 +184,7 @@
             </a>
           </li>
           <li class="nav-item menu-open">
-            <a href="index.php?ad=quanlydanhmuc" class="nav-link active">
+            <a href="index.php?ad=quanlydanhmuc" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Quản lý danh mục
@@ -192,7 +192,7 @@
             </a>
           </li>
           <li class="nav-item menu-open">
-            <a href="index.php?ad=quanlysanpham" class="nav-link active">
+            <a href="index.php?ad=quanlysanpham" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Quản lý sản phẩm
@@ -200,7 +200,7 @@
             </a>
           </li>
           <li class="nav-item menu-open">
-            <a href="index.php?ad=quanlybaiviet" class="nav-link active">
+            <a href="index.php?ad=quanlybaiviet" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Quản lý bài viết
@@ -208,7 +208,7 @@
             </a>
           </li>
           <li class="nav-item menu-open">
-            <a href="index.php?ad=quanlykhuyenmai" class="nav-link active">
+            <a href="index.php?ad=quanlykhuyenmai" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Quản lý khuyến mại
@@ -216,7 +216,7 @@
             </a>
           </li>
           <li class="nav-item menu-open">
-            <a href="index.php?ad=quanlydonhang" class="nav-link active">
+            <a href="index.php?ad=quanlydonhang" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Quản lý hóa đơn
@@ -224,7 +224,7 @@
             </a>
           </li>
           <li class="nav-item menu-open">
-            <a href="index.php?ad=quanlybienthe" class="nav-link active">
+            <a href="index.php?ad=quanlybienthe" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Quản lý biến thể
@@ -232,7 +232,7 @@
             </a>
           </li>
           <li class="nav-item menu-open">
-            <a href="index.php?ad=quanlybinhluan" class="nav-link active">
+            <a href="index.php?ad=quanlybinhluan" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Quản lý bình luận
@@ -240,7 +240,7 @@
             </a>
           </li>
           <li class="nav-item menu-open">
-            <a href="index.php?ad=quanlychucvu" class="nav-link active">
+            <a href="index.php?ad=quanlychucvu" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Quản lý các quyền hạn
