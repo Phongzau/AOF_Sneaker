@@ -133,6 +133,11 @@ function show_sp_admin($dssp){
     return $html_dssp;
 }
 
+function sp_delete($id){
+    $sql = "DELETE FROM sanpham WHERE  id_sp=?";
+        pdo_execute($sql, $id);
+    
+}
 
 // function hang_hoa_exist($ma_hh){
 //     $sql = "SELECT count(*) FROM hang_hoa WHERE ma_hh=?";

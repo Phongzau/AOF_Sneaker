@@ -14,6 +14,12 @@
                 $sp =  select_sp_all();
                 include "sanpham/quanlysanpham.php";
                 break;
+                case "deletesp":
+                    $id = $_GET['id'];
+                    sp_delete($id);
+                    $sp = select_sp_all();
+                    include "sanpham/quanlysanpham.php";
+                break;
             case 'quanlydanhmuc':
                 include "danhmuc/quanlydanhmuc.php";
                 break;
