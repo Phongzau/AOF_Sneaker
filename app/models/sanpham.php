@@ -61,31 +61,74 @@ function get_sp__by_id($id){
     $sql = "SELECT * FROM sanpham WHERE id=?";
     return pdo_query_one($sql, $id);
 }
+function select_sp_all(){
+    $sql = "SELECT * from sanpham  INNER JOIN danhmuc 
+    on sanpham.iddm = danhmuc.id_dm";
+    return pdo_query($sql);
+}
 
-function showsp($dssp){
+// function showsp($dssp){
+//     $html_dssp ='';
+//     foreach ($dssp as $sp) {
+//      extract($sp);
+//      if($bestseller==1){
+//      $best='<div class="best"></div>'; 
+//      }else{
+//       $best ="";
+//      }
+//      $link="index.php?pg=sanphamchitiet&idpro=".$id;
+//      $html_dssp.='<div class="box25 mr15">
+//      '.$best.'
+//      <a href="'.$link.'">
+//              <img src="layout/images/'.$img.'" alt=""></a>
+//              <a href="'.$link.'"> <h4>'.$name.'</h4></a>
+//              <a href="'.$link.'"><span class="price">$'. $price .'</span></a>
+//              <from action="index.php?pg=addcart" method="post" > 
+//              <input type="hidden" name="tensp" value="'.$name.'">
+//              <input type="hidden" name="img" value="'.$img.'">
+//              <input type="hidden" name="price" value="'.$price.'">
+             
+//              <button type="submit">Đặt hàng </button>
+//              </from>
+//              </div>';
+//     }
+//     return $html_dssp;
+// }
+
+//admin
+function show_sp_admin($dssp){
     $html_dssp ='';
+    $stt=1;
     foreach ($dssp as $sp) {
      extract($sp);
-     if($bestseller==1){
-     $best='<div class="best"></div>'; 
+     if($tinhtrang==0){
+        $tc = 'Còn Hàng';
      }else{
-      $best ="";
+        $tc = 'Hết Hàng';
      }
-     $link="index.php?pg=sanphamchitiet&idpro=".$id;
      $html_dssp.='<div class="box25 mr15">
-     '.$best.'
-     <a href="'.$link.'">
-             <img src="layout/images/'.$img.'" alt=""></a>
-             <a href="'.$link.'"> <h4>'.$name.'</h4></a>
-             <a href="'.$link.'"><span class="price">$'. $price .'</span></a>
-             <from action="index.php?pg=addcart" method="post" > 
-             <input type="hidden" name="tensp" value="'.$name.'">
-             <input type="hidden" name="img" value="'.$img.'">
-             <input type="hidden" name="price" value="'.$price.'">
-             
-             <button type="submit">Đặt hàng </button>
-             </from>
-             </div>';
+     <tr>
+     <td>'.$stt.'</td>
+     <td>'.$name.'</td>
+     <td><img src="'.IMG_PATH_ADMIN.$img.'" style="width:30%" alt="Ảnh sản phẩm"></td>
+     <td>'.$price.'VND</td>
+     <td>'.$view.'</td>
+     <td>'.$mota.'</td>
+     <td>'.$tendm.'</td>
+     <td>'.$tc.'</td>
+     <td>
+     <a href="index.php?ad=suasp&id='.$id_sp.'" class="btn btn-warning">
+     <i class="fa-solid fa-pen-to-square"></i>Sửa</a>
+     <a href="index.php?ad=deletesp&id='.$id_sp.'" class="btn btn-danger">
+     <i class="fa-solid "></i>Xóa</a>
+     <a href="index.php?ad=thembienthe&id='.$id_sp.'" class="btn btn-success">
+     <i class="fa-solid fa-pen-to-square"></i>Thêm biến thể</a>
+     <a href="index.php?ad=xembienthe&id='.$id_sp.'" class="btn btn-info">
+     <i class="fa-solid fa-pen-to-square"></i>Xem biến thể</a>
+     </td>
+   </tr>
+   <tr>';
+   $stt++;
     }
     return $html_dssp;
 }

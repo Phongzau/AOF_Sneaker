@@ -1,6 +1,9 @@
 <?php
     include "header.php";
     include "sidebar.php";
+    include "../../models/pdo.php";
+    include "../../models/sanpham.php";
+    include "../../models/global.php";
     if (isset($_GET['ad'])) {
         $ad = $_GET['ad'];
         switch ($ad) {
@@ -8,6 +11,7 @@
                 include "user/quanlynguoidung.php";
                 break;
             case 'quanlysanpham':
+                $sp =  select_sp_all();
                 include "sanpham/quanlysanpham.php";
                 break;
             case 'quanlydanhmuc':
