@@ -25,6 +25,7 @@
             case 'th_suanguoidung':
                 if (isset($_POST['th_suanguoidung'])) {
                     $username = $_POST['username'];
+                    $id_user = $_POST['id_user']; 
                     $password = $_POST['password'];
                     $user_name = $_POST['user_name'];
                     $img = $_FILES['img']['name'];
@@ -33,13 +34,12 @@
                         $target_file = IMG_PATH_ADMIN.$img;
                         move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
                     } else {
-                        $img = "";
+                        $img = get_old_image_user($id_user);
                     }
                     $diachi = $_POST['diachi'];
                     $email = $_POST['email'];
                     $dienthoai = $_POST['dienthoai'];
-                    $idrole = $_POST['id_role'];
-                    $id_user = $_POST['id_user']; 
+                    $idrole = $_POST['id_role']; 
                 }
                 update_user_admin($username, $password, $user_name, $img, $diachi, $email, $dienthoai, $idrole, $id_user);
                 $user = select_user_all();

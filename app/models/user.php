@@ -117,12 +117,18 @@ function show_user_admin($us){
       $html_show_user='';
       foreach ($us as $users) {
           extract($users);
+          if ($img != "") {
+            $print = '<img src="'.IMG_PATH_ADMIN.$img.'" style="width:30%" alt="Ảnh người dùng">';
+          } else {
+            $img = 'anh_dai_dien_khong_nhap.jpg';
+            $print = '<img src="'.IMG_PATH_ADMIN.$img.'" style="width:30%" alt="Ảnh người dùng">';
+          }
           $html_show_user.='<tr>
                               <td>'.$id_user.'</td>
                               <td>'.$username.'</td>
                               <td>'.$password.'</td>
                               <td>'.$user_name.'</td>
-                              <td><img src="'.IMG_PATH_ADMIN.$img.'" style="width:30%" alt="Ảnh người dùng"></td>
+                              <td>'.$print.'</td>
                               <td>'.$diachi.'</td>
                               <td>'.$email.'</td>
                               <td>'.$dienthoai.'</td>
@@ -139,6 +145,11 @@ function show_user_admin($us){
       return $html_show_user;
 }
 
+function get_old_image_user($id_user) {
+        $sql = "SELECT * FROM user WHERE id_user=?";
+        $result = pdo_query_one($sql, $id_user);
+        return $result['img'];
+}
 
 
 
