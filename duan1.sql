@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 16, 2023 lúc 03:30 PM
+-- Thời gian đã tạo: Th10 17, 2023 lúc 12:08 PM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.2.4
 
@@ -205,17 +205,18 @@ CREATE TABLE `lienhe` (
 
 CREATE TABLE `role` (
   `id_role` int(10) NOT NULL,
-  `chuc_vu` varchar(200) NOT NULL
+  `chuc_vu` varchar(200) NOT NULL,
+  `mota` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Đang đổ dữ liệu cho bảng `role`
 --
 
-INSERT INTO `role` (`id_role`, `chuc_vu`) VALUES
-(1, 'Khách Hàng'),
-(2, 'Admin'),
-(3, 'Nhân Viên');
+INSERT INTO `role` (`id_role`, `chuc_vu`, `mota`) VALUES
+(1, 'Khách Hàng', NULL),
+(2, 'Admin', NULL),
+(3, 'Nhân Viên', NULL);
 
 -- --------------------------------------------------------
 
@@ -226,7 +227,7 @@ INSERT INTO `role` (`id_role`, `chuc_vu`) VALUES
 CREATE TABLE `sanpham` (
   `id_sp` int(6) NOT NULL,
   `name` varchar(100) NOT NULL,
-  `view` int(20) DEFAULT NULL,
+  `view` int(20) DEFAULT 0,
   `iddm` int(6) NOT NULL,
   `tinhtrang` tinyint(1) DEFAULT 0,
   `mota` text DEFAULT NULL,
@@ -239,14 +240,11 @@ CREATE TABLE `sanpham` (
 --
 
 INSERT INTO `sanpham` (`id_sp`, `name`, `view`, `iddm`, `tinhtrang`, `mota`, `img`, `price`) VALUES
-(1, 'BASAS WORKADAY - LOW TOP - BLACK', 2, 1, 0, 'Gender: Unisex\r\nSize run: 35 – 46\r\nUpper: Canvas NE\r\nOutsole: Rubber', 'sp1_nau.jpg', 100),
 (2, 'BASAS WORKADAY - LOW TOP - REAL TEAL', 10, 1, 0, 'Gender: Unisex\r\nSize run: 35 – 46\r\nUpper: Canvas NE\r\nOutsole: Rubber', 'sp2_den.jpg', 600),
 (3, 'BASAS BUMPER GUM NE - LOW TOP - BLACK/GUM', 0, 2, 0, 'ánh dấu một bước trưởng thành nữa, Basas Bumper Gum NE (New Episode) ra đời với những cải tiến nhẹ nhàng nhưng đủ tạo được sự thay đổi trong cảm nhận khi trải nghiệm. Vẫn giữ ngoại hình gần như không thay để phát huy đặc tính ứng dụng cao của dòng Basas vốn đã được chứng minh, phần đế màu Gum thú vị và /Foxing thân/ mới làm nền cho phần chất liệu Upper được nâng cấp. Đây được xem là một trong những phiên bản được chúng tôi kì vọng có thể bền vững vượt qua thời gian và không gian, chắc chắn đáng để thử.\r\n', 'sp3_xanh.jpg', 800),
 (4, 'TRACK 6 SUEDE MOONPHASE - LOW TOP - FOSSIL', 12, 4, 0, 'Dựa trên cảm hứng từ việc tái hiện những sắc xám (Grey) khác nhau hoà cùng những trạng thái ánh sáng trên bề mặt mặt trăng, Ananas Track 6 Suede Moonphase Pack sử dụng chất liệu da lộn (suede) đặc trưng, được phủ toàn bộ thân giày với tông màu sáng tối sắp xếp hài hoà hợp lý. Đây chắc chắn là một sản phẩm must have với những ai yêu thích chất suede và những gam màu Grey trung tính', 'sp4_den.jpg', 500),
 (5, 'TRACK 7 SUEDE MOONPHASE - LOW TOP - FOSSIL', NULL, 2, 0, 'Dựa trên cảm hứng từ việc tái hiện những sắc xám (Grey) khác nhau hoà cùng những trạng thái ánh sáng trên bề mặt mặt trăng, Ananas Track 6 Suede Moonphase Pack sử dụng chất liệu da lộn (suede) đặc trưng, được phủ toàn bộ thân giày với tông màu sáng tối sắp xếp hài hoà hợp lý. Đây chắc chắn là một sản phẩm must have với những ai yêu thích chất suede và những gam màu Grey trung tính', 'sp5_trang.jpg', 500),
-(8, 'TRACK 8 SUEDE MOONPHASE - LOW TOP - FOSSIL', NULL, 3, 0, 'Dựa trên cảm hứng từ việc tái hiện những sắc xám (Grey) khác nhau hoà cùng những trạng thái ánh sáng trên bề mặt mặt trăng, Ananas Track 6 Suede Moonphase Pack sử dụng chất liệu da lộn (suede) đặc trưng, được phủ toàn bộ thân giày với tông màu sáng tối sắp xếp hài hoà hợp lý. Đây chắc chắn là một sản phẩm must have với những ai yêu thích chất suede và những gam màu Grey trung tính.', 'sp6_trang.jpg', 500000),
-(9, 'TRACK 4 SUEDE MOONPHASE - LOW TOP - FOSSIL', NULL, 3, 0, 'Dựa trên cảm hứng từ việc tái hiện những sắc xám (Grey) khác nhau hoà cùng những trạng thái ánh sáng trên bề mặt mặt trăng, Ananas Track 6 Suede Moonphase Pack sử dụng chất liệu da lộn (suede) đặc trưng, được phủ toàn bộ thân giày với tông màu sáng tối sắp xếp hài hoà hợp lý. Đây chắc chắn là một sản phẩm must have với những ai yêu thích chất suede và những gam màu Grey trung tính.', 'sp7_den.jpg', 600000),
-(10, 'URBAS SC - LOW TOP - FAIR ORCHID', NULL, 4, 0, 'Gender: Unisex\r\nSize run: 35 – 46\r\nUpper: Canvas NE\r\nOutsole: Rubber', 'sp8_trang.jpg', 800000);
+(8, 'TRACK 8 SUEDE MOONPHASE - LOW TOP - FOSSIL', NULL, 3, 0, 'Dựa trên cảm hứng từ việc tái hiện những sắc xám (Grey) khác nhau hoà cùng những trạng thái ánh sáng trên bề mặt mặt trăng, Ananas Track 6 Suede Moonphase Pack sử dụng chất liệu da lộn (suede) đặc trưng, được phủ toàn bộ thân giày với tông màu sáng tối sắp xếp hài hoà hợp lý. Đây chắc chắn là một sản phẩm must have với những ai yêu thích chất suede và những gam màu Grey trung tính.', 'sp6_trang.jpg', 500000);
 
 -- --------------------------------------------------------
 
@@ -263,7 +261,7 @@ CREATE TABLE `user` (
   `email` varchar(200) NOT NULL,
   `dienthoai` varchar(20) NOT NULL,
   `idrole` int(20) NOT NULL DEFAULT 1,
-  `img` int(11) DEFAULT NULL
+  `img` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -271,9 +269,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`, `user_name`, `diachi`, `email`, `dienthoai`, `idrole`, `img`) VALUES
-(1, 'admin', 'admin', 'admin', NULL, 'quanvyyyb@gmail.com', '0343147165', 2, NULL),
-(2, 'hainam', 'hainam12', 'hải nam', NULL, 'hainam@gmail.com', '092138128', 1, NULL),
-(3, 'yen1212', 'yen1212', 'Nhân Viên Yến', NULL, 'yen1212@gmail.com', '0343147122', 3, NULL);
+(1, 'admin', 'admin', 'admin', NULL, 'quanvyyyb@gmail.com', '0343147165', 2, 'sp1_bienthe1.jpeg'),
+(2, 'hainam', 'hainam12', 'hải nam', NULL, 'hainam@gmail.com', '092138128', 1, 'sp1_bienthe2.jpeg'),
+(3, 'yen1212', 'yen1212', 'Nhân Viên Yến', NULL, 'yen1212@gmail.com', '0343147122', 3, 'sp1_bienthe3.jpeg');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -397,7 +395,7 @@ ALTER TABLE `binhluan`
 -- AUTO_INCREMENT cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
-  MODIFY `id_dm` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_dm` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `donhang`

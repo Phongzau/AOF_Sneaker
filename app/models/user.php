@@ -11,7 +11,6 @@
 //   $sql = "INSERT INTO user(ten,username,password,diachi,email,dienthoai) VALUES (?,?,?,?,?,?)"; 
 //  return  pdo_execute_id($sql,$username,$password,$ten, $diachi, $email, $dienthoai);
 // }
-<<<<<<< HEAD
 function select_user_all() {
   $sql = "SELECT * from `user` INNER JOIN `role` ON user.idrole = role.id_role ORDER BY id_user ASC";
   return pdo_query($sql);
@@ -21,7 +20,7 @@ function user_new() {
   $sql = "SELECT * from user order by id DESC";
   return pdo_query($sql);
 }
-=======
+
 // function user_all() {
 //   $sql = "SELECT * from user order by id asc";
 //   return pdo_query($sql);
@@ -30,7 +29,7 @@ function user_new() {
 //   $sql = "SELECT * from user order by id DESC";
 //   return pdo_query($sql);
 // }
->>>>>>> 50ba1555080c3ee8c19083e9345d54760987171f
+
 
 
 // function  checkuser($username,$password){
@@ -93,8 +92,8 @@ function user_new() {
 //       }
 //       return $html_dm;
 //   }
-<<<<<<< HEAD
-}
+
+
 function checkusername($username){
   $sql = "SELECT * from user WHERE username=?";
   return pdo_query_one($sql,$username);
@@ -138,8 +137,8 @@ function show_user_admin($us){
       }
       return $html_show_user;
 }
-=======
->>>>>>> 50ba1555080c3ee8c19083e9345d54760987171f
+
+
 
 
 
