@@ -3,6 +3,7 @@
     include "sidebar.php";
     include "../../models/pdo.php";
     include "../../models/sanpham.php";
+    include "../../models/danhmuc.php";
     include "../../models/global.php";
     if (isset($_GET['ad'])) {
         $ad = $_GET['ad'];
@@ -21,8 +22,12 @@
                     include "sanpham/quanlysanpham.php";
                 break;
             case 'quanlydanhmuc':
+                  $dm =danhmuc_all();
                 include "danhmuc/quanlydanhmuc.php";
                 break;
+                case "deletedm":
+
+                    break;
             case 'quanlybaiviet':
                 include "baiviet/quanlybaiviet.php";
                 break;
