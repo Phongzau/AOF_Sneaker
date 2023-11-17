@@ -94,6 +94,7 @@ function user_new() {
 //       return $html_dm;
 //   }
 
+
 function checkusername($username){
   $sql = "SELECT * from user WHERE username=?";
   return pdo_query_one($sql,$username);
