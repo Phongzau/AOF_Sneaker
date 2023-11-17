@@ -1,10 +1,10 @@
 <?php
 require_once 'pdo.php';
 
-function binhluan_insert($iduser,$idpro, $noidung, $ngaybl,$hoten){
-    $sql = "INSERT INTO binhluan(iduser,idpro,noidung,ngaybl,hoten) VALUES (?,?,?,?,?)";
-    pdo_execute($sql,$iduser, $idpro, $noidung, $ngaybl,$hoten);
-}
+// function binhluan_insert($iduser,$idpro, $noidung, $ngaybl,$hoten){
+//     $sql = "INSERT INTO binhluan(iduser,idpro,noidung,ngaybl,hoten) VALUES (?,?,?,?,?)";
+//     pdo_execute($sql,$iduser, $idpro, $noidung, $ngaybl,$hoten);
+// }
 
 // function binhluan_update($ma_bl, $ma_kh, $ma_hh, $noi_dung, $ngay_bl){
 //     $sql = "UPDATE binhluan SET ma_kh=?,ma_hh=?,noi_dung=?,ngay_bl=? WHERE ma_bl=?";
@@ -23,10 +23,10 @@ function binhluan_insert($iduser,$idpro, $noidung, $ngaybl,$hoten){
 //     }
 // }
 
-function binhluan_select_all(){
-    $sql = "SELECT * FROM binhluan ORDER BY id  DESC";
-    return pdo_query($sql);
-}
+// function binhluan_select_all(){
+//     $sql = "SELECT * FROM binhluan ORDER BY id  DESC";
+//     return pdo_query($sql);
+// }
 
 // function binhluan_select_by_id($ma_bl){
 //     $sql = "SELECT * FROM binhluan WHERE ma_bl=?";

@@ -25,24 +25,18 @@ require_once 'pdo.php';
 //  * @param mix $ma_danhmuc là mã loại hoặc mảng mã loại
 //  * @throws PDOException lỗi xóa
 //  */
-// function danhmuc_delete($ma_danhmuc){
-//     $sql = "DELETE FROM danhmuc WHERE ma_danhmuc=?";
-//     if(is_array($ma_danhmuc)){
-//         foreach ($ma_danhmuc as $ma) {
-//             pdo_execute($sql, $ma);
-//         }
-//     }
-//     else{
-//         pdo_execute($sql, $ma_danhmuc);
-//     }
-// }
+function danhmuc_delete($ma_danhmuc){
+    $sql = "DELETE FROM danhmuc WHERE id_dm=?";      
+        pdo_execute($sql, $ma_danhmuc);
+   
+}
 // /**
 //  * Truy vấn tất cả các loại
 //  * @return array mảng loại truy vấn được
 //  * @throws PDOException lỗi truy vấn
 //  */
 function danhmuc_all(){
-    $sql = "SELECT * FROM danhmuc ORDER BY stt DESC";
+    $sql = "SELECT * FROM danhmuc ";
     return pdo_query($sql);
 }
 
@@ -50,15 +44,24 @@ function showdm ($dsdm){
     $html_dm='';
     foreach ($dsdm as $dm) {
         extract($dm);
-        $link='index.php?pg=sanpham&iddm='.$id;
-        $html_dm.='<a href="'.$link.'">'.$name.'</a>';
+        $html_dm.=' <tr>
+        <td>'.$id_dm.'</td>
+        <td>'.$tendm.'</td>
+        <td>'.$mota.'</td>
+        <td>
+        <a href="index.php?ad=editdm&id='.$id_dm.'" class="btn btn-warning">
+        <i class="fa-solid fa-pen-to-square"></i> Sửa</a>
+        <a href="index.php?ad=deletedm&id='.$id_dm.'" class="btn btn-danger">
+        <i class="fa-solid "></i> Xóa</a>
+        </td>
+      </tr>';
     }
     return $html_dm;
 }
-function get_name_dm($id){
-    $sql = "SELECT name from danhmuc where id=?";
-    return  pdo_query_value($sql,$id);
-}
+// function get_name_dm($id){
+//     $sql = "SELECT name from danhmuc where id=?";
+//     return  pdo_query_value($sql,$id);
+// }
 // /**
 //  * Truy vấn một loại theo mã
 //  * @param int $ma_danhmuc là mã loại cần truy vấn

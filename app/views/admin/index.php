@@ -3,6 +3,7 @@
     include "sidebar.php";
     include "../../models/pdo.php";
     include "../../models/sanpham.php";
+    include "../../models/danhmuc.php";
     include "../../models/global.php";
     include "../../models/user.php";
     include "../../models/chucvu.php";
@@ -56,8 +57,15 @@
                     include "sanpham/quanlysanpham.php";
                 break;
             case 'quanlydanhmuc':
+                  $dm =danhmuc_all();
                 include "danhmuc/quanlydanhmuc.php";
                 break;
+                case "deletedm":
+                      $id = $_GET['id'];
+                      danhmuc_delete($id);
+                      $dm =danhmuc_all();
+                      include "danhmuc/quanlydanhmuc.php";
+                    break;
             case 'quanlybaiviet':
                 include "baiviet/quanlybaiviet.php";
                 break;
