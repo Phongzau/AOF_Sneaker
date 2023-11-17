@@ -1,6 +1,12 @@
 <?php
     if (is_array($iduser) && (count($iduser) > 0)) {
         extract($iduser);
+                $imgpath = IMG_PATH_ADMIN.$img;
+        if (is_file($imgpath)) {
+            $img = '<img src="'.$imgpath.'" width="80px">';
+        } else {
+            $img = '';
+        } 
     }
     $html_dsrole = showds_role_admin($dsrole);
 ?>
@@ -26,7 +32,8 @@
                     </div>
                     <div class="form-group">
                         <label for="name">Ảnh:</label>
-                        <input type="file" class="form-control" name="img" id="name">
+                        <input type="file" class="form-control"  name="img" id="name"> <br>
+                        <?=$img?>
                     </div>
                     <div class="form-group">
                         <label for="name">Địa chỉ:</label>
