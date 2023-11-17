@@ -25,17 +25,11 @@ require_once 'pdo.php';
 //  * @param mix $ma_danhmuc là mã loại hoặc mảng mã loại
 //  * @throws PDOException lỗi xóa
 //  */
-// function danhmuc_delete($ma_danhmuc){
-//     $sql = "DELETE FROM danhmuc WHERE ma_danhmuc=?";
-//     if(is_array($ma_danhmuc)){
-//         foreach ($ma_danhmuc as $ma) {
-//             pdo_execute($sql, $ma);
-//         }
-//     }
-//     else{
-//         pdo_execute($sql, $ma_danhmuc);
-//     }
-// }
+function danhmuc_delete($ma_danhmuc){
+    $sql = "DELETE FROM danhmuc WHERE id_dm=?";      
+        pdo_execute($sql, $ma_danhmuc);
+   
+}
 // /**
 //  * Truy vấn tất cả các loại
 //  * @return array mảng loại truy vấn được

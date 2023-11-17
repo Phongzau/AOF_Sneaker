@@ -26,7 +26,10 @@
                 include "danhmuc/quanlydanhmuc.php";
                 break;
                 case "deletedm":
-
+                      $id = $_GET['id'];
+                      danhmuc_delete($id);
+                      $dm =danhmuc_all();
+                      include "danhmuc/quanlydanhmuc.php";
                     break;
             case 'quanlybaiviet':
                 include "baiviet/quanlybaiviet.php";
