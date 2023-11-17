@@ -27,7 +27,14 @@
                     $username = $_POST['username'];
                     $password = $_POST['password'];
                     $user_name = $_POST['user_name'];
-                    $img = "NULL";
+                    $img = $_FILES['img']['name'];
+                    if ($img != "") {
+                        // upload hinh anh
+                        $target_file = IMG_PATH_ADMIN.$img;
+                        move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
+                    } else {
+                        $img = "";
+                    }
                     $diachi = $_POST['diachi'];
                     $email = $_POST['email'];
                     $dienthoai = $_POST['dienthoai'];
