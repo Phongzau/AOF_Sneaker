@@ -51,19 +51,53 @@
                 include "sanpham/quanlysanpham.php";
                 break;
                 case "deletesp":
+                    if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                     $id = $_GET['id'];
                     sp_delete($id);
+                    }
                     $sp = select_sp_all();
                     include "sanpham/quanlysanpham.php";
                 break;
+                case "suasp":
+                    if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $id = $_GET['id'];
+                    }
+                    $sp_edit = get_sanpham_id($id);
+                    $dm =danhmuc_all();
+                    include "sanpham/suasanpham.php";
+                break;
+                case "th_suasanpham":
+                    if (isset($_POST['suasanpham'])) {
+                        $id_sp = $_POST['id_sp'];
+                        $price = $_POST['price'];
+                        $name = $_POST['name'];
+                        $mota = $_POST['mota'];
+                        $iddm = $_POST['iddm'];
+
+                        $img = $_FILES['img']['name'];
+                        if ($img != "") {
+                            $target_file = IMG_PATH_ADMIN . $img;
+                            move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
+                        } else {
+                            $img = "";
+                        }
+                        sanpham_update($id_sp, $name, $price, $mota, $img, $iddm );
+                        $sp = select_sp_all();
+                        include "sanpham/quanlysanpham.php";
+                    }
+                break;
+                
             case 'quanlydanhmuc':
                   $dm =danhmuc_all();
                 include "danhmuc/quanlydanhmuc.php";
                 break;
                 case "deletedm":
+                    if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                       $id = $_GET['id'];
                       danhmuc_delete($id);
+                    }
                       $dm =danhmuc_all();
+                      
                       include "danhmuc/quanlydanhmuc.php";
                     break;
             case 'quanlybaiviet':
