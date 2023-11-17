@@ -6,10 +6,7 @@ require_once 'pdo.php';
 //     pdo_execute($sql, $ten_hh, $don_gia, $giam_gia, $hinh, $ma_loai, $dac_biet==1, $so_luot_xem, $ngay_nhap, $mo_ta);
 // }
 
-// function hang_hoa_update($ma_hh, $ten_hh, $don_gia, $giam_gia, $hinh, $ma_loai, $dac_biet, $so_luot_xem, $ngay_nhap, $mo_ta){
-//     $sql = "UPDATE hang_hoa SET ten_hh=?,don_gia=?,giam_gia=?,hinh=?,ma_loai=?,dac_biet=?,so_luot_xem=?,ngay_nhap=?,mo_ta=? WHERE ma_hh=?";
-//     pdo_execute($sql, $ten_hh, $don_gia, $giam_gia, $hinh, $ma_loai, $dac_biet==1, $so_luot_xem, $ngay_nhap, $mo_ta, $ma_hh);
-// }
+
 
 // function hang_hoa_delete($ma_hh){
 //     $sql = "DELETE FROM hang_hoa WHERE  ma_hh=?";
@@ -65,6 +62,26 @@ function select_sp_all(){
     $sql = "SELECT * from sanpham  INNER JOIN danhmuc 
     on sanpham.iddm = danhmuc.id_dm";
     return pdo_query($sql);
+}
+
+function  get_sanpham_id($id){
+    $sql = "SELECT * from sanpham  INNER JOIN danhmuc 
+    on sanpham.iddm = danhmuc.id_dm  WHERE id_sp=?";
+      return pdo_query_one($sql,$id);
+    }
+
+function showds_danhmuc_admin($dm) {
+    $html_dsrole = '';
+    foreach($dm as $dsdm) {
+        extract($dsdm);
+        $html_dsrole.='<option  value="'.$id_dm.'" >'.$tendm.'</option>';
+    }
+    return $html_dsrole;
+}
+
+function sanpham_update($id_sp, $name, $price, $mota, $img, $iddm ){
+    $sql = "UPDATE sanpham SET id_sp=?,name=?,price=?,mota=?,img=?,iddm=? WHERE id_sp=$id_sp";
+    pdo_execute($sql,$id_sp, $name, $price, $mota, $img,$iddm);
 }
 
 // function showsp($dssp){

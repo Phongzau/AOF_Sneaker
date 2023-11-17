@@ -7,6 +7,7 @@
     include "../../models/global.php";
     include "../../models/user.php";
     include "../../models/chucvu.php";
+    include "../../models/bienthe.php";
     $dsrole = select_all_role();
     if (isset($_GET['ad'])) {
         $ad = $_GET['ad'];
@@ -58,19 +59,99 @@
                 include "sanpham/quanlysanpham.php";
                 break;
                 case "deletesp":
+                    if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                     $id = $_GET['id'];
                     sp_delete($id);
+                    }
                     $sp = select_sp_all();
                     include "sanpham/quanlysanpham.php";
                 break;
+                case 'xembienthe':
+                    if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                        $id = $_GET['id'];
+                    }
+                    $bt =  select_bthe_id($id);
+                    include "sanpham/xembienthesanpham.php";
+                    break;
+                    case "suabt":
+                        if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                        $id = $_GET['id'];
+                        $idsp =$_GET['idsp'];
+                        }
+                        $bt_edit  = get_bienthe_id($id);
+                       
+                        include "sanpham/suabienthe.php";
+                    break;
+                case "suasp":
+                    if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $id = $_GET['id'];
+                    }
+                    $sp_edit  = get_sanpham_id($id);
+                    $dm =danhmuc_all();
+                    include "sanpham/suasanpham.php";
+                break;
+                case "th_suasanpham":
+                    if (isset($_POST['suasanpham'])) {
+                        $id_sp = $_POST['id_sp'];
+                        $price = $_POST['price'];
+                        $name = $_POST['name'];
+                        $mota = $_POST['mota'];
+                        $iddm = $_POST['iddm'];
+
+                        $img = $_FILES['img']['name'];
+                        if ($img != "") {
+                            $target_file = IMG_PATH_ADMIN . $img;
+                            move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
+                        } else {
+                            $img = "";
+                        }
+                        sanpham_update($id_sp, $name, $price, $mota, $img, $iddm );
+                        $sp = select_sp_all();
+                        include "sanpham/quanlysanpham.php";
+                    }
+                break;
+                case"th_thembienthe":
+                    if (isset($_POST['s_thembienthe'])) {
+                        $id_sp = $_POST['id_sp'];
+                        $mau = $_POST['mau'];
+                        $dungluong = $_POST['dungluong'];
+                        $soluong = $_POST['soluong'];
+                        bienthe_insert($id_sp, $mau, $dungluong, $soluong);
+                    }
+
+                    case"th_suabienthe":
+                        if (isset($_POST['s_suabienthe'])) {
+                            $id_bt = $_POST['id_bt'];
+                           $id_sp = $_POST['id_sp'];
+                            $mau = $_POST['mau'];
+                            $dungluong = $_POST['dungluong'];
+                            $soluong = $_POST['soluong'];
+                            bienthe_update($id_bt,$id_sp, $mau, $dungluong, $soluong);
+                            
+                        }
+                        $sp = select_sp_all();
+                        include "sanpham/quanlysanpham.php";
+                    break;
+                    case "deletebt":
+                        if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                        $id = $_GET['id'];
+                        bt_delete($id);
+                        }
+                        $sp = select_sp_all();
+                        include "sanpham/quanlysanpham.php";
+                    break;
+                
             case 'quanlydanhmuc':
                   $dm =danhmuc_all();
                 include "danhmuc/quanlydanhmuc.php";
                 break;
                 case "deletedm":
+                    if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                       $id = $_GET['id'];
                       danhmuc_delete($id);
+                    }
                       $dm =danhmuc_all();
+                      
                       include "danhmuc/quanlydanhmuc.php";
                     break;
             case 'quanlybaiviet':
@@ -151,6 +232,9 @@
                 include "donhang/themdonhang.php";
                 break;
             case 'thembienthe':
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                   $id = $_GET['id'];
+                }
                 include "sanpham/thembienthe.php";
                 break;
             default :
