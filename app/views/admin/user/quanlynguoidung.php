@@ -1,3 +1,6 @@
+<?php
+  $html_show_user = show_user_admin($user);
+?>
 <div class="container mt-3">
     <h2>Users</h2>
     <div class="d-flex justify-content-end">
@@ -21,57 +24,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>nta2004</td>
-          <td>58239045898</td>
-          <td>Đặng Thanh Phong</td>
-          <td><img src="../../../public/dist/img/avatar2.png" style="width: 50%" alt=""></td>
-          <td>Số 81 ngõ 42 thịnh liệt</td>
-          <td>phongzau2004@gmail.com</td>
-          <td>0375566576</td>
-          <td>Người dùng</td>
-          <td>
-          <a href="#" class="btn btn-warning">
-          <i class="fa-solid fa-pen-to-square"></i> Sửa</a>
-          <a href="#" class="btn btn-danger">
-          <i class="fa-solid "></i> Xóa</a>
-          </td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>nta2004</td>
-          <td>58239045898</td>
-          <td>Đặng Thanh Phong</td>
-          <td><img src="../../../public/dist/img/avatar3.png" style="width: 50%" alt=""></td>
-          <td>Số 81 ngõ 42 thịnh liệt</td>
-          <td>phongzau2004@gmail.com</td>
-          <td>0375566576</td>
-          <td>admin</td>
-          <td>
-          <a href="#" class="btn btn-warning">
-          <i class="fa-solid fa-pen-to-square"></i> Sửa</a>
-          <a href="#" class="btn btn-danger">
-          <i class="fa-solid "></i> Xóa</a>
-          </td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td>nta2004</td>
-          <td>58239045898</td>
-          <td>Đặng Thanh Phong</td>
-          <td><img src="../../../public/dist/img/avatar4.png" style="width: 50%" alt=""></td>
-          <td>Số 81 ngõ 42 thịnh liệt</td>
-          <td>phongzau2004@gmail.com</td>
-          <td>0375566576</td>
-          <td>admin</td>
-          <td>
-          <a href="#" class="btn btn-warning">
-          <i class="fa-solid fa-pen-to-square"></i> Sửa</a>
-          <a href="#" class="btn btn-danger">
-          <i class="fa-solid "></i> Xóa</a>
-          </td>
-        </tr>
+        <?=$html_show_user?>
       </tbody>
     </table>
   </div>

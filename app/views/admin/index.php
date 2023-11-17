@@ -4,10 +4,45 @@
     include "../../models/pdo.php";
     include "../../models/sanpham.php";
     include "../../models/global.php";
+    include "../../models/user.php";
+    include "../../models/chucvu.php";
+    $dsrole = select_all_role();
     if (isset($_GET['ad'])) {
         $ad = $_GET['ad'];
         switch ($ad) {
             case 'quanlynguoidung':
+                $user = select_user_all();
+                include "user/quanlynguoidung.php";
+                break;
+            case 'updateuser':
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $id = $_GET['id'];
+                    $iduser = get_user($id);
+                }
+                include "user/suanguoidung.php";
+                break;
+            case 'th_suanguoidung':
+                if (isset($_POST['th_suanguoidung'])) {
+                    $username = $_POST['username'];
+                    $password = $_POST['password'];
+                    $user_name = $_POST['user_name'];
+                    $img = "NULL";
+                    $diachi = $_POST['diachi'];
+                    $email = $_POST['email'];
+                    $dienthoai = $_POST['dienthoai'];
+                    $idrole = $_POST['id_role'];
+                    $id_user = $_POST['id_user']; 
+                }
+                update_user_admin($username, $password, $user_name, $img, $diachi, $email, $dienthoai, $idrole, $id_user);
+                $user = select_user_all();
+                include "user/quanlynguoidung.php";
+                break;
+            case 'deleteuser':
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $id = $_GET['id'];
+                    delete_user_admin($id);
+                }
+                $user = select_user_all();
                 include "user/quanlynguoidung.php";
                 break;
             case 'quanlysanpham':
@@ -39,6 +74,7 @@
                 include "binhluan/quanlybinhluan.php";
                 break;
             case 'quanlychucvu':
+                $dsrole = select_all_role();
                 include "chucvu/quanlychucvu.php";
                 break;
             case 'thongke':
@@ -61,6 +97,40 @@
                 break;
             case 'themchucvu':
                 include "chucvu/themchucvu.php";
+                break;
+            case 'th_themchucvu':
+                if (isset($_POST['th_themchucvu'])) {
+                    $chuc_vu = $_POST['chuc_vu'];
+                    $mota = $_POST['mota'];
+                }
+                insert_chucvu_admin($chuc_vu, $mota);
+                $dsrole = select_all_role();
+                include "chucvu/quanlychucvu.php";
+                break;
+            case 'deleterole':
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $id = $_GET['id'];
+                    delete_chucvu_admin($id);
+                }
+                $dsrole = select_all_role();
+                include "chucvu/quanlychucvu.php";
+                break;
+            case 'updaterole':
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $id = $_GET['id'];
+                    $idrole = select_chucvu_admin_by_id($id);
+                }
+                include "chucvu/suachucvu.php";
+                break;
+            case 'th_suachucvu':
+                if (isset($_POST['th_suachucvu'])) {
+                    $chuc_vu = $_POST['chuc_vu'];
+                    $mota = $_POST['mota'];
+                    $id = $_POST['id_role'];
+                }
+                update_chucvu_admin($chuc_vu, $mota, $id);
+                $dsrole = select_all_role();
+                include "chucvu/quanlychucvu.php";
                 break;
             case 'themdonhang':
                 include "donhang/themdonhang.php";
