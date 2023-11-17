@@ -23,44 +23,44 @@ require_once 'pdo.php';
 //     }
 // }
 
-function get_dssp_new($limi){
-    $sql = "SELECT * FROM sanpham ORDER BY id DESC limit ".$limi;
-    return pdo_query($sql);
-}
+// function get_dssp_new($limi){
+//     $sql = "SELECT * FROM sanpham ORDER BY id DESC limit ".$limi;
+//     return pdo_query($sql);
+// }
 
 
-function get_dssp_lienquan($iddm,$id,$limi){
-    $sql = "SELECT * FROM sanpham  WHERE iddm=? AND id<>? ORDER BY view DESC limit ".$limi;
-    return pdo_query($sql,$iddm,$id);
-}
+// function get_dssp_lienquan($iddm,$id,$limi){
+//     $sql = "SELECT * FROM sanpham  WHERE iddm=? AND id<>? ORDER BY view DESC limit ".$limi;
+//     return pdo_query($sql,$iddm,$id);
+// }
 
-function get_dssp_best($limi){
-    $sql = "SELECT * FROM sanpham WHERE bestseller=1 ORDER BY id DESC limit ".$limi;
-    return pdo_query($sql);
-}
-function get_dssp_view($limi){
-    $sql = "SELECT * FROM sanpham ORDER BY view DESC limit ".$limi;
-    return pdo_query($sql);
-}
+// function get_dssp_best($limi){
+//     $sql = "SELECT * FROM sanpham WHERE bestseller=1 ORDER BY id DESC limit ".$limi;
+//     return pdo_query($sql);
+// }
+// function get_dssp_view($limi){
+//     $sql = "SELECT * FROM sanpham ORDER BY view DESC limit ".$limi;
+//     return pdo_query($sql);
+// }
 
-function get_dssp($kyw,$iddm,$limi){
-    $sql = "SELECT * FROM sanpham WHERE 1";
-    if($iddm>0){
-        $sql .=" AND iddm=".$iddm;
-    }
-    if($kyw!=""){
-        $sql .=" AND name like '%".$kyw."%'";
+// function get_dssp($kyw,$iddm,$limi){
+//     $sql = "SELECT * FROM sanpham WHERE 1";
+//     if($iddm>0){
+//         $sql .=" AND iddm=".$iddm;
+//     }
+//     if($kyw!=""){
+//         $sql .=" AND name like '%".$kyw."%'";
     
-    }
-    $sql .= " ORDER BY id DESC limit ".$limi;
-    return pdo_query($sql);
-}
+//     }
+//     $sql .= " ORDER BY id DESC limit ".$limi;
+//     return pdo_query($sql);
+// }
 
 
-function get_sp__by_id($id){
-    $sql = "SELECT * FROM sanpham WHERE id=?";
-    return pdo_query_one($sql, $id);
-}
+// function get_sp__by_id($id){
+//     $sql = "SELECT * FROM sanpham WHERE id=?";
+//     return pdo_query_one($sql, $id);
+// }
 function select_sp_all(){
     $sql = "SELECT * from sanpham  INNER JOIN danhmuc 
     on sanpham.iddm = danhmuc.id_dm";
