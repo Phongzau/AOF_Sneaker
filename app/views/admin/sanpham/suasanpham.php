@@ -11,7 +11,7 @@ $html_dsdm = '';
 <div class="container mt-3">
     <h2>Sửa Thông tin người dùng</h2>   
     <div class="main-content">
-                <form class="addPro" action="index.php?ad=th_suasanpham" enctype="multipart/form-data" method="POST" >
+                <form class="addPro" action="index.php?ad=th_suasbienthe" enctype="multipart/form-data" method="POST" >
                     <div class="form-group">
                         <input type="text"  class="form-control" value="<?=$id_sp?>" name="id_sp" id="name" placeholder="Nhập tên sản phẩm">
                     </div>
