@@ -480,7 +480,10 @@
             case 'thongke':
                 include "thongke.php";
                 break;
-            default :
+            
+
+           
+default :
                 include "thongke.php";  
                 break;                          
         }
