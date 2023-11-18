@@ -1,10 +1,19 @@
+<?php
+    if (is_array($product) && count($product) > 0) {
+        extract($product);
+    }
+?>
+
 <div class="container mt-3">
     <h2>Thêm Biến thể</h2>   
     <div class="main-content">
                 <form class="addPro" action="index.php?ad=th_thembienthe" method="POST">
                     <div class="form-group">
-                        <label for="name">ID Sản phẩm:</label>
-                        <input type="text" readonly class="form-control" value="<?=$id?>" name="id_sp" id="name" >
+                        <input type="text" hidden class="form-control" value="<?=$id?>" name="id_sp" id="name" >
+                    </div>
+                    <div class="form-group">
+                        <label for="name">Tên sản phẩm:</label>
+                        <input type="text" value="<?=$name?>" class="form-control" id="name" >
                     </div>
                     <div class="form-group">
                         <label for="name">Màu:</label>

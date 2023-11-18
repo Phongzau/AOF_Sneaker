@@ -1,5 +1,5 @@
 <div class="container mt-3">
-    <h2>Hóa đơn</h2>
+    <h2>Đơn hàng</h2>
     <div class="d-flex justify-content-end">
       <a href="index.php?ad=themdonhang" class="btn d-flex justify-content-end btn-primary mb-2">Thêm Hóa đơn</a>
     </div>               

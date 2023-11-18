@@ -64,7 +64,7 @@ function select_sp_all(){
     return pdo_query($sql);
 }
 
-function  get_sanpham_id($id){
+function  get_sanpham_by_id_admin($id){
     $sql = "SELECT * from sanpham  INNER JOIN danhmuc 
     on sanpham.iddm = danhmuc.id_dm  WHERE id_sp=?";
       return pdo_query_one($sql,$id);
@@ -115,7 +115,6 @@ function sanpham_update($id_sp, $name, $price, $mota, $img, $iddm ){
 //admin
 function show_sp_admin($dssp){
     $html_dssp ='';
-    $stt=1;
     foreach ($dssp as $sp) {
      extract($sp);
      if($tinhtrang==0){
@@ -125,7 +124,7 @@ function show_sp_admin($dssp){
      }
      $html_dssp.='<div class="box25 mr15">
      <tr>
-     <td>'.$stt.'</td>
+     <td>'.$id_sp.'</td>
      <td>'.$name.'</td>
      <td><img src="'.IMG_PATH_ADMIN.$img.'" style="width:30%" alt="Ảnh sản phẩm"></td>
      <td>'.$price.'VND</td>
@@ -145,7 +144,6 @@ function show_sp_admin($dssp){
      </td>
    </tr>
    <tr>';
-   $stt++;
     }
     return $html_dssp;
 }

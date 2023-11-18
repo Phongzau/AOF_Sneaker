@@ -83,33 +83,56 @@
 //   }
 //   return $html_dssp;
 // }
+<tr>
+<th>1</th>
+<th>AOF_16112023_1</th>
+<th>PhongPhap</th>
+<th>phongzau2004@gmail.com</th>
+<th>0375566576</th>
+<th>Số 81 ngõ 42 thịnh liệt</th>
+<th>600</th>
+<th>AOF_DONTET</th>
+<th>1500</th>
+<th>COD</th>
+<th>Chưa thanh toán</th>
+<td>
+<a href="#" class="btn btn-warning">
+<i class="fa-solid fa-pen-to-square"></i> Sửa</a>
+<a href="#" class="btn btn-danger">
+<i class="fa-solid "></i> Xóa</a>
+</td>
+</tr>
 
-// function show_donhang_user($dssp){
-//   $html_dssp ='';
-//   $i=1;
-//   foreach ($dssp as $sp) {
-//    extract($sp);
-//    $html_dssp.='<td>'.$i.'</td>
-//    <td>'.$madh.'</td>
-//    <td>'.$nguoidat_ten.'</td>
-//    <td>'.$nguoidat_tel.'</td>
-//    <td>'.$nguoidat_email.'</td>
-//    <td>'.$nguoidat_diachi.'</td>
-//    <td>'.$nguoinhan_ten.'</td>
-//    <td>'.$nguoinhan_tel.'</td>
-//    <td>'.$nguoinhan_diachi.'</td>
-//    <td>'.$tongthanhtoan.'</td>
-//    <td>
-//        <a href="index.php?pg=deletedh&id='.$id.'" class="btn btn-danger"><i class="fa-solid fa-trash"></i> Huỷ</a>
-//    </td>
-// </tr>';
-// $i++;
-//   }
-//   return $html_dssp;
-// }
 
-// function donhang_delete($id){
-//   $sql = "DELETE FROM bill WHERE id=?";
-//       pdo_execute($sql, $id);
+function showds_donhang_admin($dsdonhang){
+  $html_dsdonhang ='';
+  foreach ($dssp as $sp) {
+   extract($sp);
+   $html_dsdonhang.='   <tr>
+                        <th>'.$id_ct.'</th>
+                        <th>'.$madh.'</th>
+                        <th>'.$nguoidat_ten.'</th>
+                        <th>'.$nguoidat_email.'</th>
+                        <th>'.$nguoidat_tell.'</th>
+                        <th>'.$nguoidat_diachi.'</th>
+                        <th>'.$total.'</th>
+                        <th>'.$voucher.'</th>
+                        <th>'.$tongthanhtoan.'</th>
+                        <th>'.$pttt.'</th>
+                        <th>'.$trangthai.'</th>
+                        <td>
+                        <a href="#" class="btn btn-warning">
+                        <i class="fa-solid fa-pen-to-square"></i> Sửa</a>
+                        <a href="#" class="btn btn-danger">
+                        <i class="fa-solid "></i> Xóa</a>
+                        </td>
+                    </tr>';
+  }
+  return $html_dssp;
+}
+
+function donhang_delete($id){
+  $sql = "DELETE FROM bill WHERE id=?";
+      pdo_execute($sql, $id);
   
-// }
+}

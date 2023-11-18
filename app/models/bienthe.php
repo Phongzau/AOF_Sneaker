@@ -1,8 +1,8 @@
 <?php 
 
-function bienthe_insert($id_sp, $mau, $dungluong, $soluong){
+function bienthe_insert($id_sanpham, $mau, $dungluong, $soluong){
     $sql = "INSERT INTO bienthesanpham (id_sanpham, mau, dungluong, soluong) VALUES (?,?,?,?)";
-    pdo_execute($sql, $id_sp, $mau, $dungluong, $soluong);
+    pdo_execute($sql, $id_sanpham, $mau, $dungluong, $soluong);
 }
 
 function  select_bthe_id($id){
@@ -13,12 +13,11 @@ function  select_bthe_id($id){
 
     function show_bt_admin($dssp){
         $html_dssp ='';
-        $stt=1;
         foreach ($dssp as $sp) {
          extract($sp);
          $html_dssp.='<div class="box25 mr15">
          <tr>
-         <td>'.$stt.'</td>
+         <td>'.$id_sanpham.'</td>
          <td>'.$name.'</td>
          <td>'.$mau.'</td>
          <td>'.$dungluong.'</td>
@@ -31,7 +30,6 @@ function  select_bthe_id($id){
          </td>
        </tr>
        <tr>';
-       $stt++;
         }
         return $html_dssp;
     }

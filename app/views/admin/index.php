@@ -88,7 +88,7 @@
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                 $id = $_GET['id'];
                 }
-                $sp_edit  = get_sanpham_id($id);
+                $sp_edit  = get_sanpham_by_id_admin($id);
                 $dm =danhmuc_all();
                 include "sanpham/suasanpham.php";
             break;
@@ -112,7 +112,7 @@
                     include "sanpham/quanlysanpham.php";
                 }
             break;
-            case"th_thembienthe":
+            case "th_thembienthe":
                 if (isset($_POST['s_thembienthe'])) {
                     $id_sp = $_POST['id_sp'];
                     $mau = $_POST['mau'];
@@ -120,8 +120,9 @@
                     $soluong = $_POST['soluong'];
                     bienthe_insert($id_sp, $mau, $dungluong, $soluong);
                 }
-
-            case"th_suabienthe":
+                include "bienthe/quanlybienthe.php";
+                break;
+            case "th_suabienthe":
                 if (isset($_POST['s_suabienthe'])) {
                     $id_bt = $_POST['id_bt'];
                     $id_sp = $_POST['id_sp'];
@@ -129,7 +130,6 @@
                     $dungluong = $_POST['dungluong'];
                     $soluong = $_POST['soluong'];
                     bienthe_update($id_bt,$id_sp, $mau, $dungluong, $soluong);
-                    
                 }
                 $sp = select_sp_all();
                 include "sanpham/quanlysanpham.php";
@@ -291,6 +291,7 @@
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                    $id = $_GET['id'];
                 }
+                $product = get_sanpham_by_id_admin($id);
                 include "sanpham/thembienthe.php";
                 break;
             default :
