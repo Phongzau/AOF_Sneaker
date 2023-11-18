@@ -38,7 +38,7 @@ $html_dsdm = '';
                     <div class="form-group">
                         <label for="categories">Danh mục:</label>
                         <select class="form-select" name="iddm" aria-label="Default select example">
-                            <option value="">Chọn Danh mục</option>
+                            <option value="<?=$iddm?>"><?=$tendm?></option>
                             <?=$html_dsdm;?>
                         </select>
                     </div>
