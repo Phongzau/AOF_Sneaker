@@ -8,6 +8,8 @@
     include "../../models/user.php";
     include "../../models/chucvu.php";
     include "../../models/bienthe.php";
+    include "../../models/khuyenmai.php";
+    $dsvoucher = select_voucher_admin();
     $dsrole = select_all_role();
     if (isset($_GET['ad'])) {
         $ad = $_GET['ad'];
@@ -66,81 +68,81 @@
                     $sp = select_sp_all();
                     include "sanpham/quanlysanpham.php";
                 break;
-                case 'xembienthe':
-                    if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                        $id = $_GET['id'];
-                    }
-                    $bt =  select_bthe_id($id);
-                    include "sanpham/xembienthesanpham.php";
-                    break;
-                    case "suabt":
-                        if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                        $id = $_GET['id'];
-                        $idsp =$_GET['idsp'];
-                        }
-                        $bt_edit  = get_bienthe_id($id);
-                       
-                        include "sanpham/suabienthe.php";
-                    break;
-                case "suasp":
+            case 'xembienthe':
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $id = $_GET['id'];
+                }
+                $bt =  select_bthe_id($id);
+                include "sanpham/xembienthesanpham.php";
+                break;
+                case "suabt":
                     if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                     $id = $_GET['id'];
+                    $idsp =$_GET['idsp'];
                     }
-                    $sp_edit  = get_sanpham_id($id);
-                    $dm =danhmuc_all();
-                    include "sanpham/suasanpham.php";
+                    $bt_edit  = get_bienthe_id($id);
+                    
+                    include "sanpham/suabienthe.php";
                 break;
-                case "th_suasanpham":
-                    if (isset($_POST['suasanpham'])) {
-                        $id_sp = $_POST['id_sp'];
-                        $price = $_POST['price'];
-                        $name = $_POST['name'];
-                        $mota = $_POST['mota'];
-                        $iddm = $_POST['iddm'];
+            case "suasp":
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                $id = $_GET['id'];
+                }
+                $sp_edit  = get_sanpham_id($id);
+                $dm =danhmuc_all();
+                include "sanpham/suasanpham.php";
+            break;
+            case "th_suasanpham":
+                if (isset($_POST['suasanpham'])) {
+                    $id_sp = $_POST['id_sp'];
+                    $price = $_POST['price'];
+                    $name = $_POST['name'];
+                    $mota = $_POST['mota'];
+                    $iddm = $_POST['iddm'];
 
-                        $img = $_FILES['img']['name'];
-                        if ($img != "") {
-                            $target_file = IMG_PATH_ADMIN . $img;
-                            move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
-                        } else {
-                            $img = "";
-                        }
-                        sanpham_update($id_sp, $name, $price, $mota, $img, $iddm );
-                        $sp = select_sp_all();
-                        include "sanpham/quanlysanpham.php";
+                    $img = $_FILES['img']['name'];
+                    if ($img != "") {
+                        $target_file = IMG_PATH_ADMIN . $img;
+                        move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
+                    } else {
+                        $img = "";
                     }
-                break;
-                case"th_thembienthe":
-                    if (isset($_POST['s_thembienthe'])) {
-                        $id_sp = $_POST['id_sp'];
-                        $mau = $_POST['mau'];
-                        $dungluong = $_POST['dungluong'];
-                        $soluong = $_POST['soluong'];
-                        bienthe_insert($id_sp, $mau, $dungluong, $soluong);
-                    }
+                    sanpham_update($id_sp, $name, $price, $mota, $img, $iddm );
+                    $sp = select_sp_all();
+                    include "sanpham/quanlysanpham.php";
+                }
+            break;
+            case"th_thembienthe":
+                if (isset($_POST['s_thembienthe'])) {
+                    $id_sp = $_POST['id_sp'];
+                    $mau = $_POST['mau'];
+                    $dungluong = $_POST['dungluong'];
+                    $soluong = $_POST['soluong'];
+                    bienthe_insert($id_sp, $mau, $dungluong, $soluong);
+                }
 
-                    case"th_suabienthe":
-                        if (isset($_POST['s_suabienthe'])) {
-                            $id_bt = $_POST['id_bt'];
-                           $id_sp = $_POST['id_sp'];
-                            $mau = $_POST['mau'];
-                            $dungluong = $_POST['dungluong'];
-                            $soluong = $_POST['soluong'];
-                            bienthe_update($id_bt,$id_sp, $mau, $dungluong, $soluong);
-                            
-                        }
-                        $sp = select_sp_all();
-                        include "sanpham/quanlysanpham.php";
-                    break;
-                    case "deletebt":
-                        if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                        $id = $_GET['id'];
-                        bt_delete($id);
-                        }
-                        $sp = select_sp_all();
-                        include "sanpham/quanlysanpham.php";
-                    break;
-                
+            case"th_suabienthe":
+                if (isset($_POST['s_suabienthe'])) {
+                    $id_bt = $_POST['id_bt'];
+                    $id_sp = $_POST['id_sp'];
+                    $mau = $_POST['mau'];
+                    $dungluong = $_POST['dungluong'];
+                    $soluong = $_POST['soluong'];
+                    bienthe_update($id_bt,$id_sp, $mau, $dungluong, $soluong);
+                    
+                }
+                $sp = select_sp_all();
+                include "sanpham/quanlysanpham.php";
+            break;
+            case "deletebt":
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                $id = $_GET['id'];
+                bt_delete($id);
+                }
+                $sp = select_sp_all();
+                include "sanpham/quanlysanpham.php";
+            break;
+            
             case 'quanlydanhmuc':
                   $dm =danhmuc_all();
                 include "danhmuc/quanlydanhmuc.php";
@@ -179,6 +181,32 @@
             case 'themdanhmuc':
                 include "danhmuc/themdanhmuc.php";
                 break;
+            case 'updatedm':
+                if (isset($_GET['id']) && $_GET['id'] > 0) {
+                    $id = $_GET['id'];
+                }
+                $iddanhmuc = select_dm_by_id_admin($id);
+                include "danhmuc/suadanhmuc.php";
+                break;
+            case 'th_suadanhmuc':
+                if (isset($_POST['th_suadanhmuc'])) {
+                    $tendm = $_POST['tendm'];
+                    $mota = $_POST['mota'];
+                    $id_dm = $_POST['id_dm'];
+                }
+                update_danhmuc_admin($tendm, $mota, $id_dm);
+                $dm =danhmuc_all();
+                include "danhmuc/quanlydanhmuc.php";
+                break;
+            case 'th_themdanhmuc':
+                if (isset($_POST['th_themdanhmuc'])) {
+                    $tendm = $_POST['tendm'];
+                    $mota = $_POST['mota'];
+                }
+                insert_danhmuc_admin($tendm, $mota);
+                $dm =danhmuc_all();
+                include "danhmuc/quanlydanhmuc.php";
+                break;
             case 'themsanpham':
                 include "sanpham/themsanpham.php";
                 break;
@@ -188,8 +216,36 @@
             case 'thembaiviet':
                 include "baiviet/thembaiviet.php";
                 break;
+            case 'updatevoucher':
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $id = $_GET['id'];
+                }
+                $voucher = select_voucher_by_id_admin($id);
+                include "khuyenmai/suakhuyenmai.php";
+                break;
+            case 'th_suakhuyenmai':
+                if (isset($_POST['th_suakhuyenmai'])) {
+                    $id_voucher = $_POST['id_voucher'];
+                    $voucher = $_POST['voucher'];
+                    $mota = $_POST['mota'];
+                    $giatri = $_POST['giatri'];
+                    update_voucher_admin($voucher, $mota, $giatri, $id_voucher);
+                }
+                $dsvoucher = select_voucher_admin();
+                include "khuyenmai/quanlykhuyenmai.php";
+                break;
             case 'themkhuyenmai':
                 include "khuyenmai/themkhuyenmai.php";
+                break;
+            case 'th_themkhuyenmai':
+                if (isset($_POST['th_themkhuyenmai'])) {
+                    $voucher = $_POST['voucher'];
+                    $mota = $_POST['mota'];
+                    $giatri = $_POST['giatri'];
+                }
+                insert_khuyenmai_admin($voucher, $mota, $giatri);
+                $dsvoucher = select_voucher_admin();
+                include "khuyenmai/quanlykhuyenmai.php";
                 break;
             case 'themchucvu':
                 include "chucvu/themchucvu.php";

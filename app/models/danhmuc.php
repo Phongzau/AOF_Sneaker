@@ -16,10 +16,10 @@ require_once 'pdo.php';
 //  * @param String $ten_danhmuc là tên loại mới
 //  * @throws PDOException lỗi cập nhật
 //  */
-// function danhmuc_update($ma_danhmuc, $ten_danhmuc){
-//     $sql = "UPDATE danhmuc SET ten_danhmuc=? WHERE ma_danhmuc=?";
-//     pdo_execute($sql, $ten_danhmuc, $ma_danhmuc);
-// }
+function update_danhmuc_admin($tendm, $mota, $id_dm){
+    $sql = "UPDATE danhmuc SET tendm=?, mota=? WHERE id_dm=?";
+    pdo_execute($sql, $tendm, $mota, $id_dm);
+}
 // /**
 //  * Xóa một hoặc nhiều loại
 //  * @param mix $ma_danhmuc là mã loại hoặc mảng mã loại
@@ -49,7 +49,7 @@ function showdm ($dsdm){
         <td>'.$tendm.'</td>
         <td>'.$mota.'</td>
         <td>
-        <a href="index.php?ad=editdm&id='.$id_dm.'" class="btn btn-warning">
+        <a href="index.php?ad=updatedm&id='.$id_dm.'" class="btn btn-warning">
         <i class="fa-solid fa-pen-to-square"></i> Sửa</a>
         <a href="index.php?ad=deletedm&id='.$id_dm.'" class="btn btn-danger">
         <i class="fa-solid "></i> Xóa</a>
@@ -57,6 +57,11 @@ function showdm ($dsdm){
       </tr>';
     }
     return $html_dm;
+}
+
+function insert_danhmuc_admin($tendm, $mota) {
+    $sql = "INSERT INTO danhmuc(tendm, mota) VALUES(?,?)";
+    pdo_execute($sql, $tendm, $mota);
 }
 // function get_name_dm($id){
 //     $sql = "SELECT name from danhmuc where id=?";
@@ -68,10 +73,10 @@ function showdm ($dsdm){
 //  * @return array mảng chứa thông tin của một loại
 //  * @throws PDOException lỗi truy vấn
 //  */
-// function danhmuc_select_by_id($ma_danhmuc){
-//     $sql = "SELECT * FROM danhmuc WHERE ma_danhmuc=?";
-//     return pdo_query_one($sql, $ma_danhmuc);
-// }
+function select_dm_by_id_admin($id_dm){
+    $sql = "SELECT * FROM danhmuc WHERE id_dm=?";
+    return pdo_query_one($sql, $id_dm);
+}
 // /**
 //  * Kiểm tra sự tồn tại của một loại
 //  * @param int $ma_danhmuc là mã loại cần kiểm tra

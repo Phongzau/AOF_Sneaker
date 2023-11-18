@@ -1,7 +1,7 @@
 <div class="container mt-3">
     <h2>Thêm Khuyến mãi</h2>   
     <div class="main-content">
-                <form class="addPro" action="admin.php?ad=th_themkhuyenmai" method="POST">
+                <form class="addPro" action="index.php?ad=th_themkhuyenmai" method="POST">
                     <div class="form-group">
                         <label for="name">Voucher:</label>
                         <input type="text" class="form-control" name="voucher" id="name" placeholder="Nhập tên voucher">
