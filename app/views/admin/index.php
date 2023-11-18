@@ -110,6 +110,26 @@
                         include "sanpham/quanlysanpham.php";
                     }
                 break;
+                case"themsanpham":
+                    $dm =danhmuc_all();
+                    include "sanpham/themsanpham.php";
+                   break;
+                case "tb_themsanpham":
+                    
+                    if (isset($_POST['s_themsanpham'])) {
+                        $price = $_POST['price'];
+                        $name = $_POST['name'];
+                        $mota = $_POST['mota'];
+                        $iddm = $_POST['iddm'];
+                        $img = $_FILES['img']['name'];                      
+                         $target_file = IMG_PATH_ADMIN . $img;
+                        move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
+                        sanpham_upload( $name, $price, $mota, $img, $iddm );
+                    }
+                        $sp = select_sp_all();
+                        include "sanpham/quanlysanpham.php";   
+                 
+                    break;
                 case"th_thembienthe":
                     if (isset($_POST['s_thembienthe'])) {
                         $id_sp = $_POST['id_sp'];
@@ -179,9 +199,9 @@
             case 'themdanhmuc':
                 include "danhmuc/themdanhmuc.php";
                 break;
-            case 'themsanpham':
-                include "sanpham/themsanpham.php";
-                break;
+          
+                
+              
             case 'quanlybaiviet':
                 include "baiviet/quanlybaiviet.php";
                 break;

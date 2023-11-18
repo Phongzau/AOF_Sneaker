@@ -156,6 +156,11 @@ function sp_delete($id){
     
 }
 
+function  sanpham_upload( $name, $price, $mota, $img, $iddm ){
+    $sql = "INSERT INTO sanpham (name, price, mota, img, iddm) VALUES (?,?,?,?,?)";
+    pdo_execute($sql,  $name, $price, $mota, $img, $iddm);
+}
+
 // function hang_hoa_exist($ma_hh){
 //     $sql = "SELECT count(*) FROM hang_hoa WHERE ma_hh=?";
 //     return pdo_query_value($sql, $ma_hh) > 0;
