@@ -175,15 +175,6 @@
             case 'quanlybinhluan':
                 include "binhluan/quanlybinhluan.php";
                 break;
-            case 'deletebl':
-                case "deletesp":
-                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                $id = $_GET['id'];
-                delete_binhluan_admin($id);
-                }
-                $dsbinhluan = select_all_binhluan_admin();
-                include "binhluan/quanlybinhluan.php";
-                break;
             case 'quanlychucvu':
                 $dsrole = select_all_role();
                 include "chucvu/quanlychucvu.php";
@@ -222,9 +213,6 @@
                 break;
             case 'themsanpham':
                 include "sanpham/themsanpham.php";
-                break;
-            case 'quanlybaiviet':
-                include "baiviet/quanlybaiviet.php";
                 break;
             case 'thembaiviet':
                 include "baiviet/thembaiviet.php";
