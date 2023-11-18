@@ -20,10 +20,14 @@
     if (isset($_GET['ad'])) {
         $ad = $_GET['ad'];
         switch ($ad) {
+        // Trang Quản lý người dùng
+            // Quản lý người dùng
             case 'quanlynguoidung':
                 $user = select_user_all();
                 include "user/quanlynguoidung.php";
                 break;
+
+            // Sửa người dùng    
             case 'updateuser':
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                     $id = $_GET['id'];
@@ -31,6 +35,8 @@
                 }
                 include "user/suanguoidung.php";
                 break;
+
+            // Thực hiện sửa người dùng
             case 'th_suanguoidung':
                 if (isset($_POST['th_suanguoidung'])) {
                     $username = $_POST['username'];
@@ -54,7 +60,9 @@
                 $user = select_user_all();
                 include "user/quanlynguoidung.php";
                 break;
-            case 'deleteuser':
+
+            // Xóa người dùng
+                case 'deleteuser':
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                     $id = $_GET['id'];
                     delete_user_admin($id);
@@ -62,18 +70,78 @@
                 $user = select_user_all();
                 include "user/quanlynguoidung.php";
                 break;
-                case 'deletedh':
-                    if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                        $id = $_GET['id'];
-                        donhang_delete($id);
-                    }
-                    $user = select_user_all();
-                    include "user/quanlynguoidung.php";
-                    break;
+
+//------------------------------------------------------Hết Trang Quản Lý Người Dùng------------------------------------------------------//
+        
+        // Trang Quản lý chức vụ
+            // Quản lý chức vụ
+                case 'quanlychucvu':
+                $dsrole = select_all_role();
+                include "chucvu/quanlychucvu.php";
+                break;
+
+            // Thêm chức vụ
+            case 'themchucvu':
+                include "chucvu/themchucvu.php";
+                break;
+
+            // Thực hiện thêm chức vụ
+            case 'th_themchucvu':
+                if (isset($_POST['th_themchucvu'])) {
+                    $chuc_vu = $_POST['chuc_vu'];
+                    $mota = $_POST['mota'];
+                }
+                insert_chucvu_admin($chuc_vu, $mota);
+                $dsrole = select_all_role();
+                include "chucvu/quanlychucvu.php";
+                break;
+            
+            // Xóa chức vụ
+            case 'deleterole':
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $id = $_GET['id'];
+                    delete_chucvu_admin($id);
+                }
+                $dsrole = select_all_role();
+                include "chucvu/quanlychucvu.php";
+                break;
+
+            // Sửa chức vụ
+            case 'updaterole':
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $id = $_GET['id'];
+                    $idrole = select_chucvu_admin_by_id($id);
+                }
+                include "chucvu/suachucvu.php";
+                break;
+
+            // Thực hiện sửa chức vụ
+            case 'th_suachucvu':
+                if (isset($_POST['th_suachucvu'])) {
+                    $chuc_vu = $_POST['chuc_vu'];
+                    $mota = $_POST['mota'];
+                    $id = $_POST['id_role'];
+                }
+                update_chucvu_admin($chuc_vu, $mota, $id);
+                $dsrole = select_all_role();
+                include "chucvu/quanlychucvu.php";
+                break;
+
+//------------------------------------------------------Hết Trang Quản Lý Chức Vụ------------------------------------------------------//
+
+        // Trang Quản lý sản phẩm
+            // Quản lý sản phẩm
             case 'quanlysanpham':
                 $sp =  select_sp_all();
                 include "sanpham/quanlysanpham.php";
                 break;
+
+            // Thêm sản phẩm
+            case 'themsanpham':
+                include "sanpham/themsanpham.php";
+                break;
+
+            // Xóa sản phẩm
             case "deletesp":
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                 $id = $_GET['id'];
@@ -81,23 +149,9 @@
                 }
                 $sp = select_sp_all();
                 include "sanpham/quanlysanpham.php";
-            break;
-            case 'xembienthe':
-                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                    $id = $_GET['id'];
-                }
-                $bt =  select_bthe_id($id);
-                include "sanpham/xembienthesanpham.php";
                 break;
-                case "suabt":
-                    if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                    $id = $_GET['id'];
-                    $idsp =$_GET['idsp'];
-                    }
-                    $bt_edit  = get_bienthe_id($id);
-                    
-                    include "sanpham/suabienthe.php";
-                break;
+                
+            // Sửa sản phẩm
             case "suasp":
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                 $id = $_GET['id'];
@@ -105,27 +159,58 @@
                 $sp_edit  = get_sanpham_by_id_admin($id);
                 $dm =danhmuc_all();
                 include "sanpham/suasanpham.php";
-            break;
+                break;
+
+            // Thực hiện sửa sản phẩm
             case "th_suasanpham":
                 if (isset($_POST['suasanpham'])) {
-                    $id_sp = $_POST['id_sp'];
-                    $price = $_POST['price'];
-                    $name = $_POST['name'];
-                    $mota = $_POST['mota'];
-                    $iddm = $_POST['iddm'];
-
-                    $img = $_FILES['img']['name'];
-                    if ($img != "") {
-                        $target_file = IMG_PATH_ADMIN . $img;
-                        move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
-                    } else {
-                        $img = "";
-                    }
-                    sanpham_update($id_sp, $name, $price, $mota, $img, $iddm );
-                    $sp = select_sp_all();
-                    include "sanpham/quanlysanpham.php";
+                $id_sp = $_POST['id_sp'];
+                $price = $_POST['price'];
+                $name = $_POST['name'];
+                $mota = $_POST['mota'];
+                $iddm = $_POST['iddm'];
+                $img = $_FILES['img']['name'];
+                if ($img != "") {
+                $target_file = IMG_PATH_ADMIN . $img;
+                move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
+                } else {
+                $img = "";
                 }
+                sanpham_update($id_sp, $name, $price, $mota, $img, $iddm );
+                $sp = select_sp_all();
+                include "sanpham/quanlysanpham.php";
+                }
+                break;
+
+//------------------------------------------------------Hết Trang Quản Lý Sản Phẩm------------------------------------------------------//
+
+        // Trang Quản lý biến thể
+            // Quản lý biến thể            
+            case 'quanlybienthe':
+                include "bienthe/quanlybienthe.php";
+                break;
+            
+            // Thêm biến thể
+            case 'xembienthe':
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $id = $_GET['id'];
+                }
+                $bt =  select_bthe_id($id);
+                include "sanpham/xembienthesanpham.php";
+                break;
+            
+            // Sửa biến thể
+            case "suabt":
+                    if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $id = $_GET['id'];
+                    $idsp =$_GET['idsp'];
+                    }
+                    $bt_edit  = get_bienthe_id($id);
+                    
+                    include "sanpham/suabienthe.php";
             break;
+
+            // Thực hiện thêm biến thể
             case "th_thembienthe":
                 if (isset($_POST['s_thembienthe'])) {
                     $id_sp = $_POST['id_sp'];
@@ -136,6 +221,8 @@
                 }
                 include "bienthe/quanlybienthe.php";
                 break;
+
+            // Thực hiện sửa biến thể
             case "th_suabienthe":
                 if (isset($_POST['s_suabienthe'])) {
                     $id_bt = $_POST['id_bt'];
@@ -148,6 +235,8 @@
                 $sp = select_sp_all();
                 include "sanpham/quanlysanpham.php";
             break;
+
+            // Thực hiện xóa biến thể
             case "deletebt":
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                 $id = $_GET['id'];
@@ -156,54 +245,41 @@
                 $sp = select_sp_all();
                 include "sanpham/quanlysanpham.php";
             break;
+
+            // Thêm biến thể
+            case 'thembienthe':
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                   $id = $_GET['id'];
+                }
+                $product = get_sanpham_by_id_admin($id);
+                include "sanpham/thembienthe.php";
+                break;
+
+//------------------------------------------------------Hết Trang Quản Lý Biến Thể------------------------------------------------------//
             
+        // Trang Quản Lý Danh Mục
+            // Quản lý danh mục
             case 'quanlydanhmuc':
-                  $dm =danhmuc_all();
+                $dm =danhmuc_all();
                 include "danhmuc/quanlydanhmuc.php";
                 break;
-                case "deletedm":
-                    if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                      $id = $_GET['id'];
-                      danhmuc_delete($id);
-                    }
-                      $dm =danhmuc_all();
-                      
-                      include "danhmuc/quanlydanhmuc.php";
-                    break;
-            case 'quanlybaiviet':
-                include "baiviet/quanlybaiviet.php";
-                break;
-            case 'quanlykhuyenmai':
-                include "khuyenmai/quanlykhuyenmai.php";
-                break;
-            case 'quanlydonhang':
-                $dh = donhang_all();
-                include "donhang/quanlydonhang.php";
-                break;
-            case 'quanlybienthe':
-                include "bienthe/quanlybienthe.php";
-                break;
-            case 'quanlybinhluan':
-                include "binhluan/quanlybinhluan.php";
-                break;
-            case 'deletebl':
+
+            // Xóa danh mục    
+            case "deletedm":
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                $id = $_GET['id'];
-                delete_binhluan_admin($id);
+                    $id = $_GET['id'];
+                    danhmuc_delete($id);
                 }
-                $dsbinhluan = select_all_binhluan_admin();
-                include "binhluan/quanlybinhluan.php";
+                    $dm =danhmuc_all();
+                include "danhmuc/quanlydanhmuc.php";
                 break;
-            case 'quanlychucvu':
-                $dsrole = select_all_role();
-                include "chucvu/quanlychucvu.php";
-                break;
-            case 'thongke':
-                include "thongke.php";
-                break;
+            
+            // Thêm danh mục
             case 'themdanhmuc':
                 include "danhmuc/themdanhmuc.php";
                 break;
+
+            // Sửa danh mục
             case 'updatedm':
                 if (isset($_GET['id']) && $_GET['id'] > 0) {
                     $id = $_GET['id'];
@@ -211,6 +287,8 @@
                 $iddanhmuc = select_dm_by_id_admin($id);
                 include "danhmuc/suadanhmuc.php";
                 break;
+
+            // Thực hiện sửa danh mục
             case 'th_suadanhmuc':
                 if (isset($_POST['th_suadanhmuc'])) {
                     $tendm = $_POST['tendm'];
@@ -221,6 +299,8 @@
                 $dm =danhmuc_all();
                 include "danhmuc/quanlydanhmuc.php";
                 break;
+
+            // Thực hiện thêm danh mục
             case 'th_themdanhmuc':
                 if (isset($_POST['th_themdanhmuc'])) {
                     $tendm = $_POST['tendm'];
@@ -230,13 +310,22 @@
                 $dm =danhmuc_all();
                 include "danhmuc/quanlydanhmuc.php";
                 break;
-            case 'themsanpham':
-                include "sanpham/themsanpham.php";
-                break;
-            case 'thembaiviet':
-                include "baiviet/thembaiviet.php";
-                break;
-            case 'th_thembaiviet':
+        
+//------------------------------------------------------Hết Trang Quản Lý Danh Mục------------------------------------------------------//
+        
+        // Trang Quản Lý Bài Viết
+            // Quản lý bài viết
+                case 'quanlybaiviet':
+                    include "baiviet/quanlybaiviet.php";
+                    break;
+        
+            // Thêm bài viết
+                case 'thembaiviet':
+                    include "baiviet/thembaiviet.php";
+                    break;
+
+            // Thực hiện thêm bài viết
+                case 'th_thembaiviet':
                 if (isset($_POST['th_thembaiviet'])) {
                     $noidung = $_POST['noidung'];
                     $img = $_FILES['img']['name'];
@@ -248,6 +337,8 @@
                 $dsbaiviet = select_baiviet_admin();
                 include "baiviet/quanlybaiviet.php";
                 break;
+
+            // Sửa bài viết
             case 'updatebv':
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                     $id = $_GET['id'];
@@ -255,6 +346,8 @@
                 $idbv = select_baiviet_by_id_admin($id);
                 include "baiviet/suabaiviet.php";
                 break;
+
+            // Thực hiện sửa bài viết
             case 'th_suabaiviet':
                 if (isset($_POST['th_suabaiviet'])) {
                     $id_baiviet = $_POST['id_baiviet'];
@@ -272,6 +365,8 @@
                 $dsbaiviet = select_baiviet_admin();
                 include "baiviet/quanlybaiviet.php";
                 break;
+
+            // Xóa bài viết
             case 'deletebv':
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                 $id = $_GET['id'];
@@ -280,6 +375,16 @@
                 $dsbaiviet = select_baiviet_admin();
                 include "baiviet/quanlybaiviet.php";
                 break;
+        
+//------------------------------------------------------Hết Trang Quản Lý Bài Viết------------------------------------------------------//
+
+        // Trang Quản lý Voucher     
+            // Quản lý khuyến mãi
+            case 'quanlykhuyenmai':
+                include "khuyenmai/quanlykhuyenmai.php";
+                break;
+
+            // Xóa Khuyến mãi
             case 'deletevoucher':
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                 $id = $_GET['id'];
@@ -288,6 +393,8 @@
                 $dsvoucher = select_voucher_admin();
                 include "khuyenmai/quanlykhuyenmai.php";
                 break;
+
+            // Sửa khuyến mãi
             case 'updatevoucher':
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                     $id = $_GET['id'];
@@ -295,6 +402,8 @@
                 $voucher = select_voucher_by_id_admin($id);
                 include "khuyenmai/suakhuyenmai.php";
                 break;
+
+            // Thực hiện sửa khuyến mãi
             case 'th_suakhuyenmai':
                 if (isset($_POST['th_suakhuyenmai'])) {
                     $id_voucher = $_POST['id_voucher'];
@@ -306,9 +415,13 @@
                 $dsvoucher = select_voucher_admin();
                 include "khuyenmai/quanlykhuyenmai.php";
                 break;
+
+            // Trang Thêm khuyến mãi
             case 'themkhuyenmai':
                 include "khuyenmai/themkhuyenmai.php";
                 break;
+
+            // Thực hiện thêm khuyến mãi
             case 'th_themkhuyenmai':
                 if (isset($_POST['th_themkhuyenmai'])) {
                     $voucher = $_POST['voucher'];
@@ -319,52 +432,53 @@
                 $dsvoucher = select_voucher_admin();
                 include "khuyenmai/quanlykhuyenmai.php";
                 break;
-            case 'themchucvu':
-                include "chucvu/themchucvu.php";
+
+//------------------------------------------------------Hết Trang Quản Lý Khuyến Mãi------------------------------------------------------//
+        
+        // Trang Quản Lý Bình luận
+            // Quản lý bình luận
+            case 'quanlybinhluan':
+                include "binhluan/quanlybinhluan.php";
                 break;
-            case 'th_themchucvu':
-                if (isset($_POST['th_themchucvu'])) {
-                    $chuc_vu = $_POST['chuc_vu'];
-                    $mota = $_POST['mota'];
+
+            // Xóa bình luận
+            case 'deletebl':
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                $id = $_GET['id'];
+                delete_binhluan_admin($id);
                 }
-                insert_chucvu_admin($chuc_vu, $mota);
-                $dsrole = select_all_role();
-                include "chucvu/quanlychucvu.php";
+                $dsbinhluan = select_all_binhluan_admin();
+                include "binhluan/quanlybinhluan.php";
                 break;
-            case 'deleterole':
+            
+//------------------------------------------------------Hết Trang Quản Lý Bình Luận------------------------------------------------------//
+
+        // Trang Quản lý Đơn hàng
+            // Quản lý đơn hàng
+            case 'quanlydonhang':
+                $dh = donhang_all();
+                include "donhang/quanlydonhang.php";
+                break;
+        
+            // Xóa đơn hàng    
+            case 'deletedh':
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                     $id = $_GET['id'];
-                    delete_chucvu_admin($id);
+                    donhang_delete($id);
                 }
-                $dsrole = select_all_role();
-                include "chucvu/quanlychucvu.php";
+                $user = select_user_all();
+                include "user/quanlynguoidung.php";
                 break;
-            case 'updaterole':
-                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                    $id = $_GET['id'];
-                    $idrole = select_chucvu_admin_by_id($id);
-                }
-                include "chucvu/suachucvu.php";
-                break;
-            case 'th_suachucvu':
-                if (isset($_POST['th_suachucvu'])) {
-                    $chuc_vu = $_POST['chuc_vu'];
-                    $mota = $_POST['mota'];
-                    $id = $_POST['id_role'];
-                }
-                update_chucvu_admin($chuc_vu, $mota, $id);
-                $dsrole = select_all_role();
-                include "chucvu/quanlychucvu.php";
-                break;
+            
+            // Trang thêm đơn hàng
             case 'themdonhang':
                 include "donhang/themdonhang.php";
                 break;
-            case 'thembienthe':
-                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                   $id = $_GET['id'];
-                }
-                $product = get_sanpham_by_id_admin($id);
-                include "sanpham/thembienthe.php";
+            
+//------------------------------------------------------Hết Trang Quản Lý Đơn hàng------------------------------------------------------//
+
+            case 'thongke':
+                include "thongke.php";
                 break;
             default :
                 include "thongke.php";  
