@@ -11,6 +11,7 @@
     include "../../models/khuyenmai.php";
     include "../../models/binhluan.php";
     include "../../models/baiviet.php";
+    include "../../models/donhang.php";
     $dsbaiviet = select_baiviet_admin();
     $dsbinhluan = select_all_binhluan_admin();
     $dsvoucher = select_voucher_admin();
@@ -60,6 +61,14 @@
                 $user = select_user_all();
                 include "user/quanlynguoidung.php";
                 break;
+                case 'deletedh':
+                    if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                        $id = $_GET['id'];
+                        donhang_delete($id);
+                    }
+                    $user = select_user_all();
+                    include "user/quanlynguoidung.php";
+                    break;
             case 'quanlysanpham':
                 $sp =  select_sp_all();
                 include "sanpham/quanlysanpham.php";
@@ -167,6 +176,7 @@
                 include "khuyenmai/quanlykhuyenmai.php";
                 break;
             case 'quanlydonhang':
+                $dh = donhang_all();
                 include "donhang/quanlydonhang.php";
                 break;
             case 'quanlybienthe':

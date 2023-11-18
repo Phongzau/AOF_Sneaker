@@ -12,10 +12,10 @@
 //   return pdo_query($sql);
 // }
 
-// function donhang_all(){
-//   $sql = "SELECT * FROM bill ";
-//   return pdo_query($sql);
-// }
+function donhang_all(){
+  $sql = "SELECT * FROM donhang ";
+  return pdo_query($sql);
+}
 // function donhang_id($iduser){
 //   $sql = "SELECT * FROM bill WHERE iduser=?  ";
 //   return pdo_query($sql, $iduser);
@@ -84,35 +84,33 @@
 //   return $html_dssp;
 // }
 
-// function showds_donhang_admin($dsdonhang){
-//   $html_dsdonhang ='';
-//   foreach ($dssp as $sp) {
-//    extract($sp);
-//    $html_dsdonhang.='   <tr>
-//                         <th>'.$id_ct.'</th>
-//                         <th>'.$madh.'</th>
-//                         <th>'.$nguoidat_ten.'</th>
-//                         <th>'.$nguoidat_email.'</th>
-//                         <th>'.$nguoidat_tell.'</th>
-//                         <th>'.$nguoidat_diachi.'</th>
-//                         <th>'.$total.'</th>
-//                         <th>'.$voucher.'</th>
-//                         <th>'.$tongthanhtoan.'</th>
-//                         <th>'.$pttt.'</th>
-//                         <th>'.$trangthai.'</th>
-//                         <td>
-//                         <a href="#" class="btn btn-warning">
-//                         <i class="fa-solid fa-pen-to-square"></i> Sửa</a>
-//                         <a href="#" class="btn btn-danger">
-//                         <i class="fa-solid "></i> Xóa</a>
-//                         </td>
-//                     </tr>';
-//   }
-//   return $html_dssp;
-// }
+function show_dh_admin($dssp){
+    $html_dssp ='';
+    foreach ($dssp as $sp) {
+     extract($sp);
+     $html_dssp.='<div class="box25 mr15">
+     <tr>
+     <td>'.$id_dh.'</td>
+     <td>'.$id_sanpham.'</td>
+     <td>'.$madh_ct.'</td>
+     <td>'.$tensp.'</td>
+     <td>'.$price.'</td>
+     <td>'.$soluong.'</td>
+     <td>'.$ngaydathang.'</td>
+     <td>'.$size.'</td>
+     <td>'.$id_usdh.'</td>
+     <td>
+     <a href="index.php?ad=deletedh&id='.$id_dh.'" class="btn btn-danger">
+     <i class="fa-solid "></i>Xóa</a>
+    
+   </tr>
+   <tr>';
+    }
+    return $html_dssp;
+}
 
-// function donhang_delete($id){
-//   $sql = "DELETE FROM bill WHERE id=?";
-//       pdo_execute($sql, $id);
+function donhang_delete($id){
+  $sql = "DELETE FROM donhang WHERE id_dh=?";
+      pdo_execute($sql, $id);
   
-// }
+}
