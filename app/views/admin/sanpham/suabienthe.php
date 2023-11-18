@@ -11,9 +11,10 @@
                 <form class="addPro" action="index.php?ad=th_suabienthe" method="POST">
                     <div class="form-group">
                         <label for="name">ID Biến Thể:</label>
-                        <input type="text" readonly class="form-control" value="<?=$id_bt?>" name="id_bt" id="name" >
-                        <input type="hidden"  class="form-control" value="<?=$idsp?>" name="id_sp" id="name" >
+                        <input type="text" hidden class="form-control" value="<?=$id_bt?>" name="id_bt" id="name" >
+                    
                     </div>
+                    <input type="text" hidden  class="form-control" value="<?=$id_sanpham?>" name="id_sp" id="name" >
                     <div class="form-group">
                         <label for="name">Màu:</label>
                         <input type="text" class="form-control" name="mau" value="<?=($mau != "")?$mau:""?>" id="name" >

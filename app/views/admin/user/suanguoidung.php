@@ -1,7 +1,7 @@
 <?php
     if (is_array($iduser) && (count($iduser) > 0)) {
         extract($iduser);
-                $imgpath = IMG_PATH_ADMIN.$img;
+        $imgpath = IMG_PATH_ADMIN.$img;
         if (is_file($imgpath)) {
             $img = '<img src="'.$imgpath.'" width="80px">';
         } else {

@@ -16,6 +16,7 @@
     $dsbinhluan = select_all_binhluan_admin();
     $dsvoucher = select_voucher_admin();
     $dsrole = select_all_role();
+    $dsbienthe = select_bienthe_admin();
     if (isset($_GET['ad'])) {
         $ad = $_GET['ad'];
         switch ($ad) {
@@ -183,6 +184,14 @@
                 include "bienthe/quanlybienthe.php";
                 break;
             case 'quanlybinhluan':
+                include "binhluan/quanlybinhluan.php";
+                break;
+            case 'deletebl':
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                $id = $_GET['id'];
+                delete_binhluan_admin($id);
+                }
+                $dsbinhluan = select_all_binhluan_admin();
                 include "binhluan/quanlybinhluan.php";
                 break;
             case 'quanlychucvu':
