@@ -223,9 +223,6 @@
             case 'themsanpham':
                 include "sanpham/themsanpham.php";
                 break;
-            case 'quanlybaiviet':
-                include "baiviet/quanlybaiviet.php";
-                break;
             case 'thembaiviet':
                 include "baiviet/thembaiviet.php";
                 break;
