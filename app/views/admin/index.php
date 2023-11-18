@@ -9,6 +9,10 @@
     include "../../models/chucvu.php";
     include "../../models/bienthe.php";
     include "../../models/khuyenmai.php";
+    include "../../models/binhluan.php";
+    include "../../models/baiviet.php";
+    $dsbaiviet = select_baiviet_admin();
+    $dsbinhluan = select_all_binhluan_admin();
     $dsvoucher = select_voucher_admin();
     $dsrole = select_all_role();
     if (isset($_GET['ad'])) {
@@ -60,14 +64,14 @@
                 $sp =  select_sp_all();
                 include "sanpham/quanlysanpham.php";
                 break;
-                case "deletesp":
-                    if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-                    $id = $_GET['id'];
-                    sp_delete($id);
-                    }
-                    $sp = select_sp_all();
-                    include "sanpham/quanlysanpham.php";
-                break;
+            case "deletesp":
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                $id = $_GET['id'];
+                sp_delete($id);
+                }
+                $sp = select_sp_all();
+                include "sanpham/quanlysanpham.php";
+            break;
             case 'xembienthe':
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                     $id = $_GET['id'];
@@ -171,6 +175,15 @@
             case 'quanlybinhluan':
                 include "binhluan/quanlybinhluan.php";
                 break;
+            case 'deletebl':
+                case "deletesp":
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                $id = $_GET['id'];
+                delete_binhluan_admin($id);
+                }
+                $dsbinhluan = select_all_binhluan_admin();
+                include "binhluan/quanlybinhluan.php";
+                break;
             case 'quanlychucvu':
                 $dsrole = select_all_role();
                 include "chucvu/quanlychucvu.php";
@@ -215,6 +228,58 @@
                 break;
             case 'thembaiviet':
                 include "baiviet/thembaiviet.php";
+                break;
+            case 'th_thembaiviet':
+                if (isset($_POST['th_thembaiviet'])) {
+                    $noidung = $_POST['noidung'];
+                    $img = $_FILES['img']['name'];
+                    // upload hinh anh
+                    $target_file = IMG_PATH_ADMIN.$img;
+                    move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
+                }
+                insert_baiviet_admin($noidung, $img);
+                $dsbaiviet = select_baiviet_admin();
+                include "baiviet/quanlybaiviet.php";
+                break;
+            case 'updatebv':
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $id = $_GET['id'];
+                }
+                $idbv = select_baiviet_by_id_admin($id);
+                include "baiviet/suabaiviet.php";
+                break;
+            case 'th_suabaiviet':
+                if (isset($_POST['th_suabaiviet'])) {
+                    $id_baiviet = $_POST['id_baiviet'];
+                    $noidung = $_POST['noidung']; 
+                    $img = $_FILES['img']['name'];
+                    if ($img != "") {
+                        // upload hinh anh
+                        $target_file = IMG_PATH_ADMIN.$img;
+                        move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
+                    } else {
+                        $img = get_old_image_baiviet($id_baiviet);
+                    }
+                }
+                update_baiviet_admin($noidung, $img, $id_baiviet);
+                $dsbaiviet = select_baiviet_admin();
+                include "baiviet/quanlybaiviet.php";
+                break;
+            case 'deletebv':
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                $id = $_GET['id'];
+                delete_baiviet_admin($id);
+                }
+                $dsbaiviet = select_baiviet_admin();
+                include "baiviet/quanlybaiviet.php";
+                break;
+            case 'deletevoucher':
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                $id = $_GET['id'];
+                delete_voucher_admin($id);
+                }
+                $dsvoucher = select_voucher_admin();
+                include "khuyenmai/quanlykhuyenmai.php";
                 break;
             case 'updatevoucher':
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {

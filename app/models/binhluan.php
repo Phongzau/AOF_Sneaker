@@ -11,22 +11,15 @@ require_once 'pdo.php';
 //     pdo_execute($sql, $ma_kh, $ma_hh, $noi_dung, $ngay_bl, $ma_bl);
 // }
 
-// function binhluan_delete($ma_bl){
-//     $sql = "DELETE FROM binhluan WHERE ma_bl=?";
-//     if(is_array($ma_bl)){
-//         foreach ($ma_bl as $ma) {
-//             pdo_execute($sql, $ma);
-//         }
-//     }
-//     else{
-//         pdo_execute($sql, $ma_bl);
-//     }
-// }
+function delete_binhluan_admin($id_bl){
+    $sql = "DELETE FROM binhluan WHERE id_bl=?";
+        pdo_execute($sql, $id_bl);
+}
 
-// function binhluan_select_all(){
-//     $sql = "SELECT * FROM binhluan ORDER BY id  DESC";
-//     return pdo_query($sql);
-// }
+function select_all_binhluan_admin(){
+    $sql = "SELECT * FROM binhluan";
+    return pdo_query($sql);
+}
 
 // function binhluan_select_by_id($ma_bl){
 //     $sql = "SELECT * FROM binhluan WHERE ma_bl=?";
@@ -42,3 +35,24 @@ require_once 'pdo.php';
 //     $sql = "SELECT b.*, h.ten_hh FROM binhluan b JOIN hang_hoa h ON h.ma_hh=b.ma_hh WHERE b.ma_hh=? ORDER BY ngay_bl DESC";
 //     return pdo_query($sql, $ma_hh);
 // }
+
+function showds_binhluan_admin($dsbinhluan) {
+    $html_dsbinhluan = '';
+    foreach ($dsbinhluan as $bl) {
+        extract($bl);
+        $html_dsbinhluan.='<tr>
+                            <td>'.$id_bl.'</td>
+                            <td>'.$id_sanpham.'</td>
+                            <td>'.$id_user.'</td>
+                            <td>'.$hoten.'</td>
+                            <td>'.$noidung.'</td>
+                            <td>'.$ngaybl.'</td>
+                            <td>
+                            <a href="index.php?ad=deletebl&id='.$id_bl.'" class="btn btn-danger">
+                            <i class="fa-solid "></i> Xóa</a>
+                            </td>
+                           </tr>';
+
+    }
+    return $html_dsbinhluan;
+}

@@ -4,6 +4,11 @@ function select_voucher_admin(){
     return pdo_query($sql,);
 }
 
+function delete_voucher_admin($id_voucher) {
+    $sql = "DELETE FROM `khuyenmai` WHERE id_voucher = ?";
+    pdo_execute($sql, $id_voucher);
+}
+
 function update_voucher_admin($voucher, $mota, $giatri, $id_voucher){
     $sql = "UPDATE khuyenmai SET voucher=?, mota=?, giatri=? WHERE id_voucher=?";
     pdo_execute($sql, $voucher, $mota, $giatri, $id_voucher);
