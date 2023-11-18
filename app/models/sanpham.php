@@ -154,7 +154,7 @@ function sp_delete($id){
     
 }
 
-function  sanpham_upload( $name, $price, $mota, $img, $iddm ){
+function insert_sanpham_admin( $name, $price, $mota, $img, $iddm){
     $sql = "INSERT INTO sanpham (name, price, mota, img, iddm) VALUES (?,?,?,?,?)";
     pdo_execute($sql,  $name, $price, $mota, $img, $iddm);
 }

@@ -12,11 +12,14 @@
     include "../../models/binhluan.php";
     include "../../models/baiviet.php";
     include "../../models/donhang.php";
+    include "../../models/lienhe.php";
     $dsbaiviet = select_baiviet_admin();
     $dsbinhluan = select_all_binhluan_admin();
     $dsvoucher = select_voucher_admin();
     $dsrole = select_all_role();
     $dsbienthe = select_bienthe_admin();
+    $dsdm = danhmuc_all();
+    $dslienhe = select_lienhe_all();
     if (isset($_GET['ad'])) {
         $ad = $_GET['ad'];
         switch ($ad) {
@@ -62,7 +65,7 @@
                 break;
 
             // Xóa người dùng
-                case 'deleteuser':
+            case 'deleteuser':
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                     $id = $_GET['id'];
                     delete_user_admin($id);
@@ -75,7 +78,7 @@
         
         // Trang Quản lý chức vụ
             // Quản lý chức vụ
-                case 'quanlychucvu':
+            case 'quanlychucvu':
                 $dsrole = select_all_role();
                 include "chucvu/quanlychucvu.php";
                 break;
@@ -161,6 +164,26 @@
                 include "sanpham/suasanpham.php";
                 break;
 
+            // Thêm sản phẩm
+            case "th_themsanpham":
+                if (isset($_POST['th_themsanpham'])) {
+                    $price = $_POST['price'];
+                    $name = $_POST['name'];
+                    $mota = $_POST['mota'];
+                    $iddm = $_POST['iddm'];
+                    $img = $_FILES['img']['name'];
+                    if ($img != "") {
+                    $target_file = IMG_PATH_ADMIN . $img;
+                    move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
+                    } else {
+                    $img = "";
+                    }
+                }
+                insert_sanpham_admin( $name, $price, $mota, $img, $iddm);
+                $sp = select_sp_all();
+                include "sanpham/quanlysanpham.php";
+                break;
+
             // Thực hiện sửa sản phẩm
             case "th_suasanpham":
                 if (isset($_POST['suasanpham'])) {
@@ -243,7 +266,7 @@
                 bt_delete($id);
                 }
                 $sp = select_sp_all();
-                include "sanpham/quanlysanpham.php";
+                include "bienthe/quanlybienthe.php";
             break;
 
             // Thêm biến thể
@@ -476,6 +499,24 @@
                 break;
             
 //------------------------------------------------------Hết Trang Quản Lý Đơn hàng------------------------------------------------------//
+        // Trang Quản lý liên hệ
+            // Quản lý liên hệ
+            case 'quanlylienhe':
+                $dslienhe = select_lienhe_all();
+                include "lienhe/quanlylienhe.php";
+                break;
+
+            // Xóa liên hệ
+            case 'deletelh':
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $id = $_GET['id'];
+                    delete_lienhe_admin($id);
+                }
+                $dslienhe = select_lienhe_all();
+                include "lienhe/quanlylienhe.php";
+                break;
+
+//------------------------------------------------------Hết Trang Quản Lý Liên Hệ------------------------------------------------------//
 
             case 'thongke':
                 include "thongke.php";

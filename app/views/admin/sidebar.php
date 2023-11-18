@@ -247,6 +247,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item menu-open">
+            <a href="index.php?ad=quanlylienhe" class="nav-link ">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Quản lý liên hệ
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
