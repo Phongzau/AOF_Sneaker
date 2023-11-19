@@ -1,4 +1,7 @@
 <?php
+    session_start();
+    ob_start();
+    if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu']=="Admin")) {
     include "header.php";
     include "sidebar.php";
     include "../../models/pdo.php";
@@ -518,6 +521,13 @@
 
 //------------------------------------------------------Hết Trang Quản Lý Liên Hệ------------------------------------------------------//
 
+            case 'dangxuat':
+                if (isset($_SESSION['user']) && count($_SESSION['user']) > 0) {
+                    unset($_SESSION['user']);
+                    header("location: dangnhap.php");
+                    break;
+                }
+                break;
             case 'thongke':
                 include "thongke.php";
                 break;
@@ -531,5 +541,9 @@ default :
     } else {
         include "thongke.php";
     }
-    include "footer.php";
+    include "footer.php";    
+    } else {
+        header('Location: dangnhap.php');
+    }
+
 ?>

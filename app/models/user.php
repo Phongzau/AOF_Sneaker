@@ -22,6 +22,11 @@ function user_new() {
   return pdo_query($sql);
 }
 
+function select_user_admin($username, $password) {
+  $sql = "SELECT * FROM user INNER JOIN `role` ON user.idrole = role.id_role WHERE username=? AND password=?";
+  return pdo_query_one($sql, $username, $password);
+}
+
 // function user_all() {
 //   $sql = "SELECT * from user order by id asc";
 //   return pdo_query($sql);

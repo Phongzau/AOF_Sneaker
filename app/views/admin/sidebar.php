@@ -1,3 +1,9 @@
+<?php
+    if (isset($_SESSION['user']) && count($_SESSION['user']) > 0) {
+        extract($_SESSION['user']);
+    }
+?>
+
 <div class="wrapper">
 
   <!-- Preloader -->
@@ -156,10 +162,10 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../../../public/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+          <img src="../../../public/uploads/<?=$img?>" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Pierce</a>
+          <a href="#" class="d-block"><?=$user_name?></a>
         </div>
       </div>
       <!-- Sidebar Menu -->
@@ -252,6 +258,13 @@
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Quản lý liên hệ
+              </p>
+            </a>
+          </li>
+          <li class="nav-item menu-open btn-danger" >
+            <a href="index.php?ad=dangxuat"   class=" text-center nav-link ">
+              <p>
+                Đăng xuất
               </p>
             </a>
           </li>
