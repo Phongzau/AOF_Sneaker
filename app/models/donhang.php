@@ -12,8 +12,12 @@
 //   return pdo_query($sql);
 // }
 
-function donhang_all(){
-  $sql = "SELECT * FROM donhang ";
+function donhang_all_id($id){
+  $sql = "SELECT * FROM donhang  WHERE madh_ct=? "   ;
+  return pdo_query($sql,$id);
+}
+function donhangct_all(){
+  $sql = "SELECT * FROM donhangchitiet ";
   return pdo_query($sql);
 }
 // function donhang_id($iduser){
@@ -109,8 +113,81 @@ function show_dh_admin($dssp){
     return $html_dssp;
 }
 
+function show_dhct_admin($dssp){
+  $html_dssp ='';
+  $ttxn ='';
+  foreach ($dssp as $sp) {
+   extract($sp);
+   if($pttt==0){
+    $pt = "Nhận Hàng Trả Tiền";
+   }else if($pttt==1){
+    $pt = "Thanh Toán Online";
+   }
+   switch($trangthai){
+   case 0:
+       $tt = "Chờ Xác Nhận";
+       $ttxn.= '<a href="index.php?ad=xacnhandhct&id='.$id_ct.'" class="btn btn-info ">
+       <i class="fa-solid "></i>Xác Nhận Đợn Hàng</a> ';
+    break;
+    case 1:
+      $tt = "Đang Chuẩn Bị Hàng";
+      break;
+      case 3:
+        $tt = "Đang Giao Hàng";
+        break;
+        case 4:
+          $tt = "Giao Hàng Thanh Công";
+          break;
+
+    default:
+       $tt = "Đơn Hàng Không Xác Định";
+    break;
+   }
+   $html_dssp.='<div class="box25 mr15">
+   <tr>
+   <td>'.$id_ct.'</td>
+   <td>'.$madh.'</td>
+   <td>'.$nguoidat_ten.'</td>
+   <td>'.$nguoidat_email.'</td>
+   <td>'.$nguoidat_tell.'</td>
+   <td>'.$nguoidat_diachi	.'</td>
+   <td>'.$total.'</td>
+   <td>'.$voucher.'</td>
+   <td>'.$tongthanhtoan.'</td>
+   <td>'.$pt.'</td>
+   <td>'.$id_usct.'</td>
+   <td>'.$tt.'</td>
+   <td>
+   '.$ttxn.'
+   <a href="index.php?ad=deletedhct&id='.$id_ct.'&tt='.$trangthai.'" class="btn btn-danger">
+   <i class="fa-solid "></i>Xóa</a>
+   <a href="index.php?ad=xemchitetdh&id='.$id_ct.'" class="btn btn-success">
+   <i class="fa-solid "></i>Xem Chi Tiết</a>
+ </tr>
+ <tr>';
+ $ttxn = '';
+  }
+  return $html_dssp;
+}
+
 function donhang_delete($id){
   $sql = "DELETE FROM donhang WHERE id_dh=?";
+      pdo_execute($sql, $id);
+  
+}
+
+function donhangct_delete($id,$tt){
+  if($tt==1||$tt==2){
+    $sql = "DELETE FROM donhangchitiet WHERE id_ct=?";
+    pdo_execute($sql, $id);
+  }else{
+    $tb = "Đơn Hàng Không Thể Huỷ Khi Đang Giao Hàng";
+    return $tb ;
+  }
+  
+}
+function donhangct_xacnhan($id){
+  $sql = " UPDATE donhangchitiet SET trangthai = 1 WHERE  id_ct=?";
       pdo_execute($sql, $id);
   
 }
