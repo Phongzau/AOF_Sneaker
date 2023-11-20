@@ -106,5 +106,13 @@
 	
 	<!-- SPECIFIC SCRIPTS -->
 	<script src="public/client/js/carousel-home.min.js"></script>
+	<script src="public/client/js/common_scripts.min.js"></script>
+    <script src="public/client/js/main.js"></script>
+	
+	<!-- SPECIFIC SCRIPTS -->
+	<script src="public/client/js/sticky_sidebar.min.js"></script>
+	<script src="public/client/js/specific_listing.js"></script>
+
+	
 </body>
 </html>
