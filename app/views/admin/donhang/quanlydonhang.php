@@ -14,6 +14,7 @@ $html_dh =  show_dh_admin($dh);
             <th>mã đơn hàng chi tiết</th>
             <th>tên sản phẩm</th>
             <th>price</th>
+            <th>tổng </th>
             <th>soluong</th>
             <th>ngày đặt hàng</th>
             <th>size</th>

@@ -132,18 +132,18 @@ function show_sp_admin($dssp){
      <td>'.$mota.'</td>
      <td>'.$tendm.'</td>
      <td>'.$tc.'</td>
+     <td><a href="index.php?ad=thembienthe&id='.$id_sp.'" class="btn btn-success">
+     <i class="fa-solid fa-pen-to-square"></i>Thêm biến thể</a>
+     <a href="index.php?ad=xembienthe&id='.$id_sp.'" class="btn btn-info">
+     <i class="fa-solid fa-pen-to-square"></i>Xem biến thể</a> <td/>
      <td>
      <a href="index.php?ad=suasp&id='.$id_sp.'" class="btn btn-warning">
      <i class="fa-solid fa-pen-to-square"></i>Sửa</a>
      <a href="index.php?ad=deletesp&id='.$id_sp.'" class="btn btn-danger">
      <i class="fa-solid "></i>Xóa</a>
-     <a href="index.php?ad=thembienthe&id='.$id_sp.'" class="btn btn-success">
-     <i class="fa-solid fa-pen-to-square"></i>Thêm biến thể</a>
-     <a href="index.php?ad=xembienthe&id='.$id_sp.'" class="btn btn-info">
-     <i class="fa-solid fa-pen-to-square"></i>Xem biến thể</a>
      </td>
    </tr>
-   <tr>';
+   ';
     }
     return $html_dssp;
 }
