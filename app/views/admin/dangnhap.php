@@ -29,9 +29,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 -->
 <!DOCTYPE HTML>
 <html>
-
 <head>
-    <title>Classy Login form Widget Flat Responsive Widget Template :: w3layouts</title>
     <script src="js/jquery.min.js"></script>
     <!-- Custom Theme files -->
     <link href="../../../public/form-dangnhap/css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -40,7 +38,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="keywords"
-        content="Classy Login form Responsive, Login form web template, Sign up Web Templates, Flat Web Templates, Login signup Responsive web template, Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
+        content="Đăng nhập" />
+    <title>Đăng nhập Admin</title>    
     <!-- //for-mobile-apps -->
     <!--Google Fonts-->
     <link href='//fonts.googleapis.com/css?family=Roboto+Condensed:400,700' rel='stylesheet' type='text/css'>

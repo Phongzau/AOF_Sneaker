@@ -17,7 +17,7 @@ $html_dh =  show_dhct_admin($dh);
             <th>Số Điện Thoại</th>
             <th>Địa Chỉ</th>
             <th>Total</th>
-            <th>Vocher</th>
+            <th>Voucher</th>
             <th>Tổng Thanh Toán</th>
             <th>PT Thanh Toán</th>
             <th>Id Người Đặt</th>
