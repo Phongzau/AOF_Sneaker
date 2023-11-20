@@ -12,6 +12,7 @@ $html_sp = show_bt_admin($bt);
           <th>mau</th>
           <th>size</th>
           <th>số lượng</th>
+          
           <th>Chức năng</th>
         </tr>
       </thead>
