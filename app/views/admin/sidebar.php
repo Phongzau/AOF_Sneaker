@@ -8,7 +8,8 @@
 
   <!-- Preloader -->
   <div class="flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="../../../public/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__shake" src="../../../public/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
+      width="60">
   </div>
 
   <!-- Navbar -->
@@ -60,7 +61,8 @@
           <a href="#" class="dropdown-item">
             <!-- Message Start -->
             <div class="media">
-              <img src="../../../public/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+              <img src="../../../public/dist/img/user1-128x128.jpg" alt="User Avatar"
+                class="img-size-50 mr-3 img-circle">
               <div class="media-body">
                 <h3 class="dropdown-item-title">
                   Brad Diesel
@@ -153,7 +155,8 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
-      <img src="../../../public/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <img src="../../../public/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+        class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">AOF_Sneaker</span>
     </a>
 
@@ -259,10 +262,17 @@
               <p>
                 Quản lý liên hệ
               </p>
+          <li class="nav-item menu-open">
+            <a href="index.php?ad=quanlybanner" class="nav-link ">
+              <i class="nav-icon fas fa-tachometer-alt"></i>
+              <p>
+                Quản lý banner
+              </p>
             </a>
           </li>
-          <li class="nav-item menu-open btn-danger" >
-            <a href="index.php?ad=dangxuat"   class=" text-center nav-link ">
+
+          <li class="nav-item menu-open btn-danger">
+            <a href="index.php?ad=dangxuat" class=" text-center nav-link ">
               <p>
                 Đăng xuất
               </p>

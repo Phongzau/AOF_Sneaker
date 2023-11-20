@@ -16,6 +16,7 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
     include "../../models/baiviet.php";
     include "../../models/donhang.php";
     include "../../models/lienhe.php";
+    include "../../models/banner.php";
     $dsbaiviet = select_baiviet_admin();
     $dsbinhluan = select_all_binhluan_admin();
     $dsvoucher = select_voucher_admin();
@@ -23,6 +24,7 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
     $dsbienthe = select_bienthe_admin();
     $dsdm = danhmuc_all();
     $dslienhe = select_lienhe_all();
+    $dsbanner = select_banner_admin();
     if (isset($_GET['ad'])) {
         $ad = $_GET['ad'];
         switch ($ad) {
@@ -542,6 +544,75 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
 
                 //------------------------------------------------------Hết Trang Quản Lý Liên Hệ------------------------------------------------------//
 
+                // Trang quản lý banner
+case 'quanlybanner':
+    $dsbanner = select_banner_admin();
+    include "banner/quanlybanner.php";
+    break;
+
+// Thêm banner
+case 'thembanner':
+    include "banner/thembanner.php";
+    break;
+
+// Thực hiện thêm banner
+case 'th_thembanner':
+    if (isset($_POST['s_thembanner'])) {
+        $name = $_POST['name'];
+        $link = $_POST['link'];
+        $img = $_FILES['img']['name'];
+
+        // Upload hình ảnh
+        $target_file = IMG_PATH_ADMIN . $img;
+        move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
+            insert_banner_admin($name, $link, $img);
+    }
+
+    $dsbanner = select_banner_admin();
+    include "banner/quanlybanner.php";
+    break;
+
+// Xóa banner
+case 'deletebanner':
+    if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+        $id = $_GET['id'];
+        delete_banner_admin($id);
+    }
+    $dsbanner = select_banner_admin();
+    include "banner/quanlybanner.php";
+    break;
+
+// Thực hiện sửa banner
+case 'th_suabanner':
+    if (isset($_POST['s_suabanner'])) {
+        $id = $_POST['id'];
+        $name = $_POST['name'];
+        $link = $_POST['link'];
+        $img = $_FILES['img']['name'];
+
+        // Nếu có hình mới, upload hình ảnh mới
+        if ($img != "") {
+            $target_file = IMG_PATH_ADMIN . $img;
+            move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
+        } else {
+            $img = $img;
+        }
+    }
+   update_banner_admin($name, $link, $img ,$id);
+    $dsbanner = select_banner_admin();
+    include "banner/quanlybanner.php";
+    break;
+    
+    case 'updatebanner':
+        if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+           $id = $_GET['id'];
+        $bl =   select_banner_by_id_admin($id);
+        include "banner/suabanner.php";
+        }
+    break;
+    
+
+//------------------------------------------------------Hết Trang Quản Lý Banner------------------------------------------------------//
             case 'dangxuat':
                 if (isset($_SESSION['user']) && count($_SESSION['user']) > 0) {
                     unset($_SESSION['user']);
@@ -566,3 +637,5 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
 } else {
     header('Location: dangnhap.php');
 }
+
+ //------------------------------------------------------Hết Trang đăng xuất------------------------------------------------------//
