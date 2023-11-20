@@ -7,6 +7,18 @@
         case 'dangnhapdangky':
             include "app/views/client/dangnhapdangky.php";
             break;
+        case 'sanpham':
+            include "app/views/client/sanpham.php";
+            break;
+        case 'baiviet':
+            include "app/views/client/baiviet.php";
+            break;
+        case 'lienhe':
+            include "app/views/client/lienhe.php";
+            break;
+        case 'giohang':
+            include "app/views/client/giohang.php";
+            break;
         default :
             include "app/views/client/home.php";
             break;

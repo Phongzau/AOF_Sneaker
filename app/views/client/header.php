@@ -30,6 +30,21 @@
     <!-- YOUR CUSTOM CSS -->
     <link href="public/client/css/custom.css" rel="stylesheet">
 
+	<!-- SPECIFIC CSS -->
+    <link href="public/client/css/listing.css" rel="stylesheet">
+
+    <!-- SPECIFIC CSS -->
+    <link href="public/client/css/blog.css" rel="stylesheet">
+
+    <!-- SPECIFIC CSS -->
+    <link href="public/client/css/account.css" rel="stylesheet">
+
+    <!-- SPECIFIC CSS -->
+    <link href="public/client/css/contact.css" rel="stylesheet">
+
+    <!-- SPECIFIC CSS -->
+    <link href="public/client/css/cart.css" rel="stylesheet">
+
 </head>
 
 <body>
@@ -117,13 +132,13 @@
                                         <!-- /menu-wrapper -->
                                     </li>
                                     <li class="">
-                                        <a href="javascript:void(0);" class="show-submenu">Sản Phẩm</a>
+                                        <a href="index.php?cl=sanpham" class="show-submenu">Sản Phẩm</a>
                                     </li>
                                     <li>
-                                        <a href="blog.html">Bài viết</a>
+                                        <a href="index.php?cl=baiviet">Bài viết</a>
                                     </li>
                                     <li>
-                                        <a href="lienhe.html">Liên hệ</a>
+                                        <a href="index.php?cl=lienhe">Liên hệ</a>
                                     </li>
                                 </ul>
                             </div>
@@ -222,7 +237,7 @@
                             <ul class="top_tools">
                                 <li>
                                     <div class="dropdown dropdown-cart">
-                                        <a href="cart.html" class="cart_bt"><strong>2</strong></a>
+                                        <a href="index.php?cl=giohang" class="cart_bt"><strong>2</strong></a>
                                         <div class="dropdown-menu">
                                             <ul>
                                                 <li>
@@ -258,7 +273,7 @@
                                             <a href="index.php?cl=dangnhapdangky" class="btn_1">Sign In or Sign Up</a>
                                             <ul>
                                                 <li>
-                                                    <a href="track-order.html"><i class="ti-truck"></i>Track your Order</a>
+                                                    <a href="index.php?cl=giohang"><i class="ti-truck"></i>Giỏ hàng</a>
                                                 </li>
                                                 <li>
                                                     <a href="account.html"><i class="ti-package"></i>My Orders</a>
