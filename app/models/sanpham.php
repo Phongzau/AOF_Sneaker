@@ -159,6 +159,121 @@ function insert_sanpham_admin( $name, $price, $mota, $img, $iddm){
     pdo_execute($sql,  $name, $price, $mota, $img, $iddm);
 }
 
+function showsp_one_hot($dssp) {
+    $html_showsponehot = '';
+    foreach ($dssp as $sp) {
+        extract($sp);
+        $link = "index.php?cl=sanphamchitiet&idpro=".$id_sp;
+        $html_showsponehot = '<div class="featured lazy" data-bg="url('.IMG_PATH_USER.$img.')">
+                            <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
+                                <div class="container margin_60">
+                                    <div class="row justify-content-center justify-content-md-start">
+                                        <div class="col-lg-6 wow" data-wow-offset="150">
+                                            <h3>'.$name.'</h3>
+                                            <p>'.$mota.'</p>
+                                            <div class="feat_text_block">
+                                                <div class="price_box">
+                                                    <span class="new_price">$'.$price.'</span>
+                                                </div>
+                                                <a class="btn_1" href="'.$link.'" role="button">Shop Now</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>';
+    }
+    return $html_showsponehot;
+}
+
+
+
+function showsp_featured($dssp) {
+    $html_showspfeatured = '';
+    foreach ($dssp as $sp) {
+        extract($sp);
+        // if ($bestseller == 1) {
+        //     $best = '<div class="best"></div>';
+        // } else {
+        //     $best = '';
+        // }
+        $link = "index.php?cl=sanphamchitiet&idpro=".$id_sp;
+        $html_showspfeatured.= '<div class="item">
+                            <div class="grid_item">
+                                <span class="ribbon new">New</span>
+                                <figure>
+                                    <a href="'.$link.'">
+                                        <img class="owl-lazy" src="'.IMG_PATH_USER.$img.'" data-src="'.IMG_PATH_USER.$img.'" alt="">
+                                    </a>
+                                </figure>
+                                <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
+                                <a href="'.IMG_PATH_USER.$img.'">
+                                    <h3>'.$name.'</h3>
+                                </a>
+                                <div class="price_box">
+                                    <span class="new_price">'.$price.'$</span>
+                                </div>
+                                <ul>
+                                    <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
+                                    <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
+                                    <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
+                                </ul>
+                            </div>
+                        </div>';
+    }
+    return $html_showspfeatured;
+}
+
+
+function showsp($dssp) {
+    $html_showsp = '';
+    foreach ($dssp as $sp) {
+        extract($sp);
+        // if ($bestseller == 1) {
+        //     $best = '<div class="best"></div>';
+        // } else {
+        //     $best = '';
+        // }
+        $link = "index.php?cl=sanphamchitiet&idpro=".$id_sp;
+        $html_showsp.= '<div class="col-6 col-md-4 col-xl-3">
+                        <div class="grid_item">
+                            <figure>
+                                <span class="ribbon off">-30%</span>
+                                <a href="'.$link.'">
+                                    <img class="img-fluid lazy" src="'.IMG_PATH_USER.$img.'" data-src="'.IMG_PATH_USER.$img.'" alt="">
+                                    <img class="img-fluid lazy" src="'.IMG_PATH_USER.$img.'" data-src="'.IMG_PATH_USER.$img.'" alt="">
+                                </a>
+                            </figure>
+                            <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
+                            <a href="'.$link.'">
+                                <h3>'.$name.'</h3>
+                            </a>
+                            <div class="price_box">
+                                <span class="new_price">'.$price.'$</span>
+                            </div>
+                            <ul>
+                                <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
+                                <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
+                                <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
+                            </ul>
+                        </div>
+                        <!-- /grid_item -->
+                     </div>';
+    }
+    return $html_showsp;
+}
+
+function select_sp_client(){
+    $sql = "SELECT * from sanpham";
+    return pdo_query($sql);
+}
+
+function select_sp_one_hot(){
+    $sql = "SELECT * from sanpham WHERE view >= 100";
+    return pdo_query($sql);
+}
+
+
 // function hang_hoa_exist($ma_hh){
 //     $sql = "SELECT count(*) FROM hang_hoa WHERE ma_hh=?";
 //     return pdo_query_value($sql, $ma_hh) > 0;
