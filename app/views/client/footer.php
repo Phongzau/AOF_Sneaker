@@ -113,7 +113,7 @@
 	<script src="public/client/js/sticky_sidebar.min.js"></script>
 	<script src="public/client/js/specific_listing.js"></script>
     <!-- SPECIFIC SCRIPTS -->
-    <script  src="public/client/js/carousel_with_thumbs.js"></script>
+    <script src="public/client/js/carousel_with_thumbs.js"></script>
 	
 </body>
 </html>

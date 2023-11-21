@@ -4,6 +4,7 @@
     include "app/models/banner.php";
     include "app/models/global.php";
     include "app/models/sanpham.php";
+    include "app/models/bienthe.php";
     $dsbanner = select_all_banner();
     $dssp = select_sp_client();
     $sphot = select_sp_one_hot();
@@ -14,6 +15,14 @@
             include "app/views/client/dangnhapdangky.php";
             break;
         case 'sanphamchitiet':
+            if (isset($_GET['idpro']) && ($_GET['idpro'] > 0)) {
+                $id = $_GET['idpro'];
+            }
+            $spchitiet = select_sanpham_by_id_client($id);
+            $btcolor = select_bienthe_by_id($id);
+            $btsize = select_bienthe_by_id($id);
+            $iddm = $spchitiet['iddm'];
+            $splienquan = get_dssp_lienquan($iddm,$id);
             include "app/views/client/sanphamchitiet.php";
             break;
         case 'sanpham':
