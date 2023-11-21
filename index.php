@@ -14,6 +14,10 @@
             include "app/views/client/dangnhapdangky.php";
             break;
         case 'sanphamchitiet':
+            if (isset($_GET['idpro']) && ($_GET['idpro'] > 0)) {
+                $id = $_GET['idpro'];
+            }
+            $spchitiet = select_sanpham_by_id_client($id);
             include "app/views/client/sanphamchitiet.php";
             break;
         case 'sanpham':
