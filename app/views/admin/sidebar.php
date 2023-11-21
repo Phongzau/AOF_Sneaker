@@ -262,6 +262,7 @@
               <p>
                 Quản lý liên hệ
               </p>
+            </a>
           <li class="nav-item menu-open">
             <a href="index.php?ad=quanlybanner" class="nav-link ">
               <i class="nav-icon fas fa-tachometer-alt"></i>

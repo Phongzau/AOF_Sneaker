@@ -45,6 +45,8 @@
     <!-- SPECIFIC CSS -->
     <link href="public/client/css/cart.css" rel="stylesheet">
 
+    <!-- SPECIFIC CSS -->
+    <link href="public/client/css/product_page.css" rel="stylesheet">
 </head>
 
 <body>

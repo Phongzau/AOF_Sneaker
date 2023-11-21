@@ -1,96 +1,11 @@
+<?php
+$html_showbanner = show_banner_client($dsbanner);
+$html_showsp = showsp($dssp);
+$html_showspfeatured = showsp_featured($dssp);
+$html_showsponehot = showsp_one_hot($sphot);
+?>
 <main>
-		<div id="carousel-home">
-			<div class="owl-carousel owl-theme">
-				<div class="owl-slide cover" style="background-image: url(public/client/img/slides/slide_home_2.jpg);">
-					<div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-						<div class="container">
-							<div class="row justify-content-center justify-content-md-end">
-								<div class="col-lg-6 static">
-									<div class="slide-text text-end white">
-										<h2 class="owl-slide-animated owl-slide-title">Attack Air<br>Max 720 Sage Low</h2>
-										<p class="owl-slide-animated owl-slide-subtitle">
-											Limited items available at this price
-										</p>
-										<div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="listing-grid-1-full.html" role="button">Shop Now</a></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--/owl-slide-->
-				<div class="owl-slide cover" style="background-image: url(public/client/img/slides/slide_home_1.jpg);">
-					<div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-						<div class="container">
-							<div class="row justify-content-center justify-content-md-start">
-								<div class="col-lg-6 static">
-									<div class="slide-text white">
-										<h2 class="owl-slide-animated owl-slide-title">Attack Air<br>VaporMax Flyknit 3</h2>
-										<p class="owl-slide-animated owl-slide-subtitle">
-											Limited items available at this price
-										</p>
-										<div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="listing-grid-1-full.html" role="button">Shop Now</a></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!--/owl-slide-->
-				<div class="owl-slide cover" style="background-image: url(public/client/img/slides/slide_home_3.jpg);">
-					<div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(255, 255, 255, 0.5)">
-						<div class="container">
-							<div class="row justify-content-center justify-content-md-start">
-								<div class="col-lg-12 static">
-									<div class="slide-text text-center black">
-										<h2 class="owl-slide-animated owl-slide-title">Attack Air<br>Monarch IV SE</h2>
-										<p class="owl-slide-animated owl-slide-subtitle">
-											Lightweight cushioning and durable support with a Phylon midsole
-										</p>
-										<div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="listing-grid-1-full.html" role="button">Shop Now</a></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--/owl-slide-->
-				</div>
-			</div>
-			<div id="icon_drag_mobile"></div>
-		</div>
-		<!--/carousel-->
-
-		<ul id="banners_grid" class="clearfix">
-			<li>
-				<a href="#0" class="img_container">
-					<img src="public/client/img/banners_cat_placeholder.jpg" data-src="public/client/img/banner_1.jpg" alt="" class="lazy">
-					<div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-						<h3>Men's Collection</h3>
-						<div><span class="btn_1">Shop Now</span></div>
-					</div>
-				</a>
-			</li>
-			<li>
-				<a href="#0" class="img_container">
-					<img src="public/client/img/banners_cat_placeholder.jpg" data-src="public/client/img/banner_2.jpg" alt="" class="lazy">
-					<div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-						<h3>Womens's Collection</h3>
-						<div><span class="btn_1">Shop Now</span></div>
-					</div>
-				</a>
-			</li>
-			<li>
-				<a href="#0" class="img_container">
-					<img src="public/client/img/banners_cat_placeholder.jpg" data-src="public/client/img/banner_3.jpg" alt="" class="lazy">
-					<div class="short_info opacity-mask" data-opacity-mask="rgba(0, 0, 0, 0.5)">
-						<h3>Kids's Collection</h3>
-						<div><span class="btn_1">Shop Now</span></div>
-					</div>
-				</a>
-			</li>
-		</ul>
-		<!--/banners_grid -->
-		
+	<?=$html_showbanner;?>
 		<div class="container margin_60_35">
 			<div class="main_title">
 				<h2>Top Selling</h2>
@@ -98,7 +13,8 @@
 				<p>Cum doctus civibus efficiantur in imperdiet deterruisset</p>
 			</div>
 			<div class="row small-gutters">
-				<div class="col-6 col-md-4 col-xl-3">
+				<?=$html_showsp?>
+				<!-- <div class="col-6 col-md-4 col-xl-3">
 					<div class="grid_item">
 						<figure>
 							<span class="ribbon off">-30%</span>
@@ -122,9 +38,9 @@
 							<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
 						</ul>
 					</div>
-					<!-- /grid_item -->
+					/grid_item
 				</div>
-				<!-- /col -->
+				/col
 				<div class="col-6 col-md-4 col-xl-3">
 					<div class="grid_item">
 						<span class="ribbon off">-30%</span>
@@ -149,9 +65,9 @@
 							<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
 						</ul>
 					</div>
-					<!-- /grid_item -->
+					/grid_item
 				</div>
-				<!-- /col -->
+				/col
 				<div class="col-6 col-md-4 col-xl-3">
 					<div class="grid_item">
 						<span class="ribbon off">-50%</span>
@@ -176,9 +92,9 @@
 							<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
 						</ul>
 					</div>
-					<!-- /grid_item -->
+					/grid_item
 				</div>
-				<!-- /col -->
+				/col
 				<div class="col-6 col-md-4 col-xl-3">
 					<div class="grid_item">
 						<span class="ribbon new">New</span>
@@ -201,9 +117,9 @@
 							<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
 						</ul>
 					</div>
-					<!-- /grid_item -->
+					/grid_item
 				</div>
-				<!-- /col -->
+				/col
 				<div class="col-6 col-md-4 col-xl-3">
 					<div class="grid_item">
 						<span class="ribbon new">New</span>
@@ -226,9 +142,9 @@
 							<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
 						</ul>
 					</div>
-					<!-- /grid_item -->
+					/grid_item
 				</div>
-				<!-- /col -->
+				/col
 				<div class="col-6 col-md-4 col-xl-3">
 					<div class="grid_item">
 						<span class="ribbon new">New</span>
@@ -251,9 +167,9 @@
 							<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
 						</ul>
 					</div>
-					<!-- /grid_item -->
+					/grid_item
 				</div>
-				<!-- /col -->
+				/col
 				<div class="col-6 col-md-4 col-xl-3">
 					<div class="grid_item">
 						<span class="ribbon hot">Hot</span>
@@ -276,9 +192,9 @@
 							<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
 						</ul>
 					</div>
-					<!-- /grid_item -->
+					/grid_item
 				</div>
-				<!-- /col -->
+				/col
 				<div class="col-6 col-md-4 col-xl-3">
 					<div class="grid_item">
 						<span class="ribbon hot">Hot</span>
@@ -301,15 +217,16 @@
 							<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
 						</ul>
 					</div>
-					<!-- /grid_item -->
+					/grid_item
 				</div>
-				<!-- /col -->
+				/col
 			</div>
-			<!-- /row -->
+			/row
 		</div>
-		<!-- /container -->
+		/container -->
 
-		<div class="featured lazy" data-bg="url(public/client/img/featured_home.jpg)">
+		<?=$html_showsponehot;?>
+		<!-- <div class="featured lazy" data-bg="url(public/client/img/featured_home.jpg)">
 			<div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
 				<div class="container margin_60">
 					<div class="row justify-content-center justify-content-md-start">
@@ -327,7 +244,7 @@
 					</div>
 				</div>
 			</div>
-		</div>
+		</div> -->
 		<!-- /featured -->
 
 		<div class="container margin_60_35">
@@ -337,7 +254,8 @@
 				<p>Cum doctus civibus efficiantur in imperdiet deterruisset</p>
 			</div>
 			<div class="owl-carousel owl-theme products_carousel">
-				<div class="item">
+				<?=$html_showspfeatured?>
+				<!-- <div class="item">
 					<div class="grid_item">
 						<span class="ribbon new">New</span>
 						<figure>
@@ -358,9 +276,9 @@
 							<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
 						</ul>
 					</div>
-					<!-- /grid_item -->
+					/grid_item
 				</div>
-				<!-- /item -->
+				/item
 				<div class="item">
 					<div class="grid_item">
 						<span class="ribbon new">New</span>
@@ -382,9 +300,9 @@
 							<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
 						</ul>
 					</div>
-					<!-- /grid_item -->
+					/grid_item
 				</div>
-				<!-- /item -->
+				/item
 				<div class="item">
 					<div class="grid_item">
 						<span class="ribbon hot">Hot</span>
@@ -406,9 +324,9 @@
 							<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
 						</ul>
 					</div>
-					<!-- /grid_item -->
+					/grid_item
 				</div>
-				<!-- /item -->
+				/item
 				<div class="item">
 					<div class="grid_item">
 						<span class="ribbon off">-30%</span>
@@ -431,9 +349,9 @@
 							<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
 						</ul>
 					</div>
-					<!-- /grid_item -->
+					/grid_item
 				</div>
-				<!-- /item -->
+				/item
 				<div class="item">
 					<div class="grid_item">
 						<span class="ribbon off">-50%</span>
@@ -456,11 +374,11 @@
 							<li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
 						</ul>
 					</div>
-					<!-- /grid_item -->
+					/grid_item
 				</div>
-				<!-- /item -->
+				/item -->
 			</div>
-			<!-- /products_carousel -->
+			/products_carousel 
 		</div>
 		<!-- /container -->
 		
