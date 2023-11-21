@@ -525,6 +525,42 @@ function show_spchitiet($spchitiet) {
         return $html_showctsp;
     }
 
+    function get_dssp_lienquan($iddm,$id){
+        $sql = "SELECT * FROM `sanpham` WHERE iddm=? AND id_sp<>?";
+        return pdo_query($sql,$iddm,$id);
+    }
+
+    function showsp_lienquan($splienquan) {
+        $html_showsplq = '';
+        foreach($splienquan as $splq) {
+            extract($splq);
+            $link = "index.php?cl=sanphamchitiet&idpro=".$id_sp;
+            $html_showsplq.='<div class="item">
+                                    <div class="grid_item">
+                                        <span class="ribbon new">New</span>
+                                        <figure>
+                                            <a href="'.$link.'">
+                                                <img class="owl-lazy" src="public/client/img/products/product_placeholder_square_medium.jpg" data-src="'.IMG_PATH_USER.$img.'" alt="">
+                                            </a>
+                                        </figure>
+                                        <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
+                                        <a href="'.$link.'">
+                                            <h3>'.$name.'</h3>
+                                        </a>
+                                        <div class="price_box">
+                                            <span class="new_price">'.$price.'</span>
+                                        </div>
+                                        <ul>
+                                            <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
+                                            <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to compare"><i class="ti-control-shuffle"></i><span>Add to compare</span></a></li>
+                                            <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to cart"><i class="ti-shopping-cart"></i><span>Add to cart</span></a></li>
+                                        </ul>
+                                    </div>
+                                    <!-- /grid_item -->
+                                </div>
+                            <!-- /products_carousel -->	';
+        } return $html_showsplq;
+    }
 
 // function hang_hoa_exist($ma_hh){
 //     $sql = "SELECT count(*) FROM hang_hoa WHERE ma_hh=?";

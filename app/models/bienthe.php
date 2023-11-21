@@ -77,5 +77,27 @@ function  select_bthe_id($id){
     }
     return $html_dssp;
 }
+
+function select_bienthe_by_id($id) {
+  $sql = "SELECT * FROM bienthesanpham WHERE id_sanpham=?";
+  return pdo_query($sql, $id);
+}
+
+function option_color_bienthe_sanpham($sp) {
+  $html_optioncolorbienthesp = '';
+  foreach($sp as $sanpham) {
+    extract($sanpham);
+    $html_optioncolorbienthesp.='<option value="'.$mau.'">'.$mau.'</option>';
+  } return $html_optioncolorbienthesp;
+}
+
+function option_size_bienthe_sanpham($sp) {
+  $html_optionsizebienthesp = '';
+  foreach($sp as $sanpham) {
+    extract($sanpham);
+    $html_optionsizebienthesp.='<option value="'.$dungluong.'">'.$dungluong.'</option>';
+  } return $html_optionsizebienthesp;
+}
+
 ?>
 
