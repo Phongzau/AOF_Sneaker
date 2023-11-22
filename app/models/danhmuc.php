@@ -36,7 +36,7 @@ function danhmuc_delete($ma_danhmuc){
 //  * @throws PDOException lỗi truy vấn
 //  */
 function danhmuc_all(){
-    $sql = "SELECT * FROM danhmuc ";
+    $sql = "SELECT * FROM `danhmuc`";
     return pdo_query($sql);
 }
 
@@ -87,3 +87,12 @@ function select_dm_by_id_admin($id_dm){
 //     $sql = "SELECT count(*) FROM danhmuc WHERE ma_danhmuc=?";
 //     return pdo_query_value($sql, $ma_danhmuc) > 0;
 // }
+function showdm_all($dsdm){
+    $html_dm='';
+    foreach ($dsdm as $dm) {
+        extract($dm);
+        $html_dm.='<li><span><a href="index.php?cl=sanpham&id='.$id_dm.'">'.$tendm.'</a></span>
+        </li>';
+    }
+    return $html_dm;
+}

@@ -1,13 +1,18 @@
 <?php
+
     include "app/models/pdo.php";
+    include "app/models/danhmuc.php";
     include "app/views/client/header.php";
     include "app/models/banner.php";
     include "app/models/global.php";
     include "app/models/sanpham.php";
     include "app/models/bienthe.php";
+
     $dsbanner = select_all_banner();
     $dssp = select_sp_client();
     $sphot = select_sp_one_hot();
+
+   
     if (isset($_GET['cl'])) {
         $cl = $_GET['cl'];
         switch ($cl) {
@@ -26,6 +31,13 @@
             include "app/views/client/sanphamchitiet.php";
             break;
         case 'sanpham':
+            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                $id = $_GET['id'];
+                $sp_all  =  select_sp_iddm($id);
+
+            }else{
+                $sp_all = select_sp_all_cl();
+            }
             include "app/views/client/sanpham.php";
             break;
         case 'baiviet':
