@@ -28,13 +28,13 @@
             $btsize = select_bienthe_by_id($id);
             $iddm = $spchitiet['iddm'];
             $splienquan = get_dssp_lienquan($iddm,$id);
+            $hasp = select_hasp_client($id);
             include "app/views/client/sanphamchitiet.php";
             break;
         case 'sanpham':
             if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                 $id = $_GET['id'];
                 $sp_all  =  select_sp_iddm($id);
-
             }else{
                 $sp_all = select_sp_all_cl();
             }

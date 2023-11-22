@@ -2,9 +2,10 @@
 	if (is_array($spchitiet) && count($spchitiet) > 0) {
 		extract($spchitiet);
 	}
-	$html_optioncolorbienthesp = option_color_bienthe_sanpham($btcolor);
 	$html_optionsizebienthesp = option_size_bienthe_sanpham($btsize);
 	$html_showsplq = showsp_lienquan($splienquan);
+    $html_showhasp = showha_sp($hasp);
+    $html_showhaspitembox = showha_sp_itembox($hasp);
 ?>
 
 <main>
@@ -17,11 +18,7 @@
                                         <div class="slider">
                                             <div class="owl-carousel owl-theme main">
                                                 <div style="background-image: url('<?=IMG_PATH_USER.$img?>');" class="item-box"></div>
-                                                <div style="background-image: url('<?=IMG_PATH_USER.$img?>');" class="item-box"></div>
-                                                <div style="background-image: url('<?=IMG_PATH_USER.$img?>');" class="item-box"></div>
-                                                <div style="background-image: url('<?=IMG_PATH_USER.$img?>');" class="item-box"></div>
-                                                <div style="background-image: url('<?=IMG_PATH_USER.$img?>');" class="item-box"></div>
-                                                <div style="background-image: url('<?=IMG_PATH_USER.$img?>');" class="item-box"></div>
+                                                <?=$html_showhaspitembox;?>
                                             </div>
                                             <div class="left nonl"><i class="ti-angle-left"></i></div>
                                             <div class="right"><i class="ti-angle-right"></i></div>
@@ -29,14 +26,8 @@
                                         <div class="slider-two">
                                             <div class="owl-carousel owl-theme thumbs">
                                                 <div style="background-image: url('<?=IMG_PATH_USER.$img?>');" class="item active"></div>
-                                                <div style="background-image: url('<?=IMG_PATH_USER.$img?>');" class="item"></div>
-                                                <div style="background-image: url('<?=IMG_PATH_USER.$img?>');" class="item"></div>
-                                                <div style="background-image: url('<?=IMG_PATH_USER.$img?>');" class="item"></div>
-                                                <div style="background-image: url('<?=IMG_PATH_USER.$img?>');" class="item"></div>
-                                                <div style="background-image: url('<?=IMG_PATH_USER.$img?>');" class="item"></div>
+                                                <?=$html_showhasp;?> 
                                             </div>
-                                            <div class="left-t nonl-t"></div>
-                                            <div class="right-t"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -54,16 +45,6 @@
                                         <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i><em>4 reviews</em></span>
                                         <p><small>SKU: AOF-<?=$id_sp?></small><br><?=$mota?></p>
                                         <div class="prod_options">
-                                            <div class="row">
-                                                <label class="col-xl-5 col-lg-5  col-md-6 col-6 pt-0"><strong>Color</strong></label>
-                                                <div class="col-xl-4 col-lg-5 col-md-6 col-6 colors">
-                                                <div class="custom-select">
-												<select class="" >
-													<?=$html_optioncolorbienthesp;?>
-                               					</select>
-                                                </div>
-                                                </div>
-                                            </div>
                                             <div class="row">
                                                 <label class="col-xl-5 col-lg-5 col-md-6 col-6"><strong>Size</strong> - Size Guide <a href="#0" data-bs-toggle="modal" data-bs-target="#size-modal"><i class="ti-help-alt"></i></a></label>
                                                 <div class="col-xl-4 col-lg-5 col-md-6 col-6">
