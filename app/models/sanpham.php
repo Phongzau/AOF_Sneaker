@@ -64,6 +64,18 @@ function select_sp_all(){
     return pdo_query($sql);
 }
 
+function select_sp_iddm($id){
+    $sql = "SELECT * from sanpham where iddm = ? ";
+    return pdo_query($sql,$id);
+}
+
+
+
+function select_sp_all_cl(){
+    $sql = "SELECT * FROM sanpham LIMIT 8";
+    return pdo_query($sql);
+}
+
 function  get_sanpham_by_id_admin($id){
     $sql = "SELECT * from sanpham  INNER JOIN danhmuc 
     on sanpham.iddm = danhmuc.id_dm  WHERE id_sp=?";
@@ -84,15 +96,10 @@ function sanpham_update($id_sp, $name, $price, $mota, $img, $iddm ){
     pdo_execute($sql,$id_sp, $name, $price, $mota, $img,$iddm);
 }
 
-// function showsp($dssp){
+// function showsp_all_cl($dssp){
 //     $html_dssp ='';
 //     foreach ($dssp as $sp) {
 //      extract($sp);
-//      if($bestseller==1){
-//      $best='<div class="best"></div>'; 
-//      }else{
-//       $best ="";
-//      }
 //      $link="index.php?pg=sanphamchitiet&idpro=".$id;
 //      $html_dssp.='<div class="box25 mr15">
 //      '.$best.'
@@ -345,9 +352,9 @@ function show_spchitiet($spchitiet) {
                                                 <div class="col-xl-4 col-lg-5 col-md-6 col-6">
                                                     <div class="custom-select-form">    
                                                     <select name="iddm" class="wide">
-                                                            <option value="" selected>Small (S)</option>
-                                                            <option value="">M</option>
-                                                            <option value="">L</option>
+                                                            <option value="1" selected>Small (S)</option>
+                                                            <option value="1">M</option>
+                                                            <option value="3">L</option>
                                                             <option value="">XL</option>
                                                         </select>
                                                     </div>
