@@ -18,6 +18,7 @@ $html_sp = show_sp_admin($sp)
           <th>Iddm</th>
           <th>Tình trạng</th>
           <th>Biến Thể</th>
+          <th>Hình ảnh</th>
           <th >Chức năng</th>
         </tr>
       </thead>

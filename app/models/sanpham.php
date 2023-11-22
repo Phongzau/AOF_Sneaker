@@ -139,10 +139,16 @@ function show_sp_admin($dssp){
      <td>'.$mota.'</td>
      <td>'.$tendm.'</td>
      <td>'.$tc.'</td>
-     <td><a href="index.php?ad=thembienthe&id='.$id_sp.'" class="btn btn-success">
+     <td>
+     <a href="index.php?ad=thembienthe&id='.$id_sp.'" class="btn btn-success">
      <i class="fa-solid fa-pen-to-square"></i>Thêm biến thể</a>
      <a href="index.php?ad=xembienthe&id='.$id_sp.'" class="btn btn-info">
-     <i class="fa-solid fa-pen-to-square"></i>Xem biến thể</a> <td/>
+     <i class="fa-solid fa-pen-to-square"></i>Xem biến thể</a> 
+     </td> 
+     <td>
+     <a href="index.php?ad=themhinhanhsp&id='.$id_sp.'" class="btn btn-success">
+     <i class="fa-solid fa-pen-to-square"></i>Thêm Hình ảnh SP</a>
+     </td>
      <td>
      <a href="index.php?ad=suasp&id='.$id_sp.'" class="btn btn-warning">
      <i class="fa-solid fa-pen-to-square"></i>Sửa</a>
@@ -153,6 +159,29 @@ function show_sp_admin($dssp){
    ';
     }
     return $html_dssp;
+}
+
+function showha_sp($hasp) {
+    $html_showhasp = '';
+    foreach ($hasp as $hinhanh) {
+        extract($hinhanh);
+        $html_showhasp.= '<div style="background-image: url('.IMG_PATH_USER.$img.');" class="item"></div>';
+    } return $html_showhasp;
+}
+
+function showha_sp_itembox($hasp) {
+    $html_showhaspitembox = '';
+    foreach ($hasp as $hinhanh) {
+        extract($hinhanh);
+        $html_showhaspitembox.= '<div style="background-image: url('.IMG_PATH_USER.$img.');" class="item-box"></div>';
+    } return $html_showhaspitembox;
+}
+
+                                        
+
+function select_hasp_client($id) {
+    $sql = "SELECT * FROM hinhanhsanpham WHERE id_sanpham=?";
+    return pdo_query($sql, $id);
 }
 
 function sp_delete($id){
