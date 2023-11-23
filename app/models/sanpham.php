@@ -69,7 +69,10 @@ function select_sp_iddm($id){
     return pdo_query($sql,$id);
 }
 
-
+function insert_hinhanh_admin($img, $id_sanpham) {
+    $sql = "INSERT INTO hinhanhsanpham(img, id_sanpham) VALUES (?,?)";
+    pdo_execute($sql, $img, $id_sanpham);
+}
 
 function select_sp_all_cl(){
     $sql = "SELECT * FROM sanpham LIMIT 8";
@@ -80,7 +83,12 @@ function  get_sanpham_by_id_admin($id){
     $sql = "SELECT * from sanpham  INNER JOIN danhmuc 
     on sanpham.iddm = danhmuc.id_dm  WHERE id_sp=?";
       return pdo_query_one($sql,$id);
-    }
+}
+
+function  get_sanpham_by_id($id){
+    $sql = "SELECT * from sanpham WHERE id_sp=?";
+      return pdo_query_one($sql,$id);
+}
 
 function showds_danhmuc_admin($dm) {
     $html_dsrole = '';
