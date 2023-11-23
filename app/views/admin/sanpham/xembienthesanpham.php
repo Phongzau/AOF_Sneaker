@@ -9,10 +9,8 @@ $html_sp = show_bt_admin($bt);
         <tr>
           <th>Stt</th>
           <th>Name Sản Phẩm</th>
-          <th>mau</th>
           <th>size</th>
           <th>số lượng</th>
-          
           <th>Chức năng</th>
         </tr>
       </thead>

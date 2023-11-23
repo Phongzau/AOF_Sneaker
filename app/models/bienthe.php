@@ -24,7 +24,6 @@ function  select_bthe_id($id){
          <tr>
          <td>'.$id_sanpham.'</td>
          <td>'.$name.'</td>
-         <td>'.$mau.'</td>
          <td>'.$dungluong.'</td>
          <td>'.$soluong.'</td>
          <td>
