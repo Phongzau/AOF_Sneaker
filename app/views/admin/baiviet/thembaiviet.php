@@ -2,6 +2,10 @@
     <h2>Thêm Bài Viết</h2>   
     <div class="main-content">
                 <form class="addPro" action="index.php?ad=th_thembaiviet" enctype="multipart/form-data" method="POST">
+                <div class="form-group">
+                        <label for="name">Tiêu Đề</label>
+                        <input type="text" class="form-control" name="tieude" style="width:28%" id="name">
+                    </div>
                     <div class="form-group">
                         <label for="name">Nội dung:</label>
                         <input type="text" class="form-control" name="noidung" id="name" placeholder="Nhập nội dung bài viết">

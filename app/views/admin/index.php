@@ -378,13 +378,14 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                 // Thực hiện thêm bài viết
             case 'th_thembaiviet':
                 if (isset($_POST['th_thembaiviet'])) {
+                    $tieude = $_POST['tieude'];
                     $noidung = $_POST['noidung'];
                     $img = $_FILES['img']['name'];
                     // upload hinh anh
                     $target_file = IMG_PATH_ADMIN . $img;
                     move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
                 }
-                insert_baiviet_admin($noidung, $img);
+                insert_baiviet_admin( $tieude,$noidung, $img);
                 $dsbaiviet = select_baiviet_admin();
                 include "baiviet/quanlybaiviet.php";
                 break;
@@ -403,6 +404,7 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                 if (isset($_POST['th_suabaiviet'])) {
                     $id_baiviet = $_POST['id_baiviet'];
                     $noidung = $_POST['noidung'];
+                    $tieude = $_POST['tieude'];
                     $img = $_FILES['img']['name'];
                     if ($img != "") {
                         // upload hinh anh
@@ -412,8 +414,7 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                         $img = get_old_image_baiviet($id_baiviet);
                     }
                 }
-                update_baiviet_admin($noidung, $img, $id_baiviet);
-                $dsbaiviet = select_baiviet_admin();
+                update_baiviet_admin($tieude,$noidung, $img, $id_baiviet);
                 include "baiviet/quanlybaiviet.php";
                 break;
 

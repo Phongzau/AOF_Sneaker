@@ -208,6 +208,11 @@ function select_sanpham_by_id_client($id_sp) {
     return pdo_query_one($sql, $id_sp);
 }
 
+function sanpham_update_view($id){
+    $sql = "UPDATE sanpham SET view = view +1 WHERE id_sp=?";
+    pdo_execute($sql,$id);
+}
+
 function showsp_one_hot($dssp) {
     $html_showsponehot = '';
     foreach ($dssp as $sp) {
@@ -313,12 +318,17 @@ function showsp($dssp) {
 }
 
 function select_sp_client(){
-    $sql = "SELECT * from sanpham";
+    $sql = "SELECT * from sanpham ORDER BY id_sp DESC limit 4";
     return pdo_query($sql);
 }
 
+
 function select_sp_one_hot(){
-    $sql = "SELECT * from sanpham WHERE view >= 100";
+    $sql = "SELECT * from sanpham  ORDER BY view DESC limit 1";
+    return pdo_query($sql);
+}
+function select_sp_hot(){
+    $sql = "SELECT * from sanpham ORDER BY view DESC limit 4";
     return pdo_query($sql);
 }
 

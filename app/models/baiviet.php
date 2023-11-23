@@ -3,10 +3,14 @@
         $sql = "SELECT * FROM baiviet";
         return pdo_query($sql);
     }
+    function select_baiviet_cl_home() {
+        $sql = "SELECT * FROM baiviet ORDER BY id_baiviet DESC limit 4";
+        return pdo_query($sql);
+    }
 
-    function update_baiviet_admin($noidung, $img, $id_baiviet) {
-        $sql = "UPDATE  baiviet SET noidung=?,img=? WHERE id_baiviet=?";
-        pdo_execute($sql, $noidung, $img, $id_baiviet);
+    function update_baiviet_admin( $tieude,$noidung, $img, $id_baiviet) {
+        $sql = "UPDATE  baiviet SET tieude =?  noidung=?,img=? WHERE id_baiviet=?";
+        pdo_execute($sql, $tieude, $noidung, $img, $id_baiviet);
     }
 
     function get_old_image_baiviet($id_baiviet) {
@@ -32,6 +36,7 @@
             extract($bv);
             $html_dsbaiviet.='<tr>
                                 <td>'.$id_baiviet.'</td>
+                                <td>'.$tieude.'</td>
                                 <td>'.$noidung.'</td>
                                 <td><img src="'.IMG_PATH_ADMIN.$img.'" style="width:30%"></td>
                                 <td>
@@ -45,9 +50,27 @@
         }
         return $html_dsbaiviet;
     }
+
+    function showds_baiviet_cl_home($dsbaiviet) {
+        $html_dsbaiviet = '';
+        foreach ($dsbaiviet as $bv) {
+            extract($bv);
+            $html_dsbaiviet.='<div class="col-lg-6">
+            <a class="box_news" href="index.php">
+                <figure>
+                    <img src="'.IMG_PATH_USER.$img.'"  alt="" width="400" height="266" class="lazy">
+                </figure>
+                <h4>'.$tieude.'</h4>
+                <p>'.$noidung.'</p>
+            </a>
+        </div>';
     
-    function insert_baiviet_admin($noidung, $img) {
-        $sql = "INSERT INTO baiviet(noidung,img) VALUES (?,?)"; 
-        pdo_execute($sql,$noidung, $img);
+        }
+        return $html_dsbaiviet;
+    }
+    
+    function insert_baiviet_admin($tieude,$noidung, $img) {
+        $sql = "INSERT INTO baiviet(tieude,noidung,img) VALUES (?,?,?)"; 
+        pdo_execute($sql,$tieude,$noidung, $img);
     }
 ?>
