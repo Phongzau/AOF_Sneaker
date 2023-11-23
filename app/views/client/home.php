@@ -17,7 +17,6 @@ $html_baiviet = showds_baiviet_cl_home($bvhome)
 			<div class="row small-gutters">
 				<?=$html_showsp?>
 				</div>
-		<?=$html_showsponehot?>
 		</div>
 
 		<div class="container margin_60_35">

@@ -1,8 +1,8 @@
 <?php 
 
-function bienthe_insert($id_sanpham, $mau, $dungluong, $soluong){
-    $sql = "INSERT INTO bienthesanpham (id_sanpham, mau, dungluong, soluong) VALUES (?,?,?,?)";
-    pdo_execute($sql, $id_sanpham, $mau, $dungluong, $soluong);
+function bienthe_insert($id_sanpham,  $dungluong, $soluong){
+    $sql = "INSERT INTO bienthesanpham (id_sanpham,  dungluong, soluong) VALUES (?,?,?)";
+    pdo_execute($sql, $id_sanpham,  $dungluong, $soluong);
 }
 
 function select_bienthe_admin() {
@@ -49,9 +49,9 @@ function  select_bthe_id($id){
           return pdo_query_one($sql,$id);
         }
 
-        function bienthe_update($id_bt,$id_sp, $mau, $dungluong, $soluong ){
-            $sql = "UPDATE bienthesanpham SET id_bt=?, id_sanpham =? , mau=?,dungluong=?,soluong=? WHERE id_bt=$id_bt";
-            pdo_execute($sql,$id_bt,$id_sp, $mau, $dungluong, $soluong);
+        function bienthe_update($id_bt,$id_sp, $dungluong, $soluong ){
+            $sql = "UPDATE bienthesanpham SET id_bt=?, id_sanpham =? ,dungluong=?,soluong=? WHERE id_bt=$id_bt";
+            pdo_execute($sql,$id_bt,$id_sp,  $dungluong, $soluong);
         }
 
   function showds_bienthe_admin($dsbienthe){
@@ -62,7 +62,6 @@ function  select_bthe_id($id){
       <tr>
       <td>'.$id_bt.'</td>
       <td>'.$id_sanpham.'</td>
-      <td>'.$mau.'</td>
       <td>'.$dungluong.'</td>
       <td>'.$soluong.'</td>
       <td>

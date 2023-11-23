@@ -242,10 +242,10 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
             case "th_thembienthe":
                 if (isset($_POST['s_thembienthe'])) {
                     $id_sp = $_POST['id_sp'];
-                    $mau = $_POST['mau'];
+                  
                     $dungluong = $_POST['dungluong'];
                     $soluong = $_POST['soluong'];
-                    bienthe_insert($id_sp, $mau, $dungluong, $soluong);
+                    bienthe_insert($id_sp, $dungluong, $soluong);
                 }
                 include "bienthe/quanlybienthe.php";
                 break;
@@ -255,10 +255,9 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                 if (isset($_POST['s_suabienthe'])) {
                     $id_bt = $_POST['id_bt'];
                     $id_sp = $_POST['id_sp'];
-                    $mau = $_POST['mau'];
                     $dungluong = $_POST['dungluong'];
                     $soluong = $_POST['soluong'];
-                    bienthe_update($id_bt, $id_sp, $mau, $dungluong, $soluong);
+                    bienthe_update($id_bt, $id_sp, $dungluong, $soluong);
                 }
                 $sp = select_sp_all();
                 include "sanpham/quanlysanpham.php";
@@ -302,6 +301,7 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                         $img = "";
                     }
                     insert_hinhanh_admin($img, $id_sanpham);
+                    $sp = select_sp_all();
                     include "sanpham/quanlysanpham.php";
                     break;
                 }
