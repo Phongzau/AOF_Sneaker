@@ -7,12 +7,14 @@
     include "app/models/global.php";
     include "app/models/sanpham.php";
     include "app/models/bienthe.php";
+    include "app/models/baiviet.php";
     include "app/models/user.php";
 
     $dsbanner = select_all_banner();
     $dssp = select_sp_client();
     $sphot = select_sp_one_hot();
-
+    $sphot4 =select_sp_hot();
+    $bvhome = select_baiviet_cl_home();
    
     if (isset($_GET['cl'])) {
         $cl = $_GET['cl'];
@@ -24,6 +26,7 @@
             if (isset($_GET['idpro']) && ($_GET['idpro'] > 0)) {
                 $id = $_GET['idpro'];
             }
+            sanpham_update_view($id);
             $spchitiet = select_sanpham_by_id_client($id);
             $btcolor = select_bienthe_by_id($id);
             $btsize = select_bienthe_by_id($id);

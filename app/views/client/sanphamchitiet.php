@@ -10,8 +10,6 @@
 
 <main>
 <div class="container margin_30">
-                            <div class="countdown_inner">-20% This offer ends in <div data-countdown="2019/05/15" class="countdown"></div>
-                            </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="all">
@@ -62,6 +60,9 @@
                                                         <input type="text" value="1" id="quantity_1" class="qty2" name="quantity_1">
                                                     </div>
                                                 </div>
+                                            </div>
+                                            <div class="row">
+                                                <label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong>Lượt xem(<?=$view?>)</strong></label>
                                             </div>
                                         </div>
                                         <div class="row">

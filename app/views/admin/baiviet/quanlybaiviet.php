@@ -6,10 +6,11 @@
     <div class="d-flex justify-content-end">
       <a href="index.php?ad=thembaiviet" class="btn d-flex justify-content-end btn-primary mb-2">Thêm Bài Viết</a>
     </div>        
-    <table class="table table-hover">
+    <table class="table table-hover ">
       <thead>
         <tr>
           <th>ID</th>
+          <th>TIêu Đề Bài Viết</th>
           <th>Nội Dung</th>
           <th>Ảnh</th>
           <th>Chức năng</th>
