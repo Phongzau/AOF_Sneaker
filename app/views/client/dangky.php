@@ -16,7 +16,7 @@
 								?>
 							</div>
 							<form action="index.php?cl=th_dangky" method="POST">
-							<label class="mt-2" for="">Tên người dùng:</label>
+							<label class="mt-2" for="">Tên người dùng: </label><span style="color: red; margin-left: 10px"><?=isset($errors['tb_error_user_name']) ? $errors['tb_error_user_name'] : '' ?></span>
 							<div class="form-group">
 								<input type="text" class="form-control" name="user_name" value="<?=isset($user_name) ? $user_name: ''?>" id="email" placeholder="Nhập Tên người dùng của bạn">
 								
@@ -26,19 +26,19 @@
 								<input type="text" class="form-control" value="<?=isset($username) ? $username: ''?>" name="username" id="email" placeholder="Nhập Tên đăng nhập của bạn">
 								
 							</div>
-							<label for="" class="mt-1">Mật khẩu:</label>
+							<label for="" class="mt-1">Mật khẩu: <span style="color: red; margin-left: 10px"><?=isset($errors['tb_error_password']) ? $errors['tb_error_password'] : ''?> <?=isset($errors['tb_password']) ? $errors['tb_password'] : '' ?></span></label>
 							<div class="form-group">
 								<input type="password" class="form-control" value="<?=isset($password) ? $password: ''?>" name="password" id="email" placeholder="Nhập mật khẩu của bạn">
 							</div>
-							<label for="" class="mt-1">Nhập lại mật khẩu:</label>
+							<label for="" class="mt-1">Nhập lại mật khẩu: <span style="color: red; margin-left: 10px"><?=isset($errors['tb_error_repassword']) ? $errors['tb_reerror_password'] : ''?> <?=isset($errors['tb_pass']) ? $errors['tb_pass'] : '' ?></span></label>
 							<div class="form-group">
 								<input type="password" class="form-control" value="<?=isset($repassword) ? $repassword: ''?>" name="repassword" id="password_in" placeholder="Nhập lại mật khẩu của bạn">
 							</div>
-							<label for="" class="mt-1">Email:</label>
+							<label for="" class="mt-1">Email: <span style="color: red; margin-left: 10px"><?=isset($errors['tb_error_email']) ? $errors['tb_error_email'] : ''?> <?=isset($errors['tb_email']) ? $errors['tb_email'] : '' ?></span></label>
 							<div class="form-group">
-								<input type="email" class="form-control" value="<?=isset($email) ? $email: ''?>" name="email" id="password_in" placeholder="Nhập Email của bạn">
+								<input type="text" class="form-control" value="<?=isset($email) ? $email: ''?>" name="email" id="password_in" placeholder="Nhập Email của bạn">
 							</div>
-							<label for="" class="mt-1">SĐT:</label>
+							<label for="" class="mt-1">SĐT: <span style="color: red; margin-left: 10px"><?=isset($errors['tb_error_dienthoai']) ? $errors['tb_error_dienthoai'] : ''?> <?=isset($errors['tb_dienthoai']) ? $errors['tb_dienthoai'] : ''  ?></span></label>
 							<div class="form-group">
 								<input type="text" class="form-control" value="<?=isset($dienthoai) ? $dienthoai: ''?>" name="dienthoai" id="password_in" placeholder="Nhập SĐT của bạn">
 							</div>
