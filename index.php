@@ -8,6 +8,7 @@
     include "app/models/sanpham.php";
     include "app/models/bienthe.php";
     include "app/models/baiviet.php";
+    include "app/models/user.php";
 
     $dsbanner = select_all_banner();
     $dssp = select_sp_client();
@@ -18,8 +19,8 @@
     if (isset($_GET['cl'])) {
         $cl = $_GET['cl'];
         switch ($cl) {
-        case 'dangnhapdangky':
-            include "app/views/client/dangnhapdangky.php";
+        case 'dangnhap':
+            include "app/views/client/dangnhap.php";
             break;
         case 'sanphamchitiet':
             if (isset($_GET['idpro']) && ($_GET['idpro'] > 0)) {
@@ -42,6 +43,83 @@
                 $sp_all = select_sp_all_cl();
             }
             include "app/views/client/sanpham.php";
+            break;
+        case 'dangky':
+            include "app/views/client/dangky.php";
+            break;
+        case 'th_dangky':
+            if (isset($_POST['th_dangky'])) {
+                $errors = array();
+        // Validate
+            // Kiểm tra dữ liệu   
+                // Tên đăng nhập
+                if (empty($_POST['username'])) {
+                    $errors['tb_error_username'] = "Tên đăng nhập không được trống";
+                } else {
+                    $username = $_POST['username'];
+                }
+                // Mật khẩu
+                if (empty($_POST['password'])) {
+                    $errors['tb_error_password'] = "Mật khẩu không được trống";
+                } else {
+                    $password = $_POST['password'];
+                }
+                // Mật khẩu nhập lại
+                if (empty($_POST['repassword'])) {
+                    $errors['tb_error_repassword'] = "Mật khẩu nhập lại không được trống";
+                } else {
+                    $repassword = $_POST['repassword'];
+                }
+                // Tên người dùng
+                if (empty($_POST['user_name'])) {
+                    $errors['tb_error_user_name'] = "Tên người dùng không được để trống";
+                } else {
+                    $user_name = $_POST['user_name'];
+                }
+                // Điện thoại
+                if (empty($_POST['dienthoai'])) {
+                    $errors['tb_error_dienthoai'] = "Điện không được để trống";
+                } else {
+                    $dienthoai = $_POST['dienthoai'];
+                }
+                // Email
+                if (empty($_POST['email'])) {
+                    $errors['tb_error_email'] = "Email không được để trống";
+                } else {
+                    $email = $_POST['email'];
+                }
+            // Kiểm tra
+                // Email
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $errors['tb_email'] = "Địa chỉ email không hợp lệ";
+                }
+                // Mật khẩu
+                if (strlen($password) < 6) {
+                    $errors['tb_password'] = "Mật khẩu ít nhất 6 kí tự";
+                } else {
+                }
+                if ($password != $repassword) {
+                    $errors['tb_pass'] = "Mật khẩu không trùng khớp";
+                }
+                // Điện thoại
+                // Loại bỏ các ký tự không phải số từ số điện thoại
+                $cleaned_phone = preg_replace('/[^0-9]/', '', $dienthoai);
+                // Kiểm tra xem số điện thoại có chứa chữ hoặc không đủ 10 ký tự hay không
+                if (!ctype_digit($cleaned_phone) || strlen($cleaned_phone) !== 10) {
+                    // Số điện thoại không hợp lệ, có chứa chữ hoặc không đủ 10 ký tự
+                    $errors['tb_dienthoai'] = "Số điện thoại có chữ hoặc chưa đủ 10 số";
+                }
+                
+                $img = "anh_dai_dien_khong_nhap.jpg";
+                if (empty($errors)) {
+                    // Thực hiện chức năng
+                    insert_user_client($username, $password, $user_name, $email, $dienthoai, $img);
+                    $tb_success = "<h3 class=text-center style=color:green>Tài khoản bạn đã tạo thành công</h3>";
+                } else {
+                    $tb_fail = "<h3 class=text-center style=color:red>Tài khoản bạn đã tạo thất bại</h3>";
+                }
+            }
+            include "app/views/client/dangky.php";
             break;
         case 'baiviet':
             include "app/views/client/baiviet.php";

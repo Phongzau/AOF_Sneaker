@@ -27,6 +27,11 @@ function select_user_admin($username, $password) {
   return pdo_query_one($sql, $username, $password);
 }
 
+function insert_user_client($username, $password, $user_name, $email, $dienthoai, $img) {
+  $sql = "INSERT INTO user(username, password, user_name, email, dienthoai, img) VALUES (?, ?, ?, ?, ?, ?)"; 
+  pdo_execute($sql, $username, $password, $user_name, $email, $dienthoai, $img);
+}
+
 // function user_all() {
 //   $sql = "SELECT * from user order by id asc";
 //   return pdo_query($sql);

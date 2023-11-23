@@ -17,6 +17,7 @@ $html_baiviet = showds_baiviet_cl_home($bvhome)
 			<div class="row small-gutters">
 				<?=$html_showsp?>
 				</div>
+		<?=$html_showsponehot?>
 		</div>
 
 		<div class="container margin_60_35">
@@ -34,7 +35,6 @@ $html_baiviet = showds_baiviet_cl_home($bvhome)
 		</div>
 
 		<!-- /container -->
-		
 		<div class="bg_gray">
 			<div class="container margin_30">
 				<div id="brands" class="owl-carousel owl-theme">

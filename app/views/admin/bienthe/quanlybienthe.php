@@ -8,7 +8,6 @@ $html_dsbienthe = showds_bienthe_admin($dsbienthe);
         <tr>
           <th>ID</th>
           <th>Id Sản phẩm</th>
-          <th>Màu</th>
           <th>Size</th>
           <th>Số lượng</th>
           <th>Chức năng</th>

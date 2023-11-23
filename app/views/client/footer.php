@@ -99,7 +99,8 @@
 	<!-- page -->
 	
 	<div id="toTop"></div><!-- Back to top button -->
-	
+	<!-- Latest compiled JavaScript -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 	<!-- COMMON SCRIPTS -->
     <script src="public/client/js/common_scripts.min.js"></script>
     <script src="public/client/js/main.js"></script>
