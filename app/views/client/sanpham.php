@@ -18,7 +18,7 @@
 			<img src="public/client/img/bg_cat_shoes.jpg" class="img-fluid" alt="">
 		</div>
 		<!-- /top_banner -->
-		
+		<div class=""></div>
 			<div id="stick_here"></div>		
 
 			<!-- /toolbox -->

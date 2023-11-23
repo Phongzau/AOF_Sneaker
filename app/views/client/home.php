@@ -16,10 +16,9 @@ $html_showsponehot = showsp_one_hot($sphot);
 			<div class="row small-gutters">
 				<?=$html_showsp?>
 				</div>
-		
+		<?=$html_showsponehot?>
 		</div>
 		<!-- /container -->
-		
 		<div class="bg_gray">
 			<div class="container margin_30">
 				<div id="brands" class="owl-carousel owl-theme">

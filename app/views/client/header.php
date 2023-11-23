@@ -22,7 +22,7 @@ $html_showdm = showdm_all(danhmuc_all());
     <link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- BASE CSS -->
     <link href="public/client/css/bootstrap.min.css" rel="stylesheet">
     <link href="public/client/css/style.css" rel="stylesheet">
@@ -224,8 +224,9 @@ $html_showdm = showdm_all(danhmuc_all());
                                 <li>
                                     <div class="dropdown dropdown-access">
                                         <a href="index.php?cl=dangnhapdangky" class="access_link"><span>Account</span></a>
-                                        <div class="dropdown-menu">
-                                            <a href="index.php?cl=dangnhapdangky" class="btn_1">Sign In or Sign Up</a>
+                                        <div class=" dropdown-menu">
+                                            <a href="index.php?cl=dangnhap" class="btn_1">Đăng nhập</a>
+                                            <a href="index.php?cl=dangky" class="btn_1 mt-2">Đăng ký</a>
                                             <ul>
                                                 <li>
                                                     <a href="index.php?cl=giohang"><i class="ti-truck"></i>Giỏ hàng</a>
