@@ -283,6 +283,29 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                 include "sanpham/thembienthe.php";
                 break;
 
+            case 'themhinhanhsp':
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $id = $_GET['id'];
+                }
+                $product = get_sanpham_by_id($id);
+                include "sanpham/themhinhanhsanpham.php";
+                break;
+
+            case 'th_themanhsp':
+                if (isset($_POST['th_themanhsp'])) {
+                    $id_sanpham = $_POST['id_sanpham'];
+                    $img = $_FILES['img']['name'];
+                    if ($img != "") {
+                        $target_file = IMG_PATH_ADMIN . $img;
+                        move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
+                    } else {
+                        $img = "";
+                    }
+                    insert_hinhanh_admin($img, $id_sanpham);
+                    include "sanpham/quanlysanpham.php";
+                    break;
+                }
+
                 //------------------------------------------------------Hết Trang Quản Lý Biến Thể------------------------------------------------------//
 
                 // Trang Quản Lý Danh Mục
