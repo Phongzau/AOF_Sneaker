@@ -11,6 +11,17 @@
 //   $sql = "INSERT INTO user(ten,username,password,diachi,email,dienthoai) VALUES (?,?,?,?,?,?)"; 
 //  return  pdo_execute_id($sql,$username,$password,$ten, $diachi, $email, $dienthoai);
 // }
+ 
+function check_tk_user($username, $password) {
+  $sql = "SELECT * from `user` WHERE username=? AND password=?";
+  return pdo_query($sql, $username, $password);
+}
+
+
+function check_tk_by_username($username) {
+  $sql = "SELECT * from `user` WHERE username=?";
+  return pdo_query($sql, $username);
+}
 
 function select_user_all() {
   $sql = "SELECT * from `user` INNER JOIN `role` ON user.idrole = role.id_role ORDER BY id_user ASC";

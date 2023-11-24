@@ -35,7 +35,7 @@ $html_blog_sb = showds_baiviet_cl_blog_sb($bvnew) ;
 							<h4>Bài Viết Mới</h4>
 						</div>
 						<ul class="comments-list">
-            <?=$html_blog_sb?>
+            		<?=$html_blog_sb?>
 						</ul>
 					</div>
 					<!-- /widget -->

@@ -16,7 +16,7 @@
 								?>
 							</div>
 							<form action="index.php?cl=th_dangky" method="POST">
-							<label class="mt-2" for="">Tên người dùng: </label><span style="color: red; margin-left: 10px"><?=isset($errors['tb_error_user_name']) ? $errors['tb_error_user_name'] : '' ?></span>
+							<label class="mt-2" for="">Tên người dùng: </label><span style="color: red; margin-left: 10px"><?=isset($errors['tb_error_user_name']) ? $errors['tb_error_user_name'] : '' ?><?=isset($errors['tb_tk_tontai']) ? $errors['tb_tk_tontai'] : '' ?></span>
 							<div class="form-group">
 								<input type="text" class="form-control" name="user_name" value="<?=isset($user_name) ? $user_name: ''?>" id="email" placeholder="Nhập Tên người dùng của bạn">
 								
@@ -26,7 +26,7 @@
 								<input type="text" class="form-control" value="<?=isset($username) ? $username: ''?>" name="username" id="email" placeholder="Nhập Tên đăng nhập của bạn">
 								
 							</div>
-							<label for="" class="mt-1">Mật khẩu: <span style="color: red; margin-left: 10px"><?=isset($errors['tb_error_password']) ? $errors['tb_error_password'] : ''?> <?=isset($errors['tb_password']) ? $errors['tb_password'] : '' ?></span></label>
+							<label for="" class="mt-1">Mật khẩu: <span style="color: red; margin-left: 10px"><?=isset($errors['tb_error_password']) ? $errors['tb_error_password'] : ''?> <?=isset($errors['tb_password']) ? $errors['tb_password'] : '' ?><?=isset($errors['tb_tk_mk']) ? $errors['tb_tk_mk'] : '' ?></span></label>
 							<div class="form-group">
 								<input type="password" class="form-control" value="<?=isset($password) ? $password: ''?>" name="password" id="email" placeholder="Nhập mật khẩu của bạn">
 							</div>
@@ -44,12 +44,8 @@
 							</div>
 							<div class="clearfix add_bottom_15 mt-3">
 								<div class="checkboxes float-start">
-									<label class="container_check">Remember me
-										<input type="checkbox">
-										<span class="checkmark"></span>
-									</label>
 								</div>
-								<div class="float-end"><a id="forgot" href="index.php?cl=quenmatkhau">Quên mật khẩu ?</a></div>
+								<div class="float-end"><a id="forgot" href="index.php?cl=dangnhap">Đã có tài khoản ?</a></div>
 							</div>
 							<div class="text-center"><input type="submit" value="Đăng ký" name="th_dangky" class="btn_1 full-width"></div>
 							<div id="forgot_pw">
