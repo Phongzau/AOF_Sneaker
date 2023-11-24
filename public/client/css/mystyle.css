@@ -22,3 +22,14 @@ select {
     background-color: #fff;
     color: #000;
   }
+
+  #success-message {
+    display: none;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+.img-header {
+  border-radius: 50px;
+}

@@ -1,6 +1,18 @@
 <?php
-
 $html_showdm = showdm_all(danhmuc_all());
+    if (isset($_SESSION['s_user']) && (count($_SESSION['s_user'])>0)) {
+        extract($_SESSION['s_user'][0]);
+        $html_account = '<a href="index.php?cl=dangnhap" class="access_link"><span>Account</span></a>
+                         <div class="dropdown-menu">
+                         <div class="text-center mb-2 "><img class="img-header" width=30% src="public/uploads/'.$img.'" alt=""></div>
+                         <h5 class=text-center mt-5>'.$user_name.'</h5>
+                         <a href="index.php?cl=dangxuat" class="btn_1 mt-3">Đăng xuất</a>';
+    } else {
+        $html_account = '<a href="index.php?cl=dangnhap" class="access_link"><span>Account</span></a>
+                         <div class="dropdown-menu">
+                         <a href="index.php?cl=dangnhap" class="btn_1">Đăng nhập</a>
+                         <a href="index.php?cl=dangky" class="btn_1 mt-2">Đăng ký</a>';
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -68,7 +80,6 @@ $html_showdm = showdm_all(danhmuc_all());
 </head>
 
 <body>
-
     <div id="page">
 
         <header class="version_1">
@@ -165,8 +176,12 @@ $html_showdm = showdm_all(danhmuc_all());
                         <!-- <button type="submit" name="timkiem" ><i class="header-icon_search_custom"></i></button> -->
                         <div class="col-xl-6 col-lg-7 col-md-6 d-none d-md-block">
                             <div class="custom-search-input">
-                                <input type="text" placeholder="Search over 10.000 products">
-                                <button type="submit"><i class="header-icon_search_custom"></i></button>
+                                <form action="index.php?cl=sanpham" method="POST"  >
+                                <div style="display: flex;">
+                                <input type="text" name="kyw" class="kw" required placeholder="Tìm Kiếm sản phẩm">
+                                 <input  type="submit" class="tk"  name="timkiem" value="Tìm Kiếm">
+                                 </div>
+                                 </form>
                             </div>
                         </div>
 
@@ -204,10 +219,7 @@ $html_showdm = showdm_all(danhmuc_all());
 
                                 <li>
                                     <div class="dropdown dropdown-access">
-                                        <a href="index.php?cl=dangnhapdangky" class="access_link"><span>Account</span></a>
-                                        <div class=" dropdown-menu">
-                                            <a href="index.php?cl=dangnhap" class="btn_1">Đăng nhập</a>
-                                            <a href="index.php?cl=dangky" class="btn_1 mt-2">Đăng ký</a>
+                                        <?=$html_account;?>
                                             <ul>
                                                 <li>
                                                     <a href="index.php?cl=giohang"><i class="ti-truck"></i>Giỏ hàng</a>

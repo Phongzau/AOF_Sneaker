@@ -1,5 +1,6 @@
 <?php
-
+    session_start();
+    ob_start();
     include "app/models/pdo.php";
     include "app/models/danhmuc.php";
     include "app/views/client/header.php";
@@ -9,7 +10,7 @@
     include "app/models/bienthe.php";
     include "app/models/baiviet.php";
     include "app/models/user.php";
-
+    
     $dsbanner = select_all_banner();
     $dssp = select_sp_client();
     $sphot = select_sp_one_hot();
@@ -103,14 +104,25 @@
                 if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                     $errors['tb_email'] = "Địa chỉ email không hợp lệ";
                 }
+
                 // Mật khẩu
                 if (strlen($password) < 6) {
                     $errors['tb_password'] = "Mật khẩu ít nhất 6 kí tự";
-                } else {
-                }
+                } 
+
                 if ($password != $repassword) {
                     $errors['tb_pass'] = "Mật khẩu không trùng khớp";
                 }
+                // Tên đăng nhập
+                $checkusername = check_tk_by_username($username);
+                if (is_array($checkusername) && count($checkusername) > 0) {
+                    $errors['tb_tk_tontai'] = "Tên đăng nhập đã tồn tại";
+                }
+
+                if ($username == $password) {
+                    $errors['tb_tk_mk'] = "Tạo mật khẩu khác mật khẩu không nên trùng với tên đăng nhập";
+                }
+
                 // Điện thoại
                 // Loại bỏ các ký tự không phải số từ số điện thoại
                 $cleaned_phone = preg_replace('/[^0-9]/', '', $dienthoai);
@@ -125,11 +137,34 @@
                     // Thực hiện chức năng
                     insert_user_client($username, $password, $user_name, $email, $dienthoai, $img);
                     $tb_success = "<h3 class=text-center style=color:green>Tài khoản bạn đã tạo thành công</h3>";
+                    include "app/views/client/dangnhap.php";
                 } else {
                     $tb_fail = "<h3 class=text-center style=color:red>Tài khoản bạn đã tạo thất bại</h3>";
                 }
             }
-            include "app/views/nclient/dangky.php";
+            include "app/views/client/dangky.php";
+            break;
+        case 'th_dangnhap':
+            if (isset($_POST['th_dangnhap'])) {
+                $username = $_POST['username'];
+                $password = $_POST['password'];
+            }
+            $user = check_tk_user($username, $password);
+            if (is_array($user)&&count($user)) {
+                $_SESSION['s_user'] = $user;
+                header('Location: index.php');
+                exit();
+            } else {
+                $tb_login = "<h3 class=text-center style=color:red>Tài khoản không tồn tại hoặc mật khẩu sai</h3>";
+                $_SESSION['tb_dangnhap'] = $tb_login;
+                header('location: index.php?cl=dangnhap');
+            }
+            break;
+        case 'dangxuat':
+            if (isset($_SESSION['s_user']) && count($_SESSION['s_user'])) {
+                unset($_SESSION['s_user']);
+            }
+            header('location: index.php');
             break;
         case 'baiviet':
             $bvnew =select_baiviet_cl_blog_sb();
