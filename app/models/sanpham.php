@@ -104,28 +104,35 @@ function sanpham_update($id_sp, $name, $price, $mota, $img, $iddm ){
     pdo_execute($sql,$id_sp, $name, $price, $mota, $img,$iddm);
 }
 
-// function showsp_all_cl($dssp){
-//     $html_dssp ='';
-//     foreach ($dssp as $sp) {
-//      extract($sp);
-//      $link="index.php?pg=sanphamchitiet&idpro=".$id;
-//      $html_dssp.='<div class="box25 mr15">
-//      '.$best.'
-//      <a href="'.$link.'">
-//              <img src="layout/images/'.$img.'" alt=""></a>
-//              <a href="'.$link.'"> <h4>'.$name.'</h4></a>
-//              <a href="'.$link.'"><span class="price">$'. $price .'</span></a>
-//              <from action="index.php?pg=addcart" method="post" > 
-//              <input type="hidden" name="tensp" value="'.$name.'">
-//              <input type="hidden" name="img" value="'.$img.'">
-//              <input type="hidden" name="price" value="'.$price.'">
-             
-//              <button type="submit">Đặt hàng </button>
-//              </from>
-//              </div>';
+// function get_dssp($kyw,$iddm,$limi){
+//     $sql = "SELECT * FROM sanpham WHERE 1";
+//     if($iddm>0){
+//         $sql .=" AND iddm=".$iddm;
 //     }
-//     return $html_dssp;
+//     if($kyw!=""){
+//         $sql .=" AND name like '%".$kyw."%'";
+    
+//     }
+//     $sql .= " ORDER BY id DESC limit ".$limi;
+//     return pdo_query($sql);
 // }
+function get_name_dm($id){
+    $sql = "SELECT tendm from danhmuc where id_dm=?";
+    return  pdo_query_value($sql,$id);
+}
+
+function get_dssp($kyw,$iddm){
+    $sql = "SELECT * FROM sanpham WHERE 1";
+    if($iddm>0){
+        $sql .=" AND iddm=".$iddm;
+    }
+    if($kyw!=""){
+        $sql .=" AND name like '%".$kyw."%'";
+    
+    }
+    $sql .= " ORDER BY id_sp DESC ";
+    return pdo_query($sql);
+}
 
 //admin
 function show_sp_admin($dssp){

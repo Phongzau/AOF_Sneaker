@@ -1,9 +1,10 @@
-<?php 
- 
+<?php
+
 $html_showdm = showdm_all(danhmuc_all());
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -20,20 +21,20 @@ $html_showdm = showdm_all(danhmuc_all());
     <link rel="stylesheet" href="public/client/css/mystyle.css">
     <!-- GOOGLE WEB FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- BASE CSS -->
     <link href="public/client/css/bootstrap.min.css" rel="stylesheet">
     <link href="public/client/css/style.css" rel="stylesheet">
 
-	<!-- SPECIFIC CSS -->
+    <!-- SPECIFIC CSS -->
     <link href="public/client/css/home_1.css" rel="stylesheet">
 
     <!-- YOUR CUSTOM CSS -->
     <link href="public/client/css/custom.css" rel="stylesheet">
 
-	<!-- SPECIFIC CSS -->
+    <!-- SPECIFIC CSS -->
     <link href="public/client/css/listing.css" rel="stylesheet">
 
     <!-- SPECIFIC CSS -->
@@ -50,12 +51,26 @@ $html_showdm = showdm_all(danhmuc_all());
 
     <!-- SPECIFIC CSS -->
     <link href="public/client/css/product_page.css" rel="stylesheet">
+    <style>
+.tk {
+  color: #090909;
+  font-size: 10px;
+  border-radius: 1em;
+  background: #e8e8e8;
+  border: 0.5px solid #e8e8e8;
+  transition: all .3s;
+  box-shadow: 6px 6px 12px #c5c5c5,
+             -6px -6px 12px #ffffff;
+}
+
+
+    </style>
 </head>
 
 <body>
-<?=$html_showdm?>
-<div id="page">
-		
+
+    <div id="page">
+
         <header class="version_1">
             <div class="layer"></div><!-- Mobile menu overlay mask -->
             <div class="main_header">
@@ -82,57 +97,20 @@ $html_showdm = showdm_all(danhmuc_all());
                                 </div>
                                 <ul>
                                     <li class="">
-                                    <a href="index.php" class="show-submenu">Trang Chủ</a>
+                                        <a href="index.php" class="show-submenu">Trang Chủ</a>
                                     </li>
                                     <li class="megamenu submenu">
                                         <a href="javascript:void(0);" class="show-submenu-mega">Danh Mục</a>
-                                        <div class="menu-wrapper">
-                                            <div class="row small-gutters">
-                                                <div class="col-lg-3">
-                                                    <h3>Listing grid</h3>
-                                                    <ul>
-                                                        <li><a href="listing-grid-1-full.html">Grid Full Width</a></li>
-                                                        <li><a href="listing-grid-2-full.html">Grid Full Width 2</a></li>
-                                                        <li><a href="listing-grid-3.html">Grid Boxed</a></li>
-                                                        <li><a href="listing-grid-4-sidebar-left.html">Grid Sidebar Left</a></li>
-                                                        <li><a href="listing-grid-5-sidebar-right.html">Grid Sidebar Right</a></li>
-                                                        <li><a href="listing-grid-6-sidebar-left.html">Grid Sidebar Left 2</a></li>
-                                                        <li><a href="listing-grid-7-sidebar-right.html">Grid Sidebar Right 2</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-lg-3">
-                                                    <h3>Listing row &amp; Product</h3>
-                                                    <ul>
-                                                        <li><a href="listing-row-1-sidebar-left.html">Row Sidebar Left</a></li>
-                                                        <li><a href="listing-row-2-sidebar-right.html">Row Sidebar Right</a></li>
-                                                        <li><a href="listing-row-3-sidebar-left.html">Row Sidebar Left 2</a></li>
-                                                        <li><a href="listing-row-4-sidebar-extended.html">Row Sidebar Extended</a></li>
-                                                        <li><a href="product-detail-1.html">Product Large Image</a></li>
-                                                        <li><a href="product-detail-2.html">Product Carousel</a></li>
-                                                        <li><a href="product-detail-3.html">Product Sticky Info</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-lg-3">
-                                                    <h3>Other pages</h3>
-                                                    <ul>
-                                                        <li><a href="cart.html">Cart Page</a></li>
-                                                        <li><a href="checkout.html">Check Out Page</a></li>
-                                                        <li><a href="confirm.html">Confirm Purchase Page</a></li>
-                                                        <li><a href="account.html">Create Account Page</a></li>
-                                                        <li><a href="track-order.html">Track Order</a></li>
-                                                        <li><a href="help.html">Help Page</a></li>
-                                                        <li><a href="help-2.html">Help Page 2</a></li>
-                                                        <li><a href="leave-review.html">Leave a Review</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-lg-3 d-xl-block d-lg-block d-md-none d-sm-none d-none">
-                                                    <div class="banner_menu">
-                                                        <a href="#0">
-                                                            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="public/client/img/banner_menu.jpg" width="400" height="550" alt="" class="img-fluid lazy">
-                                                        </a>
+                                        <div class="menu-wrapper w-100">
+                                            <ul class="clearfix">
+                                                <li>
+                                                    <div id="menu">
+                                                        <ul>
+                                                            <?= $html_showdm ?>
+                                                        </ul>
                                                     </div>
-                                                </div>
-                                            </div>
+                                                </li>
+                                            </ul>
                                             <!-- /row -->
                                         </div>
                                         <!-- /menu-wrapper -->
@@ -151,14 +129,14 @@ $html_showdm = showdm_all(danhmuc_all());
                             <!--/main-menu -->
                         </nav>
                         <div class="col-xl-3 col-lg-2 d-lg-flex align-items-center justify-content-end text-end">
-                            <a class="phone_top" href="tel://9438843343"><strong><span>Need Help?</span>+94 423-23-221</strong></a>
+                            <a class="phone_top" href="tel://0343147165"><strong><span>Liên Hệ Trực Tiếp</span>0343147165</strong></a>
                         </div>
                     </div>
                     <!-- /row -->
                 </div>
             </div>
             <!-- /main_header -->
-    
+
             <div class="main_nav Sticky">
                 <div class="container">
                     <div class="row small-gutters">
@@ -172,24 +150,31 @@ $html_showdm = showdm_all(danhmuc_all());
                                                         <span class="hamburger-inner"></span>
                                                     </span>
                                                 </span>
-                                              Danh Mục
+                                                Danh Mục
                                             </a>
                                         </span>
                                         <div id="menu">
                                             <ul>
-                                            <?=$html_showdm ?>
+                                                <?= $html_showdm ?>
                                             </ul>
                                         </div>
                                     </li>
                                 </ul>
                             </nav>
                         </div>
+                        <!-- <button type="submit" name="timkiem" ><i class="header-icon_search_custom"></i></button> -->
                         <div class="col-xl-6 col-lg-7 col-md-6 d-none d-md-block">
                             <div class="custom-search-input">
-                                <input type="text" placeholder="Search over 10.000 products">
-                                <button type="submit"><i class="header-icon_search_custom"></i></button>
+                                <form action="index.php?cl=sanpham" method="POST"  >
+                                <div style="display: flex;">
+                                <input type="text" name="kyw" class="kw" required placeholder="Tìm Kiếm sản phẩm">
+                                 <input  type="submit" class="tk"  name="timkiem" value="Tìm Kiếm">
+                                 </div>
+                                 </form>
                             </div>
                         </div>
+
+
                         <div class="col-xl-3 col-lg-2 col-md-3">
                             <ul class="top_tools">
                                 <li>
@@ -220,7 +205,7 @@ $html_showdm = showdm_all(danhmuc_all());
                                     </div>
                                     <!-- /dropdown-cart-->
                                 </li>
-                            
+
                                 <li>
                                     <div class="dropdown dropdown-access">
                                         <a href="index.php?cl=dangnhapdangky" class="access_link"><span>Account</span></a>
@@ -264,7 +249,7 @@ $html_showdm = showdm_all(danhmuc_all());
                     <!-- /row -->
                 </div>
                 <div class="search_mob_wp">
-                    <input type="text" class="form-control" placeholder="Search over 10.000 products">
+                    <input type="text" class="form-control" placeholder="Tìm Kie">
                     <input type="submit" class="btn_1 full-width" value="Search">
                 </div>
                 <!-- /search_mobile -->
@@ -272,4 +257,3 @@ $html_showdm = showdm_all(danhmuc_all());
             <!-- /main_nav -->
         </header>
         <!-- /header -->
-            

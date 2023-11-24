@@ -16,10 +16,6 @@
                     </div>
                     <input type="text" hidden  class="form-control" value="<?=$id_sanpham?>" name="id_sp" id="name" >
                     <div class="form-group">
-                        <label for="name">Màu:</label>
-                        <input type="text" class="form-control" name="mau" value="<?=($mau != "")?$mau:""?>" id="name" >
-                    </div>
-                    <div class="form-group">
                         <label for="name">Size:</label>
                         <input type="text" class="form-control" name="dungluong"  value="<?=($dungluong != "")?$dungluong:""?>" id="name" >
                     </div>
