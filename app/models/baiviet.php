@@ -68,6 +68,56 @@
         }
         return $html_dsbaiviet;
     }
+    function select_baiviet_cl_blog() {
+        $sql = "SELECT * FROM baiviet  ORDER BY id_baiviet DESC limit 8";
+        return pdo_query($sql);
+    }
+    function select_baiviet_cl_blog_sb() {
+        $sql = "SELECT * FROM baiviet  ORDER BY id_baiviet DESC limit 3";
+        return pdo_query($sql);
+    }
+    function showds_baiviet_cl_blog($dsbaiviet) {
+        $html_dsbaiviet = '';
+        foreach ($dsbaiviet as $bv) {
+            extract($bv);
+            $html_dsbaiviet.='
+            <div class="col-md-6">
+            <article class="blog">
+                <figure>
+                    <a href="#"><img src="'.IMG_PATH_USER.$img.'" alt="">
+                    </a>
+                </figure>
+                <div class="post_info">
+                    <h2><a href="blog-post.html">'.$tieude.'</a></h2>
+                    <p>'.$noidung.'</p>
+                    <ul>
+                        <li>
+                    </ul>
+                </div>
+            </article>
+            <!-- /article -->
+            </div> ';
+    
+        }
+        return $html_dsbaiviet;
+    }
+
+    function showds_baiviet_cl_blog_sb($dsbaiviet) {
+        $html_dsbaiviet = '';
+        foreach ($dsbaiviet as $bv) {
+            extract($bv);
+            $html_dsbaiviet.='
+            <li>
+            <div class="alignleft">
+                <a href="#0"><img src="'.IMG_PATH_USER.$img.'" alt=""></a>
+            </div>
+            <h3><a href="#" title="">'.$tieude.'</a></h3>
+        </li>';
+    
+        }
+        return $html_dsbaiviet;
+    }
+    
     
     function insert_baiviet_admin($tieude,$noidung, $img) {
         $sql = "INSERT INTO baiviet(tieude,noidung,img) VALUES (?,?,?)"; 
