@@ -36,13 +36,23 @@
             include "app/views/client/sanphamchitiet.php";
             break;
         case 'sanpham':
-            if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+            if (!isset($_GET['id'])) {
+                $id = 0;
+                $titlepage = "";
+            } else {
                 $id = $_GET['id'];
-                $sp_all  =  select_sp_iddm($id);
-            }else{
-                $sp_all = select_sp_all_cl();
+                $titlepage = get_name_dm($id);
             }
-            include "app/views/client/sanpham.php";
+            //kiem tra form search
+            if (isset($_POST["timkiem"]) && ($_POST["timkiem"])) {
+                $kyw = $_POST['kyw'];
+                $titlepage = " Kết quả tìm kiếm với từ khoá : $kyw  ";
+            } else {
+                $kyw = "";
+            }
+            $dssp = get_dssp($kyw, $id);
+             include "app/views/client/sanpham.php";
+
             break;
         case 'dangky':
             include "app/views/client/dangky.php";

@@ -16,10 +16,6 @@
                         <input type="text" value="<?=$name?>" class="form-control" id="name" >
                     </div>
                     <div class="form-group">
-                        <label for="name">Màu:</label>
-                        <input type="text" class="form-control" name="mau" id="name" >
-                    </div>
-                    <div class="form-group">
                         <label for="name">Size:</label>
                         <input type="text" class="form-control" name="dungluong" id="name" >
                     </div>
