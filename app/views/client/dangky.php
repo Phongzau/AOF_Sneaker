@@ -16,12 +16,12 @@
 								?>
 							</div>
 							<form action="index.php?cl=th_dangky" method="POST">
-							<label class="mt-2" for="">Tên người dùng: </label><span style="color: red; margin-left: 10px"><?=isset($errors['tb_error_user_name']) ? $errors['tb_error_user_name'] : '' ?><?=isset($errors['tb_tk_tontai']) ? $errors['tb_tk_tontai'] : '' ?></span>
+							<label class="mt-2" for="">Tên người dùng: </label><span style="color: red; margin-left: 10px"><?=isset($errors['tb_error_user_name']) ? $errors['tb_error_user_name'] : '' ?></span>
 							<div class="form-group">
 								<input type="text" class="form-control" name="user_name" value="<?=isset($user_name) ? $user_name: ''?>" id="email" placeholder="Nhập Tên người dùng của bạn">
 								
 							</div>
-							<label class="mt-2" for="">Tên đăng nhập: </label><span style="color: red; margin-left: 10px"><?=isset($errors['tb_error_username']) ? $errors['tb_error_username'] : '' ?></span>
+							<label class="mt-2" for="">Tên đăng nhập: </label><span style="color: red; margin-left: 10px"><?=isset($errors['tb_error_username']) ? $errors['tb_error_username'] : '' ?><?=isset($errors['tb_tk_tontai']) ? $errors['tb_tk_tontai'] : '' ?></span>
 							<div class="form-group">
 								<input type="text" class="form-control" value="<?=isset($username) ? $username: ''?>" name="username" id="email" placeholder="Nhập Tên đăng nhập của bạn">
 								

@@ -138,6 +138,7 @@
                     insert_user_client($username, $password, $user_name, $email, $dienthoai, $img);
                     $tb_success = "<h3 class=text-center style=color:green>Tài khoản bạn đã tạo thành công</h3>";
                     include "app/views/client/dangnhap.php";
+                    break;
                 } else {
                     $tb_fail = "<h3 class=text-center style=color:red>Tài khoản bạn đã tạo thất bại</h3>";
                 }
@@ -160,11 +161,74 @@
                 header('location: index.php?cl=dangnhap');
             }
             break;
+        case 'th_capnhatthongtin':
+            if (isset($_POST['th_capnhatthongtin'])) {
+                // Tên người dùng
+                if (empty($_POST['user_name'])) {
+                    $errors['tb_error_user_name'] = "Tên người dùng không được để trống";
+                } else {
+                    $user_name = $_POST['user_name'];
+                }
+                // Email
+                if (empty($_POST['email'])) {
+                    $errors['tb_error_email'] = "Email không được để trống";
+                } else {
+                    $email = $_POST['email'];
+                }
+                // Điện thoại
+                if (empty($_POST['dienthoai'])) {
+                    $errors['tb_error_dienthoai'] = "Điện không được để trống";
+                } else {
+                    $dienthoai = $_POST['dienthoai'];
+                }
+                // Địa chỉ
+                if (empty($_POST['diachi'])) {
+                    $errors['tb_error_diachi'] = "Địa chỉ không được để trống";
+                } else {
+                    $diachi = $_POST['diachi'];
+                }
+                $id_user = $_POST['id_user'];
+                $img = $_FILES['img']['name'];
+                    if ($img != "") {
+                        // upload hinh anh
+                        $target_file = IMG_PATH_USER . $img;
+                        move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
+                    } else {
+                        $img = get_old_image_user($id_user);
+                    }
+            // Kiểm tra
+                // Email
+                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                    $errors['tb_email'] = "Địa chỉ email không hợp lệ";
+                }
+                $cleaned_phone = preg_replace('/[^0-9]/', '', $dienthoai);
+                // Kiểm tra xem số điện thoại có chứa chữ hoặc không đủ 10 ký tự hay không
+                if (!ctype_digit($cleaned_phone) || strlen($cleaned_phone) !== 10) {
+                    // Số điện thoại không hợp lệ, có chứa chữ hoặc không đủ 10 ký tự
+                    $errors['tb_dienthoai'] = "Số điện thoại có chữ hoặc chưa đủ 10 số";
+                }
+                if (empty($errors)) {
+                    // Thực hiện chức năng
+                    update_tt_user_client($user_name, $email, $diachi, $cleaned_phone, $img, $id_user);
+                    $tb_success_tt = "<h3 class=text-center style=color:green>Tài khoản của bạn đã cập nhật thành công</h3>";
+                    include "app/views/client/thongtinuser.php";
+                    break;
+                } else {
+                    $tb_fail_tt = "<h3 class=text-center style=color:red>Tài khoản của bạn đã cập nhật thất bại</h3>";
+                    include "app/views/client/thongtinuser.php";
+                    break;
+                }
+                
+            }
+            break;
         case 'dangxuat':
             if (isset($_SESSION['s_user']) && count($_SESSION['s_user'])) {
                 unset($_SESSION['s_user']);
             }
             header('location: index.php');
+            break;
+        case 'thongtinuser':
+            include "app/views/client/thongtinuser.php";
             break;
         case 'baiviet':
             $bvnew =select_baiviet_cl_blog_sb();

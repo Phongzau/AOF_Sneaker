@@ -13,10 +13,14 @@
 // }
  
 function check_tk_user($username, $password) {
-  $sql = "SELECT * from `user` WHERE username=? AND password=?";
-  return pdo_query($sql, $username, $password);
+  $sql = "SELECT * from `user` INNER JOIN `role` ON user.idrole = role.id_role WHERE username=? AND password=?";
+  return pdo_query_one($sql, $username, $password);
 }
 
+function update_tt_user_client($user_name, $email, $diachi, $dienthoai, $img, $id_user) {
+  $sql = "UPDATE  user SET user_name=?,email=?,diachi=?,dienthoai=?,img=? WHERE id_user=?";
+  pdo_execute($sql, $user_name, $email, $diachi, $dienthoai, $img, $id_user);
+}
 
 function check_tk_by_username($username) {
   $sql = "SELECT * from `user` WHERE username=?";
