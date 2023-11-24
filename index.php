@@ -129,9 +129,11 @@
                     $tb_fail = "<h3 class=text-center style=color:red>Tài khoản bạn đã tạo thất bại</h3>";
                 }
             }
-            include "app/views/client/dangky.php";
+            include "app/views/nclient/dangky.php";
             break;
         case 'baiviet':
+            $bvnew =select_baiviet_cl_blog_sb();
+            $bv = select_baiviet_cl_blog();
             include "app/views/client/baiviet.php";
             break;
         case 'lienhe':
