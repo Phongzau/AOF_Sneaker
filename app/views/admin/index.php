@@ -210,6 +210,48 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                 }
                 break;
 
+                case 'xemhinhanhsp':
+                    if (isset($_GET['id']) && ($_GET['id']) > 0) {
+                        $id = $_GET['id']; 
+                    }
+                    $dsha = select_hasp_admin($id);
+                    include "sanpham/xemhinhanhsp.php";
+                    break;
+                
+                case 'deletehasp':
+                    if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                        $id = $_GET['id'];
+                        $idsp = $_GET['idsp'];
+                        hasp_delete($id);
+                    }
+                    $dsha = select_hasp_admin($idsp);
+                    include "sanpham/xemhinhanhsp.php";
+                    break;
+                
+                case "suahasp":
+                    if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                        $id = $_GET['id'];
+                        $ha = select_hacs_by_id_admin($id);
+                    }
+                    include "sanpham/suahasp.php";
+                    break;
+
+                case "th_suahasp":
+                    if (isset($_POST['th_suahasp'])) {
+                        $id_ha = $_POST['id_ha'];
+                        $img = $_FILES['img']['name'];
+                        if ($img != "") {
+                            $target_file = IMG_PATH_ADMIN . $img;
+                            move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
+                        } else {
+                            $img = get_old_image_hasp($id_ha);
+                        }
+                        hinhanh_update($img, $id_ha);
+                        $idsp = $_POST['id_sanpham'];
+                        $dsha = select_hasp_admin($idsp);
+                        include "sanpham/xemhinhanhsp.php";
+                    }
+                    break;
                 //------------------------------------------------------Hết Trang Quản Lý Sản Phẩm------------------------------------------------------//
 
                 // Trang Quản lý biến thể

@@ -163,6 +163,8 @@ function show_sp_admin($dssp){
      <td>
      <a href="index.php?ad=themhinhanhsp&id='.$id_sp.'" class="btn btn-success">
      <i class="fa-solid fa-pen-to-square"></i>Thêm Hình ảnh SP</a>
+     <a href="index.php?ad=xemhinhanhsp&id='.$id_sp.'" class="btn btn-info">
+     <i class="fa-solid fa-pen-to-square"></i>Xem hình ảnh</a>
      </td>
      <td>
      <a href="index.php?ad=suasp&id='.$id_sp.'" class="btn btn-warning">
@@ -584,6 +586,52 @@ function show_spchitiet($spchitiet) {
                         <!-- /tab_content_wrapper -->
                     ';
         return $html_showctsp;
+    }
+
+    function select_hasp_admin($id){
+        $sql = "SELECT * FROM `hinhanhsanpham` WHERE id_sanpham = ?";        
+        return pdo_query($sql, $id);
+    }
+
+    function hinhanh_update($img, $id_ha){
+        $sql = "UPDATE hinhanhsanpham SET img=? WHERE id_ha=?";
+        pdo_execute($sql,$img, $id_ha);
+    }
+    function get_old_image_hasp($id_ha) {
+        $sql = "SELECT * FROM hinhanhsanpham WHERE id_ha=?";
+        $result = pdo_query_one($sql, $id_ha);
+        return $result['img'];
+    }
+
+    function select_hacs_by_id_admin($id){
+        $sql = "SELECT * FROM hinhanhsanpham WHERE id_ha=?";
+        return pdo_query_one($sql, $id);
+    }
+
+    function hasp_delete($id){
+        $sql = "DELETE FROM hinhanhsanpham WHERE  id_ha=?";
+        pdo_execute($sql, $id);
+    }    
+
+    function show_hasp_admin($dsha){
+        $html_showhasp ='';
+        foreach ($dsha as $ha) {
+         extract($ha);
+         $html_showhasp.='<div class="box25 mr15">
+                            <tr>
+                            <td>'.$id_ha.'</td>
+                            <td>'.$id_sanpham.'</td>
+                            <td><img width=20% src="'.IMG_PATH_ADMIN.$img.'"></td>
+                            <td>
+                            <a href="index.php?ad=suahasp&id='.$id_ha.'&idsp='.$id_sanpham.'" class="btn btn-warning">
+                            <i class="fa-solid fa-pen-to-square"></i>Sửa</a>
+                            <a href="index.php?ad=deletehasp&id='.$id_ha.'&idsp='.$id_sanpham.'" class="btn btn-danger">
+                            <i class="fa-solid "></i>Xóa</a>
+                            </td>
+                        </tr>
+                        <tr>';
+        }
+        return $html_showhasp;
     }
 
     function get_dssp_lienquan($iddm,$id){
