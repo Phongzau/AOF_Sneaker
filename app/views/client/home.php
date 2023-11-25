@@ -7,71 +7,77 @@ $html_sphot = showsp($sphot4);
 $html_baiviet = showds_baiviet_cl_home($bvhome)
 ?>
 <main>
-	  <!-- sản phẩm mới -->
-	<?=$html_showbanner;?>
-		<div class="container margin_60_35">
-			<div class="main_title">
-				<h2>Sản Phẩm Mới</h2>
-				<p>Sản Phẩm Mới Của Chúng Tôi</p>
-			</div>
-			<div class="row small-gutters">
-				<?=$html_showsp?>
-				</div>
+	<!-- sản phẩm mới -->
+
+	<div id="carousel-home">
+		<div class="owl-carousel owl-theme">
+			<?= $html_showbanner; ?>
+			<!--/owl-slide-->
 		</div>
-
-		<div class="container margin_60_35">
-			<div class="main_title">
-				<h2>Sản Phẩm Nhiều Lượt xem</h2>
-				<p>Sản Phẩm Hot</p>
-			</div>
-			<div class="row small-gutters">
-				<?=$html_sphot?>
-				</div>
-				<div class="main_title">
-				<h2>Sản Phẩm Có Lượt Xem Nhiều Nhất</h2>
-			</div>
-				<?=$html_showsponehot?>
+	</div>
+	<div class="container margin_60_35">
+		<div class="main_title">
+			<h2>Sản Phẩm Mới</h2>
+			<p>Sản Phẩm Mới Của Chúng Tôi</p>
 		</div>
-
-		<!-- /container -->
-		<div class="bg_gray">
-			<div class="container margin_30">
-				<div id="brands" class="owl-carousel owl-theme">
-					<div class="item">
-						<a href="#0"><img src="public/client/img/brands/placeholder_brands.png" data-src="public/client/img/brands/logo_1.png" alt="" class="owl-lazy"></a>
-					</div><!-- /item -->
-					<div class="item">
-						<a href="#0"><img src="public/client/img/brands/placeholder_brands.png" data-src="public/client/img/brands/logo_2.png" alt="" class="owl-lazy"></a>
-					</div><!-- /item -->
-					<div class="item">
-						<a href="#0"><img src="public/client/img/brands/placeholder_brands.png" data-src="public/client/img/brands/logo_3.png" alt="" class="owl-lazy"></a>
-					</div><!-- /item -->
-					<div class="item">
-						<a href="#0"><img src="public/client/img/brands/placeholder_brands.png" data-src="public/client/img/brands/logo_4.png" alt="" class="owl-lazy"></a>
-					</div><!-- /item -->
-					<div class="item">
-						<a href="#0"><img src="public/client/img/brands/placeholder_brands.png" data-src="public/client/img/brands/logo_5.png" alt="" class="owl-lazy"></a>
-					</div><!-- /item -->
-					<div class="item">
-						<a href="#0"><img src="public/client/img/brands/placeholder_brands.png" data-src="public/client/img/brands/logo_6.png" alt="" class="owl-lazy"></a>
-					</div><!-- /item --> 
-				</div><!-- /carousel -->
-			</div><!-- /container -->
+		<div class="row small-gutters">
+			<?= $html_showsp ?>
 		</div>
-		<!-- /bg_gray -->
+	</div>
 
-		<div class="container margin_60_35">
-			<div class="main_title">
-				<h2>Bài Viết Mới</h2>
-				<span>Blog</span>
+	<div class="container margin_60_35">
+		<div class="main_title">
+			<h2>Sản Phẩm Nhiều Lượt xem</h2>
+			<p>Sản Phẩm Hot</p>
+		</div>
+		<div class="row small-gutters">
+			<?= $html_sphot ?>
+		</div>
+		<div class="main_title">
+			<h2>Sản Phẩm Có Lượt Xem Nhiều Nhất</h2>
+		</div>
+		<?= $html_showsponehot ?>
+	</div>
 
-			</div>
-			<div class="row">
+	<!-- /container -->
+	<div class="bg_gray">
+		<div class="container margin_30">
+			<div id="brands" class="owl-carousel owl-theme">
+				<div class="item">
+					<a href="#0"><img src="public/client/img/brands/placeholder_brands.png" data-src="public/client/img/brands/logo_1.png" alt="" class="owl-lazy"></a>
+				</div><!-- /item -->
+				<div class="item">
+					<a href="#0"><img src="public/client/img/brands/placeholder_brands.png" data-src="public/client/img/brands/logo_2.png" alt="" class="owl-lazy"></a>
+				</div><!-- /item -->
+				<div class="item">
+					<a href="#0"><img src="public/client/img/brands/placeholder_brands.png" data-src="public/client/img/brands/logo_3.png" alt="" class="owl-lazy"></a>
+				</div><!-- /item -->
+				<div class="item">
+					<a href="#0"><img src="public/client/img/brands/placeholder_brands.png" data-src="public/client/img/brands/logo_4.png" alt="" class="owl-lazy"></a>
+				</div><!-- /item -->
+				<div class="item">
+					<a href="#0"><img src="public/client/img/brands/placeholder_brands.png" data-src="public/client/img/brands/logo_5.png" alt="" class="owl-lazy"></a>
+				</div><!-- /item -->
+				<div class="item">
+					<a href="#0"><img src="public/client/img/brands/placeholder_brands.png" data-src="public/client/img/brands/logo_6.png" alt="" class="owl-lazy"></a>
+				</div><!-- /item -->
+			</div><!-- /carousel -->
+		</div><!-- /container -->
+	</div>
+	<!-- /bg_gray -->
 
-			<?=$html_baiviet?>
-				
+	<div class="container margin_60_35">
+		<div class="main_title">
+			<h2>Bài Viết Mới</h2>
+			<span>Blog</span>
+
+		</div>
+		<div class="row">
+
+			<?= $html_baiviet ?>
+
 			<!-- /row -->
 		</div>
 		<!-- /container -->
-	</main>
-	<!-- /main -->
+</main>
+<!-- /main -->
