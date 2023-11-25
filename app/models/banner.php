@@ -55,7 +55,23 @@ function show_banner_client($banner) {
     $html_showbanner = '';
     foreach ($banner as $bs) {
         extract($bs);
-    $html_showbanner.='';
+    $html_showbanner.='<div class="owl-slide cover" style="background-image: url('.IMG_PATH_USER.$img.');">
+    <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
+        <div class="container">
+            <div class="row justify-content-center justify-content-md-end">
+                <div class="col-lg-6 static">
+                    <div class="slide-text text-end white">
+                        <h2 class="owl-slide-animated owl-slide-title">Attack Air<br>Max 720 Sage Low</h2>
+                        <p class="owl-slide-animated owl-slide-subtitle">
+                            Limited items available at this price
+                        </p>
+                        <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="listing-grid-1-full.html" role="button">Shop Now</a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>';
     } return $html_showbanner;
 }
 ?>

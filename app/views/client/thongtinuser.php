@@ -52,7 +52,7 @@
 							</div>
                             <label for="" class="mt-1">Chức vụ:</label>
                             <div class="form-group">
-								<input type="text" class="form-control" value="<?=isset($chuc_vu) ? $chuc_vu: ''?>" id="password_in" placeholder="Nhập SĐT của bạn">
+								<input type="text" readonly class="form-control" value="<?=isset($chuc_vu) ? $chuc_vu: ''?>" id="password_in" placeholder="Nhập SĐT của bạn">
 							</div>
                             <input type="text" hidden class="form-control" name="id_user" value="<?=$id_user?>" id="email" placeholder="Nhập Tên người dùng của bạn">
 							<div class="text-center"><input type="submit" value="Lưu Thông Tin" name="th_capnhatthongtin" class="btn_1 full-width"></div>
