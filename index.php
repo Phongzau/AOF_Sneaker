@@ -211,6 +211,8 @@
                     // Thực hiện chức năng
                     update_tt_user_client($user_name, $email, $diachi, $cleaned_phone, $img, $id_user);
                     $tb_success_tt = "<h3 class=text-center style=color:green>Tài khoản của bạn đã cập nhật thành công</h3>";
+                    $user = check_tk_user($username, $password);
+                    $_SESSION['s_user'] = $user;
                     include "app/views/client/thongtinuser.php";
                     break;
                 } else {
