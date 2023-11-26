@@ -12,6 +12,7 @@
     include "app/models/sanpham.php";
     include "app/models/bienthe.php";
     include "app/models/baiviet.php";
+    include "app/models/lienhe.php";
     include "app/models/user.php";
     include "app/models/giohang.php";
     $dsbanner = select_all_banner();
@@ -241,6 +242,14 @@
             include "app/views/client/baiviet.php";
             break;
         case 'lienhe':
+            if(isset($_POST['btn_submit'])){
+                $name = $_POST['name'];
+                $email = $_POST['email'];
+                $noidung = $_POST['noidung'];
+                insert_lienhe_cl($noidung,$name,$email);
+                $thongbao = "Gửi Thông Tin Thành Công";
+
+            }
             include "app/views/client/lienhe.php";
             break;
         case 'giohang':

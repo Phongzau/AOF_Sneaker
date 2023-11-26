@@ -9,6 +9,11 @@
             pdo_execute($sql, $id_lh);
         
     }
+    function insert_lienhe_cl($noidung,$name,$email){
+        $sql = "INSERT INTO lienhe ( `noidung`, `name`, `email`) VALUES (?,?,?)";
+            pdo_execute($sql, $noidung,$name,$email);
+        
+    }
 
     function showds_lienhe_admin($dslienhe) {
         $html_dslienhe = '';
