@@ -39,6 +39,7 @@
                                     </div>
                                     <!-- /page_header -->
                                     <div class="prod_info">
+                                        <form action="index.php?cl=addcart" method="POST">
                                         <h1><?=$name?></h1>
                                         <span class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i><em>4 reviews</em></span>
                                         <p><small>SKU: AOF-<?=$id_sp?></small><br><?=$mota?></p>
@@ -47,17 +48,17 @@
                                                 <label class="col-xl-5 col-lg-5 col-md-6 col-6"><strong>Size</strong> - Size Guide <a href="#0" data-bs-toggle="modal" data-bs-target="#size-modal"><i class="ti-help-alt"></i></a></label>
                                                 <div class="col-xl-4 col-lg-5 col-md-6 col-6">
 													<div class="custom-select">
-													<select class="" >
+													<select class="">
 													<?=$html_optionsizebienthesp;?>
                                						</select>
 													</div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong>Quantity</strong></label>
+                                                <label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong>Số Lượng</strong></label>
                                                 <div class="col-xl-4 col-lg-5 col-md-6 col-6">
                                                     <div class="numbers-row">
-                                                        <input type="text" value="1" id="quantity_1" class="qty2" name="quantity_1">
+                                                        <input type="number" value="1" min="1" class="qty2" name="soluong">
                                                     </div>
                                                 </div>
                                             </div>
@@ -70,7 +71,12 @@
                                                 <div class="price_main"><span class="new_price">$<?=$price?></span></div>
                                             </div>
                                             <div class="col-lg-4 col-md-6">
-                                                <div class="btn_add_to_cart"><a href="#0" class="btn_1">Add to Cart</a></div>
+                                                <input type="hidden" name="id_sp" value="<?=$id_sp?>">
+                                                <input type="hidden" name="name" value="<?=$name?>">
+                                                <input type="hidden" name="img" value="<?=$img?>">
+                                                <input type="hidden" name="price" value="<?=$price?>">
+                                                <div class="btn_add_to_cart"><button type="submit" class="btn_1" name="addcart">Đặt hàng</button></div>
+                                            </form>
                                             </div>
                                         </div>
                                     </div>

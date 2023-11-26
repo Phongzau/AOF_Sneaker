@@ -1,6 +1,9 @@
 <?php
     session_start();
     ob_start();
+    if (!isset($_SESSION['giohang'])) {
+        $_SESSION['giohang'] = [];
+    }
     include "app/models/pdo.php";
     include "app/models/danhmuc.php";
     include "app/views/client/header.php";
@@ -10,7 +13,7 @@
     include "app/models/bienthe.php";
     include "app/models/baiviet.php";
     include "app/models/user.php";
-    
+    include "app/models/giohang.php";
     $dsbanner = select_all_banner();
     $dssp = select_sp_client();
     $sphot = select_sp_one_hot();
@@ -243,6 +246,36 @@
         case 'giohang':
             include "app/views/client/giohang.php";
             break;
+        case 'addcart':
+            if (isset($_POST['addcart'])) {
+                $id_sp = $_POST['id_sp'];
+                $name = $_POST['name'];
+                $img = $_POST['img'];
+                $price = $_POST['price'];
+                $soluong = $_POST['soluong'];
+                $thanhtien = (int)$soluong * (int)$price;
+                $sp = array("id_sp"=>$id_sp,
+                            "name"=>$name,
+                            "img"=>$img,
+                            "price"=>$price,
+                            "soluong"=>$soluong,
+                            "thanhtien"=>$thanhtien);            
+                array_push($_SESSION['giohang'],$sp);
+                header('location: index.php?cl=viewcart');
+            }
+            break;
+        case 'viewcart':
+            if (isset($_GET['del']) && ($_GET['del'] == 1)) {
+                unset($_SESSION['giohang']);
+                header('location: index.php');
+            } else {
+                if (isset($_SESSION['giohang'])) {
+                    $tongdonhang = get_tongdonhang();
+                }
+                $giatrivoucher = 0;
+                $thanhtoan = $tongdonhang - $giatrivoucher;
+            }
+            include "app/views/client/giohang.php";
         default :
             include "app/views/client/home.php";
             break;
