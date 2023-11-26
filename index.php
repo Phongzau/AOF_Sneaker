@@ -48,6 +48,7 @@
                 $id = $_GET['id'];
                 $titlepage = get_name_dm($id);
             }
+
             //kiem tra form search
             if (isset($_POST["timkiem"]) && ($_POST["timkiem"])) {
                 $kyw = $_POST['kyw'];
@@ -59,6 +60,15 @@
              include "app/views/client/sanpham.php";
 
             break;
+            case 'baivietct':
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $id = $_GET['id'];
+                 $baiviet =   select_baiviet_by_id_cl($id);
+                 $bvnew =select_baiviet_cl_blog_sb();
+                 include "app/views/client/baivietchitiet.php";
+                }
+                break;
+
         case 'dangky':
             include "app/views/client/dangky.php";
             break;
@@ -285,9 +295,11 @@
                 $thanhtoan = $tongdonhang - $giatrivoucher;
             }
             include "app/views/client/giohang.php";
+            
         default :
             include "app/views/client/home.php";
             break;
+            
         }
     } else {
         include "app/views/client/home.php";
