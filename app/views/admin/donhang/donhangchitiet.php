@@ -23,6 +23,8 @@ $html_dh =  show_dhct_admin($dh);
             <th>Id Người Đặt</th>
             <th>Trạng Thái</th>
             <th>Thao Tác</th>
+            <th>Cập Nhật Trạng Thái</th>
+
         </tr>
       </thead>
       <tbody>

@@ -127,16 +127,20 @@ function show_dhct_admin($dssp){
    switch($trangthai){
    case 0:
        $tt = "Chờ Xác Nhận";
-       $ttxn.= '<a href="index.php?ad=xacnhandhct&id='.$id_ct.'" class="btn btn-info ">
+       $ttxn.= '<a href="index.php?ad=xacnhandhct&id='.$id_ct.'&tt=1" class="btn btn-info ">
        <i class="fa-solid "></i>Xác Nhận Đợn Hàng</a> ';
     break;
     case 1:
       $tt = "Đang Chuẩn Bị Hàng";
+      $ttxn.= '<a href="index.php?ad=xacnhandhct&id='.$id_ct.'&tt=2" class="btn btn-info ">
+      <i class="fa-solid "></i>Giao Hàng Cho ship</a> ';
       break;
-      case 3:
+      case 2:
         $tt = "Đang Giao Hàng";
+        $ttxn.= '<a href="index.php?ad=xacnhandhct&id='.$id_ct.'&tt=3" class="btn btn-info ">
+        <i class="fa-solid "></i>Giao Hàng Thành Công</a> ';
         break;
-        case 4:
+        case 3:
           $tt = "Giao Hàng Thanh Công";
           break;
 
@@ -159,13 +163,15 @@ function show_dhct_admin($dssp){
    <td>'.$id_usct.'</td>
    <td>'.$tt.'</td>
    <td>
-   '.$ttxn.'
    <a href="index.php?ad=deletedhct&id='.$id_ct.'&tt='.$trangthai.'" class="btn btn-danger">
    <i class="fa-solid "></i>Xóa</a>
    <a href="index.php?ad=xemchitetdh&id='.$id_ct.'" class="btn btn-success">
    <i class="fa-solid "></i>Xem Chi Tiết</a>
- </tr>
- <tr>';
+ </td>
+ <td>
+ '.$ttxn.'
+ </td>
+ </tr>';
  $ttxn = '';
   }
   return $html_dssp;
