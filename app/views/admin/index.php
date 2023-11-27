@@ -608,7 +608,6 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                 include "lienhe/quanlylienhe.php";
                 break;
 
-
                 //------------------------------------------------------Hết Trang Quản Lý Liên Hệ------------------------------------------------------//
 
                 // Trang quản lý banner

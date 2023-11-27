@@ -52,7 +52,6 @@
                 $id = $_GET['id'];
                 $titlepage = get_name_dm($id);
             }
-
             //kiem tra form search
             if (isset($_POST["timkiem"]) && ($_POST["timkiem"])) {
                 $kyw = $_POST['kyw'];
@@ -72,7 +71,15 @@
                  include "app/views/client/baivietchitiet.php";
                 }
                 break;
-
+                case 'locsp':
+                    if(isset($_POST['loc'])){
+                        $min_price = $_POST['min_price'];
+                        $max_price = $_POST['max_price'];
+                    $dssp = locsp_min_max( $min_price,$max_price);
+                    include "app/views/client/sanpham.php";
+                }
+              
+                    break;
         case 'dangky':
             include "app/views/client/dangky.php";
             break;
