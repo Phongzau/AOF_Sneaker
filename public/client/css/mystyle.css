@@ -33,3 +33,62 @@ select {
 .img-header {
   border-radius: 100px;
 }
+.giohangdonhang {
+  padding: 10px 0px 10px 0px;
+}
+
+.giohangdonhang .son-li {
+  list-style-type: none;
+  border-bottom: 1px solid #696464dc;
+  padding: 10px;
+}
+
+.son-li {
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.son-li p {
+  width: auto;
+}
+
+.son-li span {
+  margin-left: 15px;
+}
+
+.siu {
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  margin-left: 20px;
+}
+
+.siu input {
+  width: 200px;
+  margin: 10px;
+}
+
+.siu form button {
+  width: 300px !important;
+  margin: 10px;
+  height: 39px;
+}
+
+.tach {
+  display: flex;
+  gap: 10px;
+}
+
+
+
+
+.box_account .form_container-2 {
+  background-color: #fff;
+  -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+
+}
+

@@ -48,7 +48,7 @@
                                                 <label class="col-xl-5 col-lg-5 col-md-6 col-6"><strong>Size</strong> - Size Guide <a href="#0" data-bs-toggle="modal" data-bs-target="#size-modal"><i class="ti-help-alt"></i></a></label>
                                                 <div class="col-xl-4 col-lg-5 col-md-6 col-6">
 													<div class="custom-select">
-													<select class="">
+													<select name="dungluong">
 													<?=$html_optionsizebienthesp;?>
                                						</select>
 													</div>
@@ -75,6 +75,7 @@
                                                 <input type="hidden" name="name" value="<?=$name?>">
                                                 <input type="hidden" name="img" value="<?=$img?>">
                                                 <input type="hidden" name="price" value="<?=$price?>">
+                                                <input type="hidden" name="size" value="<?=$dungluong?>">
                                                 <div class="btn_add_to_cart"><button type="submit" class="btn_1" name="addcart">Đặt hàng</button></div>
                                             </form>
                                             </div>
