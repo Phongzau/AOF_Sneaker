@@ -25,6 +25,11 @@
         return pdo_query_one($sql, $id_baiviet);
     }
 
+    function select_baiviet_by_id_cl($id) {
+        $sql = "SELECT * FROM baiviet WHERE id_baiviet=?";
+        return pdo_query_one($sql, $id);
+    }
+
     function delete_baiviet_admin($id_baiviet) {
         $sql = "DELETE FROM baiviet  WHERE id_baiviet=?";
         pdo_execute($sql, $id_baiviet);
@@ -84,11 +89,11 @@
             <div class="col-md-6">
             <article class="blog">
                 <figure>
-                    <a href="#"><img src="'.IMG_PATH_USER.$img.'" alt="">
+                    <a href="index.php?cl=baivietct&id='.$id_baiviet.'"><img src="'.IMG_PATH_USER.$img.'" alt="">
                     </a>
                 </figure>
                 <div class="post_info">
-                    <h2><a href="blog-post.html">'.$tieude.'</a></h2>
+                    <h2><a href="index.php?cl=baivietct&id='.$id_baiviet.'">'.$tieude.'</a></h2>
                     <p>'.$noidung.'</p>
                     <ul>
                         <li>
@@ -109,9 +114,9 @@
             $html_dsbaiviet.='
             <li>
             <div class="alignleft">
-                <a href="#0"><img src="'.IMG_PATH_USER.$img.'" alt=""></a>
+                <a href="index.php?cl=baivietct&id='.$id_baiviet.'"><img src="'.IMG_PATH_USER.$img.'" alt=""></a>
             </div>
-            <h3><a href="#" title="">'.$tieude.'</a></h3>
+            <h3><a href="index.php?cl=baivietct&id='.$id_baiviet.'" title="">'.$tieude.'</a></h3>
         </li>';
     
         }
