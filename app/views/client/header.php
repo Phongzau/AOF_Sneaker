@@ -1,6 +1,6 @@
 <?php
 $html_showdm = showdm_all(danhmuc_all());
-    if (isset($_SESSION['s_user']) && (count($_SESSION['s_user'])>0)) {
+    if (isset($_SESSION['s_user']) && is_array($_SESSION['s_user']) && count($_SESSION['s_user']) > 0) {
         extract($_SESSION['s_user']);
         $html_account = '<a href="index.php?cl=dangnhap" class="access_link"><span>Account</span></a>
                          <div class="dropdown-menu">
@@ -13,6 +13,8 @@ $html_showdm = showdm_all(danhmuc_all());
                          <a href="index.php?cl=dangnhap" class="btn_1">Đăng nhập</a>
                          <a href="index.php?cl=dangky" class="btn_1 mt-2">Đăng ký</a>';
     }
+    $html_cartheader =  viewcart_header();
+    $total = get_tongdonhang();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,6 +65,8 @@ $html_showdm = showdm_all(danhmuc_all());
 
     <!-- SPECIFIC CSS -->
     <link href="public/client/css/product_page.css" rel="stylesheet">
+
+    <link href="public/client/css/checkout.css" rel="stylesheet">
     <style>
 .tk {
   color: #090909;
@@ -191,28 +195,12 @@ $html_showdm = showdm_all(danhmuc_all());
                                 <li>
                                     <div class="dropdown dropdown-cart">
                                         <a href="index.php?cl=giohang" class="cart_bt"><strong>2</strong></a>
-                                        <div class="dropdown-menu">
-                                            <ul>
-                                                <li>
-                                                    <a href="product-detail-1.html">
-                                                        <figure><img src="public/client/img/products/product_placeholder_square_small.jpg" data-src="public/client/img/products/shoes/thumb/1.jpg" alt="" width="50" height="50" class="lazy"></figure>
-                                                        <strong><span>1x Armor Air x Fear</span>$90.00</strong>
-                                                    </a>
-                                                    <a href="#0" class="action"><i class="ti-trash"></i></a>
-                                                </li>
-                                                <li>
-                                                    <a href="product-detail-1.html">
-                                                        <figure><img src="public/client/img/products/product_placeholder_square_small.jpg" data-src="public/client/img/products/shoes/thumb/2.jpg" alt="" width="50" height="50" class="lazy"></figure>
-                                                        <strong><span>1x Armor Okwahn II</span>$110.00</strong>
-                                                    </a>
-                                                    <a href="0" class="action"><i class="ti-trash"></i></a>
-                                                </li>
-                                            </ul>
-                                            <div class="total_drop">
-                                                <div class="clearfix"><strong>Total</strong><span>$200.00</span></div>
-                                                <a href="cart.html" class="btn_1 outline">View Cart</a><a href="checkout.html" class="btn_1">Checkout</a>
-                                            </div>
-                                        </div>
+                                        <?=$html_cartheader?>
+                                        <div class="total_drop">
+                                <div class="clearfix"><strong>Total</strong><span><?=$total?></span></div>
+                                <a href="index.php?cl=viewcart" class="btn_1 outline">View Cart</a><a href="checkout.html" class="btn_1">Checkout</a>
+                                </div>
+                                </div>
                                     </div>
                                     <!-- /dropdown-cart-->
                                 </li>

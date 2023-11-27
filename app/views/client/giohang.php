@@ -4,14 +4,7 @@
 <main class="bg_gray">
 		<div class="container margin_30">
 		<div class="page_header">
-			<div class="breadcrumbs">
-				<ul>
-					<li><a href="#">Home</a></li>
-					<li><a href="#">Category</a></li>
-					<li>Page active</li>
-				</ul>
-			</div>
-			<h1>Cart page</h1>
+			<Strong><h1>Giỏ hàng</h1></Strong>
 		</div>
 		<!-- /page_header -->
 		<table class="table table-striped cart-list">
@@ -27,7 +20,7 @@
 										Ảnh
 									</th>
 									<th>
-										Price
+										Giá
 									</th>
 									<th>
 										Số lượng
@@ -55,12 +48,9 @@
 							<div class="col-sm-8">
 							<div class="apply-coupon">
 								<div class="form-group">
-									<div class="row g-2">
-										<div class="col-md-6"><input type="text" name="coupon-code" value="" placeholder="Promo code" class="form-control"></div>
-										<div class="col-md-4"><button type="button" class="btn_1 outline">Apply Coupon</button></div>
-									</div>
 								</div>
 							</div>
+							<a href="index.php?cl=viewcart&del=1">Xóa rỗng đơn hàng</a>
 						</div>
 					</div>
 					<!-- /cart_actions -->
@@ -77,13 +67,10 @@
 					<span>Subtotal</span> <?=$tongdonhang?>
 				</li>
 				<li>
-					<span>Shipping</span> $7.00
-				</li>
-				<li>
 					<span>Total</span> <?=$thanhtoan?>
 				</li>
 			</ul>
-			<a href="cart-2.html" class="btn_1 full-width cart">Proceed to Checkout</a>
+			<a href="index.php?cl=donhang" class="btn_1 full-width cart">Đặt hàng</a>
 					</div>
 				</div>
 			</div>

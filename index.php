@@ -6,12 +6,16 @@
     }
     include "app/models/pdo.php";
     include "app/models/danhmuc.php";
-    include "app/views/client/header.php";
-    include "app/models/banner.php";
     include "app/models/global.php";
+    include "app/models/giohang.php";
+    include "app/views/client/header.php";
+    include "app/models/user.php";
+    include "app/models/banner.php";
     include "app/models/sanpham.php";
     include "app/models/bienthe.php";
     include "app/models/baiviet.php";
+    include "app/models/khuyenmai.php";
+    include "app/models/donhang.php";
     include "app/models/lienhe.php";
     include "app/models/user.php";
     include "app/models/binhluan.php";
@@ -265,7 +269,7 @@
             include "app/views/client/lienhe.php";
             break;
         case 'giohang':
-            include "app/views/client/giohang.php";
+            header('location: index.php?cl=viewcart');
             break;
         case 'addcart':
             if (isset($_POST['addcart'])) {
@@ -274,12 +278,14 @@
                 $img = $_POST['img'];
                 $price = $_POST['price'];
                 $soluong = $_POST['soluong'];
+                $size = $_POST['dungluong'];
                 $thanhtien = (int)$soluong * (int)$price;
                 $sp = array("id_sp"=>$id_sp,
                             "name"=>$name,
                             "img"=>$img,
                             "price"=>$price,
                             "soluong"=>$soluong,
+                            "size"=>$size,
                             "thanhtien"=>$thanhtien);            
                 array_push($_SESSION['giohang'],$sp);
                 header('location: index.php?cl=viewcart');
@@ -290,14 +296,69 @@
                 unset($_SESSION['giohang']);
                 header('location: index.php');
             } else {
-                if (isset($_SESSION['giohang'])) {
+                $tongdonhang = 0;
+                $giatrivoucher = 0;
+                $thanhtoan = 0;
+                if (isset($_SESSION['giohang'])) {  
                     $tongdonhang = get_tongdonhang();
                 }
-                $giatrivoucher = 0;
+                if (isset($_GET['voucher']) && $_GET['voucher'] == 1) {
+                    $tongdonhang = $_POST['tongdonhang'];
+                    $voucher = $_POST['voucher'];
+                    $giatri = select_voucher_client($voucher);
+                    $giatrivoucher = $giatri;
+                }
                 $thanhtoan = $tongdonhang - $giatrivoucher;
+                include "app/views/client/giohang.php";
             }
-            include "app/views/client/giohang.php";
+            break;
+        case 'donhang':
+            $giatrivoucher = 0;
+            if (isset($_SESSION['giohang'])) {  
+                $tongdonhang = get_tongdonhang();
+            }
+            if (isset($_GET['voucher']) && $_GET['voucher'] == 1) {
+                $tongdonhang = $_POST['tongdonhang'];
+                $voucher = $_POST['voucher'];
+                $giatri = select_voucher_client($voucher);
+                $giatrivoucher = $giatri;
+            }
             
+            $thanhtoan = $tongdonhang - $giatrivoucher;
+            include "app/views/client/donhang.php";
+            break;
+        case 'submit_donhang':
+            if (isset($_POST['submit_donhang'])) {
+                $nguoidat_ten = $_POST['nguoidat_ten'];
+                $nguoidat_email = $_POST['nguoidat_email'];
+                $nguoidat_diachi = $_POST['nguoidat_diachi'];
+                $nguoidat_tel = $_POST['nguoidat_tel'];
+                $pttt = $_POST['pttt'];
+                $total = $_POST['total'];
+                $tongthanhtoan = $_POST['tongthanhtoan'];
+                if (isset($_POST['giatrivoucher'])) {
+                    $voucher = $_POST['giatrivoucher'];
+                } else {
+                    $voucher = 0;
+                }
+                $id_user = $_SESSION['s_user']['id_user'];
+                $madh = "AOF".$id_user."-".date("His-dmY");
+                $id_dhct = dhct_insert_id($madh, $nguoidat_ten, $nguoidat_email, $nguoidat_tel, $nguoidat_diachi, $total, $voucher, $tongthanhtoan, $pttt, $id_user);
+                foreach ($_SESSION['giohang'] as $sp) {
+                    extract($sp);
+                    $ngaydathang = "19/11/2023";
+                    donhang_insert($id_sp, $id_dhct, $name, $price, $soluong, $ngaydathang, $size, $id_user);
+                }
+                unset($_SESSION['giohang']);
+                include "app/views/client/confirmdh.php";
+            } else {
+                include "view/donhang.php";
+            } 
+            break;
+        case 'confirmdh':
+            include "app/views/client/confirmdh.php";
+            break;
+
         default :
             include "app/views/client/home.php";
             break;

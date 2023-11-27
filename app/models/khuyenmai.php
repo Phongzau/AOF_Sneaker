@@ -4,6 +4,12 @@ function select_voucher_admin(){
     return pdo_query($sql,);
 }
 
+function select_voucher_client($voucher){
+    $sql = "SELECT * FROM khuyenmai WHERE voucher=?";
+    $result = pdo_query_one($sql,$voucher);
+    return $result['giatri'];
+}
+
 function delete_voucher_admin($id_voucher) {
     $sql = "DELETE FROM `khuyenmai` WHERE id_voucher = ?";
     pdo_execute($sql, $id_voucher);

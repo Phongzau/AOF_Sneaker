@@ -32,6 +32,39 @@ function viewcart(){
 return  $html_cart ;
 }
 
+function viewcart_header() {
+    $html_cartheader ='<div class="dropdown-menu">';
+    foreach ($_SESSION['giohang'] as $sp) {
+    extract($sp);
+    $tt = $price*$soluong;
+    $link = "index.php?cl=sanphamchitiet&idpro=".$id_sp;
+    $html_cartheader.='   <ul>
+                                <li>
+                                    <a href="'.$link.'">
+                                        <figure><img src="'.IMG_PATH_USER.$img.'" data-src="'.IMG_PATH_USER.$img.'" alt="" width="50" height="50" class="lazy"></figure>
+                                        <strong><span>'.$soluong.'x'.$name.'</span>$'.$tt.'</strong>
+                                    </a>
+                                    <a href="#0" class="action"><i class="ti-trash"></i></a>
+                                </li>
+                            </ul>
+                            ';
+}
+return $html_cartheader;
+}
+
+function viewcart_donhang() {
+    $html_cartdonhang ='';
+    foreach ($_SESSION['giohang'] as $sp) {
+    extract($sp);
+    $tt = $price*$soluong;
+    $html_cartdonhang.='   <div class="son-li">
+                            <img width="20%" src="'.IMG_PATH_USER.$img.'" alt=""><p><strong>'.$name.' x '.$soluong.'</strong></p> <span><strong>$'.$tt.'</strong></span>
+                          </div>
+                            ';  
+}
+return $html_cartdonhang;
+}
+
 function get_tongdonhang() {
     $tong = 0;
     foreach($_SESSION['giohang'] as $sp) {
