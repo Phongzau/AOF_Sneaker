@@ -16,6 +16,10 @@
     include "app/models/baiviet.php";
     include "app/models/khuyenmai.php";
     include "app/models/donhang.php";
+    include "app/models/lienhe.php";
+    include "app/models/user.php";
+    include "app/models/binhluan.php";
+    include "app/models/giohang.php";
     $dsbanner = select_all_banner();
     $dssp = select_sp_client();
     $sphot = select_sp_one_hot();
@@ -39,6 +43,7 @@
             $iddm = $spchitiet['iddm'];
             $splienquan = get_dssp_lienquan($iddm,$id);
             $hasp = select_hasp_client($id);
+    
             include "app/views/client/sanphamchitiet.php";
             break;
         case 'sanpham':
@@ -49,6 +54,7 @@
                 $id = $_GET['id'];
                 $titlepage = get_name_dm($id);
             }
+
             //kiem tra form search
             if (isset($_POST["timkiem"]) && ($_POST["timkiem"])) {
                 $kyw = $_POST['kyw'];
@@ -60,6 +66,15 @@
              include "app/views/client/sanpham.php";
 
             break;
+            case 'baivietct':
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $id = $_GET['id'];
+                 $baiviet =   select_baiviet_by_id_cl($id);
+                 $bvnew =select_baiviet_cl_blog_sb();
+                 include "app/views/client/baivietchitiet.php";
+                }
+                break;
+
         case 'dangky':
             include "app/views/client/dangky.php";
             break;
@@ -243,6 +258,14 @@
             include "app/views/client/baiviet.php";
             break;
         case 'lienhe':
+            if(isset($_POST['btn_submit'])){
+                $name = $_POST['name'];
+                $email = $_POST['email'];
+                $noidung = $_POST['noidung'];
+                insert_lienhe_cl($noidung,$name,$email);
+                $thongbao = "Gửi Thông Tin Thành Công";
+
+            }
             include "app/views/client/lienhe.php";
             break;
         case 'giohang':
@@ -335,9 +358,11 @@
         case 'confirmdh':
             include "app/views/client/confirmdh.php";
             break;
+
         default :
             include "app/views/client/home.php";
             break;
+            
         }
     } else {
         include "app/views/client/home.php";
