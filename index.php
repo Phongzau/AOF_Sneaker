@@ -14,6 +14,7 @@
     include "app/models/baiviet.php";
     include "app/models/lienhe.php";
     include "app/models/user.php";
+    include "app/models/binhluan.php";
     include "app/models/giohang.php";
     $dsbanner = select_all_banner();
     $dssp = select_sp_client();
@@ -38,6 +39,7 @@
             $iddm = $spchitiet['iddm'];
             $splienquan = get_dssp_lienquan($iddm,$id);
             $hasp = select_hasp_client($id);
+    
             include "app/views/client/sanphamchitiet.php";
             break;
         case 'sanpham':

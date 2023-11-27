@@ -1,10 +1,10 @@
 <?php
 require_once 'pdo.php';
 
-// function binhluan_insert($iduser,$idpro, $noidung, $ngaybl,$hoten){
-//     $sql = "INSERT INTO binhluan(iduser,idpro,noidung,ngaybl,hoten) VALUES (?,?,?,?,?)";
-//     pdo_execute($sql,$iduser, $idpro, $noidung, $ngaybl,$hoten);
-// }
+function  binhluan_insert($iduser, $id, $noidung, $ngaybl,$hoten){
+    $sql = " INSERT INTO `binhluan` (`id_user`, `id_sanpham` , `noidung`, `ngaybl`, `hoten`) VALUES ( ?, ?, ?, ?,?)";
+    pdo_execute($sql,$iduser, $id, $noidung, $ngaybl,$hoten);
+}
 
 // function binhluan_update($ma_bl, $ma_kh, $ma_hh, $noi_dung, $ngay_bl){
 //     $sql = "UPDATE binhluan SET ma_kh=?,ma_hh=?,noi_dung=?,ngay_bl=? WHERE ma_bl=?";
@@ -52,6 +52,28 @@ function showds_binhluan_admin($dsbinhluan) {
                             <i class="fa-solid "></i> Xóa</a>
                             </td>
                            </tr>';
+
+    }
+    return $html_dsbinhluan;
+}
+
+function select_id_binhluan($id){
+    $sql = "SELECT * FROM binhluan where id_sanpham = ?";
+    return pdo_query($sql,$id);
+}
+
+function showds_binhluan_cl($dsbinhluan) {
+    $html_dsbinhluan = '';
+    foreach ($dsbinhluan as $bl) {
+        extract($bl);
+        $html_dsbinhluan.='<div class="tong">
+        <div class="review_content">
+         
+            <h4 class="ten" >'.$hoten.'</h4>
+            <p class="ngay" >'.$ngaybl.'</p>
+            <p class="noidung">'.$noidung.'</p>
+        </div>
+    </div>';
 
     }
     return $html_dsbinhluan;
