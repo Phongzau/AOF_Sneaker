@@ -12,6 +12,16 @@
 //   return pdo_query($sql);
 // }
 
+function dhct_insert_id($madh, $nguoidat_ten, $nguoidat_email, $nguoidat_tel, $nguoidat_diachi, $total, $voucher, $tongthanhtoan, $pttt, $id_user) {
+  $sql = "INSERT INTO donhangchitiet(madh, nguoidat_ten, nguoidat_email, nguoidat_tell, nguoidat_diachi, total, voucher, tongthanhtoan, pttt, id_usct) VALUES (?, ?, ?, ?, ?, ? ,?, ?, ?, ?)";
+    return pdo_execute_id($sql, $madh, $nguoidat_ten, $nguoidat_email, $nguoidat_tel, $nguoidat_diachi, $total, $voucher, $tongthanhtoan, $pttt, $id_user); 
+}
+
+function donhang_insert($id_sp, $id_dhct, $name, $price, $soluong, $ngaydathang, $size, $id_user) {
+  $sql = "INSERT INTO donhang(id_sanpham, madh_ct, tensp, price, soluong, ngaydathang, size, id_usdh) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
+    pdo_execute($sql, $id_sp, $id_dhct, $name, $price, $soluong, $ngaydathang, $size, $id_user); 
+}
+
 function donhang_all_id($id){
   $sql = "SELECT * FROM donhang  WHERE madh_ct=? "   ;
   return pdo_query($sql,$id);
