@@ -136,13 +136,15 @@ function show_dhct_admin($dssp){
    }
    switch($trangthai){
    case 0:
+    $tr = 1;
        $tt = "Chờ Xác Nhận";
-       $ttxn.= '<a href="index.php?ad=xacnhandhct&id='.$id_ct.'&tt=1" class="btn btn-info ">
+       $ttxn.= '<a href="index.php?ad=xacnhandhct&id='.$id_ct.'&tt='.$tr.'" class="btn btn-info ">
        <i class="fa-solid "></i>Xác Nhận Đợn Hàng</a> ';
     break;
     case 1:
       $tt = "Đang Chuẩn Bị Hàng";
-      $ttxn.= '<a href="index.php?ad=xacnhandhct&id='.$id_ct.'&tt=2" class="btn btn-info ">
+      $tr = 2;
+      $ttxn.= '<a href="index.php?ad=xacnhandhct&id='.$id_ct.'&tt='.$tr.'" class="btn btn-info ">
       <i class="fa-solid "></i>Giao Hàng Cho ship</a> ';
       break;
       case 2:
@@ -203,8 +205,8 @@ function donhangct_delete($id,$tt){
   }
   
 }
-function donhangct_xacnhan($id){
-  $sql = " UPDATE donhangchitiet SET trangthai = 1 WHERE  id_ct=?";
-      pdo_execute($sql, $id);
+function donhangct_xacnhan($tt,$id){
+  $sql = " UPDATE donhangchitiet SET trangthai =? WHERE  id_ct=?";
+      pdo_execute($sql,$tt,$id);
   
 }

@@ -17,9 +17,7 @@
     include "app/models/khuyenmai.php";
     include "app/models/donhang.php";
     include "app/models/lienhe.php";
-    include "app/models/user.php";
     include "app/models/binhluan.php";
-    include "app/models/giohang.php";
     $dsbanner = select_all_banner();
     $dssp = select_sp_client();
     $sphot = select_sp_one_hot();
