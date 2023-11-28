@@ -12,6 +12,14 @@
 //   return pdo_query($sql);
 // }
 
+function select_dh_dhct($id_user) {
+  $sql = "SELECT * FROM donhang 
+          INNER JOIN sanpham ON donhang.id_sanpham = sanpham.id_sp
+          INNER JOIN donhangchitiet ON donhang.madh_ct = donhangchitiet.id_ct
+          WHERE id_usdh = ?";
+  return pdo_query($sql, $id_user); 
+}
+
 function dhct_insert_id($madh, $nguoidat_ten, $nguoidat_email, $nguoidat_tel, $nguoidat_diachi, $total, $voucher, $tongthanhtoan, $pttt, $id_user) {
   $sql = "INSERT INTO donhangchitiet(madh, nguoidat_ten, nguoidat_email, nguoidat_tell, nguoidat_diachi, total, voucher, tongthanhtoan, pttt, id_usct) VALUES (?, ?, ?, ?, ?, ? ,?, ?, ?, ?)";
     return pdo_execute_id($sql, $madh, $nguoidat_ten, $nguoidat_email, $nguoidat_tel, $nguoidat_diachi, $total, $voucher, $tongthanhtoan, $pttt, $id_user); 
@@ -30,6 +38,94 @@ function donhangct_all(){
   $sql = "SELECT * FROM donhangchitiet ";
   return pdo_query($sql);
 }
+
+function show_dh_client($dsdhct) {
+  $html_showdhcl = '';
+  foreach ($dsdhct as $dh) {
+    extract($dh);
+    $html_showdhcl.= '  <div class="row">
+                        <div class="col-md-8 offset-md-2">
+                          <div class="card">
+                            <div class="card-header">
+                              <h5 class="card-title">Thông tin đơn hàng</h5>
+                            </div>
+                            <div class="card-body">
+                              <div class="row">
+                                <div class="col-md-4">
+                                  <img src="'.IMG_PATH_USER.$img.'" alt="Product Image" class="img-fluid">
+                                </div>
+                                <div class="col-md-8">
+                                  <h4 class="card-title">'.$name.'</h4>
+                                  <p class="card-text">'.$mota.'</p>
+                                  <p class="card-text"><strong>Size:</strong> '.$size.'</p>
+                                  <p class="card-text"><strong>Giá:</strong> '.$price.'</p>
+                                  <p class="card-text"><strong>Số lượng:</strong> '.$soluong.'</p>
+                                  <p class="card-text"><strong>Tổng cộng:</strong> '.$tonggia.'</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="card-footer">
+                              <p class="card-text"><strong>Mã đơn hàng:</strong>'.$madh.'</p>
+                              <p class="card-text"><strong>Địa chỉ giao hàng:</strong>'.$nguoidat_diachi.'</p>
+                              <p class="card-text"><strong>Ngày đặt hàng:</strong> '.$ngaydathang.'</p>
+                              <p class="card-text"><strong>Trạng thái đơn hàng:</strong> '.$trangthai.'</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>';
+  }
+  return $html_showdhcl;
+}
+
+// function show_dh_client($dsdhct) {
+//   $html_showdhcl = '';
+//   $currentOrderId = null; // Biến để theo dõi mã đơn hàng hiện tại
+
+//   foreach ($dsdhct as $dh) {
+//       extract($dh);
+
+//       // Nếu mã đơn hàng thay đổi, bắt đầu một đơn hàng mới
+//       if ($madh !== $currentOrderId) {
+//           // Kết thúc đơn hàng trước đó nếu tồn tại
+//           if ($currentOrderId !== null) {
+//               $html_showdhcl .= '</div>';
+//           }
+
+//           // Bắt đầu một đơn hàng mới
+//           $html_showdhcl .= '<div class="row">
+//                               <div class="col-md-8 offset-md-2">
+//                                   <div class="card">
+//                                       <div class="card-header">
+//                                           <h5 class="card-title">Thông tin đơn hàng</h5>
+//                                       </div>
+//                                       <div class="card-body">';
+//           $currentOrderId = $madh;
+//       }
+
+//       // Hiển thị thông tin sản phẩm
+//       $html_showdhcl .= '<div class="row">
+//                           <div class="col-md-4">
+//                               <img src="' . IMG_PATH_USER . $img . '" alt="Product Image" class="img-fluid">
+//                           </div>
+//                           <div class="col-md-8">
+//                               <h4 class="card-title">' . $name . '</h4>
+//                               <p class="card-text">' . $mota . '</p>
+//                               <p class="card-text"><strong>Size:</strong> ' . $size . '</p>
+//                               <p class="card-text"><strong>Giá:</strong> ' . $price . '</p>
+//                               <p class="card-text"><strong>Số lượng:</strong> ' . $soluong . '</p>
+//                               <p class="card-text"><strong>Tổng cộng:</strong> ' . $tonggia . '</p>
+//                           </div>
+//                         </div>';
+
+//   }
+
+//   // Kết thúc đơn hàng cuối cùng nếu tồn tại
+//   if ($currentOrderId !== null) {
+//       $html_showdhcl .= '</div></div></div></div>';
+//   }
+
+//   return $html_showdhcl;
+// }
 // function donhang_id($iduser){
 //   $sql = "SELECT * FROM bill WHERE iduser=?  ";
 //   return pdo_query($sql, $iduser);

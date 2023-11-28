@@ -210,10 +210,10 @@ $html_showdm = showdm_all(danhmuc_all());
                                         <?=$html_account;?>
                                             <ul>
                                                 <li>
-                                                    <a href="index.php?cl=giohang"><i class="ti-truck"></i>Giỏ hàng</a>
+                                                    <a href="index.php?cl=myOrder"><i class="ti-truck"></i>Đơn hàng</a>
                                                 </li>
                                                 <li>
-                                                    <a href="account.html"><i class="ti-package"></i>My Orders</a>
+                                                    <a href="index.php?cl=myOrder"><i class="ti-package"></i>My Orders</a>
                                                 </li>
                                                 <li>
                                                     <a href="index.php?cl=thongtinuser"><i class="ti-user"></i>My Profile</a>

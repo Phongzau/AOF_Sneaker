@@ -23,7 +23,6 @@
     $sphot = select_sp_one_hot();
     $sphot4 =select_sp_hot();
     $bvhome = select_baiviet_cl_home();
-   
     if (isset($_GET['cl'])) {
         $cl = $_GET['cl'];
         switch ($cl) {
@@ -378,6 +377,11 @@
             break;
         case 'confirmdh':
             include "app/views/client/confirmdh.php";
+            break;
+        case 'myOrder':
+            $id_user = $_SESSION['s_user']['id_user'];
+            $dsdhct = select_dh_dhct($id_user);
+            include "app/views/client/myOrder.php";
             break;
 
         default :
