@@ -21,8 +21,9 @@
             extract($lienhe);
             $html_dslienhe.='<tr>
                              <td>'.$id_lh.'</td>
-                             <td>'.$id_user.'</td>
                              <td>'.$noidung.'</td>
+                             <td>'.$email.'</td>
+                             <td>'.$name.'</td>
                              <td>
                              <a href="index.php?ad=deletelh&id='.$id_lh.'" class="btn btn-danger">
                              <i class="fa-solid "></i>Xóa</a>

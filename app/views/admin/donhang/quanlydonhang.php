@@ -20,6 +20,7 @@ $html_dh =  show_dh_admin($dh);
             <th>size</th>
             <th>id_user</th>
             <th>Chức năng</th>
+    
         </tr>
       </thead>
       <tbody>
