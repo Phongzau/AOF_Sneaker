@@ -201,7 +201,7 @@ function show_dh_admin($dssp){
      $html_dssp.='<div class="box25 mr15">
      <tr>
      <td>'.$id_dh.'</td>
-     <td>'.$id_bienthe.'</td>
+     <td>'.$id_sanpham.'</td>
      <td>'.$madh_ct.'</td>
      <td>'.$tensp.'</td>
      <td>'.$price.'</td>
