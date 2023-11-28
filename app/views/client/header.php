@@ -2,7 +2,7 @@
 $html_showdm = showdm_all(danhmuc_all());
     if (isset($_SESSION['s_user']) && is_array($_SESSION['s_user']) && count($_SESSION['s_user']) > 0) {
         extract($_SESSION['s_user']);
-        $html_account = '<a href="index.php?cl=dangnhap" class="access_link"><span>Account</span></a>
+        $html_account = '<a href="index.php?cl=thongtinuser" class="access_link"><span>Account</span></a>
                          <div class="dropdown-menu">
                          <div class="text-center mb-2 "><img class="img-header" width=30% src="public/uploads/'.$img.'" alt=""></div>
                          <h5 class=text-center mt-5>'.$user_name.'</h5>

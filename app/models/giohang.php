@@ -24,7 +24,7 @@ function viewcart(){
                         <td><strong>'.$soluong.'</strong></td>
                         <td><strong>'.$tt.'</strong></td>
                         <td class="options">
-                            <a href="#"><i class="ti-trash"></i></a>
+                            <a href="index.php?cl=delspgiohang&id='.$id_sp.'"><i class="ti-trash"></i></a>
                         </td>
                     </tr>';
     $i++;
@@ -44,7 +44,7 @@ function viewcart_header() {
                                         <figure><img src="'.IMG_PATH_USER.$img.'" data-src="'.IMG_PATH_USER.$img.'" alt="" width="50" height="50" class="lazy"></figure>
                                         <strong><span>'.$soluong.'x'.$name.'</span>$'.$tt.'</strong>
                                     </a>
-                                    <a href="#0" class="action"><i class="ti-trash"></i></a>
+                                    <a href="index.php?cl=delspgiohang&id='.$id_sp.'" class="action"><i class="ti-trash"></i></a>
                                 </li>
                             </ul>
                             ';
@@ -74,6 +74,20 @@ function get_tongdonhang() {
     }
     return $tong;
 }
+
+function delete_giohang($id) {
+    foreach ($_SESSION['giohang'] as $key => $sp) {
+        if ($sp['id_sp'] == $id) {
+            $removed_price = $sp['thanhtien'];
+            unset($_SESSION['giohang'][$key]);
+            return $removed_price; 
+        }
+    }
+
+    return 0;
+}
+
+
 // function get_tongdonhang(){
 //     $tong =0;
 

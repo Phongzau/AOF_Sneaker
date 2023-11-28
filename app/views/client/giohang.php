@@ -38,7 +38,14 @@
 							</thead>
 							<tbody>
 								<?=$html_cart;?>
+								<?php
+									if (empty($_SESSION['giohang'])) {
+										$tbcart = "<h2 class=text-center >Giỏ hàng của bạn đang trống<h2>";
+										echo $tbcart;
+									}
+								?>
 							</tbody>
+								
 						</table>
 
 						<div class="row add_top_30 flex-sm-row-reverse cart_actions">
