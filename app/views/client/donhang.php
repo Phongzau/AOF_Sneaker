@@ -1,7 +1,7 @@
 <?php
     $html_cartdonhang = viewcart_donhang();
     $total = get_tongdonhang();
-    print_r($_SESSION['giohang']);
+    
 ?>
 <main class="bg_gray">
 		
@@ -21,19 +21,19 @@
                         <div class="form_container">
                             <label for="">Họ tên:</label>
                             <div class="form-group">
-                                <input type="text" class="form-control" value="<?=($user_name != "")?$user_name:""?>" name="nguoidat_ten" id="email" placeholder="Họ và tên">
+                                <input type="text" class="form-control" value="<?= (isset($user_name) && $user_name !== "") ? $user_name : "" ?>" name="nguoidat_ten" id="email" placeholder="Họ và tên">
                             </div>   
                             <label class="mt-1" for="">Email:</label>               
                             <div class="form-group">
-                                <input type="email" class="form-control" value="<?=($email != "")?$email:""?>" name="nguoidat_email" id="email" placeholder="Email">
+                                <input type="email" class="form-control" value="<?= (isset($email) && $email !== "") ? $email : "" ?>" name="nguoidat_email" id="email" placeholder="Email">
                             </div>
                             <label class="mt-1" for="">Điện thoại</label>
                             <div class="form-group">
-                                <input type="text" class="form-control" value="<?=($dienthoai != "")?$dienthoai:""?>" name="nguoidat_tel" id="password_in" value="" placeholder="Số điện thoại">
+                                <input type="text" class="form-control" value="<?= (isset($dienthoai) && $dienthoai !== "") ? $dienthoai : "" ?>" name="nguoidat_tel" id="password_in" value="" placeholder="Số điện thoại">
                             </div>
                             <label class="mt-1" for="">Địa chỉ</label>
                             <div class="form-group">
-                                <input type="text" class="form-control" value="<?=($diachi != "")?$diachi:""?>" name="nguoidat_diachi" id="password_in" value="" placeholder="Địa chỉ nhà">
+                                <input type="text" class="form-control" value="<?= (isset($diachi) && $diachi !== "") ? $diachi : "" ?>" name="nguoidat_diachi" id="password_in" value="" placeholder="Địa chỉ nhà">
                             </div>
                             <input type="hidden" name="total" value="<?=$total?>">
                             <input type="hidden" name="giatrivoucher" value="<?=$giatrivoucher?>">

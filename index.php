@@ -23,7 +23,6 @@
     $sphot = select_sp_one_hot();
     $sphot4 =select_sp_hot();
     $bvhome = select_baiviet_cl_home();
-   
     if (isset($_GET['cl'])) {
         $cl = $_GET['cl'];
         switch ($cl) {
@@ -279,6 +278,11 @@
         case 'addcart':
             if (isset($_POST['addcart'])) {
                 $id_sp = $_POST['id_sp'];
+                $index = array_search($id_sp, array_column($_SESSION['giohang'], 'id_sp'));
+                 // array_column() trích xuất một cột từ mảng giỏ hàng và trả về một mảng chứa giá trị của cột id
+                if ($index !== false) {
+                $_SESSION['giohang'][$index]['soluong']++;
+                } else {
                 $name = $_POST['name'];
                 $img = $_POST['img'];
                 $price = $_POST['price'];
@@ -293,8 +297,9 @@
                             "size"=>$size,
                             "thanhtien"=>$thanhtien);            
                 array_push($_SESSION['giohang'],$sp);
+                }
                 header('location: index.php?cl=viewcart');
-            }
+                }
             break;
         case 'viewcart':
             if (isset($_GET['del']) && ($_GET['del'] == 1)) {
@@ -306,6 +311,9 @@
                 $thanhtoan = 0;
                 if (isset($_SESSION['giohang'])) {  
                     $tongdonhang = get_tongdonhang();
+                    if (isset($removed_price) && ($removed_price) > 0) {
+                        $tongdonhang = (int)$tongdonhang - (int)$removed_price;
+                    }
                 }
                 if (isset($_GET['voucher']) && $_GET['voucher'] == 1) {
                     $tongdonhang = $_POST['tongdonhang'];
@@ -316,6 +324,13 @@
                 $thanhtoan = $tongdonhang - $giatrivoucher;
                 include "app/views/client/giohang.php";
             }
+            break;
+        case 'delspgiohang':
+            if (isset($_GET['id']) && ($_GET['id'])>0) {
+                $id = $_GET['id'];
+                delete_giohang($id);
+            }
+            header('location: index.php?cl=viewcart');
             break;
         case 'donhang':
             $giatrivoucher = 0;
@@ -352,7 +367,7 @@
                 foreach ($_SESSION['giohang'] as $sp) {
                     extract($sp);
                     $ngaydathang = "19/11/2023";
-                    donhang_insert($id_sp, $id_dhct, $name, $price, $soluong, $ngaydathang, $size, $id_user);
+                    donhang_insert($id_sp, $id_dhct, $name, $price, $soluong, $ngaydathang, $thanhtien, $size, $id_user);
                 }
                 unset($_SESSION['giohang']);
                 include "app/views/client/confirmdh.php";
@@ -362,6 +377,11 @@
             break;
         case 'confirmdh':
             include "app/views/client/confirmdh.php";
+            break;
+        case 'myOrder':
+            $id_user = $_SESSION['s_user']['id_user'];
+            $dsdhct = select_dh_dhct($id_user);
+            include "app/views/client/myOrder.php";
             break;
 
         default :

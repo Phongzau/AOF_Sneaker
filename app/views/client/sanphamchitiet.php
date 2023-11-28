@@ -7,7 +7,7 @@
 	$html_showsplq = showsp_lienquan($splienquan);
     $html_showhasp = showha_sp($hasp);
     $html_showhaspitembox = showha_sp_itembox($hasp);
-   $idbl= $_GET['idpro'] 
+    $idbl= $_GET['idpro']; 
 ?>
 
 <main>
