@@ -366,7 +366,8 @@
                 $id_dhct = dhct_insert_id($madh, $nguoidat_ten, $nguoidat_email, $nguoidat_tel, $nguoidat_diachi, $total, $voucher, $tongthanhtoan, $pttt, $id_user);
                 foreach ($_SESSION['giohang'] as $sp) {
                     extract($sp);
-                    $ngaydathang = "19/11/2023";
+                    date_default_timezone_set('Asia/Bangkok');
+                    $ngaydathang = date('H:i:s d/m/Y');
                     donhang_insert($id_sp, $id_dhct, $name, $price, $soluong, $ngaydathang, $thanhtien, $size, $id_user);
                 }
                 unset($_SESSION['giohang']);

@@ -43,6 +43,25 @@ function show_dh_client($dsdhct) {
   $html_showdhcl = '';
   foreach ($dsdhct as $dh) {
     extract($dh);
+    switch($trangthai){
+      case 0:
+       $tr = 1;
+          $tt = "Chờ Xác Nhận";
+       break;
+       case 1:
+         $tt = "Đang Chuẩn Bị Hàng";
+         break;
+         case 2:
+           $tt = "Đang Giao Hàng";
+           break;
+           case 3:
+             $tt = "Giao Hàng Thanh Công";
+             break;
+   
+       default:
+          $tt = "Đơn Hàng Không Xác Định";
+       break;
+      }
     $html_showdhcl.= '  <div class="row">
                         <div class="col-md-8 offset-md-2">
                           <div class="card">
@@ -68,7 +87,7 @@ function show_dh_client($dsdhct) {
                               <p class="card-text"><strong>Mã đơn hàng:</strong>'.$madh.'</p>
                               <p class="card-text"><strong>Địa chỉ giao hàng:</strong>'.$nguoidat_diachi.'</p>
                               <p class="card-text"><strong>Ngày đặt hàng:</strong> '.$ngaydathang.'</p>
-                              <p class="card-text"><strong>Trạng thái đơn hàng:</strong> '.$trangthai.'</p>
+                              <p class="card-text"><strong>Trạng thái đơn hàng:</strong> '.$tt.'</p>
                             </div>
                           </div>
                         </div>
