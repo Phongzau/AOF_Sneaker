@@ -7,8 +7,9 @@
       <thead>
         <tr>
           <th>ID</th>
-          <th>Id_user</th>
           <th>Nội dung</th>
+           <th>email</th>
+           <th>Tên</th>
           <th>Chức năng</th>
         </tr>
       </thead>

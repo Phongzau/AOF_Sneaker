@@ -576,8 +576,9 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                 break;
             case "xacnhandhct":
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $tt = $_GET['tt'];
                     $id = $_GET['id'];
-                    donhangct_xacnhan($id);
+                    donhangct_xacnhan($tt,$id);
                     $dh = donhangct_all();
                     include "donhang/donhangchitiet.php";
                 }
@@ -606,7 +607,6 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                 $dslienhe = select_lienhe_all();
                 include "lienhe/quanlylienhe.php";
                 break;
-
 
                 //------------------------------------------------------Hết Trang Quản Lý Liên Hệ------------------------------------------------------//
 

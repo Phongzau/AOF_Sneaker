@@ -58,6 +58,12 @@ require_once 'pdo.php';
 //     $sql = "SELECT * FROM sanpham WHERE id=?";
 //     return pdo_query_one($sql, $id);
 // }
+
+function  locsp_min_max($min,$max){
+    $sql = "SELECT * FROM sanpham WHERE price BETWEEN ? AND ?";
+    return pdo_query($sql,$min,$max);
+}
+
 function select_sp_all(){
     $sql = "SELECT * from sanpham  INNER JOIN danhmuc 
     on sanpham.iddm = danhmuc.id_dm";
