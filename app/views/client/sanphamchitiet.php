@@ -8,6 +8,7 @@
     $html_showhasp = showha_sp($hasp);
     $html_showhaspitembox = showha_sp_itembox($hasp);
     $idbl= $_GET['idpro']; 
+    $formattedPrice = number_format($price, 0, '.', '.');
 ?>
 
 <main>
@@ -70,13 +71,13 @@
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-5 col-md-6">
-                                                <div class="price_main"><span class="new_price">$<?=$price?></span></div>
+                                                <div class="price_main"><span class="new_price"><?=$formattedPrice?> VND</span></div>
                                             </div>
                                             <div class="col-lg-4 col-md-6">
                                                 <input type="hidden" name="id_sp" value="<?=$id_sp?>">
                                                 <input type="hidden" name="name" value="<?=$name?>">
                                                 <input type="hidden" name="img" value="<?=$img?>">
-                                                <input type="hidden" name="price" value="<?=$price?>">
+                                                <input type="hidden" name="price" value="<?= $formattedPrice?>">
                                                 <input type="hidden" name="size" value="<?=$dungluong?>">
                                                 
                                                 <div class="btn_add_to_cart"><button type="submit" class="btn_1" name="addcart">Đặt hàng</button></div>
