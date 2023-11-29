@@ -9,7 +9,7 @@
     }
 
     function update_baiviet_admin( $tieude,$noidung, $img, $id_baiviet) {
-        $sql = "UPDATE  baiviet SET tieude =?  noidung=?,img=? WHERE id_baiviet=?";
+        $sql = "UPDATE  baiviet SET tieude = ? , noidung= ?,img= ? WHERE id_baiviet= ?";
         pdo_execute($sql, $tieude, $noidung, $img, $id_baiviet);
     }
 

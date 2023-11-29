@@ -141,48 +141,57 @@ function get_dssp($kyw,$iddm){
 }
 
 //admin
-function show_sp_admin($dssp){
-    $html_dssp ='';
+function show_sp_admin($dssp) {
+    $html_dssp = '';
     foreach ($dssp as $sp) {
-     extract($sp);
-     if($tinhtrang==0){
-        $tc = 'Còn Hàng';
-     }else{
-        $tc = 'Hết Hàng';
-     }
-     $html_dssp.='<div class="box25 mr15">
-     <tr>
-     <td>'.$id_sp.'</td>
-     <td>'.$name.'</td>
-     <td><img src="'.IMG_PATH_ADMIN.$img.'" style="width:30%" alt="Ảnh sản phẩm"></td>
-     <td>'.$price.'VND</td>
-     <td>'.$view.'</td>
-     <td>'.$mota.'</td>
-     <td>'.$tendm.'</td>
-     <td>'.$tc.'</td>
-     <td>
-     <a href="index.php?ad=thembienthe&id='.$id_sp.'" class="btn btn-success">
-     <i class="fa-solid fa-pen-to-square"></i>Thêm biến thể</a>
-     <a href="index.php?ad=xembienthe&id='.$id_sp.'" class="btn btn-info">
-     <i class="fa-solid fa-pen-to-square"></i>Xem biến thể</a> 
-     </td> 
-     <td>
-     <a href="index.php?ad=themhinhanhsp&id='.$id_sp.'" class="btn btn-success">
-     <i class="fa-solid fa-pen-to-square"></i>Thêm Hình ảnh SP</a>
-     <a href="index.php?ad=xemhinhanhsp&id='.$id_sp.'" class="btn btn-info">
-     <i class="fa-solid fa-pen-to-square"></i>Xem hình ảnh</a>
-     </td>
-     <td>
-     <a href="index.php?ad=suasp&id='.$id_sp.'" class="btn btn-warning">
-     <i class="fa-solid fa-pen-to-square"></i>Sửa</a>
-     <a href="index.php?ad=deletesp&id='.$id_sp.'" class="btn btn-danger">
-     <i class="fa-solid "></i>Xóa</a>
-     </td>
-   </tr>
-   ';
+        extract($sp);
+        $formattedPrice = number_format($price, 0, '.', '.');
+
+        if ($tinhtrang == 0) {
+            $tc = 'Còn Hàng';
+        } else {
+            $tc = 'Hết Hàng';
+        }
+
+        $html_dssp .= '<tr>
+            <td>' . $id_sp . '</td>
+            <td>' . $name . '</td>
+            <td><img src="' . IMG_PATH_ADMIN . $img . '" style="width:30%" alt="Ảnh sản phẩm"></td>
+            <td>' . $formattedPrice . ' VND</td>
+            <td>' . $view . '</td>
+            <td>' . $mota . '</td>
+            <td>' . $tendm . '</td>
+            <td>' . $tc . '</td>
+            <td>
+                <a href="index.php?ad=thembienthe&id=' . $id_sp . '" class="btn btn-success">
+                    <i class="fa-solid fa-pen-to-square"></i>Thêm biến thể
+                </a>
+                <a href="index.php?ad=xembienthe&id=' . $id_sp . '" class="btn btn-info">
+                    <i class="fa-solid fa-pen-to-square"></i>Xem biến thể
+                </a>
+            </td>
+            <td>
+                <a href="index.php?ad=themhinhanhsp&id=' . $id_sp . '" class="btn btn-success">
+                    <i class="fa-solid fa-pen-to-square"></i>Thêm Hình ảnh SP
+                </a>
+                <a href="index.php?ad=xemhinhanhsp&id=' . $id_sp . '" class="btn btn-info">
+                    <i class="fa-solid fa-pen-to-square"></i>Xem hình ảnh
+                </a>
+            </td>
+            <td>
+                <a href="index.php?ad=suasp&id=' . $id_sp . '" class="btn btn-warning">
+                    <i class="fa-solid fa-pen-to-square"></i>Sửa
+                </a>
+                <a href="index.php?ad=deletesp&id=' . $id_sp . '" class="btn btn-danger">
+                    <i class="fa-solid "></i>Xóa
+                </a>
+            </td>
+        </tr>';
     }
     return $html_dssp;
 }
+
+
 
 function showha_sp($hasp) {
     $html_showhasp = '';
@@ -213,9 +222,10 @@ function sp_delete($id){
     
 }
 
-function insert_sanpham_admin( $name, $price, $mota, $img, $iddm){
+function insert_sanpham_admin($name, $price, $mota, $img, $iddm) {
+    $formatted_price = number_format($price, 0, ',', '.');
     $sql = "INSERT INTO sanpham (name, price, mota, img, iddm) VALUES (?,?,?,?,?)";
-    pdo_execute($sql,  $name, $price, $mota, $img, $iddm);
+    pdo_execute($sql, $name, $formatted_price, $mota, $img, $iddm);
 }
 
 function select_sanpham_by_id_client($id_sp) {
@@ -232,6 +242,7 @@ function showsp_one_hot($dssp) {
     $html_showsponehot = '';
     foreach ($dssp as $sp) {
         extract($sp);
+        $formattedPrice = number_format($price, 0, '.', '.');
         $link = "index.php?cl=sanphamchitiet&idpro=".$id_sp;
         $html_showsponehot = '<div class="featured lazy" data-bg="url('.IMG_PATH_USER.$img.')">
                             <div class="opacity-mask d-flex align-items-center" data-opacity-mask="rgba(0, 0, 0, 0.5)">
@@ -242,7 +253,7 @@ function showsp_one_hot($dssp) {
                                             <p>'.$mota.'</p>
                                             <div class="feat_text_block">
                                                 <div class="price_box">
-                                                    <span class="new_price">$'.$price.'</span>
+                                                    <span class="new_price">$'.$formattedPrice .'</span>
                                                 </div>
                                                 <a class="btn_1" href="'.$link.'" role="button">Shop Now</a>
                                             </div>
@@ -261,6 +272,7 @@ function showsp_featured($dssp) {
     $html_showspfeatured = '';
     foreach ($dssp as $sp) {
         extract($sp);
+        $formattedPrice = number_format($price, 0, '.', '.');
         // if ($bestseller == 1) {
         //     $best = '<div class="best"></div>';
         // } else {
@@ -277,7 +289,7 @@ function showsp_featured($dssp) {
                                 </figure>
                                 <div class="rating"><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star voted"></i><i class="icon-star"></i></div>
                                 <a href="'.IMG_PATH_USER.$img.'">
-                                    <h3>'.$name.'</h3>
+                                    <h3>'.$formattedPrice.'</h3>
                                 </a>
                                 <div class="price_box">
                                     <span class="new_price">'.$price.'$</span>
@@ -298,6 +310,7 @@ function showsp($dssp) {
     $html_showsp = '';
     foreach ($dssp as $sp) {
         extract($sp);
+        $formattedPrice = number_format($price, 0, '.', '.');
         // if ($bestseller == 1) {
         //     $best = '<div class="best"></div>';
         // } else {
@@ -318,7 +331,7 @@ function showsp($dssp) {
                                 <h3>'.$name.'</h3>
                             </a>
                             <div class="price_box">
-                                <span class="new_price">'.$price.'$</span>
+                                <span class="new_price">'. $formattedPrice.'VND</span>
                             </div>
                             <ul>
                                 <li><a href="#0" class="tooltip-1" data-bs-toggle="tooltip" data-bs-placement="left" title="Add to favorites"><i class="ti-heart"></i><span>Add to favorites</span></a></li>
@@ -350,6 +363,7 @@ function select_sp_hot(){
 function show_spchitiet($spchitiet) {
     $html_showctsp = '';
         extract($spchitiet);
+        $formattedPrice = number_format($price, 0, '.', '.');
         $html_showctsp.= ' <div class="container margin_30">
                             <div class="countdown_inner">-20% This offer ends in <div data-countdown="2019/05/15" class="countdown"></div>
                             </div>
@@ -433,7 +447,7 @@ function show_spchitiet($spchitiet) {
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-5 col-md-6">
-                                                <div class="price_main"><span class="new_price">$'.$price.'</span></div>
+                                                <div class="price_main"><span class="new_price">$'.$formattedPrice.'</span></div>
                                             </div>
                                             <div class="col-lg-4 col-md-6">
                                                 <div class="btn_add_to_cart"><a href="#0" class="btn_1">Add to Cart</a></div>

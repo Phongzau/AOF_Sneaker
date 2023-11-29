@@ -14,15 +14,15 @@
     <div class="main-content">
                 <form class="addPro" action="index.php?ad=th_suabaiviet" enctype="multipart/form-data" method="POST">
                     <div class="form-group">
-                        <input type="text" hidden  class="form-control" value="<?=$id_baiviet?>" name="id_baiviet" id="name" placeholder="Nhập tên sản phẩm">
+                        <input type="hidden"   class="form-control" value="<?=$id_baiviet?>" name="id_baiviet" id="name" placeholder="Nhập tên sản phẩm">
                     </div>   
                     <div class="form-group">    
                         <label for="name">Tiêu Đề:</label>
-                        <input type="text" class="form-control" value="<?=($tieude != "")?$tieude:""?>" name="tieude" id="name" placeholder="Tiêu Đề Bài Viết">
+                        <input type="text" class="form-control" value="<?=($tieude != "")?$tieude:""?>" name="tieude" id="name" required placeholder="Tiêu Đề Bài Viết">
                     </div> 
                     <div class="form-group">    
                         <label for="name">Nội dung:</label>
-                        <input type="text" class="form-control" value="<?=($noidung != "")?$noidung:""?>" name="noidung" id="name" placeholder="Nhập nội dung bài viết">
+                        <input type="text" class="form-control" value="<?=($noidung != "")?$noidung:""?>" name="noidung" id="name"required  placeholder="Nhập nội dung bài viết">
                     </div>
                     <div class="form-group">
                         <label for="name">Ảnh:</label>
