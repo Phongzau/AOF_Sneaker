@@ -68,7 +68,6 @@ function showds_binhluan_cl($dsbinhluan) {
         extract($bl);
         $html_dsbinhluan.='<div class="tong">
         <div class="review_content">
-         
             <h4 class="ten" >'.$hoten.'</h4>
             <p class="ngay" >'.$ngaybl.'</p>
             <p class="noidung">'.$noidung.'</p>

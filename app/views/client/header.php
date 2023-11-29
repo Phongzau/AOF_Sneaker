@@ -194,7 +194,7 @@ $html_showdm = showdm_all(danhmuc_all());
                             <ul class="top_tools">
                                 <li>
                                     <div class="dropdown dropdown-cart">
-                                        <a href="index.php?cl=giohang" class="cart_bt"><strong>2</strong></a>
+                                        <a href="index.php?cl=giohang" class="cart_bt"><strong><?= count($_SESSION['giohang'])?></strong></a>
                                         <?=$html_cartheader?>
                                         <div class="total_drop">
                                 <div class="clearfix"><strong>Total</strong><span><?=$total?></span></div>

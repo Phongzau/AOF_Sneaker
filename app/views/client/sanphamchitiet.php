@@ -78,6 +78,7 @@
                                                 <input type="hidden" name="img" value="<?=$img?>">
                                                 <input type="hidden" name="price" value="<?=$price?>">
                                                 <input type="hidden" name="size" value="<?=$dungluong?>">
+                                                
                                                 <div class="btn_add_to_cart"><button type="submit" class="btn_1" name="addcart">Đặt hàng</button></div>
                                             </form>
                                             </div>

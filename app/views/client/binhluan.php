@@ -3,7 +3,7 @@
 session_start();
      include "../../models/pdo.php";
      include "../../models/binhluan.php";
-
+  include "../../models/global.php";
      if(isset($_SESSION['s_user'])){
       $iduser = $_SESSION['s_user']['id_user'];
       $hoten = $_SESSION['s_user']['username'];

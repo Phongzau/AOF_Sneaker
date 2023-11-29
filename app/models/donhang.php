@@ -16,7 +16,8 @@ function select_dh_dhct($id_user) {
   $sql = "SELECT * FROM donhang 
           INNER JOIN sanpham ON donhang.id_sanpham = sanpham.id_sp
           INNER JOIN donhangchitiet ON donhang.madh_ct = donhangchitiet.id_ct
-          WHERE id_usdh = ?";
+          WHERE id_usdh = ?
+          ORDER BY donhang.madh_ct";
   return pdo_query($sql, $id_user); 
 }
 
@@ -41,59 +42,102 @@ function donhangct_all(){
 
 function show_dh_client($dsdhct) {
   $html_showdhcl = '';
+  $currentOrderId = null; // Biến để theo dõi mã đơn hàng hiện tại
+
   foreach ($dsdhct as $dh) {
-    extract($dh);
-    switch($trangthai){
-      case 0:
-       $tr = 1;
-          $tt = "Chờ Xác Nhận";
-       break;
-       case 1:
-         $tt = "Đang Chuẩn Bị Hàng";
-         break;
-         case 2:
-           $tt = "Đang Giao Hàng";
-           break;
-           case 3:
-             $tt = "Giao Hàng Thanh Công";
-             break;
-   
-       default:
-          $tt = "Đơn Hàng Không Xác Định";
-       break;
+      extract($dh);
+
+      switch ($trangthai) {
+          case 0:
+              $tt = "Chờ Xác Nhận";
+              $boxtt = '<p class="card-text"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>
+                        <a href="index.php?cl=huydonhang&madh='.$madh_ct.'" class="btn btn-danger "><p class="card-text"><strong>Hủy đơn hàng</strong></p></a>';
+              break;
+          case 1:
+              $tt = "Đang Chuẩn Bị Hàng";
+              $boxtt = '<p class="card-text"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+              break;
+          case 2:
+              $tt = "Đang Giao Hàng";
+              $boxtt = '<p class="card-text"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>
+                       <a href="index.php?cl=danhandonhang&madh='.$madh_ct.'" class="btn btn-primary "><p class="card-text"><strong>Đã nhận được hàng ?</strong></p></a>';
+              break;
+          case 3:
+              $tt = "Giao Hàng Thành Công";
+              $boxtt = '<p class="card-text"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>
+                      <a href="#" class="btn btn-success "><p class="card-text"><strong>Đã nhận được hàng</strong></p></a>';
+              break;
+          default:
+              $tt = "Đơn Hàng Không Xác Định";
+              $boxtt = '<p class="card-text"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+              break;
       }
-    $html_showdhcl.= '  <div class="row">
-                        <div class="col-md-8 offset-md-2">
-                          <div class="card">
-                            <div class="card-header">
-                              <h5 class="card-title">Thông tin đơn hàng</h5>
-                            </div>
-                            <div class="card-body">
-                              <div class="row">
-                                <div class="col-md-4">
-                                  <img src="'.IMG_PATH_USER.$img.'" alt="Product Image" class="img-fluid">
-                                </div>
-                                <div class="col-md-8">
-                                  <h4 class="card-title">'.$name.'</h4>
-                                  <p class="card-text">'.$mota.'</p>
-                                  <p class="card-text"><strong>Size:</strong> '.$size.'</p>
-                                  <p class="card-text"><strong>Giá:</strong> '.$price.'</p>
-                                  <p class="card-text"><strong>Số lượng:</strong> '.$soluong.'</p>
-                                  <p class="card-text"><strong>Tổng cộng:</strong> '.$tonggia.'</p>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="card-footer">
-                              <p class="card-text"><strong>Mã đơn hàng:</strong>'.$madh.'</p>
-                              <p class="card-text"><strong>Địa chỉ giao hàng:</strong>'.$nguoidat_diachi.'</p>
-                              <p class="card-text"><strong>Ngày đặt hàng:</strong> '.$ngaydathang.'</p>
-                              <p class="card-text"><strong>Trạng thái đơn hàng:</strong> '.$tt.'</p>
-                            </div>
+
+
+      if ($madh_ct !== $currentOrderId) { // currentOrderId = NULL
+        // Kết thúc đơn hàng trước đó nếu tồn tại
+        if ($currentOrderId !== null) {
+          $html_showdhcl .= '</div>
+                              <div class="card-footer">
+                              <p class="card-text"><strong>Mã đơn hàng: </strong>' . $currentOrderId . '</p>
+                              <p class="card-text"><strong>Người đặt hàng: </strong>' . $nguoidathang . '</p>
+                              <p class="card-text"><strong>Địa chỉ giao hàng: </strong>' . $diachi . '</p>
+                              <p class="card-text"><strong>Ngày đặt hàng: </strong> ' . $ngaydat . '</p>
+                              <p class="card-text"><strong>Tổng thanh toán: </strong> ' . $ttt . '</p>
+                              '.$trangthaidh.'
+                            </div></div></div></div>';
+      }
+          $html_showdhcl .= '<div class="row mb-2">
+                              <div class="col-md-8 offset-md-2">
+                                  <div class="card">
+                                      <div class="card-header">
+                                          <h5 class="card-title">Thông tin đơn hàng</h5>
+                                      </div>
+                                      <div class="card-body">';
+          $currentOrderId = $madh_ct;
+          $nguoidathang = $nguoidat_ten;
+          $ttt = $tongthanhtoan;
+          $ngaydat = $ngaydathang;
+          $diachi = $nguoidat_diachi;
+          $trangthaidh = $boxtt;
+        }
+          // Hiển thị thông tin sản phẩm
+          $html_showdhcl .= '<div class="row mb-2">
+                          <div class="col-md-4">
+                              <img src="' . IMG_PATH_USER . $img . '" alt="Product Image" class="img-fluid">
                           </div>
-                        </div>
+                          <div class="col-md-8">
+                              <h4 class="card-title">' . $name . '</h4>
+                              <p class="card-text">' . $mota . '</p>
+                              <p class="card-text"><strong>Size:</strong> ' . $size . '</p>
+                              <p class="card-text"><strong>Giá:</strong> ' . $price . '</p>
+                              <p class="card-text"><strong>Số lượng:</strong> ' . $soluong . '</p>
+                              <p class="card-text"><strong>Tổng cộng:</strong> ' . $tonggia . '</p>
+                          </div>
                       </div>';
-  }
+}
+if ($currentOrderId !== null) {
+  $html_showdhcl .= '</div>
+                      <div class="card-footer">
+                      <p class="card-text"><strong>Mã đơn hàng: </strong>' . $currentOrderId . '</p>
+                      <p class="card-text"><strong>Người đặt hàng: </strong>' . $nguoidathang . '</p>
+                      <p class="card-text"><strong>Địa chỉ giao hàng: </strong>' . $diachi . '</p>
+                      <p class="card-text"><strong>Ngày đặt hàng: </strong> ' . $ngaydat . '</p>
+                      <p class="card-text"><strong>Tổng thanh toán: </strong> ' .  $ttt  . '</p>
+                      '.$trangthaidh.'
+                      </div></div></div></div>';
+}
   return $html_showdhcl;
+}
+
+function delete_donhang($mdh) {
+  $sql = "DELETE FROM donhang WHERE madh_ct=?";
+  pdo_execute($sql, $mdh);
+}
+
+function delete_donhangct($mdh) {
+  $sql = "DELETE FROM donhangchitiet WHERE id_ct=?";
+  pdo_execute($sql, $mdh);
 }
 
 // function show_dh_client($dsdhct) {
@@ -320,8 +364,16 @@ function donhangct_delete($id,$tt){
   }
   
 }
+
+function xacnhandh($mdh){
+  $sql = " UPDATE donhangchitiet SET trangthai= trangthai + 1 WHERE  id_ct=?";
+      pdo_execute($sql,$mdh);
+  
+}
+
 function donhangct_xacnhan($tt,$id){
   $sql = " UPDATE donhangchitiet SET trangthai =? WHERE  id_ct=?";
       pdo_execute($sql,$tt,$id);
   
 }
+?>
