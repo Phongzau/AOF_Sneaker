@@ -21,7 +21,10 @@ function viewcart(){
                             </div>
                         </td>
                         <td><strong>$'.$price.'</strong></td>
-                        <td><strong>'.$soluong.'</strong></td>
+                        <td>
+                        <input type="number" name="soluong" value="'.$soluong.'" min="1">
+                        <input type="hidden" name="id_sp" value="'.$id_sp.'">
+                        </td>
                         <td><strong>'.$tt.'</strong></td>
                         <td class="options">
                             <a href="index.php?cl=delspgiohang&id='.$id_sp.'"><i class="ti-trash"></i></a>

@@ -1,7 +1,9 @@
 <?php
 	$html_cart = viewcart();
+
 ?>
 <main class="bg_gray">
+		<form action="index.php?cl=updatecart" method="POST">
 		<div class="container margin_30">
 		<div class="page_header">
 			<Strong><h1>Giỏ hàng</h1></Strong>
@@ -36,7 +38,7 @@
 									</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="order">
 								<?=$html_cart;?>
 								<?php
 									if (empty($_SESSION['giohang'])) {
@@ -50,8 +52,9 @@
 
 						<div class="row add_top_30 flex-sm-row-reverse cart_actions">
 						<div class="col-sm-4 text-end">
-							<button type="button" class="btn_1 gray">Update Cart</button>
+							<input type="submit" name="updatecart" value="Cập nhật giỏ hàng" class="btn_1 gray"></input>
 						</div>
+					
 							<div class="col-sm-8">
 							<div class="apply-coupon">
 								<div class="form-group">
@@ -82,6 +85,7 @@
 				</div>
 			</div>
 		</div>
+	</form>
 		<!-- /box_cart -->
 		
 	</main>

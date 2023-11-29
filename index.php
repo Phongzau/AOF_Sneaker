@@ -277,6 +277,11 @@
             break;
         case 'addcart':
             if (isset($_POST['addcart'])) {
+                if (!isset($_SESSION['s_user'])) {
+                    $thongbaodk = "<h3 class=text-center style=color:red>Bạn chưa có tài khoản hãy đăng kí</h3>";
+                    include "app/views/client/dangky.php";
+                    break;
+                }
                 $id_sp = $_POST['id_sp'];
                 $index = array_search($id_sp, array_column($_SESSION['giohang'], 'id_sp'));
                  // array_column() trích xuất một cột từ mảng giỏ hàng và trả về một mảng chứa giá trị của cột id
@@ -343,7 +348,6 @@
                 $giatri = select_voucher_client($voucher);
                 $giatrivoucher = $giatri;
             }
-            
             $thanhtoan = $tongdonhang - $giatrivoucher;
             include "app/views/client/donhang.php";
             break;
@@ -366,7 +370,8 @@
                 $id_dhct = dhct_insert_id($madh, $nguoidat_ten, $nguoidat_email, $nguoidat_tel, $nguoidat_diachi, $total, $voucher, $tongthanhtoan, $pttt, $id_user);
                 foreach ($_SESSION['giohang'] as $sp) {
                     extract($sp);
-                    $ngaydathang = "19/11/2023";
+                    date_default_timezone_set('Asia/Bangkok');
+                    $ngaydathang = date('H:i:s d/m/Y');
                     donhang_insert($id_sp, $id_dhct, $name, $price, $soluong, $ngaydathang, $thanhtien, $size, $id_user);
                 }
                 unset($_SESSION['giohang']);
@@ -383,12 +388,42 @@
             $dsdhct = select_dh_dhct($id_user);
             include "app/views/client/myOrder.php";
             break;
+        case 'huydonhang':
+            if (isset($_GET['madh']) && $_GET['madh'] > 0) {
+                $mdh = $_GET['madh'];
+                delete_donhang($mdh);
+                delete_donhangct($mdh);
+            }
+            $id_user = $_SESSION['s_user']['id_user'];
+            $dsdhct = select_dh_dhct($id_user);
+            header("location: index.php?cl=myOrder");
+            break;
+        case 'danhandonhang':
+            if (isset($_GET['madh']) && $_GET['madh'] > 0) {
+                $mdh = $_GET['madh'];
+            }
+            xacnhandh($mdh);
+            $id_user = $_SESSION['s_user']['id_user'];
+            $dsdhct = select_dh_dhct($id_user);
+            header("location: index.php?cl=myOrder");
+            break;
+        case 'updatecart':
+            if (isset($_POST['updatecart'])) {
+                $soluong = $_POST['soluong'];
+                $id_sp = $_POST['id_sp'];
+            }
+            $index = array_search($id_sp, array_column($_SESSION['giohang'], 'id_sp'));
 
+         // Nếu sản phẩm tồn tại thì cập nhật lại số lượng
+            if ($index !== false) {
+            $_SESSION['giohang'][$index]['soluong'] = $soluong;
+            }
+            header("Location: index.php?cl=viewcart");
         default :
             include "app/views/client/home.php";
             break;
-            
         }
+
     } else {
         include "app/views/client/home.php";
     }
