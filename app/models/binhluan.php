@@ -58,7 +58,8 @@ function showds_binhluan_admin($dsbinhluan) {
 }
 
 function select_id_binhluan($id){
-    $sql = "SELECT * FROM binhluan where id_sanpham = ?";
+    $sql = "SELECT * FROM binhluan  INNER JOIN user
+    on binhluan.id_user  = user.id_user  where binhluan.id_sanpham = ?";
     return pdo_query($sql,$id);
 }
 
@@ -68,6 +69,7 @@ function showds_binhluan_cl($dsbinhluan) {
         extract($bl);
         $html_dsbinhluan.='<div class="tong">
         <div class="review_content">
+             <img src="'.IMG_PATH_ADMIN.$img.'"  style="width:5% ; border-radius: 50%;"  alt="Ảnh sản phẩm">
             <h4 class="ten" >'.$hoten.'</h4>
             <p class="ngay" >'.$ngaybl.'</p>
             <p class="noidung">'.$noidung.'</p>
