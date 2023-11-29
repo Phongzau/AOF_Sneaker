@@ -12,6 +12,8 @@
 									echo $tb_fail;
 								} else if (isset($tb_success)) {
 									echo $tb_success;
+								} else if (isset($thongbaodk)) {
+									echo $thongbaodk;
 								}
 								?>
 							</div>
