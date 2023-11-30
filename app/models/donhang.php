@@ -308,9 +308,7 @@ function show_dhct_admin($dssp){
       break;
       case 2:
         $tt = "Đang Giao Hàng";
-        $ttxn.= '<a href="index.php?ad=xacnhandhct&id='.$id_ct.'&tt=3" class="btn btn-info ">
-        <i class="fa-solid "></i>Giao Hàng Thành Công</a> ';
-        break;
+        $ttxn.= '';
         case 3:
           $tt = "Giao Hàng Thanh Công";
           break;
