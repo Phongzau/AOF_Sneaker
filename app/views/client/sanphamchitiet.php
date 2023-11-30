@@ -33,13 +33,6 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="breadcrumbs">
-                                        <ul>
-                                            <li><a href="#">Home</a></li>
-                                            <li><a href="#">Category</a></li>
-                                            <li>Page active</li>
-                                        </ul>
-                                    </div>
                                     <!-- /page_header -->
                                     <div class="prod_info">
                                         <form action="index.php?cl=addcart" method="POST">

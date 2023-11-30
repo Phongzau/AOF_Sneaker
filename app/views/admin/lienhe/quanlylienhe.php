@@ -10,6 +10,7 @@
           <th>Nội dung</th>
            <th>email</th>
            <th>Tên</th>
+           <th>Trạng Thái</th>
           <th>Chức năng</th>
         </tr>
       </thead>
