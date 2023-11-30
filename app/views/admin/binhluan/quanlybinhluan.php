@@ -8,7 +8,6 @@
         <tr>
           <th>ID</th>
           <th>ID Sản Phẩm</th>
-          <th>ID User</th>
           <th>Họ tên</th>
           <th>Nội dung</th>
           <th>Ngày bình luận</th>
