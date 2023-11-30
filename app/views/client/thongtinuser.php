@@ -11,7 +11,9 @@
 					<div class="form_container">
                     <div class="text-center mb-2 ">
                         <img class="img-header" width=50% src="public/uploads/<?=$img?>" alt="">
-                        <h5 class="text-center mt-3"><?=$user_name?></h5>
+                        <h5 class="text-center mt-3 mb-4"><?=$user_name?></h5>
+						<a href="index.php?cl=doimatkhautt" class="btn btn-warning "><p class="card-text"><strong>Đổi mật khẩu</strong></p></a>
+						<a href="index.php?cl=dangxuat" class="btn btn-danger "><p class="card-text"><strong>Đăng xuất</strong></p></a>
                     </div>
 					</div>
 					<!-- /form_container -->

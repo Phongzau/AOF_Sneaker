@@ -9,44 +9,30 @@
 					<div class="box_account">
 						<h3 class="client">Already Client</h3>
 						<div class="form_container">
-							<form action="index.php?cl=th_dangnhap" method="POST">
+							<form action="index.php?cl=th_doimk" method="POST">
 							<div class="row no-gutters mt-3">
-								<h1 class="text-center">Đăng nhập</h1>
+								<h1 class="text-center">Quên mật khẩu</h1>
 								<?php
-								if (isset($_SESSION['tb_dangnhap'])&&($_SESSION['tb_dangnhap'] != "")) {
-									echo $_SESSION['tb_dangnhap'];
-									unset($_SESSION['tb_dangnhap']);
-								} 
-								else if (isset($tb_success)) {
-									echo $tb_success;
-								} else if (isset($tb_dmktc)) {
-									echo $tb_dmktc;
-								}
+                                    if (isset($tbdmk)) {
+                                        echo $tbdmk;
+                                    } else if (isset($tbdmks)) {
+                                        echo $tbdmks;
+                                    }
 								?>	
 							</div>
-							<label for="" class="mt-3">Tên đăng nhập</label>
+							<label for="" class="mt-3">Tên đăng nhập</label><span style="color: red; margin-left: 10px"><?=isset($errors['tb_error_username_dmk']) ? $errors['tb_error_username_dmk'] : '' ?></span>
 							<div class="form-group">
 								<input type="text" class="form-control" name="username" id="" placeholder="Nhập tài khoản của bạn">
 							</div>
-							<label for="" class="mt-2">Mật khẩu</label>
+							<label for="" class="mt-2">Email</label><span style="color: red; margin-left: 10px"><?=isset($errors['tb_error_email']) ? $errors['tb_error_email'] : '' ?><?=isset($errors['tb_email']) ? $errors['tb_email'] : '' ?></span>
 							<div class="form-group">
-								<input type="password" class="form-control" name="password" id="password_in" value="" placeholder="Nhập mật khẩu của bạn">
+								<input type="email" class="form-control" name="email" id="password_in" value="" placeholder="Nhập email của bạn">
 							</div>
 							<div class="clearfix add_bottom_15 mt-3">
-								<div class="checkboxes float-start">
-								<input type="checkbox" name="remenber">	
-								<label>Remenber</label>
-								</div>
-								<div class="float-end"><a id="forgot" href="index.php?cl=quenmatkhau">Quên mật khẩu ?</a> | <a id="forgot" href="index.php?cl=dangky">Chưa có tài khoản ?</a></div>
+								<div class="float-end"><a id="forgot" href="index.php?cl=dangnhap">Đã có tài khoản ?</a></div>
 							</div>
-							<div class="text-center"><input type="submit" value="Log In" name="th_dangnhap" class="btn_1 full-width"></div>
-							<div id="forgot_pw">
-								<div class="form-group">
-									<input type="email" class="form-control" name="email_forgot" id="email_forgot" placeholder="Type your email">
-								</div>
-								<p>A new password will be sent shortly.</p>
-								<div class="text-center"><input type="submit" value="Reset Password" class="btn_1"></div>
-							</div>
+							<div class="text-center"><input type="submit" value="Đổi mật khẩu" name="doimatkhau" class="btn_1 full-width"></div>
+							
 							</form>
 							
 						</div>

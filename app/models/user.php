@@ -17,9 +17,24 @@ function check_tk_user($username, $password) {
   return pdo_query_one($sql, $username, $password);
 }
 
+function check_tk_user_dmktt($username, $password) {
+  $sql = "SELECT * from `user`WHERE username=? AND password=?";
+  return pdo_query_one($sql, $username, $password);
+}
+
+function check_tk_user_doimk($username, $email) {
+  $sql = "SELECT * from `user` WHERE username=? AND email=?";
+  return pdo_query_one($sql, $username, $email);
+}
+
 function update_tt_user_client($user_name, $email, $diachi, $dienthoai, $img, $id_user) {
   $sql = "UPDATE  user SET user_name=?,email=?,diachi=?,dienthoai=?,img=? WHERE id_user=?";
   pdo_execute($sql, $user_name, $email, $diachi, $dienthoai, $img, $id_user);
+}
+
+function update_mk_user($password, $username) {
+  $sql = "UPDATE  user SET password=? WHERE username=?";
+  pdo_execute($sql, $password, $username);
 }
 
 function check_tk_by_username($username) {
