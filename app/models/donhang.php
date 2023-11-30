@@ -364,7 +364,7 @@ function donhangct_delete($id,$tt){
 }
 
 function xacnhandh($mdh){
-  $sql = " UPDATE donhangchitiet SET trangthai= trangthai + 1 WHERE  id_ct=?";
+  $sql = " UPDATE donhangchitiet SET trangthai = 3 WHERE  id_ct=?";
       pdo_execute($sql,$mdh);
   
 }
@@ -372,6 +372,5 @@ function xacnhandh($mdh){
 function donhangct_xacnhan($tt,$id){
   $sql = " UPDATE donhangchitiet SET trangthai =? WHERE  id_ct=?";
       pdo_execute($sql,$tt,$id);
-  
 }
 ?>

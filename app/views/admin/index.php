@@ -580,7 +580,7 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                     $id = $_GET['id'];
                     donhangct_xacnhan($tt,$id);
                     $dh = donhangct_all();
-                    include "donhang/donhangchitiet.php";
+                    header("Location: index.php?ad=quanlydonhang");
                 }
                 break;
             case "xemchitetdh":
