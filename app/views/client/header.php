@@ -6,12 +6,31 @@ $html_showdm = showdm_all(danhmuc_all());
                          <div class="dropdown-menu">
                          <div class="text-center mb-2 "><img class="img-header" width=30% src="public/uploads/'.$img.'" alt=""></div>
                          <h5 class=text-center mt-5>'.$user_name.'</h5>
-                         <a href="index.php?cl=dangxuat" class="btn_1 mt-3">Đăng xuất</a>';
+                         <a href="index.php?cl=dangxuat" class="btn_1 mt-3">Đăng xuất</a>
+                         <ul>
+                         <li>
+                             <a href="index.php?cl=myOrder"><i class="ti-truck"></i>Đơn hàng</a>
+                         </li>
+                         <li>
+                             <a href="index.php?cl=myOrder"><i class="ti-package"></i>My Orders</a>
+                         </li>
+                         <li>
+                             <a href="index.php?cl=thongtinuser"><i class="ti-user"></i>My Profile</a>
+                         </li>
+                         <li>
+                             <a href="help.html"><i class="ti-help-alt"></i>Help and Faq</a>
+                         </li>
+                     </ul>';
     } else {
         $html_account = '<a href="index.php?cl=dangnhap" class="access_link"><span>Account</span></a>
                          <div class="dropdown-menu">
                          <a href="index.php?cl=dangnhap" class="btn_1">Đăng nhập</a>
-                         <a href="index.php?cl=dangky" class="btn_1 mt-2">Đăng ký</a>';
+                         <a href="index.php?cl=dangky" class="btn_1 mt-2">Đăng ký</a>
+                         <ul>
+                         <li>
+                             <a href="help.html"><i class="ti-help-alt"></i>Help and Faq</a>
+                         </li>
+                        </ul>';
     }
     $html_cartheader =  viewcart_header();
     $total = get_tongdonhang();
@@ -208,20 +227,6 @@ $html_showdm = showdm_all(danhmuc_all());
                                 <li>
                                     <div class="dropdown dropdown-access">
                                         <?=$html_account;?>
-                                            <ul>
-                                                <li>
-                                                    <a href="index.php?cl=myOrder"><i class="ti-truck"></i>Đơn hàng</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index.php?cl=myOrder"><i class="ti-package"></i>My Orders</a>
-                                                </li>
-                                                <li>
-                                                    <a href="index.php?cl=thongtinuser"><i class="ti-user"></i>My Profile</a>
-                                                </li>
-                                                <li>
-                                                    <a href="help.html"><i class="ti-help-alt"></i>Help and Faq</a>
-                                                </li>
-                                            </ul>
                                         </div>
                                     </div>
                                     <!-- /dropdown-access-->
