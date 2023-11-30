@@ -43,7 +43,6 @@ function showds_binhluan_admin($dsbinhluan) {
         $html_dsbinhluan.='<tr>
                             <td>'.$id_bl.'</td>
                             <td>'.$id_sanpham.'</td>
-                            <td>'.$id_user.'</td>
                             <td>'.$hoten.'</td>
                             <td>'.$noidung.'</td>
                             <td>'.$ngaybl.'</td>
