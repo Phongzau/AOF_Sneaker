@@ -348,6 +348,9 @@
                 $giatrivoucher = $giatri;
             }
             $thanhtoan = $tongdonhang - $giatrivoucher;
+            if ($thanhtoan < 0) {
+                $thanhtoan = 0;
+            }
             include "app/views/client/donhang.php";
             break;
         case 'submit_donhang':
