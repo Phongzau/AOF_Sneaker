@@ -244,6 +244,7 @@
                     include "app/views/client/thongtinuser.php";
                     break;
                 }
+                
             }
             break;
         case 'dangxuat':
@@ -399,116 +400,12 @@
             break;
         case 'danhandonhang':
             if (isset($_GET['madh']) && $_GET['madh'] > 0) {
-                $mdh = $_GET['madh'];
+            $mdh = $_GET['madh'];za
             }
             xacnhandh($mdh);
             $id_user = $_SESSION['s_user']['id_user'];
             $dsdhct = select_dh_dhct($id_user);
             header("location: index.php?cl=myOrder");
-            break;
-        case 'quenmatkhau':
-            include "app/views/client/quenmatkhau.php";
-            break;
-        case 'th_doimk':
-            if (isset($_POST['doimatkhau'])) {
-                if (empty($_POST['username'])) {
-                    $errors['tb_error_username_dmk'] = "Tên tài khoản không được để trống";
-                } else {
-                    $username = $_POST['username'];
-                }
-                // Email
-                if (empty($_POST['email'])) {
-                    $errors['tb_error_email'] = "Email không được để trống";
-                } else {
-                    $email = $_POST['email'];
-                }
-                if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                    $errors['tb_email'] = "Địa chỉ email không hợp lệ";
-                }
-            }
-            if (empty($errors)) {
-                $checktkdmk = check_tk_user_doimk($username, $email);
-                if (is_array($checktkdmk) && count($checktkdmk) > 0) {
-                    include "app/views/client/formdoimk.php";
-                } else {
-                    $tbdmk = "<h3 class=text-center style=color:red>Bạn đã nhập sai thông tin</h3>";
-                    include "app/views/client/quenmatkhau.php";
-                }
-            } else {
-                $tbdmks = "<h3 class=text-center style=color:red>Bạn đã nhập sai thông tin</h3>";
-                include "app/views/client/quenmatkhau.php";
-            }
-            break;
-        case 'th_doimatkhau':
-            if (isset($_POST['th_doimatkhau'])) {
-                // Tên đăng nhập
-                    $username = $_POST['username'];
-                // Mật khẩu
-                if (empty($_POST['password'])) {
-                    $errors['tb_error_password'] = "Mật khẩu không được để trống";
-                } else {
-                    $password = $_POST['password'];
-                } 
-                // Mật khẩu nhập lại
-                if (empty($_POST['repassword'])) {
-                    $errors['tb_error_repassword'] = "Mật khẩu nhập lại không được để trống";
-                } else {
-                    $repassword = $_POST['repassword'];
-                }
-                // Kiểm tra mật khẩu
-                if ($password !== $repassword) {
-                    $errors['tb_error_nhaplaipass'] = "Mật khẩu nhập lại không đúng";
-                }
-                if (empty($errors)) {
-                    update_mk_user($password, $username);
-                    $tb_dmktc = "<h3 class=text-center style=color:green>Bạn đã đổi mật khẩu thành công</h3>";
-                    include "app/views/client/dangnhap.php";
-                } else {
-                    $tb_dmktb = "<h3 class=text-center style=color:red>Bạn đổi mật khẩu thất bại</h3>";
-                    include "app/views/client/formdoimk.php";
-                }
-            }
-            break;
-        case 'th_doimatkhautt':
-            if (isset($_POST['th_doimatkhautt'])) {
-                // Tên đăng nhập
-                    $username = $_POST['username'];
-                // Mật khẩu
-                if (empty($_POST['old_password'])) {
-                    $errors['tb_error_old_password'] = "Mật khẩu cũ không được để trống";
-                } else {
-                    $old_password = $_POST['old_password'];
-                }
-                $checktkmk = check_tk_user_dmktt($username, $password);
-                if (is_array($checktkmk) && count($checktkmk)) {
-                } else {
-                    $errors['tb_error_oldpassword'] = "Mật khẩu cũ sai";
-                }
-                // Mật khẩu cũ 
-                if (empty($_POST['password'])) {
-                    $errors['tb_error_password'] = "Mật khẩu không được để trống";
-                } else {
-                    $password = $_POST['password'];
-                } 
-                // Mật khẩu nhập lại
-                if (empty($_POST['repassword'])) {
-                    $errors['tb_error_repassword'] = "Mật khẩu nhập lại không được để trống";
-                } else {
-                    $repassword = $_POST['repassword'];
-                }
-                // Kiểm tra mật khẩu
-                if ($password !== $repassword) {
-                    $errors['tb_error_nhaplaipass'] = "Mật khẩu nhập lại không đúng";
-                }
-                if (empty($errors)) {
-                    update_mk_user($password, $username);
-                    $tb_dmktc = "<h3 class=text-center style=color:green>Bạn đã đổi mật khẩu thành công</h3>";
-                    include "app/views/client/doimatkhautt.php";
-                } else {
-                    $tb_dmktb = "<h3 class=text-center style=color:red>Bạn đổi mật khẩu thất bại</h3>";
-                    include "app/views/client/doimatkhautt.php";
-                }
-            }
             break;
         case 'updatecart':
             if (isset($_POST['updatecart'])) {
@@ -522,9 +419,6 @@
             $_SESSION['giohang'][$index]['soluong'] = $soluong;
             }
             header("Location: index.php?cl=viewcart");
-        case 'doimatkhautt':
-            include "app/views/client/doimatkhautt.php";
-            break;
         default :
             include "app/views/client/home.php";
             break;

@@ -309,7 +309,6 @@ function show_dhct_admin($dssp){
       case 2:
         $tt = "Đang Giao Hàng";
         $ttxn.= '';
-        break;
         case 3:
           $tt = "Giao Hàng Thanh Công";
           break;
