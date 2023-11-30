@@ -93,6 +93,7 @@ $bl = select_id_binhluan($id);
        }
        .tong{
         margin: 50px;
+       
        }
 
 

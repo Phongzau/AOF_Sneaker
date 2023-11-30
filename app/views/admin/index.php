@@ -599,10 +599,10 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                 break;
 
                 // Xóa liên hệ
-            case 'deletelh':
+            case 'capnhatlh':
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                     $id = $_GET['id'];
-                    delete_lienhe_admin($id);
+                    update_lienhe_admin($id);
                 }
                 $dslienhe = select_lienhe_all();
                 include "lienhe/quanlylienhe.php";
