@@ -16,17 +16,17 @@
             <div class="col-lg-4">
                 <div class="box_contacts">
                     <i class="ti-map-alt"></i>
-                    <h2>Allaia Showroom</h2>
-                    <div>6th Forrest Ray, London - 10001 UK</div>
-                    <small>MON to FRI 9am-6pm SAT 9am-2pm</small>
+                    <h2>Allaia Cửa Hàng</h2>
+                    <div> Trịnh Văn Bô - Nam Từ Liêm - Hà Nội</div>
+                    <small>Các Ngày Trong Tuần 9am-6pm SAT 9am-2pm</small>
                 </div>
             </div>
             <div class="col-lg-4">
                 <div class="box_contacts">
                     <i class="ti-package"></i>
-                    <h2>Allaia Orders</h2>
+                    <h2>Allaia Mua Hàng Trực Tiếp</h2>
                     <a href="#0">0343147165</a> - <a href="#0">order@allaia.com</a>
-                    <small>MON to FRI 9am-6pm SAT 9am-2pm</small>
+                    <small>Các Ngày Trong Tuần 9am-6pm SAT 9am-2pm</small>
                 </div>
             </div>
         </div>
@@ -48,7 +48,7 @@
                     <textarea class="form-control" name="noidung" style="height: 150px;" required  placeholder="Message *"></textarea>
                 </div>
                 <div class="form-group">
-                    <input class="btn_1 full-width" name="btn_submit" type="submit" required  value="Submit">
+                    <input class="btn_1 full-width" name="btn_submit" type="submit" required  value="Gửi Thông Tin">
                 </div>
                 </form>
             </div>

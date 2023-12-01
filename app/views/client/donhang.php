@@ -1,7 +1,9 @@
 <?php
     $html_cartdonhang = viewcart_donhang();
     $total = get_tongdonhang();
-    
+    $formattedtotal= number_format($total, 0, '.', '.');
+    $formattedgiatrivoucher= number_format($giatrivoucher, 0, '.', '.');
+    $formattedthanhtoan= number_format($thanhtoan, 0, '.', '.');
 ?>
 <main class="bg_gray">
 		
@@ -35,9 +37,9 @@
                             <div class="form-group">
                                 <input type="text" class="form-control" value="<?= (isset($diachi) && $diachi !== "") ? $diachi : "" ?>" name="nguoidat_diachi" id="password_in" value="" placeholder="Địa chỉ nhà">
                             </div>
-                            <input type="text" name="total" value="<?=$total?>">
-                            <input type="text" name="giatrivoucher" value="<?=$giatrivoucher?>">
-                            <input type="text" name="tongthanhtoan" value="<?=$thanhtoan?>">
+                            <input type="hidden" name="total" value="<?=$total?>">
+                            <input type="hidden" name="giatrivoucher" value="<?=$giatrivoucher?>">
+                            <input type="hidden" name="tongthanhtoan" value="<?=$thanhtoan?>">
                             <label for="">Hình thức thanh toán</label> <br>
                             <div class="form-group">
                                 <input type="radio" name="pttt" value="0" checked> Thanh toán khi nhận hàng <br>
@@ -68,9 +70,9 @@
 									</div>
 									
                             <div class="total_drop mt-4">
-                                <div class="text-center clearfix "><strong>Tổng:</strong><span style="margin-left: 50px;"><strong>$<?=$total?></strong></span></div>
-                                <div class="text-center clearfix "><strong>Giảm giá:</strong><span id="discountAmount" style="margin-left: 50px;"><strong>$<?=$giatrivoucher?></strong></span></div>
-                                <div class="text-center clearfix "><strong>Tổng thanh toán:</strong><span id="totalAmount" style="margin-left: 50px;"><strong>$<?=$thanhtoan?></strong></span></div>
+                                <div class="text-center clearfix "><strong>Tổng:</strong><span style="margin-left: 50px;"><strong><?=$formattedtotal?>VND</strong></span></div>
+                                <div class="text-center clearfix "><strong>Giảm giá:</strong><span id="discountAmount" style="margin-left: 50px;"><strong><?=$formattedgiatrivoucher?>VND</strong></span></div>
+                                <div class="text-center clearfix "><strong>Tổng thanh toán:</strong><span id="totalAmount" style="margin-left: 50px;"><strong><?=$formattedthanhtoan?>VND</strong></span></div>
                                 <div class="mt-3 text-center"><a href="cart.html" class="btn_1 outline">View Cart</a></div>
                             </div>
                         </div>                 

@@ -51,7 +51,7 @@
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong>Số Lượng</strong></label>
+                                                <label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong>Số Lượng (<?=$tongsl?>)</strong></label>
                                                 <div class="col-xl-4 col-lg-5 col-md-6 col-6">
                                                     <div class="numbers-row">
                                                         <input type="number" value="1" min="1" class="qty2" name="soluong">
@@ -70,7 +70,7 @@
                                                 <input type="hidden" name="id_sp" value="<?=$id_sp?>">
                                                 <input type="hidden" name="name" value="<?=$name?>">
                                                 <input type="hidden" name="img" value="<?=$img?>">
-                                                <input type="hidden" name="price" value="<?= $formattedPrice?>">
+                                                <input type="hidden" name="price" value="<?=$price?>">
                                                 <input type="hidden" name="size" value="<?=$dungluong?>">
                                                 
                                                 <div class="btn_add_to_cart"><button type="submit" class="btn_1" name="addcart">Đặt hàng</button></div>
@@ -194,13 +194,13 @@
 
 	    <div class="feat">
 			<div class="container">
-				<ul>
+            <ul>
 					<li>
 						<div class="box">
 							<i class="ti-gift"></i>
 							<div class="justify-content-center">
-								<h3>Free Shipping</h3>
-								<p>For all oders over $99</p>
+								<h3>Miễn phí vận chuyển</h3>
+								<p>Cho tất cả các Sản Phẩm trên 500.000</p>
 							</div>
 						</div>
 					</li>
@@ -208,8 +208,8 @@
 						<div class="box">
 							<i class="ti-wallet"></i>
 							<div class="justify-content-center">
-								<h3>Secure Payment</h3>
-								<p>100% secure payment</p>
+								<h3>Thanh toán an toàn</h3>
+								<p>Thanh toán an toàn 100%</p>
 							</div>
 						</div>
 					</li>
@@ -217,8 +217,8 @@
 						<div class="box">
 							<i class="ti-headphone-alt"></i>
 							<div class="justify-content-center">
-								<h3>24/7 Support</h3>
-								<p>Online top support</p>
+								<h3>Hỗ trợ 24/7</h3>
+								<p>Hỗ trợ trực tuyến hàng đầu</p>
 							</div>
 						</div>
 					</li>

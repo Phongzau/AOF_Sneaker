@@ -95,8 +95,8 @@
 						<div class="box">
 							<i class="ti-gift"></i>
 							<div class="justify-content-center">
-								<h3>Free Shipping</h3>
-								<p>For all oders over $99</p>
+								<h3>Miễn phí vận chuyển</h3>
+								<p>Cho tất cả các Sản Phẩm trên 500.000</p>
 							</div>
 						</div>
 					</li>
@@ -104,8 +104,8 @@
 						<div class="box">
 							<i class="ti-wallet"></i>
 							<div class="justify-content-center">
-								<h3>Secure Payment</h3>
-								<p>100% secure payment</p>
+								<h3>Thanh toán an toàn</h3>
+								<p>Thanh toán an toàn 100%</p>
 							</div>
 						</div>
 					</li>
@@ -113,8 +113,8 @@
 						<div class="box">
 							<i class="ti-headphone-alt"></i>
 							<div class="justify-content-center">
-								<h3>24/7 Support</h3>
-								<p>Online top support</p>
+								<h3>Hỗ trợ 24/7</h3>
+								<p>Hỗ trợ trực tuyến hàng đầu</p>
 							</div>
 						</div>
 					</li>

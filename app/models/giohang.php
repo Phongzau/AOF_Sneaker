@@ -11,7 +11,9 @@ function viewcart(){
     $i = 1;
     foreach ($_SESSION['giohang'] as $sp) {
     extract($sp);
+    $formattedPrice = number_format($price, 0, '.', '.');
     $tt = $price*$soluong;
+    $formattedPricett = number_format($tt , 0, '.', '.');
     $html_cart.='   <tr>
                         <td>'.$i.'</td>
                         <td><span class="item_cart">'.$name.'</span></td>
@@ -20,12 +22,12 @@ function viewcart(){
                                 <img width="30%" src="'.IMG_PATH_USER.$img.'" data-src="'.IMG_PATH_USER.$img.'" class="lazy" alt="Image">
                             </div>
                         </td>
-                        <td><strong>$'.$price.'</strong></td>
+                        <td><strong>$'.$formattedPrice.'</strong></td>
                         <td>
                         <input type="number" name="soluong" value="'.$soluong.'" min="1">
                         <input type="hidden" name="id_sp" value="'.$id_sp.'">
                         </td>
-                        <td><strong>'.$tt.'</strong></td>
+                        <td><strong>'.$formattedPricett.'VND</strong></td>
                         <td class="options">
                             <a href="index.php?cl=delspgiohang&id='.$id_sp.'"><i class="ti-trash"></i></a>
                         </td>
@@ -60,8 +62,9 @@ function viewcart_donhang() {
     foreach ($_SESSION['giohang'] as $sp) {
     extract($sp);
     $tt = $price*$soluong;
+    $formattedPrice = number_format($tt, 0, '.', '.');
     $html_cartdonhang.='   <div class="son-li">
-                            <img width="20%" src="'.IMG_PATH_USER.$img.'" alt=""><p><strong>'.$name.' x '.$soluong.'</strong></p> <span><strong>$'.$tt.'</strong></span>
+                            <img width="20%" src="'.IMG_PATH_USER.$img.'" alt=""><p><strong>'.$name.' x '.$soluong.'</strong></p> <span><strong>$'.$formattedPrice.'</strong></span>
                           </div>
                             ';  
 }
