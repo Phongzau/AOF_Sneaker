@@ -12,8 +12,7 @@
                         <input type="text" hidden class="form-control" value="<?=$id?>" name="id_sp" id="name" >
                     </div>
                     <div class="form-group">
-                        <label for="name">Tên sản phẩm:</label>
-                        <input type="text" value="<?=$name?>" class="form-control" id="name" >
+                        <input type="hidden" value="<?=$name?>" class="form-control" id="name" >
                     </div>
                     <div class="form-group">
                         <label for="name">Size:</label>

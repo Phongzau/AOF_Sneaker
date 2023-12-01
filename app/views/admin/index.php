@@ -153,6 +153,9 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
             case "deletesp":
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                     $id = $_GET['id'];
+                    delete_binhluan_admin_sp($id);
+                    sp_delete_hinhanh($id);
+                    sp_delete_bienthe($id);
                     sp_delete($id);
                 }
                 $sp = select_sp_all();
@@ -186,7 +189,7 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                 }
                 insert_sanpham_admin($name, $price, $mota, $img, $iddm);
                 $sp = select_sp_all();
-                include "sanpham/quanlysanpham.php";
+                header('location:index.php?ad=quanlysanpham');
                 break;
 
                 // Thực hiện sửa sản phẩm
@@ -202,7 +205,7 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                         $target_file = IMG_PATH_ADMIN . $img;
                         move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
                     } else {
-                        $img = "";
+                        $img = $_POST['imgcu'];
                     }
                     sanpham_update($id_sp, $name, $price, $mota, $img, $iddm);
                     $sp = select_sp_all();
@@ -290,6 +293,7 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                     bienthe_insert($id_sp, $dungluong, $soluong);
                 }
                 include "bienthe/quanlybienthe.php";
+                header('location:index.php?ad=quanlysanpham');
                 break;
 
                 // Thực hiện sửa biến thể
@@ -344,7 +348,7 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                     }
                     insert_hinhanh_admin($img, $id_sanpham);
                     $sp = select_sp_all();
-                    include "sanpham/quanlysanpham.php";
+                    header('location:index.php?ad=quanlysanpham');
                     break;
                 }
 
@@ -401,7 +405,7 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                 }
                 insert_danhmuc_admin($tendm, $mota);
                 $dm = danhmuc_all();
-                include "danhmuc/quanlydanhmuc.php";
+                header('location:index.php?ad=quanlydanhmuc');
                 break;
 
                 //------------------------------------------------------Hết Trang Quản Lý Danh Mục------------------------------------------------------//
@@ -429,7 +433,7 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                 }
                 insert_baiviet_admin( $tieude,$noidung, $img);
                 $dsbaiviet = select_baiviet_admin();
-                include "baiviet/quanlybaiviet.php";
+                header('location:index.php?ad=quanlybaiviet');
                 break;
 
                 // Sửa bài viết
@@ -524,7 +528,7 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                 }
                 insert_khuyenmai_admin($voucher, $mota, $giatri);
                 $dsvoucher = select_voucher_admin();
-                include "khuyenmai/quanlykhuyenmai.php";
+                header('location:index.php?ad=quanlykhuyenmai');
                 break;
 
                 //------------------------------------------------------Hết Trang Quản Lý Khuyến Mãi------------------------------------------------------//
@@ -568,6 +572,7 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                     if (isset($_GET['tt']) && ($_GET['tt'] > 0)) {
                         $id = $_GET['id'];
                         $tt = $_GET['tt'];
+                        donhang_delete($id);
                         $tb = donhangct_delete($id, $tt);
                     }
                 }
