@@ -1,5 +1,5 @@
 <?php
-    $html_showdhcl = show_dh_client($dsdhct);
+    $html_showdhcl = show_dhct($dhct);
 ?>
 
 <main class="bg_white mt-1">

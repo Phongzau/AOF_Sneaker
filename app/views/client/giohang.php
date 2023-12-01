@@ -1,6 +1,5 @@
 <?php
 	$html_cart = viewcart();
-
 ?>
 <main class="bg_gray">
 		<form action="index.php?cl=updatecart" method="POST">

@@ -12,6 +12,27 @@
 //   return pdo_query($sql);
 // }
 
+function select_dh_cxnh($id_user) {
+    $sql = "SELECT * FROM  donhangchitiet WHERE trangthai = 0 AND id_usct=?";
+    return pdo_query($sql, $id_user);
+}
+
+function select_dh_dcb($id_user) {
+    $sql = "SELECT * FROM  donhangchitiet WHERE trangthai = 1 AND id_usct=?";
+    return pdo_query($sql, $id_user);
+}
+
+function select_dh_dgh($id_user) {
+    $sql = "SELECT * FROM  donhangchitiet WHERE trangthai = 2 AND id_usct=?";
+    return pdo_query($sql, $id_user);
+}
+
+function select_dh_dg($id_user) {
+    $sql = "SELECT * FROM  donhangchitiet WHERE trangthai = 3 AND id_usct=?";
+    return pdo_query($sql, $id_user);
+}
+
+
 function select_dh_dhct($id_user) {
   $sql = "SELECT * FROM donhang 
           INNER JOIN sanpham ON donhang.id_sanpham = sanpham.id_sp
@@ -20,6 +41,17 @@ function select_dh_dhct($id_user) {
           ORDER BY donhang.madh_ct";
   return pdo_query($sql, $id_user); 
 }
+
+function select_dhct($madh_ct) {
+  $sql = "SELECT * FROM donhang 
+          INNER JOIN sanpham ON donhang.id_sanpham = sanpham.id_sp
+          INNER JOIN donhangchitiet ON donhang.madh_ct = donhangchitiet.id_ct
+          WHERE madh_ct = ?
+          ORDER BY donhang.madh_ct";
+  return pdo_query($sql, $madh_ct); 
+}
+
+
 
 function dhct_insert_id($madh, $nguoidat_ten, $nguoidat_email, $nguoidat_tel, $nguoidat_diachi, $total, $voucher, $tongthanhtoan, $pttt, $id_user) {
   $sql = "INSERT INTO donhangchitiet(madh, nguoidat_ten, nguoidat_email, nguoidat_tell, nguoidat_diachi, total, voucher, tongthanhtoan, pttt, id_usct) VALUES (?, ?, ?, ?, ?, ? ,?, ?, ?, ?)";
@@ -39,6 +71,79 @@ function donhangct_all(){
   $sql = "SELECT * FROM donhangchitiet ";
   return pdo_query($sql);
 }
+
+function show_dhct($dhct) {
+  $html_showdhcl = '<div class="row mb-2">
+                    <div class="col-md-8 offset-md-2">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5 class="card-title">Thông tin đơn hàng</h5>
+                            </div>
+                            <div class="card-body">';
+  foreach ($dhct as $dh) {
+      extract($dh);
+
+      switch ($trangthai) {
+          case 0:
+              $tt = "Chờ Xác Nhận";
+              $boxtt = '<p class="card-text"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>
+                        <a href="index.php?cl=huydonhang&madh_ct='.$madh_ct.'" class="btn btn-danger "><p class="card-text"><strong>Hủy đơn hàng</strong></p></a>';
+              break;
+          case 1:
+              $tt = "Đang Chuẩn Bị Hàng";
+              $boxtt = '<p class="card-text"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>
+                        <a href="#" class="btn btn-danger huy-button disabled" disabled><strong>Hủy đơn hàng</strong></a>';
+              break;
+          case 2:
+              $tt = "Đang Giao Hàng";
+              $boxtt = '<p class="card-text"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>
+                       <a href="index.php?cl=danhandonhang&madh_ct='.$madh_ct.'" class="btn btn-primary "><p class="card-text"><strong>Đã nhận được hàng ?</strong></p></a>';
+              break;
+          case 3:
+              $tt = "Giao Hàng Thành Công";
+              $boxtt = '<p class="card-text"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>
+                      <a href="#" class="btn btn-success "><p class="card-text"><strong>Đã nhận được hàng</strong></p></a>';
+              break;
+          default:
+              $tt = "Đơn Hàng Không Xác Định";
+              $boxtt = '<p class="card-text"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+              break;
+      }
+        
+          // Hiển thị thông tin sản phẩm
+          $html_showdhcl .= '<div class="row mb-2">
+                          <div class="col-md-4">
+                              <img src="' . IMG_PATH_USER . $img . '" alt="Product Image" class="img-fluid">
+                          </div>
+                          <div class="col-md-8">
+                              <h4 class="card-title">' . $name . '</h4>
+                              <p class="card-text"><strong>Size:</strong> ' . $size . '</p>
+                              <p class="card-text"><strong>Giá:</strong> ' . $price . '</p>
+                              <p class="card-text"><strong>Số lượng:</strong> ' . $soluong . '</p>
+                              <p class="card-text"><strong>Tổng cộng:</strong> ' . $tonggia . '</p>
+                          </div>
+                      </div>';
+          $currentOrderId = $madh;
+          $nguoidathang = $nguoidat_ten;
+          $ttt = $tongthanhtoan;
+          $ngaydat = $ngaydathang;
+          $diachi = $nguoidat_diachi;
+          $trangthaidh = $boxtt;
+}
+
+  $html_showdhcl .= '</div>
+                      <div class="card-footer">
+                      <p class="card-text"><strong>Mã đơn hàng: </strong>' . $currentOrderId . '</p>
+                      <p class="card-text"><strong>Người đặt hàng: </strong>' . $nguoidathang . '</p>
+                      <p class="card-text"><strong>Địa chỉ giao hàng: </strong>' . $diachi . '</p>
+                      <p class="card-text"><strong>Ngày đặt hàng: </strong> ' . $ngaydat . '</p>
+                      <p class="card-text"><strong>Tổng thanh toán: </strong> ' .  $ttt  . '</p>
+                      '.$trangthaidh.'
+                      </div></div></div></div>';
+
+  return $html_showdhcl;
+}
+
 
 function show_dh_client($dsdhct) {
   $html_showdhcl = '';
@@ -283,6 +388,380 @@ function show_dh_admin($dssp){
     return $html_dssp;
 }
 
+function show_dhdg($dsdh) {
+  $html_showdh = '';
+  $currentOrderId = null;
+  foreach ($dsdh as $dh) {
+    extract($dh);
+    switch ($trangthai) {
+      case 0:
+          $tt = "Chờ Xác Nhận";
+          $thanhtb = '<p class="card-text text-danger"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+          $boxtt = '<a href="index.php?cl=huydonhang&madh_ct='.$madh_ct.'" class="btn btn-danger "><p class="card-text"><strong>Hủy đơn hàng</strong></p></a>';
+          break;
+      case 1:
+          $tt = "Đang Chuẩn Bị Hàng";
+          $thanhtb = '<p class="card-text text-warning"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+          $boxtt = '<a href="#" class="btn btn-danger huy-button disabled" disabled><strong>Hủy đơn hàng</strong></a>';
+          break;
+      case 2:
+          $tt = "Đang Giao Hàng";
+          $thanhtb = '<p class="card-text text-primary"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+          $boxtt = '<a href="index.php?cl=danhandonhang&madh_ct='.$madh_ct.'" class="btn btn-primary "><p class="card-text"><strong>Đã nhận được hàng ?</strong></p></a>';
+          break;
+      case 3:
+          $tt = "Giao Hàng Thành Công";
+          $thanhtb = '<p class="card-text text-success "><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+          $boxtt = '<a href="#" class="btn btn-success "><p class="card-text"><strong>Đã nhận được hàng</strong></p></a>';
+          break;
+      default:
+          $tt = "Đơn Hàng Không Xác Định";
+          $boxtt = '<p class="card-text"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+          break;
+  }
+  if ($trangthai === 3) {
+    if ($currentOrderId !== $madh_ct) {
+      // Tính tổng số lượng sản phẩm trong đơn hàng
+      $totalQuantity = array_reduce(
+          $dsdh,
+          function ($carry, $item) use ($madh_ct) {
+              return $carry + ($item['madh_ct'] === $madh_ct ? $item['soluong'] : 0);
+          },
+          0
+      );
+
+      $html_showdh .= '
+          <div class="container mt-4">
+              <div class="row">
+                  <div class="col-md-8 offset-md-2">
+                      <div class="card">
+                          <div class="card-header">
+                              <h5 class="card-title">Thông tin đơn hàng</h5>
+                          </div>
+                          <div class="card-body">
+                              <div class="row">
+                                  <div class="col-md-3">
+                                      <img src="' . IMG_PATH_USER . $img . '" alt="Product Image" class="img-fluid">
+                                  </div>
+                                  <div class="col-md-9">
+                                      <h4 class="card-title"> ' . $name . '</h4>
+                                      <p class="card-text"><strong>Size:</strong> ' . $size . '</p>
+                                      <p class="card-text"><strong>Giá:</strong> ' . $price . '</p>
+                                      <p class="card-text"><strong>Số lượng:</strong> ' . $soluong . '</p>
+                                      <p class="card-text"><strong>Tổng cộng:</strong> ' . $tonggia . '</p>
+                                  </div>
+                              </div>
+                              <!-- Thêm dòng gạch ngăn cách -->
+                              <hr class="hr-tt">
+                              <div class="tttdh mt-4">
+                                  <p class="card-text"><strong>Tổng số lượng sản phẩm trong đơn hàng:</strong> ' . $totalQuantity . '</p>
+                                  <p class="card-text"><strong>Tổng tiền thanh toán:</strong> ' . $tongthanhtoan . '</p>
+                              </div>
+                          </div>
+                          <div class="card-footer d-flex justify-content-between">
+                              <div>
+                                  '.$thanhtb.'
+                              </div>
+                              <div>
+                                  <a href="index.php?cl=chitietdonhang&madh_ct='.$madh_ct.'" class="btn btn-primary">Chi tiết đơn hàng</a>
+                                  '.$boxtt.'
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>';
+
+  }
+    
+      // Cập nhật mã đơn hàng chi tiết hiện tại
+      $currentOrderId = $madh_ct;
+      
+  }
+}
+return $html_showdh;
+}
+
+function show_dhxnh($dsdh) {
+  $html_showdh = '';
+  $currentOrderId = null;
+  foreach ($dsdh as $dh) {
+    extract($dh);
+    switch ($trangthai) {
+      case 0:
+          $tt = "Chờ Xác Nhận";
+          $thanhtb = '<p class="card-text text-danger"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+          $boxtt = '<a href="index.php?cl=huydonhang&madh_ct='.$madh_ct.'" class="btn btn-danger "><p class="card-text"><strong>Hủy đơn hàng</strong></p></a>';
+          break;
+      case 1:
+          $tt = "Đang Chuẩn Bị Hàng";
+          $thanhtb = '<p class="card-text text-warning"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+          $boxtt = '<a href="#" class="btn btn-danger huy-button disabled" disabled><strong>Hủy đơn hàng</strong></a>';
+          break;
+      case 2:
+          $tt = "Đang Giao Hàng";
+          $thanhtb = '<p class="card-text text-primary"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+          $boxtt = '<a href="index.php?cl=danhandonhang&madh_ct='.$madh_ct.'" class="btn btn-primary "><p class="card-text"><strong>Đã nhận được hàng ?</strong></p></a>';
+          break;
+      case 3:
+          $tt = "Giao Hàng Thành Công";
+          $thanhtb = '<p class="card-text text-success "><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+          $boxtt = '<a href="#" class="btn btn-success "><p class="card-text"><strong>Đã nhận được hàng</strong></p></a>';
+          break;
+      default:
+          $tt = "Đơn Hàng Không Xác Định";
+          $boxtt = '<p class="card-text"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+          break;
+  }
+  if ($trangthai === 0) {
+    if ($currentOrderId !== $madh_ct) {
+      // Tính tổng số lượng sản phẩm trong đơn hàng
+      $totalQuantity = array_reduce(
+          $dsdh,
+          function ($carry, $item) use ($madh_ct) {
+              return $carry + ($item['madh_ct'] === $madh_ct ? $item['soluong'] : 0);
+          },
+          0
+      );
+
+      $html_showdh .= '
+          <div class="container mt-4">
+              <div class="row">
+                  <div class="col-md-8 offset-md-2">
+                      <div class="card">
+                          <div class="card-header">
+                              <h5 class="card-title">Thông tin đơn hàng</h5>
+                          </div>
+                          <div class="card-body">
+                              <div class="row">
+                                  <div class="col-md-3">
+                                      <img src="' . IMG_PATH_USER . $img . '" alt="Product Image" class="img-fluid">
+                                  </div>
+                                  <div class="col-md-9">
+                                      <h4 class="card-title"> ' . $name . '</h4>
+                                      <p class="card-text"><strong>Size:</strong> ' . $size . '</p>
+                                      <p class="card-text"><strong>Giá:</strong> ' . $price . '</p>
+                                      <p class="card-text"><strong>Số lượng:</strong> ' . $soluong . '</p>
+                                      <p class="card-text"><strong>Tổng cộng:</strong> ' . $tonggia . '</p>
+                                  </div>
+                              </div>
+                              <!-- Thêm dòng gạch ngăn cách -->
+                              <hr class="hr-tt">
+                              <div class="tttdh mt-4">
+                                  <p class="card-text"><strong>Tổng số lượng sản phẩm trong đơn hàng:</strong> ' . $totalQuantity . '</p>
+                                  <p class="card-text"><strong>Tổng tiền thanh toán:</strong> ' . $tongthanhtoan . '</p>
+                              </div>
+                          </div>
+                          <div class="card-footer d-flex justify-content-between">
+                              <div>
+                                  '.$thanhtb.'
+                              </div>
+                              <div>
+                                  <a href="index.php?cl=chitietdonhang&madh_ct='.$madh_ct.'" class="btn btn-primary">Chi tiết đơn hàng</a>
+                                  '.$boxtt.'
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>';
+  }
+    
+
+      // Cập nhật mã đơn hàng chi tiết hiện tại
+      $currentOrderId = $madh_ct;
+  }
+}
+return $html_showdh;
+}
+
+function show_dhcbh($dsdh) {
+  $html_showdh = '';
+  $currentOrderId = null;
+  foreach ($dsdh as $dh) {
+    extract($dh);
+    switch ($trangthai) {
+      case 0:
+          $tt = "Chờ Xác Nhận";
+          $thanhtb = '<p class="card-text text-danger"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+          $boxtt = '<a href="index.php?cl=huydonhang&madh_ct='.$madh_ct.'" class="btn btn-danger "><p class="card-text"><strong>Hủy đơn hàng</strong></p></a>';
+          break;
+      case 1:
+          $tt = "Đang Chuẩn Bị Hàng";
+          $thanhtb = '<p class="card-text text-warning"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+          $boxtt = '<a href="#" class="btn btn-danger huy-button disabled" disabled><strong>Hủy đơn hàng</strong></a>';
+          break;
+      case 2:
+          $tt = "Đang Giao Hàng";
+          $thanhtb = '<p class="card-text text-primary"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+          $boxtt = '<a href="index.php?cl=danhandonhang&madh_ct='.$madh_ct.'" class="btn btn-primary "><p class="card-text"><strong>Đã nhận được hàng ?</strong></p></a>';
+          break;
+      case 3:
+          $tt = "Giao Hàng Thành Công";
+          $thanhtb = '<p class="card-text text-success "><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+          $boxtt = '<a href="#" class="btn btn-success "><p class="card-text"><strong>Đã nhận được hàng</strong></p></a>';
+          break;
+      default:
+          $tt = "Đơn Hàng Không Xác Định";
+          $boxtt = '<p class="card-text"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+          break;
+  }
+  if ($trangthai === 1) {
+    if ($currentOrderId !== $madh_ct) {
+      // Tính tổng số lượng sản phẩm trong đơn hàng
+      $totalQuantity = array_reduce(
+          $dsdh,
+          function ($carry, $item) use ($madh_ct) {
+              return $carry + ($item['madh_ct'] === $madh_ct ? $item['soluong'] : 0);
+          },
+          0
+      );
+
+      $html_showdh .= '
+          <div class="container mt-4">
+              <div class="row">
+                  <div class="col-md-8 offset-md-2">
+                      <div class="card">
+                          <div class="card-header">
+                              <h5 class="card-title">Thông tin đơn hàng</h5>
+                          </div>
+                          <div class="card-body">
+                              <div class="row">
+                                  <div class="col-md-3">
+                                      <img src="' . IMG_PATH_USER . $img . '" alt="Product Image" class="img-fluid">
+                                  </div>
+                                  <div class="col-md-9">
+                                      <h4 class="card-title"> ' . $name . '</h4>
+                                      <p class="card-text"><strong>Size:</strong> ' . $size . '</p>
+                                      <p class="card-text"><strong>Giá:</strong> ' . $price . '</p>
+                                      <p class="card-text"><strong>Số lượng:</strong> ' . $soluong . '</p>
+                                      <p class="card-text"><strong>Tổng cộng:</strong> ' . $tonggia . '</p>
+                                  </div>
+                              </div>
+                              <!-- Thêm dòng gạch ngăn cách -->
+                              <hr class="hr-tt">
+                              <div class="tttdh mt-4">
+                                  <p class="card-text"><strong>Tổng số lượng sản phẩm trong đơn hàng:</strong> ' . $totalQuantity . '</p>
+                                  <p class="card-text"><strong>Tổng tiền thanh toán:</strong> ' . $tongthanhtoan . '</p>
+                              </div>
+                          </div>
+                          <div class="card-footer d-flex justify-content-between">
+                              <div>
+                                  '.$thanhtb.'
+                              </div>
+                              <div>
+                                  <a href="index.php?cl=chitietdonhang&madh_ct='.$madh_ct.'" class="btn btn-primary">Chi tiết đơn hàng</a>
+                                  '.$boxtt.'
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>';
+  }
+    
+
+      // Cập nhật mã đơn hàng chi tiết hiện tại
+      $currentOrderId = $madh_ct;
+  }
+}
+return $html_showdh;
+}
+
+
+function show_dhct_client($dsdh) {
+  $html_showdh = '';
+  $currentOrderId = null;
+  foreach ($dsdh as $dh) {
+    extract($dh);
+    switch ($trangthai) {
+      case 0:
+          $tt = "Chờ Xác Nhận";
+          $thanhtb = '<p class="card-text text-danger"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+          $boxtt = '<a href="index.php?cl=huydonhang&madh_ct='.$madh_ct.'" class="btn btn-danger "><p class="card-text"><strong>Hủy đơn hàng</strong></p></a>';
+          break;
+      case 1:
+          $tt = "Đang Chuẩn Bị Hàng";
+          $thanhtb = '<p class="card-text text-warning"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+          $boxtt = '<a href="#" class="btn btn-danger huy-button disabled" disabled><strong>Hủy đơn hàng</strong></a>';
+          break;
+      case 2:
+          $tt = "Đang Giao Hàng";
+          $thanhtb = '<p class="card-text text-primary"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+          $boxtt = '<a href="index.php?cl=danhandonhang&madh_ct='.$madh_ct.'" class="btn btn-primary "><p class="card-text"><strong>Đã nhận được hàng ?</strong></p></a>';
+          break;
+      case 3:
+          $tt = "Giao Hàng Thành Công";
+          $thanhtb = '<p class="card-text text-success "><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+          $boxtt = '<a href="#" class="btn btn-success "><p class="card-text"><strong>Đã nhận được hàng</strong></p></a>';
+          break;
+      default:
+          $tt = "Đơn Hàng Không Xác Định";
+          $boxtt = '<p class="card-text"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+          break;
+  }
+  if ($trangthai === 2) {
+    if ($currentOrderId !== $madh_ct) {
+      // Tính tổng số lượng sản phẩm trong đơn hàng
+      $totalQuantity = array_reduce(
+          $dsdh,
+          function ($carry, $item) use ($madh_ct) {
+              return $carry + ($item['madh_ct'] === $madh_ct ? $item['soluong'] : 0);
+          },
+          0
+      );
+
+      $html_showdh .= '
+          <div class="container mt-4">
+              <div class="row">
+                  <div class="col-md-8 offset-md-2">
+                      <div class="card">
+                          <div class="card-header">
+                              <h5 class="card-title">Thông tin đơn hàng</h5>
+                          </div>
+                          <div class="card-body">
+                              <div class="row">
+                                  <div class="col-md-3">
+                                      <img src="' . IMG_PATH_USER . $img . '" alt="Product Image" class="img-fluid">
+                                  </div>
+                                  <div class="col-md-9">
+                                      <h4 class="card-title"> ' . $name . '</h4>
+                                      <p class="card-text"><strong>Size:</strong> ' . $size . '</p>
+                                      <p class="card-text"><strong>Giá:</strong> ' . $price . '</p>
+                                      <p class="card-text"><strong>Số lượng:</strong> ' . $soluong . '</p>
+                                      <p class="card-text"><strong>Tổng cộng:</strong> ' . $tonggia . '</p>
+                                  </div>
+                              </div>
+                              <!-- Thêm dòng gạch ngăn cách -->
+                              <hr class="hr-tt">
+                              <div class="tttdh mt-4">
+                                  <p class="card-text"><strong>Tổng số lượng sản phẩm trong đơn hàng:</strong> ' . $totalQuantity . '</p>
+                                  <p class="card-text"><strong>Tổng tiền thanh toán:</strong> ' . $tongthanhtoan . '</p>
+                              </div>
+                          </div>
+                          <div class="card-footer d-flex justify-content-between">
+                              <div>
+                                  '.$thanhtb.'
+                              </div>
+                              <div>
+                                  <a href="index.php?cl=chitietdonhang&madh_ct='.$madh_ct.'" class="btn btn-primary">Chi tiết đơn hàng</a>
+                                  '.$boxtt.'
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>';
+  }
+    
+
+      // Cập nhật mã đơn hàng chi tiết hiện tại
+      $currentOrderId = $madh_ct;
+  }
+}
+return $html_showdh;
+}
+
 function show_dhct_admin($dssp){
   $html_dssp ='';
   $ttxn ='';
@@ -309,6 +788,7 @@ function show_dhct_admin($dssp){
       case 2:
         $tt = "Đang Giao Hàng";
         $ttxn.= '';
+        break;
         case 3:
           $tt = "Giao Hàng Thanh Công";
           break;

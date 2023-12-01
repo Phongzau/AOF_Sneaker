@@ -35,9 +35,9 @@
                             <div class="form-group">
                                 <input type="text" class="form-control" value="<?= (isset($diachi) && $diachi !== "") ? $diachi : "" ?>" name="nguoidat_diachi" id="password_in" value="" placeholder="Địa chỉ nhà">
                             </div>
-                            <input type="hidden" name="total" value="<?=$total?>">
-                            <input type="hidden" name="giatrivoucher" value="<?=$giatrivoucher?>">
-                            <input type="hidden" name="tongthanhtoan" value="<?=$thanhtoan?>">
+                            <input type="text" name="total" value="<?=$total?>">
+                            <input type="text" name="giatrivoucher" value="<?=$giatrivoucher?>">
+                            <input type="text" name="tongthanhtoan" value="<?=$thanhtoan?>">
                             <label for="">Hình thức thanh toán</label> <br>
                             <div class="form-group">
                                 <input type="radio" name="pttt" value="0" checked> Thanh toán khi nhận hàng <br>
@@ -60,20 +60,17 @@
                         <div class="giohangdonhang">               
                             <?=$html_cartdonhang?>
 									<div class="siu row">
-                                        <form action="index.php?cl=donhang&voucher=1" method="POST">
-										<input type="hidden" name="tongdonhang"  value="<?=$total?>">
+										<input type="hidden" name="tongdonhang" id="tongThanhToan"  value="<?=$total?>">
                                         <div class="tach">
-                                           <input type="text" name="voucher" placeholder="Mã Voucher" class="form-control">
-                                            <button type="submit" class="btn_1">Áp dụng mã</button> 
+                                           <input type="text" name="voucher" id="voucherCode" placeholder="Mã Voucher" class="form-control">
+                                            <button type="button" onclick="applyVoucher()" class="btn_1">Áp dụng mã</button> 
                                         </div>
-                                        
-										</form>
 									</div>
 									
                             <div class="total_drop mt-4">
                                 <div class="text-center clearfix "><strong>Tổng:</strong><span style="margin-left: 50px;"><strong>$<?=$total?></strong></span></div>
-                                <div class="text-center clearfix "><strong>Giảm giá:</strong><span style="margin-left: 50px;"><strong>$<?=$giatrivoucher?></strong></span></div>
-                                <div class="text-center clearfix "><strong>Tổng thanh toán:</strong><span style="margin-left: 50px;"><strong>$<?=$thanhtoan?></strong></span></div>
+                                <div class="text-center clearfix "><strong>Giảm giá:</strong><span id="discountAmount" style="margin-left: 50px;"><strong>$<?=$giatrivoucher?></strong></span></div>
+                                <div class="text-center clearfix "><strong>Tổng thanh toán:</strong><span id="totalAmount" style="margin-left: 50px;"><strong>$<?=$thanhtoan?></strong></span></div>
                                 <div class="mt-3 text-center"><a href="cart.html" class="btn_1 outline">View Cart</a></div>
                             </div>
                         </div>                 

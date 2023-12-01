@@ -8,6 +8,7 @@
     include "app/models/danhmuc.php";
     include "app/models/global.php";
     include "app/models/giohang.php";
+    include "app/models/donhang.php";
     include "app/views/client/header.php";
     include "app/models/user.php";
     include "app/models/banner.php";
@@ -15,7 +16,6 @@
     include "app/models/bienthe.php";
     include "app/models/baiviet.php";
     include "app/models/khuyenmai.php";
-    include "app/models/donhang.php";
     include "app/models/lienhe.php";
     include "app/models/binhluan.php";
     $dsbanner = select_all_banner();
@@ -282,18 +282,18 @@
                     include "app/views/client/dangky.php";
                     break;
                 }
-                $id_sp = $_POST['id_sp'];
-                $index = array_search($id_sp, array_column($_SESSION['giohang'], 'id_sp'));
-                 // array_column() trích xuất một cột từ mảng giỏ hàng và trả về một mảng chứa giá trị của cột id
-                if ($index !== false) {
-                $_SESSION['giohang'][$index]['soluong']++;
-                } else {
                 $name = $_POST['name'];
                 $img = $_POST['img'];
                 $price = $_POST['price'];
                 $soluong = $_POST['soluong'];
                 $size = $_POST['dungluong'];
                 $thanhtien = (int)$soluong * (int)$price;
+                $id_sp = $_POST['id_sp'];
+                $index = array_search($id_sp, array_column($_SESSION['giohang'], 'id_sp'));
+                 // array_column() trích xuất một cột từ mảng giỏ hàng và trả về một mảng chứa giá trị của cột id
+                if ($index !== false) {
+                $_SESSION['giohang'][$index]['soluong'] += $soluong;
+                } else {
                 $sp = array("id_sp"=>$id_sp,
                             "name"=>$name,
                             "img"=>$img,
@@ -338,6 +338,11 @@
             header('location: index.php?cl=viewcart');
             break;
         case 'donhang':
+            if (empty($_SESSION['giohang'])) {
+                $tbgh = "<h3 class=text-center style=color:red>Bạn chưa có sản phẩm nào trong giỏ hàng</h3>";
+                include "app/views/client/sanpham.php";
+                break;
+            }
             $giatrivoucher = 0;
             if (isset($_SESSION['giohang'])) {  
                 $tongdonhang = get_tongdonhang();
@@ -378,7 +383,7 @@
                     donhang_insert($id_sp, $id_dhct, $name, $price, $soluong, $ngaydathang, $thanhtien, $size, $id_user);
                 }
                 unset($_SESSION['giohang']);
-                include "app/views/client/confirmdh.php";
+                header("location: index.php?cl=confirmdh"); 
             } else {
                 include "view/donhang.php";
             } 
@@ -386,29 +391,50 @@
         case 'confirmdh':
             include "app/views/client/confirmdh.php";
             break;
-        case 'myOrder':
-            $id_user = $_SESSION['s_user']['id_user'];
-            $dsdhct = select_dh_dhct($id_user);
-            include "app/views/client/myOrder.php";
-            break;
         case 'huydonhang':
-            if (isset($_GET['madh']) && $_GET['madh'] > 0) {
-                $mdh = $_GET['madh'];
+            if (isset($_GET['madh_ct']) && $_GET['madh_ct'] > 0) {
+                $mdh = $_GET['madh_ct'];
                 delete_donhang($mdh);
                 delete_donhangct($mdh);
             }
             $id_user = $_SESSION['s_user']['id_user'];
             $dsdhct = select_dh_dhct($id_user);
-            header("location: index.php?cl=myOrder");
+            include "app/views/client/choxacnhandonhang.php";
             break;
         case 'danhandonhang':
-            if (isset($_GET['madh']) && $_GET['madh'] > 0) {
-            $mdh = $_GET['madh'];za
+            if (isset($_GET['madh_ct']) && $_GET['madh_ct'] > 0) {
+            $mdh = $_GET['madh_ct'];
             }
             xacnhandh($mdh);
+            $dhct = select_dhct($mdh);
+            include "app/views/client/donhangchitiet.php";
+            break;
+        case 'donhangdadat':
             $id_user = $_SESSION['s_user']['id_user'];
             $dsdhct = select_dh_dhct($id_user);
-            header("location: index.php?cl=myOrder");
+            include "app/views/client/donhangdadat.php";
+            break;
+        case 'chitietdonhang':
+            if (isset($_GET['madh_ct']) && $_GET['madh_ct'] > 0) {
+                $madh_ct = $_GET['madh_ct'];
+            }
+            $dhct = select_dhct($madh_ct);
+            include "app/views/client/donhangchitiet.php";
+            break;
+        case 'dagiao':
+            $id_user = $_SESSION['s_user']['id_user'];
+            $dsdhct = select_dh_dhct($id_user);
+            include "app/views/client/dagiao.php";
+            break;
+        case 'choxacnhandonhang':
+            $id_user = $_SESSION['s_user']['id_user'];
+            $dsdhct = select_dh_dhct($id_user);
+            include "app/views/client/choxacnhandonhang.php";
+            break;
+        case 'chuanbihang':
+            $id_user = $_SESSION['s_user']['id_user'];
+            $dsdhct = select_dh_dhct($id_user);
+            include "app/views/client/chuanbihang.php";
             break;
         case 'updatecart':
             if (isset($_POST['updatecart'])) {
@@ -419,7 +445,10 @@
 
          // Nếu sản phẩm tồn tại thì cập nhật lại số lượng
             if ($index !== false) {
+            $gia_tien = $_SESSION['giohang'][$index]['price'];
+            $gia_tien_moi = $soluong * $gia_tien;
             $_SESSION['giohang'][$index]['soluong'] = $soluong;
+            $_SESSION['giohang'][$index]['thanhtien'] = $gia_tien_moi;
             }
             header("Location: index.php?cl=viewcart");
         default :
