@@ -403,7 +403,7 @@
             break;
         case 'danhandonhang':
             if (isset($_GET['madh']) && $_GET['madh'] > 0) {
-            $mdh = $_GET['madh'];za
+            $mdh = $_GET['madh'];
             }
             xacnhandh($mdh);
             $id_user = $_SESSION['s_user']['id_user'];
