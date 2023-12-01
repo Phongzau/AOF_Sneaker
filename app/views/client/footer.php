@@ -118,5 +118,6 @@
     <script src="public/client/js/carousel_with_thumbs.js"></script>
 	<script src="public/client/js/jsjsjs.js"></script>
 	<script src="public/client/js/quantity.js"></script>
+	<script src="public/client/js/voucher.js"></script>
 </body>
 </html>

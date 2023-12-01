@@ -9,10 +9,16 @@ $html_showdm = showdm_all(danhmuc_all());
                          <a href="index.php?cl=dangxuat" class="btn_1 mt-3">Đăng xuất</a>
                          <ul>
                          <li>
-                             <a href="index.php?cl=myOrder"><i class="ti-truck"></i>Đơn hàng</a>
+                            <a href="index.php?cl=choxacnhandonhang"><i class="ti-alarm-clock"></i>Chờ xác nhận  ('.count(select_dh_cxnh($id_user)).')</a>
                          </li>
                          <li>
-                             <a href="index.php?cl=myOrder"><i class="ti-package"></i>My Orders</a>
+                            <a href="index.php?cl=chuanbihang"><i class="ti-archive"></i>Đang chuẩn bị hàng  ('.count(select_dh_dcb($id_user)).')</a>
+                         </li>
+                         <li>
+                             <a href="index.php?cl=donhangdadat"><i class="ti-truck"></i>Đang giao hàng  ('.count(select_dh_dgh($id_user)).')</a>
+                         </li>
+                         <li>
+                             <a href="index.php?cl=dagiao"><i class="ti-package"></i>Đã giao  ('.count(select_dh_dg($id_user)).')</a>
                          </li>
                          <li>
                              <a href="index.php?cl=thongtinuser"><i class="ti-user"></i>My Profile</a>
@@ -52,6 +58,7 @@ $html_showdm = showdm_all(danhmuc_all());
     <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="public/client/img/apple-touch-icon-114x114-precomposed.png">
     <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="public/client/img/apple-touch-icon-144x144-precomposed.png">
     <link rel="stylesheet" href="public/client/css/mystyle.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <!-- GOOGLE WEB FONT -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -217,7 +224,7 @@ $html_showdm = showdm_all(danhmuc_all());
                                         <?=$html_cartheader?>
                                         <div class="total_drop">
                                 <div class="clearfix"><strong>Total</strong><span><?=$total?></span></div>
-                                <a href="index.php?cl=viewcart" class="btn_1 outline">View Cart</a><a href="checkout.html" class="btn_1">Checkout</a>
+                                <a href="index.php?cl=viewcart" class="btn_1 outline">View Cart</a>
                                 </div>
                                 </div>
                                     </div>

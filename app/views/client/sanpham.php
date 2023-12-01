@@ -76,6 +76,11 @@
 
 				<h2>Sản Phẩm </h2>
 				<p><?php if(isset($titlepage)) { echo $titlepage;}?></p>
+				<?php
+					if (isset($tbgh)) {
+						echo $tbgh;
+					}
+				?>
 			</div>
 			<div class="container margin_30">
 			<div class="row small-gutters">
