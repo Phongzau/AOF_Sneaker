@@ -765,6 +765,7 @@ return $html_showdh;
 function show_dhct_admin($dssp){
   $html_dssp ='';
   $ttxn ='';
+  $xoa ='';
   foreach ($dssp as $sp) {
    extract($sp);
    if($pttt==0){
@@ -778,12 +779,16 @@ function show_dhct_admin($dssp){
        $tt = "Chờ Xác Nhận";
        $ttxn.= '<a href="index.php?ad=xacnhandhct&id='.$id_ct.'&tt='.$tr.'" class="btn btn-info ">
        <i class="fa-solid "></i>Xác Nhận Đợn Hàng</a> ';
+       $xoa.= '<a href="index.php?ad=deletedhct&id='.$id_ct.'&tt='.$trangthai.'" class="btn btn-danger">
+       <i class="fa-solid "></i>Xóa</a>';
     break;
     case 1:
       $tt = "Đang Chuẩn Bị Hàng";
       $tr = 2;
       $ttxn.= '<a href="index.php?ad=xacnhandhct&id='.$id_ct.'&tt='.$tr.'" class="btn btn-info ">
       <i class="fa-solid "></i>Giao Hàng Cho ship</a> ';
+      $xoa.= '<a href="index.php?ad=deletedhct&id='.$id_ct.'&tt='.$trangthai.'" class="btn btn-danger">
+      <i class="fa-solid "></i>Xóa</a>';
       break;
       case 2:
         $tt = "Đang Giao Hàng";
@@ -812,8 +817,7 @@ function show_dhct_admin($dssp){
    <td>'.$id_usct.'</td>
    <td>'.$tt.'</td>
    <td>
-   <a href="index.php?ad=deletedhct&id='.$id_ct.'&tt='.$trangthai.'" class="btn btn-danger">
-   <i class="fa-solid "></i>Xóa</a>
+    '.$xoa.'
    <a href="index.php?ad=xemchitetdh&id='.$id_ct.'" class="btn btn-success">
    <i class="fa-solid "></i>Xem Chi Tiết</a>
  </td>
@@ -822,6 +826,7 @@ function show_dhct_admin($dssp){
  </td>
  </tr>';
  $ttxn = '';
+ $xoa ='';
   }
   return $html_dssp;
 }

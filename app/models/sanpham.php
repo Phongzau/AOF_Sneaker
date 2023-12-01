@@ -66,7 +66,7 @@ function  locsp_min_max($min,$max){
 
 function select_sp_all(){
     $sql = "SELECT * from sanpham  INNER JOIN danhmuc 
-    on sanpham.iddm = danhmuc.id_dm";
+    on sanpham.iddm = danhmuc.id_dm ORDER BY `sanpham`.`id_sp` DESC";
     return pdo_query($sql);
 }
 
@@ -221,11 +221,20 @@ function sp_delete($id){
         pdo_execute($sql, $id);
     
 }
+function sp_delete_bienthe($id){
+    $sql = "DELETE FROM bienthesanpham WHERE  id_sanpham=?";
+        pdo_execute($sql, $id);
+    
+}
+function sp_delete_hinhanh($id){
+    $sql = "DELETE FROM hinhanhsanpham WHERE  id_sanpham=?";
+        pdo_execute($sql, $id);
+    
+}
 
 function insert_sanpham_admin($name, $price, $mota, $img, $iddm) {
-    $formatted_price = number_format($price, 0, ',', '.');
     $sql = "INSERT INTO sanpham (name, price, mota, img, iddm) VALUES (?,?,?,?,?)";
-    pdo_execute($sql, $name, $formatted_price, $mota, $img, $iddm);
+    pdo_execute($sql, $name, $price, $mota, $img, $iddm);
 }
 
 function select_sanpham_by_id_client($id_sp) {
@@ -311,11 +320,8 @@ function showsp($dssp) {
     foreach ($dssp as $sp) {
         extract($sp);
         $formattedPrice = number_format($price, 0, '.', '.');
-        // if ($bestseller == 1) {
-        //     $best = '<div class="best"></div>';
-        // } else {
-        //     $best = '';
-        // }
+        $giacu = $price + 300000 ;
+        $formattedPricecu = number_format($giacu, 0, '.', '.');
         $link = "index.php?cl=sanphamchitiet&idpro=".$id_sp;
         $html_showsp.= '<div class="col-6 col-md-4 col-xl-3">
                         <div class="grid_item">
@@ -331,6 +337,7 @@ function showsp($dssp) {
                                 <h3>'.$name.'</h3>
                             </a>
                             <div class="price_box">
+                            <s>'. $formattedPricecu.' VND</s>
                                 <span class="new_price">'. $formattedPrice.'VND</span>
                             </div>
 

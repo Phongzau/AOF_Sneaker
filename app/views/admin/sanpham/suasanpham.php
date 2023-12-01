@@ -19,6 +19,8 @@ $html_dsdm = '';
                         <label for="name">Tên Sản phẩm</label>
                         <input type="text" class="form-control"  value="<?=($name != "")?$name:""?>" name="name" id="name" required placeholder="Nhập tên sản phẩm">
                     </div>
+                  <input type="hidden" name="imgcu" value="<?=($img != "")?$img:""?>" src="" alt="">
+
                     <div class="form-group">
                         <label for="name">Ảnh:</label>
                         <input type="file" class="form-control" name="img" id="name">

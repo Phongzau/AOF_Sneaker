@@ -16,6 +16,11 @@ function delete_binhluan_admin($id_bl){
         pdo_execute($sql, $id_bl);
 }
 
+function delete_binhluan_admin_sp($id){
+    $sql = "DELETE FROM binhluan WHERE id_sanpham=?";
+        pdo_execute($sql, $id);
+}
+
 function select_all_binhluan_admin(){
     $sql = "SELECT * FROM binhluan";
     return pdo_query($sql);
