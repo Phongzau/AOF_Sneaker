@@ -1,5 +1,7 @@
 <?php
 	$html_cart = viewcart();
+
+	$formattedPricett = number_format($thanhtoan , 0, '.', '.');
 ?>
 <main class="bg_gray">
 		<form action="index.php?cl=updatecart" method="POST">
@@ -73,10 +75,7 @@
 				<div class="col-xl-4 col-lg-4 col-md-6">
 			<ul>
 				<li>
-					<span>Subtotal</span> <?=$tongdonhang?>
-				</li>
-				<li>
-					<span>Total</span> <?=$thanhtoan?>
+					<span>Tổng Cộng</span> <?=$formattedPricett?>
 				</li>
 			</ul>
 			<a href="index.php?cl=donhang" class="btn_1 full-width cart">Đặt hàng</a>
