@@ -35,9 +35,9 @@
                             <div class="form-group">
                                 <input type="text" class="form-control" value="<?= (isset($diachi) && $diachi !== "") ? $diachi : "" ?>" name="nguoidat_diachi" id="password_in" value="" placeholder="Địa chỉ nhà">
                             </div>
-                            <input type="text" name="total" value="<?=$total?>">
-                            <input type="text" name="giatrivoucher" value="<?=$giatrivoucher?>">
-                            <input type="text" name="tongthanhtoan" value="<?=$thanhtoan?>">
+                            <input type="hidden" name="total" value="<?=$total?>">
+                            <input type="hidden" name="giatrivoucher" value="<?=$giatrivoucher?>">
+                            <input type="hidden" name="tongthanhtoan" value="<?=$thanhtoan?>">
                             <label for="">Hình thức thanh toán</label> <br>
                             <div class="form-group">
                                 <input type="radio" name="pttt" value="0" checked> Thanh toán khi nhận hàng <br>
