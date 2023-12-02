@@ -12,14 +12,11 @@
                         <input type="text"  class="form-control" value="<?=$id_sp?>" name="id_sanpham" id="name" >
                     </div>
                     <div class="form-group">
-                        <label for="name">Tên sản phẩm:</label>
-                        <input type="text" value="<?=$name?>" class="form-control" id="name" >
-                    </div>
-                    <div class="form-group">
                         <label for="img">Ảnh:</label>
                         <input type="file" class="form-control" name="img" id="name" >
                     </div>
                     <div class="form-group">
+                       
                         <button type="submit" name="th_themanhsp" class="btn btn-primary">Thêm ảnh sản phẩm</button>
                     </div>
                 </form>

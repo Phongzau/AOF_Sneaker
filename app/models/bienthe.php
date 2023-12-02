@@ -8,13 +8,23 @@ function bienthe_insert($id_sanpham,  $dungluong, $soluong){
 function select_bienthe_admin() {
     $sql = "SELECT * FROM bienthesanpham";
     return pdo_query($sql,);
+    
 }
-
 function  select_bthe_id($id){
     $sql = "SELECT * from bienthesanpham INNER JOIN sanpham 
     on sanpham.id_sp = bienthesanpham.id_sanpham   WHERE id_sanpham=?";
       return pdo_query($sql,$id);
     }
+
+      function tinhtongsl($dssp){
+        $tongsl = 0;
+        foreach ($dssp as $sp) {
+         extract($sp);
+         $tongsl = $tongsl + $soluong;
+        }
+        return $tongsl;
+    }
+
 
     function show_bt_admin($dssp){
         $html_dssp ='';
@@ -93,7 +103,7 @@ function option_size_bienthe_sanpham($sp) {
   $html_optionsizebienthesp = '';
   foreach($sp as $sanpham) {
     extract($sanpham);
-    $html_optionsizebienthesp.='<option value="'.$dungluong.'">'.$dungluong.'</option>';
+    $html_optionsizebienthesp.='<option value="'.$dungluong.'">'.$dungluong.'  ('.$soluong.')</option>';
   } return $html_optionsizebienthesp;
 }
 

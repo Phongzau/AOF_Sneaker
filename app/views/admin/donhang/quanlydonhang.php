@@ -2,10 +2,7 @@
 $html_dh =  show_dh_admin($dh);
 ?>
 <div class="container mt-3">
-    <h2>Đơn hàng</h2>
-    <div class="d-flex justify-content-end">
-      <a href="index.php?ad=themdonhang" class="btn d-flex justify-content-end btn-primary mb-2">Thêm Hóa đơn</a>
-    </div>               
+    <h2>Đơn hàng</h2>            
     <table class="table table-hover">
       <thead>
         <tr>

@@ -37,10 +37,11 @@
             $spchitiet = select_sanpham_by_id_client($id);
             $btcolor = select_bienthe_by_id($id);
             $btsize = select_bienthe_by_id($id);
+            $tongsl = tinhtongsl($btsize);
             $iddm = $spchitiet['iddm'];
             $splienquan = get_dssp_lienquan($iddm,$id);
             $hasp = select_hasp_client($id);
-    
+       
             include "app/views/client/sanphamchitiet.php";
             break;
         case 'sanpham':
