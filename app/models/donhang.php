@@ -374,7 +374,7 @@ function show_dh_admin($dssp){
      <td>'.$tensp.'</td>
      <td>'.$price.'</td>
      <td>'.$tonggia.'</td>
-     <td>'.$soluong.'</td>
+     <td>'.$soluong.'</td>s
      <td>'.$ngaydathang.'</td>
      <td>'.$size.'</td>
      <td>'.$id_usdh.'</td>
@@ -766,6 +766,7 @@ function show_dhct_admin($dssp){
   $html_dssp ='';
   $ttxn ='';
   $xoa ='';
+  $i= 1;
   foreach ($dssp as $sp) {
    extract($sp);
    if($pttt==0){
@@ -779,7 +780,7 @@ function show_dhct_admin($dssp){
        $tt = "Chờ Xác Nhận";
        $ttxn.= '<a href="index.php?ad=xacnhandhct&id='.$id_ct.'&tt='.$tr.'" class="btn btn-info ">
        <i class="fa-solid "></i>Xác Nhận Đợn Hàng</a> ';
-       $xoa.= '<a href="index.php?ad=deletedhct&id='.$id_ct.'&tt='.$trangthai.'" class="btn btn-danger">
+       $xoa.= '<a href="index.php?ad=deletedhct&id='.$id_ct.'" class="btn btn-danger">
        <i class="fa-solid "></i>Xóa</a>';
     break;
     case 1:
@@ -787,7 +788,7 @@ function show_dhct_admin($dssp){
       $tr = 2;
       $ttxn.= '<a href="index.php?ad=xacnhandhct&id='.$id_ct.'&tt='.$tr.'" class="btn btn-info ">
       <i class="fa-solid "></i>Giao Hàng Cho ship</a> ';
-      $xoa.= '<a href="index.php?ad=deletedhct&id='.$id_ct.'&tt='.$trangthai.'" class="btn btn-danger">
+      $xoa.= '<a href="index.php?ad=deletedhct&id='.$id_ct.'" class="btn btn-danger">
       <i class="fa-solid "></i>Xóa</a>';
       break;
       case 2:
@@ -802,19 +803,18 @@ function show_dhct_admin($dssp){
        $tt = "Đơn Hàng Không Xác Định";
     break;
    }
+
    $html_dssp.='<div class="box25 mr15">
    <tr>
-   <td>'.$id_ct.'</td>
+   <td>'.$i++.'</td>
    <td>'.$madh.'</td>
    <td>'.$nguoidat_ten.'</td>
-   <td>'.$nguoidat_email.'</td>
    <td>'.$nguoidat_tell.'</td>
    <td>'.$nguoidat_diachi	.'</td>
    <td>'.$total.'</td>
    <td>'.$voucher.'</td>
    <td>'.$tongthanhtoan.'</td>
    <td>'.$pt.'</td>
-   <td>'.$id_usct.'</td>
    <td>'.$tt.'</td>
    <td>
     '.$xoa.'
@@ -837,15 +837,10 @@ function donhang_delete($id){
   
 }
 
-function donhangct_delete($id,$tt){
-  if($tt==1||$tt==2){
+function donhangct_delete($id){
     $sql = "DELETE FROM donhangchitiet WHERE id_ct=?";
-    pdo_execute($sql, $id);
-  }else{
-    $tb = "Đơn Hàng Không Thể Huỷ Khi Đang Giao Hàng";
-    return $tb ;
-  }
-  
+    pdo_execute($sql,$id);
+
 }
 
 function xacnhandh($mdh){

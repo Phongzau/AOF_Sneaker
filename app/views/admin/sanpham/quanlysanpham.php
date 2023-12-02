@@ -14,7 +14,6 @@ $html_sp = show_sp_admin($sp)
           <th>Img</th>
           <th>Price</th>
           <th>View</th>
-          <th>Mô tả</th>
           <th>Iddm</th>
           <th>Tình trạng</th>
           <th>Biến Thể</th>
