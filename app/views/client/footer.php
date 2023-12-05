@@ -119,5 +119,6 @@
 	<script src="public/client/js/jsjsjs.js"></script>
 	<script src="public/client/js/quantity.js"></script>
 	<script src="public/client/js/voucher.js"></script>
+	<script src="public/client/js/size.js"></script>
 </body>
 </html>

@@ -1,5 +1,4 @@
 <?php
-
 	if (is_array($spchitiet) && count($spchitiet) > 0) {
 		extract($spchitiet);
 	}
@@ -44,17 +43,17 @@
                                                 <label class="col-xl-5 col-lg-5 col-md-6 col-6"><strong>Size</strong> - Size Guide <a href="#0" data-bs-toggle="modal" data-bs-target="#size-modal"><i class="ti-help-alt"></i></a></label>
                                                 <div class="col-xl-4 col-lg-5 col-md-6 col-6">
 													<div class="custom-select">
-													<select name="dungluong">
+													<select data-id="<?=$id_sp?>" id="sizeSelect" onchange="getSLSizeShoes()" name="dungluong">
 													<?=$html_optionsizebienthesp;?>
                                						</select>
 													</div>
                                                 </div>
                                             </div>
                                             <div class="row">
-                                                <label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong>Số Lượng (<?=$tongsl?>)</strong></label>
+                                                <label class="col-xl-5 col-lg-5  col-md-6 col-6"><strong><span id="soLuongSize">Số Lượng: (<?=$tongsl?>)</span></strong></label>
                                                 <div class="col-xl-4 col-lg-5 col-md-6 col-6">
                                                     <div class="numbers-row">
-                                                        <input type="number" value="1" min="1" class="qty2" name="soluong">
+                                                        <input type="number" value="1" min="1" id="soluongInput" class="qty2" name="soluong">
                                                     </div>
                                                 </div>
                                             </div>

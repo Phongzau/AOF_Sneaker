@@ -376,12 +376,14 @@
                 }
                 $id_user = $_SESSION['s_user']['id_user'];
                 $madh = "AOF".$id_user."-".date("His-dmY");
+                $tongthanhtoan = $total - $voucher;
                 $id_dhct = dhct_insert_id($madh, $nguoidat_ten, $nguoidat_email, $nguoidat_tel, $nguoidat_diachi, $total, $voucher, $tongthanhtoan, $pttt, $id_user);
                 foreach ($_SESSION['giohang'] as $sp) {
                     extract($sp);
                     date_default_timezone_set('Asia/Bangkok');
                     $ngaydathang = date('H:i:s d/m/Y');
                     donhang_insert($id_sp, $id_dhct, $name, $price, $soluong, $ngaydathang, $thanhtien, $size, $id_user);
+                    truSoLuongSize($soluong, $size, $id_sp);
                 }
                 unset($_SESSION['giohang']);
                 header("location: index.php?cl=confirmdh"); 
@@ -395,6 +397,11 @@
         case 'huydonhang':
             if (isset($_GET['madh_ct']) && $_GET['madh_ct'] > 0) {
                 $mdh = $_GET['madh_ct'];
+                $donhanghuy = select_dh($mdh);
+                foreach ($donhanghuy as $dh) {
+                    extract($dh);
+                    congSoLuongSize($soluong, $size, $id_sanpham);
+                }
                 delete_donhang($mdh);
                 delete_donhangct($mdh);
             }

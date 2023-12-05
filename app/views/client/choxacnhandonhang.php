@@ -2,7 +2,6 @@
 	if (is_array($dsdhct) && count($dsdhct)) {
 		$html_showdh = show_dhxnh($dsdhct);
 	}
-    
 ?>
 <main class="bg_white mt-1">
        <div class="container mt-4">

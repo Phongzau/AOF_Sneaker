@@ -32,6 +32,11 @@ function select_dh_dg($id_user) {
     return pdo_query($sql, $id_user);
 }
 
+function select_dh($mdh) {
+    $sql = "SELECT * FROM  donhang WHERE madh_ct=?";
+    return pdo_query($sql, $mdh);
+}
+
 
 function select_dh_dhct($id_user) {
   $sql = "SELECT * FROM donhang 
@@ -440,15 +445,10 @@ function show_dhdg($dsdh) {
                           </div>
                           <div class="card-body">
                               <div class="row">
-                                  <div class="col-md-3">
-                                      <img src="' . IMG_PATH_USER . $img . '" alt="Product Image" class="img-fluid">
-                                  </div>
-                                  <div class="col-md-9">
-                                      <h4 class="card-title"> ' . $name . '</h4>
-                                      <p class="card-text"><strong>Size:</strong> ' . $size . '</p>
-                                      <p class="card-text"><strong>Giá:</strong> ' . $price . '</p>
-                                      <p class="card-text"><strong>Số lượng:</strong> ' . $soluong . '</p>
-                                      <p class="card-text"><strong>Tổng cộng:</strong> ' . $tonggia . '</p>
+                                  <div class="col-md-12">
+                                  <p class="card-text"><strong>Mã đơn hàng: </strong>' . $madh . '</p>
+                                  <p class="card-text"><strong>Người đặt hàng: </strong>' . $nguoidat_ten . '</p>
+                                  <p class="card-text"><strong>Địa chỉ giao hàng: </strong>' . $nguoidat_diachi . '</p>
                                   </div>
                               </div>
                               <!-- Thêm dòng gạch ngăn cách -->
@@ -534,15 +534,10 @@ function show_dhxnh($dsdh) {
                           </div>
                           <div class="card-body">
                               <div class="row">
-                                  <div class="col-md-3">
-                                      <img src="' . IMG_PATH_USER . $img . '" alt="Product Image" class="img-fluid">
-                                  </div>
-                                  <div class="col-md-9">
-                                      <h4 class="card-title"> ' . $name . '</h4>
-                                      <p class="card-text"><strong>Size:</strong> ' . $size . '</p>
-                                      <p class="card-text"><strong>Giá:</strong> ' . $price . '</p>
-                                      <p class="card-text"><strong>Số lượng:</strong> ' . $soluong . '</p>
-                                      <p class="card-text"><strong>Tổng cộng:</strong> ' . $tonggia . '</p>
+                                  <div class="col-md-12">
+                                  <p class="card-text"><strong>Mã đơn hàng: </strong>' . $madh . '</p>
+                                  <p class="card-text"><strong>Người đặt hàng: </strong>' . $nguoidat_ten . '</p>
+                                  <p class="card-text"><strong>Địa chỉ giao hàng: </strong>' . $nguoidat_diachi . '</p>
                                   </div>
                               </div>
                               <!-- Thêm dòng gạch ngăn cách -->
@@ -627,15 +622,10 @@ function show_dhcbh($dsdh) {
                           </div>
                           <div class="card-body">
                               <div class="row">
-                                  <div class="col-md-3">
-                                      <img src="' . IMG_PATH_USER . $img . '" alt="Product Image" class="img-fluid">
-                                  </div>
-                                  <div class="col-md-9">
-                                      <h4 class="card-title"> ' . $name . '</h4>
-                                      <p class="card-text"><strong>Size:</strong> ' . $size . '</p>
-                                      <p class="card-text"><strong>Giá:</strong> ' . $price . '</p>
-                                      <p class="card-text"><strong>Số lượng:</strong> ' . $soluong . '</p>
-                                      <p class="card-text"><strong>Tổng cộng:</strong> ' . $tonggia . '</p>
+                                  <div class="col-md-12">
+                                  <p class="card-text"><strong>Mã đơn hàng: </strong>' . $madh . '</p>
+                                  <p class="card-text"><strong>Người đặt hàng: </strong>' . $nguoidat_ten . '</p>
+                                  <p class="card-text"><strong>Địa chỉ giao hàng: </strong>' . $nguoidat_diachi . '</p>
                                   </div>
                               </div>
                               <!-- Thêm dòng gạch ngăn cách -->
@@ -721,15 +711,10 @@ function show_dhct_client($dsdh) {
                           </div>
                           <div class="card-body">
                               <div class="row">
-                                  <div class="col-md-3">
-                                      <img src="' . IMG_PATH_USER . $img . '" alt="Product Image" class="img-fluid">
-                                  </div>
-                                  <div class="col-md-9">
-                                      <h4 class="card-title"> ' . $name . '</h4>
-                                      <p class="card-text"><strong>Size:</strong> ' . $size . '</p>
-                                      <p class="card-text"><strong>Giá:</strong> ' . $price . '</p>
-                                      <p class="card-text"><strong>Số lượng:</strong> ' . $soluong . '</p>
-                                      <p class="card-text"><strong>Tổng cộng:</strong> ' . $tonggia . '</p>
+                                  <div class="col-md-12">
+                                  <p class="card-text"><strong>Mã đơn hàng: </strong>' . $madh . '</p>
+                                  <p class="card-text"><strong>Người đặt hàng: </strong>' . $nguoidat_ten . '</p>
+                                  <p class="card-text"><strong>Địa chỉ giao hàng: </strong>' . $nguoidat_diachi . '</p>
                                   </div>
                               </div>
                               <!-- Thêm dòng gạch ngăn cách -->
