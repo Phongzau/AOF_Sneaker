@@ -12,8 +12,8 @@ function viewcart(){
     foreach ($_SESSION['giohang'] as $sp) {
     extract($sp);
     $formattedPrice = number_format($price, 0, '.', '.');
-    $tt = $price*$soluong;
-    $formattedPricett = number_format($tt , 0, '.', '.');
+    $formattedPricett = number_format($thanhtien , 0, '.', '.');
+    $xd = "'Bạn có muốn xóa sản phẩm này không?'";
     $html_cart.='   <tr>
                         <td>'.$i.'</td>
                         <td><span class="item_cart">'.$name.'</span></td>
@@ -23,13 +23,13 @@ function viewcart(){
                             </div>
                         </td>
                         <td><strong>$'.$formattedPrice.'</strong></td>
-                        <td>
+                        <td>    
                         <input type="number" name="soluong" value="'.$soluong.'" min="1">
                         <input type="hidden" name="id_sp" value="'.$id_sp.'">
                         </td>
                         <td><strong>'.$formattedPricett.'VND</strong></td>
                         <td class="options">
-                            <a href="index.php?cl=delspgiohang&id='.$id_sp.'"><i class="ti-trash"></i></a>
+                            <a onclick="return confirm('.$xd.')" href="index.php?cl=delspgiohang&id='.$id_sp.'"><i class="ti-trash"></i></a>
                         </td>
                     </tr>';
     $i++;

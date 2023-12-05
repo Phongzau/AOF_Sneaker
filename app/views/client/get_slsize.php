@@ -25,32 +25,18 @@ function pdo_query_one($sql){
     }
 }
 
-function select_voucher_client($voucher){
-    $sql = "SELECT * FROM khuyenmai WHERE voucher=?";
-    $result = pdo_query_one($sql,$voucher);
-    return $result['giatri'];
+function select_slShoesSize($size, $id_sp) {
+    $sql = "SELECT soluong FROM bienthesanpham WHERE dungluong=? AND id_sanpham=?";
+    return pdo_query_one($sql, $size, $id_sp);
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Lấy dữ liệu từ ajax đẩy lên
-    $voucher = $_POST['voucher'];
-    $tongthanhtoan = $_POST['tongthanhtoan'];
-
-    $giatrivoucher = select_voucher_client($voucher);
-    $formattedPrice = number_format($giatrivoucher, 0, '.', '.');
-    if ($giatrivoucher > 0) {
-        $thanhtoan = $tongthanhtoan - $giatrivoucher;
-        $formattedPriceTT = number_format($thanhtoan, 0, '.', '.');
+    $size = $_POST['size'];
+    $id_sp = $_POST['id_sp'];
+    $soluongsize = select_slShoesSize($size, $id_sp);
         echo json_encode([
-            'giatrivoucher' => $formattedPrice,
-            'thanhtoan' => $formattedPriceTT
+            'soluongsize' => $soluongsize,
         ]);
-    } else {
-        // Mã voucher không hợp lệ
-        echo json_encode([
-            'giatrivoucher' => 0,
-            'thanhtoan' => $tongthanhtoan
-        ]);
-    }
 }
 ?>

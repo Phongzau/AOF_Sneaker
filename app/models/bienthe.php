@@ -100,12 +100,21 @@ function option_color_bienthe_sanpham($sp) {
 }
 
 function option_size_bienthe_sanpham($sp) {
-  $html_optionsizebienthesp = '';
+  $html_optionsizebienthesp = '<option value="hidden">--Chọn Size--</option>';
   foreach($sp as $sanpham) {
     extract($sanpham);
-    $html_optionsizebienthesp.='<option value="'.$dungluong.'">'.$dungluong.'  ('.$soluong.')</option>';
+    $html_optionsizebienthesp.='<option value="'.$dungluong.'">'.$dungluong.'</option>';
   } return $html_optionsizebienthesp;
 }
 
+function truSoLuongSize($soluong, $size, $id_sp) {
+  $sql = "UPDATE bienthesanpham SET soluong = soluong - ? WHERE dungluong =? AND id_sanpham=?";
+  pdo_execute($sql, $soluong, $size, $id_sp);
+}
+
+function congSoLuongSize($soluong, $size, $id_sanpham) {
+  $sql = "UPDATE bienthesanpham SET soluong = soluong + ? WHERE dungluong =? AND id_sanpham=?";
+  pdo_execute($sql, $soluong, $size, $id_sanpham);
+}
 ?>
 
