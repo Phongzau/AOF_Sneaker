@@ -19,7 +19,7 @@ function select_banner_by_id_admin($id){
     return pdo_query_one($sql, $id);
 }
 
-function     insert_banner_admin($name, $link, $img) {
+function insert_banner_admin($name, $link, $img) {
     $sql = "INSERT INTO banner(name, link, img) VALUES(?,?,?)";
     pdo_execute($sql, $name, $link, $img);
 }

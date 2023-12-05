@@ -20,8 +20,8 @@ function applyVoucher() {
             $('#thanhtoan').val(response.thanhtoan);
 
             // Hiển thị giảm giá mới và tổng thanh toán mới
-            $('#discountAmount').html('$' + response.giatrivoucher);
-            $('#totalAmount').html('$' + response.thanhtoan);
+            $('#discountAmount').html(response.giatrivoucher + "VND");
+            $('#totalAmount').html(response.thanhtoan + "VND");
 
             // Thay đổi giá trị các trường input trong form trước khi submit
             $('input[name="giatrivoucher"]').val(response.giatrivoucher);
