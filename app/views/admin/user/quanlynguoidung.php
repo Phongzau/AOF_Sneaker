@@ -1,7 +1,6 @@
 <?php
   $html_show_user = show_user_admin($user);
 ?>
-<div class="content-wrapper">
 <div class="container mt-3">
     <h2>Users</h2>
     <div class="d-flex justify-content-end">
@@ -28,5 +27,4 @@
         <?=$html_show_user?>
       </tbody>
     </table>
-  </div>
   </div>

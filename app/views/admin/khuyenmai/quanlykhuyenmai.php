@@ -1,7 +1,6 @@
 <?php
     $html_dsvoucher = showds_voucher_admin($dsvoucher);
 ?>
-<div class="content-wrapper">
 <div class="container mt-3">
     <h2>Khuyến mãi</h2>
     <div class="d-flex justify-content-end">

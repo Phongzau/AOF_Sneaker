@@ -3,7 +3,7 @@
         extract($product);
     }
 ?>
-<div class="content-wrapper">
+
 <div class="container mt-3">
     <h2>Thêm Biến thể</h2>   
     <div class="main-content">
