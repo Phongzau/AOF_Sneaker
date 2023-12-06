@@ -1,6 +1,8 @@
+
 <?php 
 $html_dm = showdm ($dm);
 ?>
+<div class="content-wrapper">
 <div class="container mt-3">
     <h2>Danh mục</h2>
     <div class="d-flex justify-content-end">

@@ -1,6 +1,7 @@
 <?php 
     $html_dslienhe = showds_lienhe_admin($dslienhe);
 ?>
+<div class="content-wrapper">
 <div class="container mt-3">
     <h2>Liên Hệ</h2>
     <table class="table table-hover">

@@ -1,3 +1,4 @@
+<div class="content-wrapper">
 <?php 
 $html_dh =  show_dhct_admin($dh);
 ?>
@@ -8,17 +9,17 @@ $html_dh =  show_dhct_admin($dh);
       <thead>
         <tr>
             <th>STT</th>
-            <th>Mã đơn hàng</th>
-            <th>Tên Người Đặt</th>
+            <th>Mã DH </th>
+            <th>Tên </th>
             <th>Số Điện Thoại</th>
             <th>Địa Chỉ</th>
             <th>Total</th>
             <th>Voucher</th>
-            <th>Tổng Thanh Toán</th>
+            <th>Tổng </th>
             <th>PT Thanh Toán</th>
             <th>Trạng Thái</th>
             <th>Thao Tác</th>
-            <th>Cập Nhật Trạng Thái</th>
+            <th>Cập Nhật </th>
 
         </tr>
       </thead>

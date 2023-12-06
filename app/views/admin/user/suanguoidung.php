@@ -10,7 +10,7 @@
     }
     $html_dsrole = showds_role_admin($dsrole);
 ?>
-
+<div class="content-wrapper">
 <div class="container mt-3">
     <h2>Sửa Thông tin người dùng</h2>   
     <div class="main-content">

@@ -9,6 +9,7 @@
         } 
     }
 ?>
+<div class="content-wrapper">
 <div class="container mt-3">
     <h2>Sửa Bài Viết</h2>   
     <div class="main-content">

@@ -3,6 +3,7 @@
         extract($iddanhmuc);
     } 
 ?>
+<div class="content-wrapper">
 <div class="container mt-3">
     <h2>Sửa Danh mục</h2>   
     <div class="main-content">

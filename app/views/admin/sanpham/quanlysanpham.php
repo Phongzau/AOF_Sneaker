@@ -1,6 +1,7 @@
 <?php 
 $html_sp = show_sp_admin($sp)
 ?>
+<div class="content-wrapper">
 <div class="container mt-3">
     <h2>Sản Phẩm</h2>
     <div class="d-flex justify-content-end">

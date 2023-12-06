@@ -37,6 +37,11 @@ function select_dh($mdh) {
     return pdo_query($sql, $mdh);
 }
 
+function select_dhctt($mdh) {
+    $sql = "SELECT * FROM  donhangchitiet WHERE id_ct =?";
+    return pdo_query($sql, $mdh);
+}
+
 
 function select_dh_dhct($id_user) {
   $sql = "SELECT * FROM donhang 
@@ -76,6 +81,76 @@ function donhangct_all(){
   $sql = "SELECT * FROM donhangchitiet ";
   return pdo_query($sql);
 }
+
+
+
+function show_dhct_ad($dhct) {
+    $boxtt ="";
+    $html_showdhcl = '<div class="row mb-2">
+                      <div class="col-md-8 offset-md-2">
+                          <div class="card">
+                              <div class="card-header">
+                                  <h5 class="card-title">Thông tin đơn hàng</h5>
+                              </div>
+                              <div class="card-body">';
+    foreach ($dhct as $dh) {
+        extract($dh);
+  
+        switch ($trangthai) {
+            case 0:
+                $tt = "Chờ Xác Nhận";
+                break;
+            case 1:
+                $tt = "Đang Chuẩn Bị Hàng";
+                
+            case 2:
+                $tt = "Đang Giao Hàng";
+              
+                break;
+            case 3:
+                $tt = "Giao Hàng Thành Công";
+                break;
+            default:
+                $tt = "Đơn Hàng Không Xác Định";
+                $boxtt .= '<p class="card-text"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+                break;
+        }
+          
+            // Hiển thị thông tin sản phẩm
+            $html_showdhcl .= '<div class="row mb-2">
+                            <div class="col-md-4">
+                                <img src="'. IMG_PATH_ADMIN. $img .'" alt="Product Image" class="img-fluid">
+                            </div>
+                            <div class="col-md-8">
+                                <h4 class="card-title">' . $name . '</h4>
+                                <p class="card-text"><strong>Size:</strong> ' . $size . '</p>
+                                <p class="card-text"><strong>Giá:</strong> ' . $price . '</p>
+                                <p class="card-text"><strong>Số lượng:</strong> ' . $soluong . '</p>
+                                <p class="card-text"><strong>Tổng cộng:</strong> ' . $tonggia . '</p>
+                            </div>
+                        </div>';
+            $currentOrderId = $madh;
+            $nguoidathang = $nguoidat_ten;
+            $ttt = $tongthanhtoan;
+            $ngaydat = $ngaydathang;
+            $diachi = $nguoidat_diachi;
+            $trangthaidh = $boxtt;
+  }
+  
+    $html_showdhcl .= '</div>
+                        <div class="card-footer">
+                        <p class="card-text"><strong>Mã đơn hàng: </strong>' . $currentOrderId . '</p>
+                        <p class="card-text"><strong>Người đặt hàng: </strong>' . $nguoidathang . '</p>
+                        <p class="card-text"><strong>Địa chỉ giao hàng: </strong>' . $diachi . '</p>
+                        <p class="card-text"><strong>Ngày đặt hàng: </strong> ' . $ngaydat . '</p>
+                        <p class="card-text"><strong>Tổng thanh toán: </strong> ' .  $ttt  . '</p>
+                        '.$trangthaidh.'
+                        </div></div></div></div>';
+  
+    return $html_showdhcl;
+  }
+
+
 
 function show_dhct($dhct) {
   $html_showdhcl = '<div class="row mb-2">
@@ -118,7 +193,7 @@ function show_dhct($dhct) {
           // Hiển thị thông tin sản phẩm
           $html_showdhcl .= '<div class="row mb-2">
                           <div class="col-md-4">
-                              <img src="' . IMG_PATH_USER . $img . '" alt="Product Image" class="img-fluid">
+                              <img src="'. IMG_PATH_USER. $img .'" alt="Product Image" class="img-fluid">
                           </div>
                           <div class="col-md-8">
                               <h4 class="card-title">' . $name . '</h4>
@@ -369,20 +444,18 @@ function delete_donhangct($mdh) {
 
 function show_dh_admin($dssp){
     $html_dssp ='';
+    $i =1 ;
     foreach ($dssp as $sp) {
      extract($sp);
      $html_dssp.='<div class="box25 mr15">
      <tr>
-     <td>'.$id_dh.'</td>
-     <td>'.$id_sanpham.'</td>
-     <td>'.$madh_ct.'</td>
+     <td>'.$i++.'</td>
      <td>'.$tensp.'</td>
      <td>'.$price.'</td>
      <td>'.$tonggia.'</td>
      <td>'.$soluong.'</td>s
      <td>'.$ngaydathang.'</td>
      <td>'.$size.'</td>
-     <td>'.$id_usdh.'</td>
      <td>
      <a href="index.php?ad=deletedh&id='.$id_dh.'" class="btn btn-danger">
      <i class="fa-solid "></i>Xóa</a>

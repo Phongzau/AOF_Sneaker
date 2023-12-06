@@ -1,3 +1,4 @@
+<div class="content-wrapper">
 <div class="container mt-3">
     <h2>Thêm Bài Viết</h2>   
     <div class="main-content">

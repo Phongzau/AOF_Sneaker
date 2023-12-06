@@ -1,6 +1,7 @@
 <?php
     $html_dsbaiviet = showds_baiviet_admin($dsbaiviet);
 ?>
+<div class="content-wrapper">
 <div class="container mt-3">
     <h2>Bài viết</h2>
     <div class="d-flex justify-content-end">
