@@ -1,3 +1,4 @@
+<div class="content-wrapper">
 <?php
     $html_dsbinhluan = showds_binhluan_admin($dsbinhluan);
 ?>

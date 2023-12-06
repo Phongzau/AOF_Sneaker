@@ -4,7 +4,7 @@
       
     }
     ?>
-
+<div class="content-wrapper">
 <div class="container mt-3">
     <h2>Sửa biến Thể</h2>   
     <div class="main-content">

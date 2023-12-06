@@ -1,6 +1,7 @@
 <?php 
 $html_sp = show_sp_admin($sp)
 ?>
+<div class="content-wrapper">
 <div class="container mt-3">
     <h2>Sản Phẩm</h2>
     <div class="d-flex justify-content-end">
@@ -14,7 +15,6 @@ $html_sp = show_sp_admin($sp)
           <th>Img</th>
           <th>Price</th>
           <th>View</th>
-          <th>Mô tả</th>
           <th>Iddm</th>
           <th>Tình trạng</th>
           <th>Biến Thể</th>

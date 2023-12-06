@@ -1,3 +1,4 @@
+<div class="content-wrapper">
 <?php
     $html_show_role = show_role_admin($dsrole);
 ?>

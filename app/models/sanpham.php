@@ -159,7 +159,6 @@ function show_sp_admin($dssp) {
             <td><img src="' . IMG_PATH_ADMIN . $img . '" style="width:30%" alt="Ảnh sản phẩm"></td>
             <td>' . $formattedPrice . ' VND</td>
             <td>' . $view . '</td>
-            <td>' . $mota . '</td>
             <td>' . $tendm . '</td>
             <td>' . $tc . '</td>
             <td>
