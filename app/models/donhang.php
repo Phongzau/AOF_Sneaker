@@ -192,32 +192,37 @@ function show_dhct($dhct) {
         
           // Hiển thị thông tin sản phẩm
           $html_showdhcl .= '<div class="row mb-2">
-                          <div class="col-md-4">
-                              <img src="'. IMG_PATH_USER. $img .'" alt="Product Image" class="img-fluid">
+
+                          <div class="col-md-2">
+                              <img width=150px src="' . IMG_PATH_USER . $img . '" alt="Product Image" class="img-fluid">
                           </div>
-                          <div class="col-md-8">
-                              <h4 class="card-title">' . $name . '</h4>
-                              <p class="card-text"><strong>Size:</strong> ' . $size . '</p>
+                          <div class="col-md-10">
+                              <h4 class="card-title">' . $name . ' x '.$soluong.' (Size: '.$size.')</h4>
                               <p class="card-text"><strong>Giá:</strong> ' . $price . '</p>
-                              <p class="card-text"><strong>Số lượng:</strong> ' . $soluong . '</p>
                               <p class="card-text"><strong>Tổng cộng:</strong> ' . $tonggia . '</p>
                           </div>
                       </div>';
+                      
           $currentOrderId = $madh;
           $nguoidathang = $nguoidat_ten;
           $ttt = $tongthanhtoan;
           $ngaydat = $ngaydathang;
           $diachi = $nguoidat_diachi;
           $trangthaidh = $boxtt;
+          $sdt = $nguoidat_tell;
+          $email = $nguoidat_email;
 }
 
   $html_showdhcl .= '</div>
                       <div class="card-footer">
                       <p class="card-text"><strong>Mã đơn hàng: </strong>' . $currentOrderId . '</p>
                       <p class="card-text"><strong>Người đặt hàng: </strong>' . $nguoidathang . '</p>
+                      <p class="card-text"><strong>Số điện thoại: </strong> ' .  $sdt  . '</p>
+                      <p class="card-text"><strong>Email: </strong> ' .  $email  . '</p>
                       <p class="card-text"><strong>Địa chỉ giao hàng: </strong>' . $diachi . '</p>
                       <p class="card-text"><strong>Ngày đặt hàng: </strong> ' . $ngaydat . '</p>
                       <p class="card-text"><strong>Tổng thanh toán: </strong> ' .  $ttt  . '</p>
+
                       '.$trangthaidh.'
                       </div></div></div></div>';
 
