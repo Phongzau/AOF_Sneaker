@@ -64,7 +64,7 @@ function viewcart_donhang() {
     $tt = $price*$soluong;
     $formattedPrice = number_format($tt, 0, '.', '.');
     $html_cartdonhang.='   <div class="son-li">
-                            <img width="20%" src="'.IMG_PATH_USER.$img.'" alt=""><p><strong>'.$name.' x '.$soluong.'</strong></p> <span><strong>$'.$formattedPrice.'</strong></span>
+                            <img width="20%" src="'.IMG_PATH_USER.$img.'" alt=""><p><strong>'.$name.' x '.$soluong.'</strong></p> <span><strong>'.$formattedPrice.'VND</strong></span>
                           </div>
                             ';  
 }
