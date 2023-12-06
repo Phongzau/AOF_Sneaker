@@ -75,7 +75,7 @@
 				<div class="col-xl-4 col-lg-4 col-md-6">
 			<ul>
 				<li>
-					<span>Tổng Cộng</span> <?=$formattedPricett?>
+					<span>Tổng Cộng</span> <?=$formattedPricett?>VND
 				</li>
 			</ul>
 			<a href="index.php?cl=donhang" class="btn_1 full-width cart">Đặt hàng</a>

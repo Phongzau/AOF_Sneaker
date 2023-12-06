@@ -87,6 +87,8 @@ function show_dhct($dhct) {
                             <div class="card-body">';
   foreach ($dhct as $dh) {
       extract($dh);
+      $formattedPrice = number_format($price, 0, '.', '.');
+      $formattedPricett = number_format($tonggia, 0, '.', '.');
 
       switch ($trangthai) {
           case 0:
@@ -122,14 +124,14 @@ function show_dhct($dhct) {
                           </div>
                           <div class="col-md-10">
                               <h4 class="card-title">' . $name . ' x '.$soluong.' (Size: '.$size.')</h4>
-                              <p class="card-text"><strong>Giá:</strong> ' . $price . '</p>
-                              <p class="card-text"><strong>Tổng cộng:</strong> ' . $tonggia . '</p>
+                              <p class="card-text"><strong>Giá:</strong> ' . $formattedPrice . 'VND</p>
+                              <p class="card-text"><strong>Tổng cộng:</strong> ' . $formattedPricett . 'VND</p>
                           </div>
                       </div>';
                       
           $currentOrderId = $madh;
           $nguoidathang = $nguoidat_ten;
-          $ttt = $tongthanhtoan;
+          $ttt = $formattedPricett;
           $ngaydat = $ngaydathang;
           $diachi = $nguoidat_diachi;
           $trangthaidh = $boxtt;
@@ -145,7 +147,7 @@ function show_dhct($dhct) {
                       <p class="card-text"><strong>Email: </strong> ' .  $email  . '</p>
                       <p class="card-text"><strong>Địa chỉ giao hàng: </strong>' . $diachi . '</p>
                       <p class="card-text"><strong>Ngày đặt hàng: </strong> ' . $ngaydat . '</p>
-                      <p class="card-text"><strong>Tổng thanh toán: </strong> ' .  $ttt  . '</p>
+                      <p class="card-text"><strong>Tổng thanh toán: </strong> ' .  $ttt  . 'VND</p>
 
                       '.$trangthaidh.'
                       </div></div></div></div>';
@@ -402,6 +404,7 @@ function show_dhdg($dsdh) {
   $currentOrderId = null;
   foreach ($dsdh as $dh) {
     extract($dh);
+    $formattedPricett = number_format($tongthanhtoan, 0, '.', '.');
     switch ($trangthai) {
       case 0:
           $tt = "Chờ Xác Nhận";
@@ -459,7 +462,7 @@ function show_dhdg($dsdh) {
                               <hr class="hr-tt">
                               <div class="tttdh mt-4">
                                   <p class="card-text"><strong>Tổng số lượng sản phẩm trong đơn hàng:</strong> ' . $totalQuantity . '</p>
-                                  <p class="card-text"><strong>Tổng tiền thanh toán:</strong> ' . $tongthanhtoan . '</p>
+                                  <p class="card-text"><strong>Tổng tiền thanh toán:</strong> ' . $formattedPricett . 'VND</p>
                               </div>
                           </div>
                           <div class="card-footer d-flex justify-content-between">
@@ -491,6 +494,7 @@ function show_dhxnh($dsdh) {
   $currentOrderId = null;
   foreach ($dsdh as $dh) {
     extract($dh);
+    $formattedPricett = number_format($tongthanhtoan, 0, '.', '.');
     switch ($trangthai) {
       case 0:
           $tt = "Chờ Xác Nhận";
@@ -548,7 +552,7 @@ function show_dhxnh($dsdh) {
                               <hr class="hr-tt">
                               <div class="tttdh mt-4">
                                   <p class="card-text"><strong>Tổng số lượng sản phẩm trong đơn hàng:</strong> ' . $totalQuantity . '</p>
-                                  <p class="card-text"><strong>Tổng tiền thanh toán:</strong> ' . $tongthanhtoan . '</p>
+                                  <p class="card-text"><strong>Tổng tiền thanh toán:</strong> ' . $formattedPricett . 'VND</p>
                               </div>
                           </div>
                           <div class="card-footer d-flex justify-content-between">
@@ -579,6 +583,7 @@ function show_dhcbh($dsdh) {
   $currentOrderId = null;
   foreach ($dsdh as $dh) {
     extract($dh);
+    $formattedPricett = number_format($tongthanhtoan, 0, '.', '.');
     switch ($trangthai) {
       case 0:
           $tt = "Chờ Xác Nhận";
@@ -636,7 +641,7 @@ function show_dhcbh($dsdh) {
                               <hr class="hr-tt">
                               <div class="tttdh mt-4">
                                   <p class="card-text"><strong>Tổng số lượng sản phẩm trong đơn hàng:</strong> ' . $totalQuantity . '</p>
-                                  <p class="card-text"><strong>Tổng tiền thanh toán:</strong> ' . $tongthanhtoan . '</p>
+                                  <p class="card-text"><strong>Tổng tiền thanh toán:</strong> ' . $formattedPricett . 'VND</p>
                               </div>
                           </div>
                           <div class="card-footer d-flex justify-content-between">
@@ -668,6 +673,7 @@ function show_dhct_client($dsdh) {
   $currentOrderId = null;
   foreach ($dsdh as $dh) {
     extract($dh);
+    $formattedPricett = number_format($tongthanhtoan, 0, '.', '.');
     switch ($trangthai) {
       case 0:
           $tt = "Chờ Xác Nhận";
@@ -725,7 +731,7 @@ function show_dhct_client($dsdh) {
                               <hr class="hr-tt">
                               <div class="tttdh mt-4">
                                   <p class="card-text"><strong>Tổng số lượng sản phẩm trong đơn hàng:</strong> ' . $totalQuantity . '</p>
-                                  <p class="card-text"><strong>Tổng tiền thanh toán:</strong> ' . $tongthanhtoan . '</p>
+                                  <p class="card-text"><strong>Tổng tiền thanh toán:</strong> ' . $formattedPricett . 'VND</p>
                               </div>
                           </div>
                           <div class="card-footer d-flex justify-content-between">
