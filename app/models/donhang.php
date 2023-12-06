@@ -37,11 +37,6 @@ function select_dh($mdh) {
     return pdo_query($sql, $mdh);
 }
 
-function select_dhctt($mdh) {
-    $sql = "SELECT * FROM  donhangchitiet WHERE id_ct =?";
-    return pdo_query($sql, $mdh);
-}
-
 
 function select_dh_dhct($id_user) {
   $sql = "SELECT * FROM donhang 
@@ -82,76 +77,6 @@ function donhangct_all(){
   return pdo_query($sql);
 }
 
-
-
-function show_dhct_ad($dhct) {
-    $boxtt ="";
-    $html_showdhcl = '<div class="row mb-2">
-                      <div class="col-md-8 offset-md-2">
-                          <div class="card">
-                              <div class="card-header">
-                                  <h5 class="card-title">Thông tin đơn hàng</h5>
-                              </div>
-                              <div class="card-body">';
-    foreach ($dhct as $dh) {
-        extract($dh);
-  
-        switch ($trangthai) {
-            case 0:
-                $tt = "Chờ Xác Nhận";
-                break;
-            case 1:
-                $tt = "Đang Chuẩn Bị Hàng";
-                
-            case 2:
-                $tt = "Đang Giao Hàng";
-              
-                break;
-            case 3:
-                $tt = "Giao Hàng Thành Công";
-                break;
-            default:
-                $tt = "Đơn Hàng Không Xác Định";
-                $boxtt .= '<p class="card-text"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
-                break;
-        }
-          
-            // Hiển thị thông tin sản phẩm
-            $html_showdhcl .= '<div class="row mb-2">
-                            <div class="col-md-4">
-                                <img src="'. IMG_PATH_ADMIN. $img .'" alt="Product Image" class="img-fluid">
-                            </div>
-                            <div class="col-md-8">
-                                <h4 class="card-title">' . $name . '</h4>
-                                <p class="card-text"><strong>Size:</strong> ' . $size . '</p>
-                                <p class="card-text"><strong>Giá:</strong> ' . $price . '</p>
-                                <p class="card-text"><strong>Số lượng:</strong> ' . $soluong . '</p>
-                                <p class="card-text"><strong>Tổng cộng:</strong> ' . $tonggia . '</p>
-                            </div>
-                        </div>';
-            $currentOrderId = $madh;
-            $nguoidathang = $nguoidat_ten;
-            $ttt = $tongthanhtoan;
-            $ngaydat = $ngaydathang;
-            $diachi = $nguoidat_diachi;
-            $trangthaidh = $boxtt;
-  }
-  
-    $html_showdhcl .= '</div>
-                        <div class="card-footer">
-                        <p class="card-text"><strong>Mã đơn hàng: </strong>' . $currentOrderId . '</p>
-                        <p class="card-text"><strong>Người đặt hàng: </strong>' . $nguoidathang . '</p>
-                        <p class="card-text"><strong>Địa chỉ giao hàng: </strong>' . $diachi . '</p>
-                        <p class="card-text"><strong>Ngày đặt hàng: </strong> ' . $ngaydat . '</p>
-                        <p class="card-text"><strong>Tổng thanh toán: </strong> ' .  $ttt  . '</p>
-                        '.$trangthaidh.'
-                        </div></div></div></div>';
-  
-    return $html_showdhcl;
-  }
-
-
-
 function show_dhct($dhct) {
   $html_showdhcl = '<div class="row mb-2">
                     <div class="col-md-8 offset-md-2">
@@ -162,6 +87,8 @@ function show_dhct($dhct) {
                             <div class="card-body">';
   foreach ($dhct as $dh) {
       extract($dh);
+      $formattedPrice = number_format($price, 0, '.', '.');
+      $formattedPricett = number_format($tonggia, 0, '.', '.');
 
       switch ($trangthai) {
           case 0:
@@ -192,23 +119,19 @@ function show_dhct($dhct) {
         
           // Hiển thị thông tin sản phẩm
           $html_showdhcl .= '<div class="row mb-2">
-<<<<<<< HEAD
-=======
-
->>>>>>> 086dd0572a1d121ead4dfa7eb75adceefb2361c1
                           <div class="col-md-2">
                               <img width=150px src="' . IMG_PATH_USER . $img . '" alt="Product Image" class="img-fluid">
                           </div>
                           <div class="col-md-10">
                               <h4 class="card-title">' . $name . ' x '.$soluong.' (Size: '.$size.')</h4>
-                              <p class="card-text"><strong>Giá:</strong> ' . $price . '</p>
-                              <p class="card-text"><strong>Tổng cộng:</strong> ' . $tonggia . '</p>
+                              <p class="card-text"><strong>Giá:</strong> ' . $formattedPrice . 'VND</p>
+                              <p class="card-text"><strong>Tổng cộng:</strong> ' . $formattedPricett . 'VND</p>
                           </div>
                       </div>';
                       
           $currentOrderId = $madh;
           $nguoidathang = $nguoidat_ten;
-          $ttt = $tongthanhtoan;
+          $ttt = $formattedPricett;
           $ngaydat = $ngaydathang;
           $diachi = $nguoidat_diachi;
           $trangthaidh = $boxtt;
@@ -224,7 +147,7 @@ function show_dhct($dhct) {
                       <p class="card-text"><strong>Email: </strong> ' .  $email  . '</p>
                       <p class="card-text"><strong>Địa chỉ giao hàng: </strong>' . $diachi . '</p>
                       <p class="card-text"><strong>Ngày đặt hàng: </strong> ' . $ngaydat . '</p>
-                      <p class="card-text"><strong>Tổng thanh toán: </strong> ' .  $ttt  . '</p>
+                      <p class="card-text"><strong>Tổng thanh toán: </strong> ' .  $ttt  . 'VND</p>
 
                       '.$trangthaidh.'
                       </div></div></div></div>';
@@ -452,18 +375,20 @@ function delete_donhangct($mdh) {
 
 function show_dh_admin($dssp){
     $html_dssp ='';
-    $i =1 ;
     foreach ($dssp as $sp) {
      extract($sp);
      $html_dssp.='<div class="box25 mr15">
      <tr>
-     <td>'.$i++.'</td>
+     <td>'.$id_dh.'</td>
+     <td>'.$id_sanpham.'</td>
+     <td>'.$madh_ct.'</td>
      <td>'.$tensp.'</td>
      <td>'.$price.'</td>
      <td>'.$tonggia.'</td>
-     <td>'.$soluong.'</td>s
+     <td>'.$soluong.'</td>
      <td>'.$ngaydathang.'</td>
      <td>'.$size.'</td>
+     <td>'.$id_usdh.'</td>
      <td>
      <a href="index.php?ad=deletedh&id='.$id_dh.'" class="btn btn-danger">
      <i class="fa-solid "></i>Xóa</a>
@@ -479,6 +404,7 @@ function show_dhdg($dsdh) {
   $currentOrderId = null;
   foreach ($dsdh as $dh) {
     extract($dh);
+    $formattedPricett = number_format($tongthanhtoan, 0, '.', '.');
     switch ($trangthai) {
       case 0:
           $tt = "Chờ Xác Nhận";
@@ -536,7 +462,7 @@ function show_dhdg($dsdh) {
                               <hr class="hr-tt">
                               <div class="tttdh mt-4">
                                   <p class="card-text"><strong>Tổng số lượng sản phẩm trong đơn hàng:</strong> ' . $totalQuantity . '</p>
-                                  <p class="card-text"><strong>Tổng tiền thanh toán:</strong> ' . $tongthanhtoan . '</p>
+                                  <p class="card-text"><strong>Tổng tiền thanh toán:</strong> ' . $formattedPricett . 'VND</p>
                               </div>
                           </div>
                           <div class="card-footer d-flex justify-content-between">
@@ -568,6 +494,7 @@ function show_dhxnh($dsdh) {
   $currentOrderId = null;
   foreach ($dsdh as $dh) {
     extract($dh);
+    $formattedPricett = number_format($tongthanhtoan, 0, '.', '.');
     switch ($trangthai) {
       case 0:
           $tt = "Chờ Xác Nhận";
@@ -625,7 +552,7 @@ function show_dhxnh($dsdh) {
                               <hr class="hr-tt">
                               <div class="tttdh mt-4">
                                   <p class="card-text"><strong>Tổng số lượng sản phẩm trong đơn hàng:</strong> ' . $totalQuantity . '</p>
-                                  <p class="card-text"><strong>Tổng tiền thanh toán:</strong> ' . $tongthanhtoan . '</p>
+                                  <p class="card-text"><strong>Tổng tiền thanh toán:</strong> ' . $formattedPricett . 'VND</p>
                               </div>
                           </div>
                           <div class="card-footer d-flex justify-content-between">
@@ -656,6 +583,7 @@ function show_dhcbh($dsdh) {
   $currentOrderId = null;
   foreach ($dsdh as $dh) {
     extract($dh);
+    $formattedPricett = number_format($tongthanhtoan, 0, '.', '.');
     switch ($trangthai) {
       case 0:
           $tt = "Chờ Xác Nhận";
@@ -713,7 +641,7 @@ function show_dhcbh($dsdh) {
                               <hr class="hr-tt">
                               <div class="tttdh mt-4">
                                   <p class="card-text"><strong>Tổng số lượng sản phẩm trong đơn hàng:</strong> ' . $totalQuantity . '</p>
-                                  <p class="card-text"><strong>Tổng tiền thanh toán:</strong> ' . $tongthanhtoan . '</p>
+                                  <p class="card-text"><strong>Tổng tiền thanh toán:</strong> ' . $formattedPricett . 'VND</p>
                               </div>
                           </div>
                           <div class="card-footer d-flex justify-content-between">
@@ -745,6 +673,7 @@ function show_dhct_client($dsdh) {
   $currentOrderId = null;
   foreach ($dsdh as $dh) {
     extract($dh);
+    $formattedPricett = number_format($tongthanhtoan, 0, '.', '.');
     switch ($trangthai) {
       case 0:
           $tt = "Chờ Xác Nhận";
@@ -802,7 +731,7 @@ function show_dhct_client($dsdh) {
                               <hr class="hr-tt">
                               <div class="tttdh mt-4">
                                   <p class="card-text"><strong>Tổng số lượng sản phẩm trong đơn hàng:</strong> ' . $totalQuantity . '</p>
-                                  <p class="card-text"><strong>Tổng tiền thanh toán:</strong> ' . $tongthanhtoan . '</p>
+                                  <p class="card-text"><strong>Tổng tiền thanh toán:</strong> ' . $formattedPricett . 'VND</p>
                               </div>
                           </div>
                           <div class="card-footer d-flex justify-content-between">
@@ -832,7 +761,6 @@ function show_dhct_admin($dssp){
   $html_dssp ='';
   $ttxn ='';
   $xoa ='';
-  $i= 1;
   foreach ($dssp as $sp) {
    extract($sp);
    if($pttt==0){
@@ -846,7 +774,7 @@ function show_dhct_admin($dssp){
        $tt = "Chờ Xác Nhận";
        $ttxn.= '<a href="index.php?ad=xacnhandhct&id='.$id_ct.'&tt='.$tr.'" class="btn btn-info ">
        <i class="fa-solid "></i>Xác Nhận Đợn Hàng</a> ';
-       $xoa.= '<a href="index.php?ad=deletedhct&id='.$id_ct.'" class="btn btn-danger">
+       $xoa.= '<a href="index.php?ad=deletedhct&id='.$id_ct.'&tt='.$trangthai.'" class="btn btn-danger">
        <i class="fa-solid "></i>Xóa</a>';
     break;
     case 1:
@@ -854,7 +782,7 @@ function show_dhct_admin($dssp){
       $tr = 2;
       $ttxn.= '<a href="index.php?ad=xacnhandhct&id='.$id_ct.'&tt='.$tr.'" class="btn btn-info ">
       <i class="fa-solid "></i>Giao Hàng Cho ship</a> ';
-      $xoa.= '<a href="index.php?ad=deletedhct&id='.$id_ct.'" class="btn btn-danger">
+      $xoa.= '<a href="index.php?ad=deletedhct&id='.$id_ct.'&tt='.$trangthai.'" class="btn btn-danger">
       <i class="fa-solid "></i>Xóa</a>';
       break;
       case 2:
@@ -869,18 +797,19 @@ function show_dhct_admin($dssp){
        $tt = "Đơn Hàng Không Xác Định";
     break;
    }
-
    $html_dssp.='<div class="box25 mr15">
    <tr>
-   <td>'.$i++.'</td>
+   <td>'.$id_ct.'</td>
    <td>'.$madh.'</td>
    <td>'.$nguoidat_ten.'</td>
+   <td>'.$nguoidat_email.'</td>
    <td>'.$nguoidat_tell.'</td>
    <td>'.$nguoidat_diachi	.'</td>
    <td>'.$total.'</td>
    <td>'.$voucher.'</td>
    <td>'.$tongthanhtoan.'</td>
    <td>'.$pt.'</td>
+   <td>'.$id_usct.'</td>
    <td>'.$tt.'</td>
    <td>
     '.$xoa.'
@@ -903,10 +832,15 @@ function donhang_delete($id){
   
 }
 
-function donhangct_delete($id){
+function donhangct_delete($id,$tt){
+  if($tt==1||$tt==2){
     $sql = "DELETE FROM donhangchitiet WHERE id_ct=?";
-    pdo_execute($sql,$id);
-
+    pdo_execute($sql, $id);
+  }else{
+    $tb = "Đơn Hàng Không Thể Huỷ Khi Đang Giao Hàng";
+    return $tb ;
+  }
+  
 }
 
 function xacnhandh($mdh){

@@ -1,7 +1,6 @@
 <?php 
 $html_sp = show_bt_admin($bt);
 ?>
-<div class="content-wrapper">
 <div class="container mt-3">
     <h2>Biến Thể</h2>
                  

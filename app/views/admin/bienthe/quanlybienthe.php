@@ -1,4 +1,3 @@
-<div class="content-wrapper">
 <?php
 $html_dsbienthe = showds_bienthe_admin($dsbienthe);
 ?>
