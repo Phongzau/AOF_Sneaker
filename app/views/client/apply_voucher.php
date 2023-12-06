@@ -1,5 +1,4 @@
 <?php
-
 include "../../../app/models/pdo.php";
 function select_voucher_client($voucher){
     $sql = "SELECT * FROM khuyenmai WHERE voucher=?";

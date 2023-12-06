@@ -192,6 +192,10 @@ function show_dhct($dhct) {
         
           // Hiển thị thông tin sản phẩm
           $html_showdhcl .= '<div class="row mb-2">
+<<<<<<< HEAD
+=======
+
+>>>>>>> 086dd0572a1d121ead4dfa7eb75adceefb2361c1
                           <div class="col-md-2">
                               <img width=150px src="' . IMG_PATH_USER . $img . '" alt="Product Image" class="img-fluid">
                           </div>
