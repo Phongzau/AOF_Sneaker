@@ -1,7 +1,6 @@
 <?php
     $html_dsdm =showds_danhmuc_admin($dsdm); 
 ?>
- <div class="content-wrapper">
 <div class="container mt-3">
     <h2> Thêm Sản phẩm</h2>   
     <div class="main-content">

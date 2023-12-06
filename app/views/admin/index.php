@@ -569,9 +569,12 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                 break;
             case 'deletedhct':
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    if (isset($_GET['tt']) && ($_GET['tt'] > 0)) {
                         $id = $_GET['id'];
+                        $tt = $_GET['tt'];
                         donhang_delete($id);
-                         donhangct_delete($id);
+                        $tb = donhangct_delete($id, $tt);
+                    }
                 }
                 $dh = donhangct_all();
                 include "donhang/donhangchitiet.php";
@@ -588,7 +591,7 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
             case "xemchitetdh":
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                     $id = $_GET['id'];
-                    $dhct = select_dhct($id);
+                    $dh = donhang_all_id($id);
                 }
                 include "donhang/quanlydonhang.php";
                 break;
