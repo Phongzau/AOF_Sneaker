@@ -120,5 +120,6 @@
 	<script src="public/client/js/quantity.js"></script>
 	<script src="public/client/js/voucher.js"></script>
 	<script src="public/client/js/size.js"></script>
+	<script src="public/client/js/checkpttt.js"></script>
 </body>
 </html>
