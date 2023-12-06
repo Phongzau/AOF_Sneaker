@@ -1,6 +1,14 @@
 <?php
+if( isset($_SESSION['s_user']) && is_array($_SESSION['s_user']) && count($_SESSION['s_user']) > 0  && $_SESSION['s_user']['id_role']==2){
+    $html_admin = '<li>
+    <a href="app/views/admin/index.php"><i class="ti-user"></i>Trang Quản Trị</a>
+    </li>';
+}else{
+    $html_admin = "";
+}
 $html_showdm = showdm_all(danhmuc_all());
     if (isset($_SESSION['s_user']) && is_array($_SESSION['s_user']) && count($_SESSION['s_user']) > 0) {
+
         extract($_SESSION['s_user']);
         $html_account = '<a href="index.php?cl=thongtinuser" class="access_link"><span>Account</span></a>
                          <div class="dropdown-menu">
@@ -17,15 +25,18 @@ $html_showdm = showdm_all(danhmuc_all());
                          <li>
                              <a href="index.php?cl=donhangdadat"><i class="ti-truck"></i>Đang giao hàng  ('.count(select_dh_dgh($id_user)).')</a>
                          </li>
+            
                          <li>
-                             <a href="index.php?cl=dagiao"><i class="ti-package"></i>Đã giao  ('.count(select_dh_dg($id_user)).')</a>
+                         <a href="index.php?cl=dagiao"><i class="ti-package"></i>Đã giao  ('.count(select_dh_dg($id_user)).')</a>
                          </li>
                          <li>
                              <a href="index.php?cl=thongtinuser"><i class="ti-user"></i>My Profile</a>
                          </li>
                          <li>
-                             <a href="help.html"><i class="ti-help-alt"></i>Help and Faq</a>
+                             <a href="index.php"><i class="ti-help-alt"></i>Help and Faq</a>
                          </li>
+                            '.$html_admin.'
+
                      </ul>';
     } else {
         $html_account = '<a href="index.php?cl=dangnhap" class="access_link"><span>Account</span></a>
@@ -40,6 +51,7 @@ $html_showdm = showdm_all(danhmuc_all());
     }
     $html_cartheader =  viewcart_header();
     $total = get_tongdonhang();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -110,6 +122,7 @@ $html_showdm = showdm_all(danhmuc_all());
 </head>
 
 <body>
+    
     <div id="page">
 
         <header class="version_1">
@@ -148,6 +161,7 @@ $html_showdm = showdm_all(danhmuc_all());
                                                     <div id="menu">
                                                         <ul>
                                                             <?= $html_showdm ?>
+                                                           
                                                         </ul>
                                                     </div>
                                                 </li>
