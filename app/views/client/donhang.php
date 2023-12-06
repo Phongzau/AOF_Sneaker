@@ -19,7 +19,7 @@
                 <div class="col-xl-8 col-lg-8 col-md-8">
                     <div class="box_account">
                         <h3 class="client">Thông tin khách hàng</h3>
-                        <form action="index.php?cl=submit_donhang" method="POST">
+                        <form id="thanhToanForm" action="index.php?cl=submit_donhang" method="POST">
                         <div class="form_container">
                             <label for="">Họ tên:</label>
                             <div class="form-group">
@@ -42,11 +42,11 @@
                             <input type="hidden" name="tongthanhtoan" value="<?=$thanhtoan?>">
                             <label for="">Hình thức thanh toán</label> <br>
                             <div class="form-group">
-                                <input type="radio" name="pttt" value="0" checked> Thanh toán khi nhận hàng <br>
-                                <input type="radio" name="pttt" value="1"> Chuyển khoản 
+                                <input class="mb-3" type="radio" name="pttt" value="0" checked> Thanh toán khi nhận hàng <br>
+                                <input type="radio" name="pttt" value="1"> Thanh toán MOMO <img width="30px" src="public/uploads/momo_icon_square_pinkbg_RGB.png" alt="">
                             </div>
                             <div class="form-group text-center">
-                                <input type="submit" name="submit_donhang" class="btn_1 " value="Đặt hàng">
+                                <button type="submit" onclick="checkPTTT()" name="submit_donhang" class="btn_1 ">Đặt hàng</button>
                             </div>
                             
                         </div>
