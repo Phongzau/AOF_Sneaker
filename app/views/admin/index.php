@@ -592,6 +592,7 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
                     $id = $_GET['id'];
                     $dh = donhang_all_id($id);
+                    $dhchitet = select_dhct($id);
                 }
                 include "donhang/quanlydonhang.php";
                 break;
