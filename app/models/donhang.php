@@ -156,6 +156,90 @@ function show_dhct($dhct) {
 }
 
 
+
+
+
+
+
+function show_dh_ad($dhct) {
+    $html_showdhcl = '<div class="row mb-2">
+                      <div class="col-md-8 offset-md-2">
+                          <div class="card">
+                              <div class="card-header">
+                                  <h5 class="card-title">Thông tin đơn hàng</h5>
+                              </div>
+                              <div class="card-body">';
+                              $boxtt ="";
+    foreach ($dhct as $dh) {
+        extract($dh);
+        $formattedPrice = number_format($price, 0, '.', '.');
+        $formattedPricett = number_format($tonggia, 0, '.', '.');
+  
+        switch ($trangthai) {
+            case 0:
+                $tt = "Chờ Xác Nhận";
+                break;
+            case 1:
+                $tt = "Đang Chuẩn Bị Hàng";
+                break;
+            case 2:
+                $tt = "Đang Giao Hàng";
+                break;
+            case 3:
+                $tt = "Giao Hàng Thành Công";
+                break;
+            default:
+                $tt = "Đơn Hàng Không Xác Định";
+                $boxtt .= '<p class="card-text"><strong>Trạng thái đơn hàng:</strong> ' . $tt . '</p>';
+                break;
+        }
+          
+            // Hiển thị thông tin sản phẩm
+            $html_showdhcl .= '<div class="row mb-2">
+                            <div class="col-md-2">
+                                <img width=150px src="' . IMG_PATH_ADMIN . $img . '" alt="Product Image" class="img-fluid">
+                            </div>
+                            <div class="col-md-10">
+                                <h4 class="card-title">' . $name . ' x '.$soluong.' (Size: '.$size.')</h4>
+                                <p class="card-text"><strong>Giá:</strong> ' . $formattedPrice . 'VND</p>
+                                <p class="card-text"><strong>Tổng cộng:</strong> ' . $formattedPricett . 'VND</p>
+                            </div>
+                        </div>';
+                        
+            $currentOrderId = $madh;
+            $nguoidathang = $nguoidat_ten;
+            $ttt = $formattedPricett;
+            $ngaydat = $ngaydathang;
+            $diachi = $nguoidat_diachi;
+            $trangthaidh = $boxtt;
+            $sdt = $nguoidat_tell;
+            $email = $nguoidat_email;
+  }
+  
+    $html_showdhcl .= '</div>
+                        <div class="card-footer">
+                        <p class="card-text"><strong>Mã đơn hàng: </strong>' . $currentOrderId . '</p>
+                        <p class="card-text"><strong>Người đặt hàng: </strong>' . $nguoidathang . '</p>
+                        <p class="card-text"><strong>Số điện thoại: </strong> ' .  $sdt  . '</p>
+                        <p class="card-text"><strong>Email: </strong> ' .  $email  . '</p>
+                        <p class="card-text"><strong>Địa chỉ giao hàng: </strong>' . $diachi . '</p>
+                        <p class="card-text"><strong>Ngày đặt hàng: </strong> ' . $ngaydat . '</p>
+                        <p class="card-text"><strong>Tổng thanh toán: </strong> ' .  $ttt  . 'VND</p>
+  
+                        '.$trangthaidh.'
+                        </div></div></div></div>';
+  
+    return $html_showdhcl;
+  }
+
+
+
+
+
+
+
+
+
 function show_dh_client($dsdhct) {
   $html_showdhcl = '';
   $currentOrderId = null; // Biến để theo dõi mã đơn hàng hiện tại
@@ -666,6 +750,13 @@ function show_dhcbh($dsdh) {
 }
 return $html_showdh;
 }
+
+
+
+
+
+
+
 
 
 function show_dhct_client($dsdh) {

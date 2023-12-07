@@ -29,5 +29,6 @@
   <!-- summernote -->
   <link rel="stylesheet" href="../../../public/plugins/summernote/summernote-bs4.min.css">
 </head>
-<body class="hold-transition sidebar-mini layout-fixed">
+<body class="hold-transition sidebar-mini layout-fixed">\
 <div class="content-wrapper">
+
