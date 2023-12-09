@@ -7,24 +7,23 @@
                 <form class="addPro" action="index.php?ad=th_themsanpham" method="POST" enctype="multipart/form-data" >
                     <div class="form-group">
                         <label for="name">Tên sản phẩm:</label>
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Nhập tên sản phẩm">
+                        <input type="text" class="form-control" name="name" id="name" required placeholder="Nhập tên sản phẩm">
                     </div>
                     <div class="form-group">
                         <label for="name">Ảnh:</label>
-                        <input type="file" class="form-control" name="img" style="width:28%" id="name">
+                        <input type="file" class="form-control" name="img" required style="width:28%" id="name">
                     </div>
                     <div class="form-group">
                         <label for="name">Mô tả:</label>
-                        <input type="text" class="form-control" name="mota" id="name" placeholder="Mô tả sản phẩm">
+                        <input type="text" class="form-control" name="mota" id="name" required placeholder="Mô tả sản phẩm">
                     </div>
                     <div class="form-group">
                         <label for="name">Giá:</label>
-                        <input type="text" class="form-control" name="price" id="name" placeholder="Giá sản phẩm">
+                        <input type="number" class="form-control" name="price" id="name" required placeholder="Giá sản phẩm">
                     </div>
                     <div class="form-group">
                         <label for="categories">Danh mục:</label>
-                        <select class="form-select" name="iddm" aria-label="Default select example">
-                            <option value="">Chọn Danh mục</option>
+                        <select required class="form-select" name="iddm" aria-label="Default select example">
                             <?=$html_dsdm;?>
                         </select>
                     </div>
