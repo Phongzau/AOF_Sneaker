@@ -271,7 +271,13 @@
               </p>
             </a>
           </li>
-
+          <li class="nav-item btn-primary mb-1">
+            <a href="index.php?ad=quayvetrangchu" class=" text-center nav-link ">
+              <p>
+                Quay về trang client
+              </p>
+            </a>
+          </li>
           <li class="nav-item btn-danger">
             <a href="index.php?ad=dangxuat" class=" text-center nav-link ">
               <p>

@@ -802,7 +802,8 @@ if (isset($_SESSION['s_user']) && ($_SESSION['s_user']['chuc_vu'] == "Admin")) {
                 include "thongke.php";
                 break;
 
-
+            case 'quayvetrangchu':
+                header("location: ../../../index.php");
 
             default:
                 include "thongke.php";

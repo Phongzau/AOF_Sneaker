@@ -99,10 +99,10 @@
                             <div class="container">
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li class="nav-item">
-                                        <a id="tab-A" href="#pane-A" class="nav-link active" data-bs-toggle="tab" role="tab">Description</a>
+                                        <a id="tab-A" href="#pane-A" class="nav-link active" data-bs-toggle="tab" role="tab">Mô tả</a>
                                     </li>
                                     <li class="nav-item">
-                                        <a id="tab-B" href="#pane-B" class="nav-link" data-bs-toggle="tab" role="tab">Reviews</a>
+                                        <a id="tab-B" href="#pane-B" class="nav-link" data-bs-toggle="tab" role="tab">Đánh giá</a>
                                     </li>
                                 </ul>
                             </div>
@@ -127,7 +127,7 @@
                                                         <p><?=$mota?></p>
                                                     </div>
                                                     <div class="col-lg-5">
-                                                        <h3>Specifications</h3>
+                                                        <h3>Đặc tả</h3>
                                                         <div class="table-responsive">
                                                             <table class="table table-sm table-striped">
                                                                 <tbody>
@@ -137,7 +137,7 @@
                                                                     </tr>
                                                                     <tr>
                                                                         <td><strong>Size</strong></td>
-                                                                        <td>150x100x100</td>
+                                                                        <td>41</td>
                                                                     </tr>
                                                                     <tr>
                                                                         <td><strong>Weight</strong></td>

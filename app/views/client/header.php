@@ -51,6 +51,8 @@ $html_showdm = showdm_all(danhmuc_all());
     }
     $html_cartheader =  viewcart_header();
     $total = get_tongdonhang();
+    $formattedPrice = number_format($total, 0, '.', '.');
+
 
 ?>
 <!DOCTYPE html>
@@ -237,7 +239,7 @@ $html_showdm = showdm_all(danhmuc_all());
                                         <a href="index.php?cl=giohang" class="cart_bt"><strong><?= count($_SESSION['giohang'])?></strong></a>
                                         <?=$html_cartheader?>
                                         <div class="total_drop">
-                                <div class="clearfix"><strong>Total</strong><span><?=$total?></span></div>
+                                <div class="clearfix"><strong>Total</strong><span><?=$formattedPrice?>VND</span></div>
                                 <a href="index.php?cl=viewcart" class="btn_1 outline">View Cart</a>
                                 </div>
                                 </div>

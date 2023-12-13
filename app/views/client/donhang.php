@@ -19,23 +19,23 @@
                 <div class="col-xl-8 col-lg-8 col-md-8">
                     <div class="box_account">
                         <h3 class="client">Thông tin khách hàng</h3>
-                        <form id="thanhToanForm" action="index.php?cl=submit_donhang" method="POST">
+                        <form id="thanhToanForm" action="index.php?cl=submit_donhang" onsubmit="return validateForm()" method="POST">
                         <div class="form_container">
-                            <label for="">Họ tên:</label>
+                            <label for="">Họ tên:</label><span style="color: red; margin-left: 10px"><?=isset($errors['ten_nguoidat']) ? $errors['ten_nguoidat'] : '' ?></span>
                             <div class="form-group">
-                                <input type="text" class="form-control" value="<?= (isset($user_name) && $user_name !== "") ? $user_name : "" ?>" name="nguoidat_ten" id="email" placeholder="Họ và tên">
+                                <input type="text" class="form-control" value="<?= (isset($user_name) && $user_name !== "") ? $user_name : "" ?>" name="nguoidat_ten" required id="hoTen" placeholder="Họ và tên">
                             </div>   
-                            <label class="mt-1" for="">Email:</label>               
+                            <label class="mt-1" for="">Email:</label><span style="color: red; margin-left: 10px"><?=isset($errors['email_nguoidat']) ? $errors['email_nguoidat'] : '' ?></span>               
                             <div class="form-group">
-                                <input type="email" class="form-control" value="<?= (isset($email) && $email !== "") ? $email : "" ?>" name="nguoidat_email" id="email" placeholder="Email">
+                                <input type="email" class="form-control" value="<?= (isset($email) && $email !== "") ? $email : "" ?>" name="nguoidat_email" required id="email" placeholder="Email">
                             </div>
-                            <label class="mt-1" for="">Điện thoại</label>
+                            <label class="mt-1" for="">Điện thoại</label><span style="color: red; margin-left: 10px"><?=isset($errors['sdt_nguoidat']) ? $errors['sdt_nguoidat'] : '' ?></span>               
                             <div class="form-group">
-                                <input type="text" class="form-control" value="<?= (isset($dienthoai) && $dienthoai !== "") ? $dienthoai : "" ?>" name="nguoidat_tel" id="password_in" value="" placeholder="Số điện thoại">
+                                <input type="text" class="form-control" value="<?= (isset($dienthoai) && $dienthoai !== "") ? $dienthoai : "" ?>" name="nguoidat_tel" id="sdt" value="" required placeholder="Số điện thoại">
                             </div>
-                            <label class="mt-1" for="">Địa chỉ</label>
+                            <label class="mt-1" for="">Địa chỉ</label><span style="color: red; margin-left: 10px"><?=isset($errors['diachi_nguoidat']) ? $errors['diachi_nguoidat'] : '' ?></span>               
                             <div class="form-group">
-                                <input type="text" class="form-control" value="<?= (isset($diachi) && $diachi !== "") ? $diachi : "" ?>" name="nguoidat_diachi" id="password_in" value="" placeholder="Địa chỉ nhà">
+                                <input type="text" class="form-control" value="<?= (isset($diachi) && $diachi !== "") ? $diachi : "" ?>" name="nguoidat_diachi" id="diaChi" value="" required placeholder="Địa chỉ nhà">
                             </div>
                             <input type="hidden" name="total" value="<?=$total?>">
                             <input type="hidden" name="giatrivoucher" value="<?=$giatrivoucher?>">
@@ -46,7 +46,7 @@
                                 <input type="radio" name="pttt" value="1"> Thanh toán MOMO <img width="30px" src="public/uploads/momo_icon_square_pinkbg_RGB.png" alt="">
                             </div>
                             <div class="form-group text-center">
-                                <button type="submit" onclick="checkPTTT()" name="submit_donhang" class="btn_1 ">Đặt hàng</button>
+                                <button type="submit"  name="submit_donhang" class="btn_1 ">Đặt hàng</button>
                             </div>
                             
                         </div>
