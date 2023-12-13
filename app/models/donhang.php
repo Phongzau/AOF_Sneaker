@@ -459,6 +459,7 @@ function delete_donhangct($mdh) {
 
 function show_dh_admin($dssp){
     $html_dssp ='';
+    $xd = "'Bạn có muốn xóa sản phẩm này không?'";  
     foreach ($dssp as $sp) {
      extract($sp);
      $html_dssp.='<div class="box25 mr15">
@@ -474,7 +475,7 @@ function show_dh_admin($dssp){
      <td>'.$size.'</td>
      <td>'.$id_usdh.'</td>
      <td>
-     <a href="index.php?ad=deletedh&id='.$id_dh.'" class="btn btn-danger">
+     <a onclick="return confirm('.$xd.')" href="index.php?ad=deletedh&id='.$id_dh.'" class="btn btn-danger">
      <i class="fa-solid "></i>Xóa</a>
     
    </tr>

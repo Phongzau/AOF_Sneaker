@@ -32,6 +32,7 @@ function insert_khuyenmai_admin($voucher, $mota, $giatri) {
 
 function showds_voucher_admin($dsvoucher){
     $html_dsvoucher ='';
+    $xd = "'Bạn có muốn xóa sản phẩm này không?'";  
     foreach ($dsvoucher as $voucher) {
      extract($voucher);
      $html_dsvoucher.= '<tr>
@@ -42,7 +43,7 @@ function showds_voucher_admin($dsvoucher){
                             <td>
                             <a href="index.php?ad=updatevoucher&id='.$id_voucher.'" class="btn btn-warning">
                             <i class="fa-solid fa-pen-to-square"></i> Sửa</a>
-                            <a href="index.php?ad=deletevoucher&id='.$id_voucher.'" class="btn btn-danger">
+                            <a onclick="return confirm('.$xd.')" href="index.php?ad=deletevoucher&id='.$id_voucher.'" class="btn btn-danger">
                             <i class="fa-solid "></i> Xóa</a>
                             </td>
                         </tr>';

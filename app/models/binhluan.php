@@ -43,6 +43,7 @@ function select_all_binhluan_admin(){
 
 function showds_binhluan_admin($dsbinhluan) {
     $html_dsbinhluan = '';
+    $xd = "'Bạn có muốn xóa sản phẩm này không?'";  
     foreach ($dsbinhluan as $bl) {
         extract($bl);
         $html_dsbinhluan.='<tr>
@@ -52,7 +53,7 @@ function showds_binhluan_admin($dsbinhluan) {
                             <td>'.$noidung.'</td>
                             <td>'.$ngaybl.'</td>
                             <td>
-                            <a href="index.php?ad=deletebl&id='.$id_bl.'" class="btn btn-danger">
+                            <a onclick="return confirm('.$xd.')" href="index.php?ad=deletebl&id='.$id_bl.'" class="btn btn-danger">
                             <i class="fa-solid "></i> Xóa</a>
                             </td>
                            </tr>';

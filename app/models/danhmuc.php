@@ -42,6 +42,7 @@ function danhmuc_all(){
 
 function showdm ($dsdm){
     $html_dm='';
+    $xd = "'Bạn có muốn xóa sản phẩm này không?'";  
     foreach ($dsdm as $dm) {
         extract($dm);
         $html_dm.=' <tr>
@@ -51,7 +52,7 @@ function showdm ($dsdm){
         <td>
         <a href="index.php?ad=updatedm&id='.$id_dm.'" class="btn btn-warning">
         <i class="fa-solid fa-pen-to-square"></i> Sửa</a>
-        <a href="index.php?ad=deletedm&id='.$id_dm.'" class="btn btn-danger">
+        <a onclick="return confirm('.$xd.')" href="index.php?ad=deletedm&id='.$id_dm.'" class="btn btn-danger">
         <i class="fa-solid "></i> Xóa</a>
         </td>
       </tr>';

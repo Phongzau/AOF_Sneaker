@@ -28,6 +28,7 @@ function  select_bthe_id($id){
 
     function show_bt_admin($dssp){
         $html_dssp ='';
+        $xd = "'Bạn có muốn xóa sản phẩm này không?'";  
         foreach ($dssp as $sp) {
          extract($sp);
          $html_dssp.='<div class="box25 mr15">
@@ -39,7 +40,7 @@ function  select_bthe_id($id){
          <td>
          <a href="index.php?ad=suabt&id='.$id_bt.'&idsp='.$id_sanpham.'" class="btn btn-warning">
          <i class="fa-solid fa-pen-to-square"></i>Sửa</a>
-         <a href="index.php?ad=deletebt&id='.$id_bt.'" class="btn btn-danger">
+         <a onclick="return confirm('.$xd.')" href="index.php?ad=deletebt&id='.$id_bt.'" class="btn btn-danger">
          <i class="fa-solid "></i>Xóa</a>
          </td>
        </tr>
