@@ -489,6 +489,7 @@ function show_dhdg($dsdh) {
   foreach ($dsdh as $dh) {
     extract($dh);
     $formattedPricett = number_format($tongthanhtoan, 0, '.', '.');
+    $tbaott = '<p style=font-size:18px class="card-text text-success"><strong>Đã thanh toán</strong></p>';
     switch ($trangthai) {
       case 0:
           $tt = "Chờ Xác Nhận";
@@ -540,6 +541,7 @@ function show_dhdg($dsdh) {
                                   <p class="card-text"><strong>Mã đơn hàng: </strong>' . $madh . '</p>
                                   <p class="card-text"><strong>Người đặt hàng: </strong>' . $nguoidat_ten . '</p>
                                   <p class="card-text"><strong>Địa chỉ giao hàng: </strong>' . $nguoidat_diachi . '</p>
+                                  '.$tbaott.'
                                   </div>
                               </div>
                               <!-- Thêm dòng gạch ngăn cách -->
@@ -674,6 +676,11 @@ function show_dhcbh($dsdh) {
   foreach ($dsdh as $dh) {
     extract($dh);
     $formattedPricett = number_format($tongthanhtoan, 0, '.', '.');
+    if ($pttt == 0) {
+        $tbaott = '<p style=font-size:18px class="card-text text-danger"><strong>Chưa thanh toán</strong></p>';
+    } else if ($pttt == 1) {
+        $tbaott = '<p style=font-size:18px class="card-text text-success"><strong>Đã thanh toán</strong></p>';
+    }
     switch ($trangthai) {
       case 0:
           $tt = "Chờ Xác Nhận";
@@ -725,6 +732,7 @@ function show_dhcbh($dsdh) {
                                   <p class="card-text"><strong>Mã đơn hàng: </strong>' . $madh . '</p>
                                   <p class="card-text"><strong>Người đặt hàng: </strong>' . $nguoidat_ten . '</p>
                                   <p class="card-text"><strong>Địa chỉ giao hàng: </strong>' . $nguoidat_diachi . '</p>
+                                  '.$tbaott.'
                                   </div>
                               </div>
                               <!-- Thêm dòng gạch ngăn cách -->
@@ -771,6 +779,11 @@ function show_dhct_client($dsdh) {
   foreach ($dsdh as $dh) {
     extract($dh);
     $formattedPricett = number_format($tongthanhtoan, 0, '.', '.');
+    if ($pttt == 0) {
+        $tbaott = '<p style=font-size:18px class="card-text text-danger"><strong>Chưa thanh toán</strong></p>';
+    } else if ($pttt == 1) {
+        $tbaott = '<p style=font-size:18px class="card-text text-success"><strong>Đã thanh toán</strong></p>';
+    }
     switch ($trangthai) {
       case 0:
           $tt = "Chờ Xác Nhận";
@@ -822,6 +835,7 @@ function show_dhct_client($dsdh) {
                                   <p class="card-text"><strong>Mã đơn hàng: </strong>' . $madh . '</p>
                                   <p class="card-text"><strong>Người đặt hàng: </strong>' . $nguoidat_ten . '</p>
                                   <p class="card-text"><strong>Địa chỉ giao hàng: </strong>' . $nguoidat_diachi . '</p>
+                                  '.$tbaott.'
                                   </div>
                               </div>
                               <!-- Thêm dòng gạch ngăn cách -->

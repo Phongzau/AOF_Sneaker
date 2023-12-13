@@ -262,7 +262,7 @@ function showsp_one_hot($dssp) {
                                             <p>'.$mota.'</p>
                                             <div class="feat_text_block">
                                                 <div class="price_box">
-                                                    <span class="new_price">$'.$formattedPrice .'</span>
+                                                    <span class="new_price">'.$formattedPrice .'VND</span>
                                                 </div>
                                                 <a class="btn_1" href="'.$link.'" role="button">Shop Now</a>
                                             </div>
