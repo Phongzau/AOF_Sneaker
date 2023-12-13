@@ -13,11 +13,11 @@ $html_dsdm = '';
     <div class="main-content">
                 <form class="addPro" action="index.php?ad=th_suasanpham" enctype="multipart/form-data" method="POST" >
                     <div class="form-group">
-                        <input type="text"  class="form-control" value="<?=$id_sp?>" name="id_sp" id="name" placeholder="Nhập tên sản phẩm">
+                        <input type="text"  class="form-control" required value="<?=$id_sp?>" name="id_sp" id="name" placeholder="Nhập tên sản phẩm">
                     </div>
                     <div class="form-group">
                         <label for="name">Tên Sản phẩm</label>
-                        <input type="text" class="form-control"  value="<?=($name != "")?$name:""?>" name="name" id="name" required placeholder="Nhập tên sản phẩm">
+                        <input type="text"  class="form-control"  value="<?=($name != "")?$name:""?>" name="name" id="name" required placeholder="Nhập tên sản phẩm">
                     </div>
                   <input type="hidden" name="imgcu" value="<?=($img != "")?$img:""?>" src="" alt="">
 
@@ -28,12 +28,12 @@ $html_dsdm = '';
             
                     <div class="form-group">
                         <label for="name">price</label>
-                        <input type="text" class="form-control" value="<?=($price != "")?$price:""?>" name="price" id="name">
+                        <input type="text" class="form-control" required value="<?=($price != "")?$price:""?>" name="price" id="name">
                     </div>
               
                     <div class="form-group">
                         <label for="name">Mô Tả:</label>
-                        <input type="text" class="form-control" value="<?=($mota != "")?$mota:""?>" name="mota" id="name">
+                        <input type="text" class="form-control" required value="<?=($mota != "")?$mota:""?>" name="mota" id="name">
                     </div>
 
              

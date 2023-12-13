@@ -16,11 +16,11 @@
                     </div>
                     <div class="form-group">
                         <label for="name">Size:</label>
-                        <input type="text" class="form-control" name="dungluong" id="name" >
+                        <input type="text" required class="form-control" name="dungluong" id="name" >
                     </div>
                     <div class="form-group">
                         <label for="name">Số lượng:</label>
-                        <input type="text" class="form-control" name="soluong" id="name" >
+                        <input type="number" required class="form-control" name="soluong" id="name" >
                     </div>
                     <div class="form-group">
                         <button type="submit" name="s_thembienthe" class="btn btn-primary">Thêm Biến Thể</button>

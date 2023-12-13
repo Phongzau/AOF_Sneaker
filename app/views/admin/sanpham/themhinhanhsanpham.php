@@ -9,11 +9,11 @@
     <div class="main-content">
                 <form class="addPro" action="index.php?ad=th_themanhsp" enctype="multipart/form-data" method="POST">
                     <div class="form-group">
-                        <input type="text"  class="form-control" value="<?=$id_sp?>" name="id_sanpham" id="name" >
+                        <input type="text" required  class="form-control" value="<?=$id_sp?>" name="id_sanpham" id="name" >
                     </div>
                     <div class="form-group">
                         <label for="img">Ảnh:</label>
-                        <input type="file" class="form-control" name="img" id="name" >
+                        <input type="file" required class="form-control" name="img" id="name" >
                     </div>
                     <div class="form-group">
                        
