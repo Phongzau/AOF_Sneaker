@@ -1,7 +1,7 @@
 <?php
 session_start();
 ob_start();
-if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
+if (isset($_SESSION['s_user']) && ($_SESSION['s_user']['chuc_vu'] == "Admin")) {
     include "header.php";
     include "sidebar.php";
     include "../../models/pdo.php";
@@ -96,14 +96,30 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                 // Thực hiện thêm chức vụ
             case 'th_themchucvu':
                 if (isset($_POST['th_themchucvu'])) {
-                    $chuc_vu = $_POST['chuc_vu'];
-                    $mota = $_POST['mota'];
+                    $errors = array();
+                    if (empty($_POST['chuc_vu'])) {
+                        $errors['tb_error_chuc_vu'] = "Chức vụ không được để trống";
+                    } else {
+                        $chuc_vu = $_POST['chuc_vu'];
+                    }
+                    if (empty($_POST['mota'])) {
+                        $errors['tb_error_mota'] = "Mô tả không được để trống";
+                    } else {
+                        $mota = $_POST['mota'];
+                    }
+                    if (empty($errors)) {
+                        // Thực hiện chức năng
+                        insert_chucvu_admin($chuc_vu, $mota);
+                        $dsrole = select_all_role();
+                        $tb_tccv = "<h3 class=text-center style=color:green>Bạn đã thêm chức vụ thành công</h3>";
+                        include "chucvu/quanlychucvu.php";
+                        break;
+                    } else {
+                        $tb_fail = "<h3 class=text-center style=color:red>Tài khoản bạn đã tạo thất bại</h3>";
+                    }
                 }
-                insert_chucvu_admin($chuc_vu, $mota);
-                $dsrole = select_all_role();
-                include "chucvu/quanlychucvu.php";
+                include "chucvu/themchucvu.php";
                 break;
-
                 // Xóa chức vụ
             case 'deleterole':
                 if (isset($_GET['id']) && ($_GET['id'] > 0)) {
@@ -126,13 +142,29 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                 // Thực hiện sửa chức vụ
             case 'th_suachucvu':
                 if (isset($_POST['th_suachucvu'])) {
-                    $chuc_vu = $_POST['chuc_vu'];
-                    $mota = $_POST['mota'];
+                    if (empty($_POST['chuc_vu'])) {
+                        $errors['tb_error_chuc_vu'] = "Chức vụ không được để trống";
+                    } else {
+                        $chuc_vu = $_POST['chuc_vu'];
+                    }
+                    if (empty($_POST['mota'])) {
+                        $errors['tb_error_mota'] = "Mô tả không được để trống";
+                    } else {
+                        $mota = $_POST['mota'];
+                    }
                     $id = $_POST['id_role'];
+                    if (empty($errors)) {
+                        // Thực hiện chức năng
+                        update_chucvu_admin($chuc_vu, $mota, $id);
+                        $dsrole = select_all_role();
+                        $tb_tccv = "<h3 class=text-center style=color:green>Bạn đã sửa chức vụ thành công</h3>";
+                        include "chucvu/quanlychucvu.php";
+                        break;
+                    } else {
+                        $tb_fail = "<h3 class=text-center style=color:red>Tài khoản bạn đã tạo thất bại</h3>";
+                    }
                 }
-                update_chucvu_admin($chuc_vu, $mota, $id);
-                $dsrole = select_all_role();
-                include "chucvu/quanlychucvu.php";
+                include "chucvu/suachucvu.php";
                 break;
 
                 //------------------------------------------------------Hết Trang Quản Lý Chức Vụ------------------------------------------------------//
@@ -504,14 +536,36 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                 // Thực hiện sửa khuyến mãi
             case 'th_suakhuyenmai':
                 if (isset($_POST['th_suakhuyenmai'])) {
-                    $id_voucher = $_POST['id_voucher'];
-                    $voucher = $_POST['voucher'];
-                    $mota = $_POST['mota'];
-                    $giatri = $_POST['giatri'];
-                    update_voucher_admin($voucher, $mota, $giatri, $id_voucher);
+                    $errors = array();
+                    if (empty($_POST['voucher'])) {
+                        $errors['tb_error_voucher'] = "Voucher không được để trống";
+                    } else {
+                        $voucher = $_POST['voucher'];
+                    }
+
+                    if (empty($_POST['mota'])) {
+                        $errors['tb_error_mota'] = "Mô tả không được để trống";
+                    } else {
+                        $mota = $_POST['mota'];
+                    }
+
+                    if (empty($_POST['giatri'])) {
+                        $errors['tb_error_giatri'] = "Giá trị không được để trống";
+                    } else {
+                        $giatri = $_POST['giatri'];
+                    }
+                    $id_voucher = $_POST['id_voucher']; 
+                    if (empty($errors)) {
+                        // Thực hiện chức năng
+                        update_voucher_admin($voucher, $mota, $giatri, $id_voucher);
+                        $dsvoucher = select_voucher_admin();
+                        $tb_tckm = "<h3 class=text-center style=color:green>Bạn đã sửa khuyến mãi thành công</h3>";
+                        include "khuyenmai/quanlykhuyenmai.php";
+                        break;
+                    } 
                 }
-                $dsvoucher = select_voucher_admin();
-                include "khuyenmai/quanlykhuyenmai.php";
+                $voucher = select_voucher_by_id_admin($id_voucher);
+                include "khuyenmai/suakhuyenmai.php";
                 break;
 
                 // Trang Thêm khuyến mãi
@@ -522,13 +576,33 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                 // Thực hiện thêm khuyến mãi
             case 'th_themkhuyenmai':
                 if (isset($_POST['th_themkhuyenmai'])) {
-                    $voucher = $_POST['voucher'];
-                    $mota = $_POST['mota'];
-                    $giatri = $_POST['giatri'];
+                    if (empty($_POST['voucher'])) {
+                        $errors['tb_error_voucher'] = "Voucher không được để trống";
+                    } else {
+                        $voucher = $_POST['voucher'];
+                    }
+
+                    if (empty($_POST['mota'])) {
+                        $errors['tb_error_mota'] = "Mô tả không được để trống";
+                    } else {
+                        $mota = $_POST['mota'];
+                    }
+
+                    if (empty($_POST['giatri'])) {
+                        $errors['tb_error_giatri'] = "Giá trị không được để trống";
+                    } else {
+                        $giatri = $_POST['giatri'];
+                    }
+                    if (empty($errors)) {
+                        // Thực hiện chức năng
+                        insert_khuyenmai_admin($voucher, $mota, $giatri);
+                        $dsvoucher = select_voucher_admin();
+                        $tb_tctkm = "<h3 class=text-center style=color:green>Bạn đã thêm khuyến mãi thành công</h3>";
+                        include "khuyenmai/quanlykhuyenmai.php";
+                        break;
+                    } 
                 }
-                insert_khuyenmai_admin($voucher, $mota, $giatri);
-                $dsvoucher = select_voucher_admin();
-                header('location:index.php?ad=quanlykhuyenmai');
+                include "khuyenmai/themkhuyenmai.php";
                 break;
 
                 //------------------------------------------------------Hết Trang Quản Lý Khuyến Mãi------------------------------------------------------//
@@ -616,77 +690,110 @@ if (isset($_SESSION['user']) && ($_SESSION['user']['chuc_vu'] == "Admin")) {
                 //------------------------------------------------------Hết Trang Quản Lý Liên Hệ------------------------------------------------------//
 
                 // Trang quản lý banner
-case 'quanlybanner':
-    $dsbanner = select_banner_admin();
-    include "banner/quanlybanner.php";
-    break;
+            case 'quanlybanner':
+                $dsbanner = select_banner_admin();
+                include "banner/quanlybanner.php";
+                break;
 
-// Thêm banner
-case 'thembanner':
-    include "banner/thembanner.php";
-    break;
+            // Thêm banner
+            case 'thembanner':
+                include "banner/thembanner.php";
+                break;
 
-// Thực hiện thêm banner
-case 'th_thembanner':
-    if (isset($_POST['s_thembanner'])) {
-        $name = $_POST['name'];
-        $link = $_POST['link'];
-        $img = $_FILES['img']['name'];
+            // Thực hiện thêm banner
+            case 'th_thembanner':
+                if (isset($_POST['s_thembanner'])) {
+                    $errors = array();
+                    if (empty($_POST['name'])) {
+                        $errors['tb_error_name'] = "Tên banner không được để trống";
+                    } else {
+                        $name = $_POST['name'];
+                    }
+                    if (empty($_POST['link'])) {
+                        $errors['tb_error_link'] = "link không được để trống";
+                    } else {
+                        $link = $_POST['link'];
+                    }
+                    $img = $_FILES['img']['name'];
+                    if ($img != "") {
+                        // upload hinh anh
+                        $target_file = IMG_PATH_ADMIN . $img;
+                        move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
+                    } else {
+                        $errors['tb_error_img'] = "Ảnh không được để trống";
+                    }
+                    if (empty($errors)) {
+                        // Thực hiện chức năng
+                        insert_banner_admin($name, $link, $img);
+                        $dsbanner = select_banner_admin();
+                        $tb_tcbn = "<h3 class=text-center style=color:green>Bạn đã thêm Banner thành công</h3>";
+                        include "banner/quanlybanner.php";
+                        break;
+                    }
+                }
+                $dsbanner = select_banner_admin();
+                include "banner/thembanner.php";
+                break;
 
-        // Upload hình ảnh
-        $target_file = IMG_PATH_ADMIN . $img;
-        move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
-            insert_banner_admin($name, $link, $img);
-    }
+            // Xóa banner
+            case 'deletebanner':
+                if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $id = $_GET['id'];
+                    delete_banner_admin($id);
+                }
+                $dsbanner = select_banner_admin();
+                include "banner/quanlybanner.php";
+                break;
 
-    $dsbanner = select_banner_admin();
-    include "banner/quanlybanner.php";
-    break;
-
-// Xóa banner
-case 'deletebanner':
-    if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-        $id = $_GET['id'];
-        delete_banner_admin($id);
-    }
-    $dsbanner = select_banner_admin();
-    include "banner/quanlybanner.php";
-    break;
-
-// Thực hiện sửa banner
-case 'th_suabanner':
-    if (isset($_POST['s_suabanner'])) {
-        $id = $_POST['id'];
-        $name = $_POST['name'];
-        $link = $_POST['link'];
-        $img = $_FILES['img']['name'];
-
-        // Nếu có hình mới, upload hình ảnh mới
-        if ($img != "") {
-            $target_file = IMG_PATH_ADMIN . $img;
-            move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
-        } else {
-            $img = $img;
-        }
-    }
-   update_banner_admin($name, $link, $img ,$id);
-    $dsbanner = select_banner_admin();
-    include "banner/quanlybanner.php";
-    break;
-    
-    case 'updatebanner':
-        if (isset($_GET['id']) && ($_GET['id'] > 0)) {
-           $id = $_GET['id'];
-        $bl =   select_banner_by_id_admin($id);
-        include "banner/suabanner.php";
-        }
-    break;
-    
+            // Thực hiện sửa banner
+            case 'th_suabanner':
+                if (isset($_POST['s_suabanner'])) {
+                    $errors = array();
+                    if (empty($_POST['name'])) {
+                        $errors['tb_error_name'] = "Tên banner không được để trống";
+                    } else {
+                        $name = $_POST['name'];
+                    }
+                    if (empty($_POST['link'])) {
+                        $errors['tb_error_link'] = "link không được để trống";
+                    } else {
+                        $link = $_POST['link'];
+                    }
+                    $id = $_POST['id'];
+                    $img = $_FILES['img']['name'];
+                    if ($img != "") {
+                        // upload hinh anh
+                        $target_file = IMG_PATH_ADMIN . $img;
+                        move_uploaded_file($_FILES['img']['tmp_name'], $target_file);
+                    } else {
+                        $errors['tb_error_img'] = "Ảnh không được để trống";
+                    }
+                    if (empty($errors)) {
+                        // Thực hiện chức năng
+                        update_banner_admin($name, $link, $img ,$id);
+                        $dsbanner = select_banner_admin();
+                        $tb_tcbn = "<h3 class=text-center style=color:green>Bạn đã sửa Banner thành công</h3>";
+                        include "banner/quanlybanner.php";
+                        break;
+                    }
+                }
+                $bl =   select_banner_by_id_admin($id);
+                include "banner/suabanner.php";
+                break;
+                
+                case 'updatebanner':
+                    if (isset($_GET['id']) && ($_GET['id'] > 0)) {
+                    $id = $_GET['id'];
+                    $bl =   select_banner_by_id_admin($id);
+                    include "banner/suabanner.php";
+                    }
+                break;
+                
 
 //------------------------------------------------------Hết Trang Quản Lý Banner------------------------------------------------------//
             case 'dangxuat':
-                if (isset($_SESSION['user']) && count($_SESSION['user']) > 0) {
-                    unset($_SESSION['user']);
+                if (isset($_SESSION['s_user']) && count($_SESSION['s_user']) > 0) {
+                    unset($_SESSION['s_user']);
                     header("location: dangnhap.php");
                     break;
                 }
