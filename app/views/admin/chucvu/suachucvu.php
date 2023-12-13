@@ -9,11 +9,11 @@
     <div class="main-content">
                 <form class="addPro" action="index.php?ad=th_suachucvu" method="POST">
                     <div class="form-group">
-                        <label for="name">Tên chức vụ</label>
+                        <label for="name">Tên chức vụ</label><span style="color: red; margin-left: 10px"><?=isset($errors['tb_error_chuc_vu']) ? $errors['tb_error_chuc_vu'] : '' ?></span>
                         <input type="text" class="form-control" name="chuc_vu" value="<?=($chuc_vu != "")?$chuc_vu:""?>" id="name" placeholder="Nhập tên chức vụ">
                     </div>
                     <div class="form-group">
-                        <label for="name">Mô tả:</label>
+                        <label for="name">Mô tả:</label><span style="color: red; margin-left: 10px"><?=isset($errors['tb_error_mota']) ? $errors['tb_error_mota'] : '' ?></span>
                         <input type="text" class="form-control" name="mota" value="<?=($mota != "")?$mota:""?>" id="name" placeholder="Mô tả chức vụ">
                     </div>
                     <div class="form-group">

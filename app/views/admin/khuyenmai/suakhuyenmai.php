@@ -11,15 +11,15 @@
                         <input type="text" hidden class="form-control" value="<?=$id_voucher?>" name="id_voucher" id="name" placeholder="Nhập tên voucher">
                     </div>
                     <div class="form-group">
-                        <label for="name">Voucher:</label>
+                        <label for="name">Voucher:</label><span style="color: red; margin-left: 10px"><?=isset($errors['tb_error_voucher']) ? $errors['tb_error_voucher'] : '' ?></span>
                         <input type="text" class="form-control" value="<?=($voucher != "")?$voucher:""?>" name="voucher" id="name" placeholder="Nhập tên voucher">
                     </div>
                     <div class="form-group">
-                        <label for="name">Mô tả:</label>
+                        <label for="name">Mô tả:</label><span style="color: red; margin-left: 10px"><?=isset($errors['tb_error_mota']) ? $errors['tb_error_mota'] : '' ?></span>
                         <input type="text" class="form-control" value="<?=($mota != "")?$mota:""?>" name="mota" id="name" placeholder="Nhập nội dung mô tả">
                     </div>
                     <div class="form-group">
-                        <label for="name">Giá trị:</label>
+                        <label for="name">Giá trị:</label><span style="color: red; margin-left: 10px"><?=isset($errors['tb_error_giatri']) ? $errors['tb_error_giatri'] : '' ?></span>
                         <input type="text" class="form-control" value="<?=($giatri != "")?$giatri:""?>" name="giatri" id="name" placeholder="Nhập giá trị voucher">
                     </div>
                     <div class="form-group">

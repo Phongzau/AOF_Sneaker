@@ -10,7 +10,7 @@
         if(isset($user)&&(is_array($user))&&(count($user)>0)){
              extract($user);
             if($chuc_vu == "Admin"){
-                $_SESSION['user']=$user;
+                $_SESSION['s_user']=$user;
                 header('location:index.php');
             }else{
                 $tb="Tài khoản không đủ thẩm quyền";

@@ -1,6 +1,6 @@
 <?php
-    if (isset($_SESSION['user']) && count($_SESSION['user']) > 0) {
-        extract($_SESSION['user']);
+    if (isset($_SESSION['s_user']) && count($_SESSION['s_user']) > 0) {
+        extract($_SESSION['s_user']);
     }
 ?>
 

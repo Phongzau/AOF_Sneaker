@@ -2,6 +2,11 @@
     $html_show_banner = showds_banner_admin($dsbanner);
 ?>
 <div class="container mt-3">
+  <?php
+    if (isset($tb_tcbn)) {
+      echo $tb_tcbn;
+    }
+  ?>
   <h2>Quản lý Banner</h2>
   <div class="d-flex justify-content-end">
     <a href="index.php?ad=thembanner" class="btn d-flex justify-content-end btn-primary mb-2">Thêm Banner</a>

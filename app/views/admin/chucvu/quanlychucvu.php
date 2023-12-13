@@ -2,6 +2,11 @@
     $html_show_role = show_role_admin($dsrole);
 ?>
 <div class="container mt-3">
+    <?php
+      if (isset($tb_tccv)) {
+         echo $tb_tccv;
+      }
+    ?>
     <h2>Chức vụ</h2>
     <div class="d-flex justify-content-end">
       <a href="index.php?ad=themchucvu" class="btn d-flex justify-content-end btn-primary mb-2">Thêm Chức vụ</a>
