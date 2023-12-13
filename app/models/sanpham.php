@@ -143,6 +143,7 @@ function get_dssp($kyw,$iddm){
 //admin
 function show_sp_admin($dssp) {
     $html_dssp = '';
+    $xd = "'Bạn có muốn xóa sản phẩm này không?'";  
     foreach ($dssp as $sp) {
         extract($sp);
         $formattedPrice = number_format($price, 0, '.', '.');
@@ -182,7 +183,7 @@ function show_sp_admin($dssp) {
                 <a href="index.php?ad=suasp&id=' . $id_sp . '" class="btn btn-warning">
                     <i class="fa-solid fa-pen-to-square"></i>Sửa
                 </a>
-                <a href="index.php?ad=deletesp&id=' . $id_sp . '" class="btn btn-danger">
+                <a onclick="return confirm('.$xd.')" href="index.php?ad=deletesp&id=' . $id_sp . '" class="btn btn-danger">
                     <i class="fa-solid "></i>Xóa
                 </a>
             </td>
@@ -638,6 +639,7 @@ function show_spchitiet($spchitiet) {
 
     function show_hasp_admin($dsha){
         $html_showhasp ='';
+        $xd = "'Bạn có muốn xóa sản phẩm này không?'";  
         foreach ($dsha as $ha) {
          extract($ha);
          $html_showhasp.='<div class="box25 mr15">
@@ -648,7 +650,7 @@ function show_spchitiet($spchitiet) {
                             <td>
                             <a href="index.php?ad=suahasp&id='.$id_ha.'&idsp='.$id_sanpham.'" class="btn btn-warning">
                             <i class="fa-solid fa-pen-to-square"></i>Sửa</a>
-                            <a href="index.php?ad=deletehasp&id='.$id_ha.'&idsp='.$id_sanpham.'" class="btn btn-danger">
+                            <a onclick="return confirm('.$xd.')" href="index.php?ad=deletehasp&id='.$id_ha.'&idsp='.$id_sanpham.'" class="btn btn-danger">
                             <i class="fa-solid "></i>Xóa</a>
                             </td>
                         </tr>

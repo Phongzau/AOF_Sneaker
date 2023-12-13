@@ -35,6 +35,7 @@
 
     function show_role_admin($dsrole){
         $html_show_role='';
+        $xd = "'Bạn có muốn xóa sản phẩm này không?'";  
         foreach ($dsrole as $role) {
             extract($role);
             $html_show_role.='<tr>
@@ -44,7 +45,7 @@
                                 <td>
                                 <a href="index.php?ad=updaterole&id='.$id_role.'" class="btn btn-warning">
                                 <i class="fa-solid fa-pen-to-square"></i> Sửa</a>
-                                <a href="index.php?ad=deleterole&id='.$id_role.'" class="btn btn-danger">
+                                <a onclick="return confirm('.$xd.')" href="index.php?ad=deleterole&id='.$id_role.'" class="btn btn-danger">
                                 <i class="fa-solid "></i> Xóa</a>
                                 </td>   
                               </tr>

@@ -26,6 +26,7 @@ function insert_banner_admin($name, $link, $img) {
 
 function showds_banner_admin($dsbanner){
     $html_dsbanner ='';
+    $xd = "'Bạn có muốn xóa sản phẩm này không?'";  
     foreach ($dsbanner as $banner) {
         extract($banner);
         $html_dsbanner .= '<tr>
@@ -37,7 +38,7 @@ function showds_banner_admin($dsbanner){
                                 <a href="index.php?ad=updatebanner&id='.$id_baner.'" class="btn btn-warning">
                                     <i class="fa-solid fa-pen-to-square"></i> Sửa
                                 </a>
-                                <a href="index.php?ad=deletebanner&id='.$id_baner.'" class="btn btn-danger">
+                                <a onclick="return confirm('.$xd.')" href="index.php?ad=deletebanner&id='.$id_baner.'" class="btn btn-danger">
                                     <i class="fa-solid "></i> Xóa
                                 </a>
                             </td>

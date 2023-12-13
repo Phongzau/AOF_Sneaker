@@ -176,8 +176,6 @@ function show_user_admin($us){
                               <td>
                               <a href="index.php?ad=updateuser&id='.$id_user.'" class="btn btn-warning">
                               <i class="fa-solid fa-pen-to-square"></i> Sửa</a>
-                              <a href="index.php?ad=deleteuser&id='.$id_user.'" class="btn btn-danger">
-                              <i class="fa-solid "></i> Xóa</a>
                               </td>
                             </tr>
                             ';

@@ -37,6 +37,7 @@
 
     function showds_baiviet_admin($dsbaiviet) {
         $html_dsbaiviet = '';
+        $xd = "'Bạn có muốn xóa sản phẩm này không?'"; 
         foreach ($dsbaiviet as $bv) {
             extract($bv);
             $html_dsbaiviet.='<tr>
@@ -47,7 +48,7 @@
                                 <td>
                                 <a href="index.php?ad=updatebv&id='.$id_baiviet.'" class="btn btn-warning">
                                 <i class="fa-solid fa-pen-to-square"></i> Sửa</a>
-                                <a href="index.php?ad=deletebv&id='.$id_baiviet.'" class="btn btn-danger">
+                                <a onclick="return confirm('.$xd.')" href="index.php?ad=deletebv&id='.$id_baiviet.'" class="btn btn-danger">
                                 <i class="fa-solid "></i> Xóa</a>
                                 </td>
                                </tr>';
