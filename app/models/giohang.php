@@ -42,12 +42,13 @@ function viewcart_header() {
     foreach ($_SESSION['giohang'] as $sp) {
     extract($sp);
     $tt = $price*$soluong;
+    $formattedPrice = number_format($tt, 0, '.', '.');
     $link = "index.php?cl=sanphamchitiet&idpro=".$id_sp;
     $html_cartheader.='   <ul>
                                 <li>
                                     <a href="'.$link.'">
                                         <figure><img src="'.IMG_PATH_USER.$img.'" data-src="'.IMG_PATH_USER.$img.'" alt="" width="50" height="50" class="lazy"></figure>
-                                        <strong><span>'.$soluong.'x'.$name.'</span>$'.$tt.'</strong>
+                                        <strong><span>'.$soluong.' x '.$name.'</span>'.$formattedPrice.'VND</strong>
                                     </a>
                                     <a href="index.php?cl=delspgiohang&id='.$id_sp.'" class="action"><i class="ti-trash"></i></a>
                                 </li>

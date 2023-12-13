@@ -51,6 +51,8 @@ $html_showdm = showdm_all(danhmuc_all());
     }
     $html_cartheader =  viewcart_header();
     $total = get_tongdonhang();
+    $formattedPrice = number_format($total, 0, '.', '.');
+
 
 ?>
 <!DOCTYPE html>
@@ -133,6 +135,7 @@ $html_showdm = showdm_all(danhmuc_all());
                         <div class="col-xl-3 col-lg-3 d-lg-flex align-items-center">
                             <div id="logo">
                                 <a href="index.php"><img src="public/client/img/logo.svg" alt="" width="100" height="35"></a>
+                                <!-- <a href="index.php"><img style="color: #ffffff;"  src="public/uploads/lovago.png" alt="" width="100" height="60"></a> -->
                             </div>
                         </div>
                         <nav class="col-xl-6 col-lg-7">
@@ -237,7 +240,7 @@ $html_showdm = showdm_all(danhmuc_all());
                                         <a href="index.php?cl=giohang" class="cart_bt"><strong><?= count($_SESSION['giohang'])?></strong></a>
                                         <?=$html_cartheader?>
                                         <div class="total_drop">
-                                <div class="clearfix"><strong>Total</strong><span><?=$total?></span></div>
+                                <div class="clearfix"><strong>Total</strong><span><?=$formattedPrice?>VND</span></div>
                                 <a href="index.php?cl=viewcart" class="btn_1 outline">View Cart</a>
                                 </div>
                                 </div>
