@@ -32,7 +32,7 @@
 							<div class="form-group">
 								<input type="password" class="form-control" value="<?=isset($password) ? $password: ''?>" name="password" id="email" placeholder="Nhập mật khẩu của bạn">
 							</div>
-							<label for="" class="mt-1">Nhập lại mật khẩu: <span style="color: red; margin-left: 10px"><?=isset($errors['tb_error_repassword']) ? $errors['tb_reerror_password'] : ''?> <?=isset($errors['tb_pass']) ? $errors['tb_pass'] : '' ?></span></label>
+							<label for="" class="mt-1">Nhập lại mật khẩu: <span style="color: red; margin-left: 10px"><?=isset($errors['tb_error_repassword']) ? $errors['tb_error_repassword'] : ''?> <?=isset($errors['tb_pass']) ? $errors['tb_pass'] : '' ?></span></label>
 							<div class="form-group">
 								<input type="password" class="form-control" value="<?=isset($repassword) ? $repassword: ''?>" name="repassword" id="password_in" placeholder="Nhập lại mật khẩu của bạn">
 							</div>

@@ -84,6 +84,8 @@
             break;
         case 'th_doimk':
             if (isset($_POST['doimatkhau'])) {
+                $email = '';
+                $username = '';
                 if (empty($_POST['username'])) {
                     $errors['tb_error_username_dmk'] = "Tên tài khoản không được để trống";
                 } else {
@@ -117,7 +119,7 @@
                 $password = ""; // Khai báo trước khi sử dụng
                 $repassword = ""; // Khai báo trước khi sử dụng
 
-                // Tên đăng nhập
+                // Tên đăng nhập    
                     $username = $_POST['username'];
                 // Mật khẩu
                 if (empty($_POST['password'])) {
@@ -196,6 +198,11 @@
         case 'th_dangky':
             if (isset($_POST['th_dangky'])) {
                 $errors = array();
+                $email = '';
+                $password = '';
+                $repassword = '';
+                $username = '';
+                $dienthoai ='';
         // Validate
             // Kiểm tra dữ liệu   
                 // Tên đăng nhập
