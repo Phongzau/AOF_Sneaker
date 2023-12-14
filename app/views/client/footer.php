@@ -5,11 +5,11 @@
 					<h3 data-bs-target="#collapse_1">Quick Links</h3>
 					<div class="collapse dont-collapse-sm links" id="collapse_1">
 						<ul>
-							<li><a href="about.html">Trang chủ</a></li>
-							<li><a href="help.html">Sản phẩm</a></li>
-							<li><a href="help.html">Bài viết</a></li>
-							<li><a href="account.html">My account</a></li>
-							<li><a href="blog.html">Liên hệ</a></li>
+							<li><a href="index.php">Trang chủ</a></li>
+							<li><a href="index.php?cl=sanpham">Sản phẩm</a></li>
+							<li><a href="index.php?cl=baiviet">Bài viết</a></li>
+							<li><a href="index.php?cl=thongtinuser">My account</a></li>
+							<li><a href="index.php?cl=lienhe">Liên hệ</a></li>
 						</ul>
 					</div>
 				</div>

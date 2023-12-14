@@ -62,11 +62,11 @@ function show_banner_client($banner) {
             <div class="row justify-content-center justify-content-md-end">
                 <div class="col-lg-6 static">
                     <div class="slide-text text-end white">
-                        <h2 class="owl-slide-animated owl-slide-title">Attack Air<br>Max 720 Sage Low</h2>
+                        <h2 class="owl-slide-animated owl-slide-title">PATTAS POLKA DOTS - HIGH TOP - JELLY BEAN</h2>
                         <p class="owl-slide-animated owl-slide-subtitle">
                             Limited items available at this price
                         </p>
-                        <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="listing-grid-1-full.html" role="button">Shop Now</a></div>
+                        <div class="owl-slide-animated owl-slide-cta"><a class="btn_1" href="index.php?cl=sanphamchitiet&idpro=42" role="button">Shop Now</a></div>
                     </div>
                 </div>
             </div>

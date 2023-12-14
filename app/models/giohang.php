@@ -22,7 +22,7 @@ function viewcart(){
                                 <img width="30%" src="'.IMG_PATH_USER.$img.'" data-src="'.IMG_PATH_USER.$img.'" class="lazy" alt="Image">
                             </div>
                         </td>
-                        <td><strong>$'.$formattedPrice.'</strong></td>
+                        <td><strong>'.$formattedPrice.'VND</strong></td>
                         <td>    
                         <input type="number" name="soluong" value="'.$soluong.'" min="1">
                         <input type="hidden" name="id_sp" value="'.$id_sp.'">
