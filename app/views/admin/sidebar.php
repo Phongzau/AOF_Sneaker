@@ -7,10 +7,6 @@
 <div class="wrapper">
 
   <!-- Preloader -->
-  <div class="flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="../../../public/dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60"
-      width="60">
-  </div>
 
   <!-- Navbar -->
   <nav class="main-header navbar navbar-expand navbar-white navbar-light">
@@ -229,14 +225,6 @@
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Quản lý hóa đơn
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="index.php?ad=quanlybienthe" class="nav-link ">
-              <i class="nav-icon fas fa-tachometer-alt"></i>
-              <p>
-                Quản lý biến thể
               </p>
             </a>
           </li>
